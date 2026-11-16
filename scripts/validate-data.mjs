@@ -18,6 +18,25 @@ const schema = readJson(path.join(root, "data", "artist.schema.json"));
 const candidateData = readJson(path.join(root, "data", "candidates.json"));
 if (!data || !schema) fail("Catalogue or schema could not be loaded.");
 if (!candidateData || candidateData.version !== 1 || !Array.isArray(candidateData.candidates)) fail("data/candidates.json: expected version 1 and a candidates array.");
+const verifiedData = readJson(path.join(root, "data", "verified-artists.json"));
+if (!verifiedData || verifiedData.version !== 1 || !Array.isArray(verifiedData.results)) fail("data/verified-artists.json: expected version 1 and a results array.");
+if (verifiedData?.results) {
+  const verifiedIds = new Set();
+  for (const [index, item] of verifiedData.results.entries()) {
+    const at = "verified-artists.results[" + index + "]";
+    if (!item || typeof item !== "object" || !item.candidate_id || !item.source_tag || !["verified","verified_no_previews","needs_review","not_found","blocked","error"].includes(item.status)) fail(at + ": invalid verification record.");
+    if (verifiedIds.has(item.candidate_id)) fail(at + ": duplicate candidate_id.");
+    verifiedIds.add(item.candidate_id);
+    if (item.artist_id !== null && item.artist_id !== undefined && (!Number.isInteger(item.artist_id) || item.artist_id <= 0)) fail(at + ".artist_id: expected positive integer or null.");
+    if (!Array.isArray(item.previews)) fail(at + ".previews: expected array.");
+    for (const post of item.previews || []) {
+      if (!Number.isInteger(post.id) || !post.post_url?.startsWith("https://danbooru.donmai.us/posts/")) fail(at + ": invalid post reference.");
+      for (const url of [post.preview_url, post.large_url].filter(Boolean)) {
+        try { const u = new URL(url); if (u.protocol !== "https:" || !u.hostname.endsWith("donmai.us")) fail(at + ": invalid preview host."); } catch { fail(at + ": invalid preview URL."); }
+      }
+    }
+  }
+}
 if (candidateData?.candidates) {
   const candidateIds = new Set();
   const candidateTags = new Set();
