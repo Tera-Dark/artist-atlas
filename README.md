@@ -47,7 +47,20 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 - `post_count`、`preview_urls`
 - `added_at`、`updated_at`、`featured`
 
-## 项目结构与质量检查\n\n- `data/artist.schema.json`：正式数据结构。\n- `scripts/validate-data.mjs`：检查 JSON、重复身份、预览链接和页面脚本。\n- `.github/workflows/validate.yml`：推送和 Pull Request 自动检查。\n- Pages 发布前也会先执行数据校验。\n- `docs/ARCHITECTURE.md`：数据边界、核验规则和演进路线。\n- `CONTRIBUTING.md`：社区贡献与画师收录规则。\n\n## 原 Windows 工具
+## 新手开始
+
+第一次使用请阅读 [5 分钟新手入门](docs/GETTING-STARTED.md)。页面也提供首次打开引导和随时可查看的使用指南。
+
+## 项目结构与质量检查
+
+- `data/artist.schema.json`：正式数据结构。
+- `scripts/validate-data.mjs`：检查 JSON、重复身份、预览链接和页面脚本。
+- `.github/workflows/validate.yml`：推送和 Pull Request 自动检查。
+- Pages 发布前也会先执行数据校验。
+- `docs/ARCHITECTURE.md`：数据边界、核验规则和演进路线。
+- `CONTRIBUTING.md`：社区贡献与画师收录规则。
+
+## 原 Windows 工具
 
 仓库仍保留早期 Windows 本地采集工具源码，供需要从小红书推荐笔记整理候选名单的人使用。它不再是在线图鉴的主数据库，也不会自动把本地采集结果写入仓库。后续可增加「候选名单导入」功能，将候选画师批量送入 Danbooru 核验队列。
 
