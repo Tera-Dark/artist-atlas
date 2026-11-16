@@ -44,6 +44,7 @@ jobs:
           cp -R docs/. _site/
           cp data/artists.json _site/data/artists.json
           cp data/candidates.json _site/data/candidates.json
+          cp data/verified-artists.json _site/data/verified-artists.json
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
