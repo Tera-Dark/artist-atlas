@@ -42,10 +42,10 @@ a:hover{text-decoration-color:currentColor}
 .stat{display:flex;align-items:baseline;gap:5px;padding:0;border:0;background:transparent;min-width:0}
 .stat b{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums}
 .stat small{font-size:12px;color:var(--ui-text-muted)}
-.toolbar{max-width:1800px;margin:auto;padding:8px 28px;display:flex;align-items:center;gap:8px;border-top:0}
+.toolbar{max-width:1800px;margin:auto;padding:8px 28px;display:flex;align-items:center;gap:10px;border-top:0;flex-wrap:wrap}
 .toolbar .muted{font-size:12px;color:var(--ui-text-muted)}
 #repoState{font-size:11px;padding:2px 0;background:none;border:0;color:var(--ui-text-muted)}
-.toolbar>input{width:min(380px,45vw);height:38px;margin-left:auto}
+.toolbar>input{flex:1 1 300px;width:auto;max-width:420px;min-width:220px;height:38px;margin-left:auto}\n.toolbar>#sort{flex:0 0 142px;width:142px;min-width:142px;margin-right:4px}\n.toolbar>button{flex:0 0 auto;white-space:nowrap}
 .toolbar select{height:38px;min-width:120px}
 .toolbar .grow{display:none}
 .wrap{max-width:1800px;margin:auto;padding:0 28px 64px}
@@ -114,7 +114,7 @@ a:hover{text-decoration-color:currentColor}
 @media(max-width:900px){.head{padding:0 18px}.toolbar{padding:8px 18px}.wrap{padding:0 18px 50px}.workspace{grid-template-columns:180px minmax(0,1fr);gap:24px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar{padding-right:14px}}
 @media(max-width:620px){.candidate-panel{padding:13px}.candidate-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.head{height:auto;min-height:56px;padding:10px 14px;flex-wrap:wrap}.brand{font-size:14px}.stats{gap:10px}.stat small{font-size:11px}.toolbar{padding:8px 14px;flex-wrap:wrap}.toolbar>input{order:3;width:100%;max-width:none;margin:0}.toolbar select{margin-left:auto}.wrap{padding:0 14px 40px}.workspace{display:block}.sidebar{position:static;min-height:0;border:0;padding:14px 0 0}.side-label{padding:0;margin-bottom:6px}.filters{flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}.chip{width:auto;white-space:nowrap;min-height:34px;padding:6px 10px}.content{padding-top:18px}.sectionline{align-items:start;flex-direction:column;gap:5px}.sectionline h2{font-size:21px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.cover{border-radius:7px}.details{padding-top:8px}.name{font-size:13px}.thumbs img{height:52px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.previewgrid{grid-template-columns:repeat(3,1fr)}.dialog{padding:18px;border-radius:12px}.candidate{align-items:flex-start;flex-wrap:wrap}.candidate .grow{flex-basis:100%}}
 @media(max-width:380px){.cards{grid-template-columns:1fr 1fr}.head .stats{width:100%;margin:0 0 2px}.artist .thumbs img{height:44px}}
-@media(max-width:620px){#guide{order:4}.toolbar #manage{margin-left:auto}}\n@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media(max-width:900px){.toolbar>input{margin-left:0;max-width:none;flex:1 1 45%}.toolbar>#sort{flex:1 1 150px;width:auto;min-width:140px;margin-right:0}.toolbar{gap:7px}}\n@media(max-width:620px){.toolbar{padding:8px 16px}.toolbar>input{flex:1 1 100%;order:1}.toolbar>#sort{flex:1 1 100%;order:2}.toolbar>#guide{order:3}.toolbar #manage{margin-left:auto;order:6}}\n@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
 </style>
 </head>
