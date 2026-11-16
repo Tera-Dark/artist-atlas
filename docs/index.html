@@ -506,7 +506,6 @@ $("composerList").addEventListener("click",function(event){
  if(index<0||next<0||next>=composition.length)return;
  const swap=composition[index];composition[index]=composition[next];composition[next]=swap;render();
 });
-$("composerOpen")?.addEventListener("click",function(){$("composerModal").classList.add("show")});
 $("composerClear").addEventListener("click",function(){composition=[];compositionStrength={};render()});
 $("composerCopy").addEventListener("click",async function(){
  const value=$("composerOutput").value;if(!value)return;
