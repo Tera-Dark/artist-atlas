@@ -7,6 +7,7 @@ on:
     paths:
       - "data/candidates.json"
       - "scripts/verify-danbooru.mjs"
+      - ".github/workflows/verify-danbooru.yml"
 
 permissions:
   contents: write
@@ -21,12 +22,14 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Verify candidates and collect General previews
         run: node scripts/verify-danbooru.mjs
-      - name: Commit verification results
+      - name: Commit verification results safely
         run: |
           if git diff --quiet -- data/verified-artists.json; then
             echo "No verification data changes."
@@ -36,4 +39,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/verified-artists.json
           git commit -m "Update Danbooru artist verification results"
-          git push
+
+          # The main branch may advance while the 73 API checks are running.
+          # Rebase the generated result onto the newest main before pushing.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push raced with another main update (attempt $attempt); retrying."
+            sleep $((attempt * 2))
+          done
+          echo "Could not publish verification results after 5 attempts."
+          exit 1
