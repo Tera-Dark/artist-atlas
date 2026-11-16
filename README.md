@@ -8,10 +8,10 @@
 
 Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first 画师图鉴**：
 
-- GitHub 仓库中的 `data/artists.json` 是唯一正式画师索引，所有访问者读取同一份数据。
-- GitHub Pages 提供暗色画师卡片、分类筛选、搜索、代表作预览与管理界面。
+- GitHub 仓库中的 `data/artists.json` 是唯一正式画师索引，所有访问者读取同一份数据；Pages 部署时将其复制到同源静态目录。
+- GitHub Pages 提供中性色画师图鉴、分类筛选、搜索、代表作预览与管理界面。
 - 画师入库前通过 Danbooru Artist API 查询；精确选择条目后保存 Danbooru ID、别名、分类、风格标签、个人评分、备注与安全级别为 General 的作品预览。
-- 管理操作通过 GitHub Contents API 提交 commit，不再以本机 JSON 或本地图片目录作为主数据库。
+- 管理操作通过 GitHub Contents API 提交 commit；写入时会对比远端最新记录，检测并发修改，避免静默覆盖。
 - Danbooru 仅用于只读核验；不确定的候选不会自动认定为同一画师。
 
 ## 使用在线图鉴
@@ -47,7 +47,7 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 - `post_count`、`preview_urls`
 - `added_at`、`updated_at`、`featured`
 
-## 原 Windows 工具
+## 项目结构与质量检查\n\n- `data/artist.schema.json`：正式数据结构。\n- `scripts/validate-data.mjs`：检查 JSON、重复身份、预览链接和页面脚本。\n- `.github/workflows/validate.yml`：推送和 Pull Request 自动检查。\n- Pages 发布前也会先执行数据校验。\n- `docs/ARCHITECTURE.md`：数据边界、核验规则和演进路线。\n- `CONTRIBUTING.md`：社区贡献与画师收录规则。\n\n## 原 Windows 工具
 
 仓库仍保留早期 Windows 本地采集工具源码，供需要从小红书推荐笔记整理候选名单的人使用。它不再是在线图鉴的主数据库，也不会自动把本地采集结果写入仓库。后续可增加「候选名单导入」功能，将候选画师批量送入 Danbooru 核验队列。
 
