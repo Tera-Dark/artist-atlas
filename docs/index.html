@@ -127,7 +127,7 @@ a:hover{text-decoration-color:currentColor}
   <span class="muted">仓库</span><span id="repoState" class="pill">读取中</span>
   <input id="search" type="search" aria-label="搜索画师名、别名或标签" placeholder="搜索画师、风格或标签…">
   <select id="sort" aria-label="画师排序方式"><option value="recent">最近收录</option><option value="name">名称 A–Z</option><option value="works">作品数量</option></select>
-  <button id="refresh" title="重新读取仓库">刷新</button>
+  <button id="themeToggle" type="button" aria-label="切换浅色或深色主题">深色模式</button><button id="refresh" title="重新读取仓库">刷新</button>
   <button id="manage" class="primary">管理图鉴</button>
  </div>
 </header>
@@ -196,6 +196,7 @@ document.addEventListener("keydown",e=>{
 $("manage").addEventListener("click",()=>setTimeout(()=>$("dialogTitle").closest(".dialog").focus(),0));
 $("cards").addEventListener("error",e=>{if(e.target.tagName==="IMG"){e.target.style.visibility="hidden"}},true);
 
+const savedTheme=sessionStorage.getItem("artistAtlasTheme");if(savedTheme==="dark")document.documentElement.dataset.theme="dark";$("themeToggle").textContent=document.documentElement.dataset.theme==="dark"?"浅色模式":"深色模式";$("themeToggle").onclick=()=>{const dark=document.documentElement.dataset.theme!=="dark";if(dark)document.documentElement.dataset.theme="dark";else delete document.documentElement.dataset.theme;sessionStorage.setItem("artistAtlasTheme",dark?"dark":"light");$("themeToggle").textContent=dark?"浅色模式":"深色模式"};
 loadData();
 </script>
 </body></html>
