@@ -2,146 +2,159 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f1115"><title>Artist Atlas · 画师图鉴</title>
+<meta name="theme-color" content="#ffffff"><title>Artist Atlas · 画师图鉴</title>
 <link rel="icon" href="../应用图标.svg" type="image/svg+xml">
 <style>
 :root{
- color-scheme:dark;
- --bg:#101113;--bg-elev:#151619;--surface:#1b1d21;--surface-raised:#22252a;--surface-hover:#292c32;
- --line:#30343b;--line-strong:#454b55;--text:#f1f1f2;--muted:#a4a8b0;--subtle:#777e89;
- --accent:#b5a0f4;--accent-strong:#9c83eb;--accent-wash:rgba(181,160,244,.12);
- --good:#83c9a5;--warn:#e5c27e;--bad:#e58f91;
- --font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+ color-scheme:light;
+ --ui-bg:#fff;--ui-nav:#f7f7f8;--ui-surface:#fff;--ui-surface-muted:#f5f5f5;--ui-hover:#f2f2f3;
+ --ui-text:#202123;--ui-text-muted:#5f6368;--ui-border:#e5e5e7;--ui-control-border:#767676;
+ --ui-accent:#252525;--ui-accent-text:#fff;--ui-focus:#2563eb;--ui-danger:#b42318;--ui-success:#167347;
+ --ui-font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;
- --radius-control:9px;--radius-panel:14px;--radius-card:16px;--ease:180ms cubic-bezier(.2,.7,.2,1);
+ --radius-control:8px;--radius-panel:12px;--duration:160ms;
 }
+[data-theme="dark"]{color-scheme:dark;--ui-bg:#171717;--ui-nav:#1f1f1f;--ui-surface:#252525;--ui-surface-muted:#2b2b2b;--ui-hover:#343434;--ui-text:#f2f2f2;--ui-text-muted:#b7b7b7;--ui-border:#414141;--ui-control-border:#858585;--ui-accent:#f3f3f3;--ui-accent-text:#171717;--ui-focus:#8cb4ff;--ui-danger:#ff928a;--ui-success:#6ed4a0}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:130px}
-body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 var(--font);letter-spacing:.005em}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--ui-bg);color:var(--ui-text);font:14px/1.55 var(--ui-font)}
 button,input,select,textarea{font:inherit;color:inherit}
-button{min-height:38px;padding:8px 13px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--surface-raised);color:var(--text);cursor:pointer;transition:background var(--ease),border-color var(--ease),transform var(--ease)}
-button:hover{background:var(--surface-hover);border-color:var(--line-strong)}
-button:active{transform:translateY(1px)}
-button:disabled{opacity:.48;cursor:not-allowed;transform:none}
-button.primary{background:var(--accent);border-color:var(--accent);color:#211b30;font-weight:650}
-button.primary:hover{background:#c4b4f7;border-color:#c4b4f7}
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-input,select,textarea{min-width:0;background:#131518;border:1px solid var(--line-strong);border-radius:var(--radius-control);padding:10px 12px;outline:none;transition:border-color var(--ease),background var(--ease)}
-input::placeholder,textarea::placeholder{color:#777e89}
-input:focus,select:focus,textarea:focus{border-color:var(--accent);background:#17191d}
-a{color:#c7b8f5;text-decoration:none}
-a:hover{color:#e0d8ff;text-decoration:underline}
-.top{position:sticky;top:0;z-index:10;background:rgba(16,17,19,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.head{max-width:1800px;margin:auto;display:flex;align-items:center;gap:18px;padding:17px 28px}
-.brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:700;letter-spacing:-.025em}
-.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#c6b3f5,#9478d8);color:#241d34;display:grid;place-items:center;font-size:21px;box-shadow:0 5px 18px #8e74d326}
-.sub{font:10px/1.4 var(--font);letter-spacing:.15em;color:var(--subtle);font-weight:600}
-.brand .sub{margin-top:2px;font-size:9px;letter-spacing:.16em}
-.stats{display:flex;gap:8px;margin-left:auto}
-.stat{min-width:86px;text-align:left;padding:7px 12px;border:1px solid var(--line);background:transparent;border-radius:11px}
-.stat b{display:block;font-size:19px;line-height:1.25;font-weight:650;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.stat small{color:var(--muted);font-size:11px}
-.toolbar{max-width:1800px;margin:auto;padding:10px 28px 12px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.035)}
-.toolbar .grow{flex:1}
-.toolbar>input{width:min(360px,42vw);height:39px}
-.toolbar select{height:39px;min-width:132px}
-.toolbar .muted{font-size:12px}
-#repoState{font-size:11px;padding:4px 9px}
-.wrap{max-width:1800px;margin:auto;padding:30px 28px 70px}
-.sectionline{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:5px 0 16px}
-.sectionline h2{font-size:23px;line-height:1.25;letter-spacing:-.035em;margin:5px 0 0;font-weight:650}
-.sectionline .sub{font-size:10px}
-#resultCount{font-size:12px;white-space:nowrap}
-.filters{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:0 0 20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
-.chip{border-radius:8px;min-height:34px;padding:6px 12px;font-size:12px;color:var(--muted);background:transparent;border-color:transparent}
-.chip:hover{color:var(--text);background:var(--surface)}
-.chip.active{background:var(--accent-wash);border-color:rgba(181,160,244,.36);color:#d8cdfa}
-.spot{border:1px solid var(--line);border-radius:var(--radius-card);padding:17px 20px;background:linear-gradient(105deg,#1a1b20 0%,#202027 55%,#25232c 100%);display:flex;align-items:center;gap:18px;margin:0 0 22px;min-height:112px;box-shadow:0 12px 36px rgba(0,0,0,.12)}
-.spot .avatar{width:52px;height:52px;border-radius:14px;background:#302b3d;color:#d9cdfb;border:1px solid #5b4d78}
-.spotinfo{min-width:180px}
-.spotinfo h2{font-size:19px;letter-spacing:-.025em;margin:2px 0 3px}
-.spotinfo .muted{font-size:12px}
-.samples{display:flex;gap:8px;overflow:hidden;margin-left:auto}
-.samples img{width:62px;height:76px;object-fit:cover;border-radius:9px;background:#25272d;border:1px solid rgba(255,255,255,.1)}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;align-items:stretch}
-.artist{position:relative;display:grid;grid-template-columns:minmax(135px,.95fr) minmax(150px,1.05fr);gap:14px;padding:12px;border:1px solid var(--line);border-radius:var(--radius-card);background:var(--surface);min-width:0;overflow:hidden;transition:border-color var(--ease),background var(--ease),transform var(--ease)}
-.artist:hover{border-color:#55515f;background:#1e2025;transform:translateY(-2px)}
-.artist:before{display:none}
-.cover{position:relative;min-height:250px;background:#121417;border-radius:11px;overflow:hidden}
-.cover img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 450ms ease}
-.artist:hover .cover img{transform:scale(1.025)}
-.cover .empty{height:100%;display:grid;place-items:center;color:#69717d;font-size:30px}
-.count{position:absolute;bottom:9px;right:9px;background:rgba(12,13,15,.84);border:1px solid rgba(255,255,255,.13);padding:4px 8px;border-radius:7px;font-size:11px;color:#f1f1f2;font-variant-numeric:tabular-nums}
-.details{min-width:0;display:flex;flex-direction:column;gap:10px;padding:2px 1px}
-.row{display:flex;align-items:center;gap:9px;min-width:0}
-.avatar{width:42px;height:42px;flex:none;border-radius:12px;background:#302b3d;color:#d8ccfa;border:1px solid #55496e;display:grid;place-items:center;font-size:18px;font-weight:700}
-.avatar.sm{width:36px;height:36px;border-radius:10px;font-size:15px}
-.name{font-size:15px;line-height:1.3;font-weight:650;letter-spacing:-.015em;overflow-wrap:anywhere}
-.details .muted{font-size:11px;color:var(--muted)}
-.pill{font-size:11px;border-radius:6px;padding:3px 8px;background:rgba(131,201,165,.1);color:var(--good);border:1px solid rgba(131,201,165,.22);display:inline-flex;align-items:center;width:max-content}
-.pill.pending{color:var(--warn);background:rgba(229,194,126,.09);border-color:rgba(229,194,126,.22)}
-.pill.bad{color:var(--bad);background:rgba(229,143,145,.09);border-color:rgba(229,143,145,.22)}
-.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.thumbs img{width:100%;height:76px;object-fit:cover;border-radius:8px;background:#24272d;border:1px solid rgba(255,255,255,.07)}
+button{min-height:38px;padding:8px 12px;border:1px solid transparent;border-radius:var(--radius-control);background:transparent;cursor:pointer;transition:background var(--duration),border-color var(--duration),color var(--duration)}
+button:hover{background:var(--ui-hover)}
+button:active{background:var(--ui-surface-muted)}
+button:disabled{opacity:.48;cursor:not-allowed}
+button.primary{background:var(--ui-accent);color:var(--ui-accent-text);border-color:var(--ui-accent);font-weight:600}
+button.primary:hover{opacity:.88}
+button.danger{color:var(--ui-danger)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--ui-focus);outline-offset:2px}
+input,select,textarea{min-width:0;background:var(--ui-surface);border:1px solid var(--ui-control-border);border-radius:var(--radius-control);padding:9px 11px;outline:none;transition:border-color var(--duration),box-shadow var(--duration)}
+input::placeholder,textarea::placeholder{color:var(--ui-text-muted);opacity:.8}
+input:focus,select:focus,textarea:focus{border-color:var(--ui-text);box-shadow:0 0 0 1px var(--ui-text)}
+a{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+.top{position:sticky;top:0;z-index:10;background:var(--ui-bg);border-bottom:1px solid var(--ui-border)}
+.head{height:60px;max-width:1800px;margin:auto;display:flex;align-items:center;gap:14px;padding:0 28px}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:650;letter-spacing:-.02em}
+.logo{width:30px;height:30px;border:1px solid var(--ui-border);border-radius:9px;display:grid;place-items:center;font-size:16px;background:var(--ui-surface-muted);color:var(--ui-text)}
+.brand .sub{display:block;margin-top:0;font-size:10px;letter-spacing:.02em;color:var(--ui-text-muted);font-weight:400}
+.sub{font-size:11px;color:var(--ui-text-muted);font-weight:500}
+.stats{display:flex;gap:16px;margin-left:auto}
+.stat{display:flex;align-items:baseline;gap:5px;padding:0;border:0;background:transparent;min-width:0}
+.stat b{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums}
+.stat small{font-size:12px;color:var(--ui-text-muted)}
+.toolbar{max-width:1800px;margin:auto;padding:8px 28px;display:flex;align-items:center;gap:8px;border-top:0}
+.toolbar .muted{font-size:12px;color:var(--ui-text-muted)}
+#repoState{font-size:11px;padding:2px 0;background:none;border:0;color:var(--ui-text-muted)}
+.toolbar>input{width:min(380px,45vw);height:38px;margin-left:auto}
+.toolbar select{height:38px;min-width:120px}
+.toolbar .grow{display:none}
+.wrap{max-width:1800px;margin:auto;padding:0 28px 64px}
+.workspace{display:grid;grid-template-columns:220px minmax(0,1fr);gap:38px;align-items:start}
+.sidebar{position:sticky;top:128px;padding:26px 0 30px;min-height:calc(100vh - 128px);border-right:1px solid var(--ui-border);padding-right:20px}
+.side-label{font-size:11px;color:var(--ui-text-muted);font-weight:600;margin:0 0 10px;padding:0 10px}
+.filters{display:flex;flex-direction:column;gap:2px;margin:0}
+.chip{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;min-height:36px;padding:7px 10px;border:0;border-radius:7px;background:transparent;color:var(--ui-text-muted);font-size:13px}
+.chip:hover{background:var(--ui-hover);color:var(--ui-text)}
+.chip.active{background:var(--ui-hover);color:var(--ui-text);font-weight:600}
+.content{min-width:0;padding:30px 0 0}
+.sectionline{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 18px}
+.sectionline h2{font-size:24px;line-height:1.25;letter-spacing:-.04em;margin:0;font-weight:650}
+.sectionline .sub{font-size:12px;margin-bottom:5px}
+#resultCount{font-size:12px;color:var(--ui-text-muted);white-space:nowrap}
+.spot{display:none!important}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:20px;row-gap:30px;align-items:start}
+.artist{position:relative;display:flex;flex-direction:column;gap:0;padding:0;border:0;border-radius:0;background:transparent;min-width:0;overflow:visible;transition:none}
+.artist:hover{background:transparent;transform:none}
+.cover{position:relative;width:100%;aspect-ratio:4/5;min-height:0;background:var(--ui-surface-muted);border-radius:9px;overflow:hidden}
+.cover img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 300ms ease}
+.artist:hover .cover img{transform:scale(1.015)}
+.cover .empty{height:100%;display:grid;place-items:center;color:var(--ui-text-muted);font-size:26px}
+.count{position:absolute;bottom:8px;right:8px;background:rgba(20,20,20,.78);padding:3px 7px;border-radius:5px;font-size:11px;color:#fff;font-variant-numeric:tabular-nums}
+.details{min-width:0;display:flex;flex-direction:column;gap:7px;padding:10px 1px 0}
+.row{display:flex;align-items:center;gap:8px;min-width:0}
+.avatar{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ui-surface-muted);color:var(--ui-text);border:1px solid var(--ui-border);display:grid;place-items:center;font-size:13px;font-weight:600}
+.avatar.sm{width:30px;height:30px;border-radius:50%;font-size:13px}
+.name{font-size:14px;line-height:1.35;font-weight:600;letter-spacing:-.01em;overflow-wrap:anywhere}
+.details .muted{font-size:12px;color:var(--ui-text-muted)}
+.pill{font-size:11px;border-radius:5px;padding:2px 6px;background:var(--ui-surface-muted);color:var(--ui-text-muted);border:0;display:inline-flex;align-items:center;width:max-content}
+.pill.pending{color:var(--ui-text-muted);background:var(--ui-surface-muted)}
+.pill.bad{color:var(--ui-danger);background:transparent}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.thumbs img{width:100%;height:64px;object-fit:cover;border-radius:5px;background:var(--ui-surface-muted);border:0}
 .tags{display:flex;gap:5px;flex-wrap:wrap}
-.tag{font-size:10px;color:#c0c3ca;background:#292c32;border:1px solid #353940;border-radius:5px;padding:3px 7px}
-.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
-.actions button{font-size:11px;min-height:32px;padding:5px 9px}
-.empty-state{text-align:center;padding:72px 22px;border:1px dashed var(--line-strong);border-radius:var(--radius-card);color:var(--muted);background:rgba(255,255,255,.012);line-height:1.8}
-.footnote{color:var(--subtle);font-size:11px;margin-top:24px;line-height:1.7}
-.modal{position:fixed;inset:0;z-index:30;background:rgba(5,6,8,.78);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.tag{font-size:11px;color:var(--ui-text-muted);background:var(--ui-surface-muted);border:0;border-radius:4px;padding:2px 6px}
+.actions{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+.actions button{font-size:12px;min-height:30px;padding:4px 8px;color:var(--ui-text-muted)}
+.actions button:hover{color:var(--ui-text)}
+.empty-state{text-align:center;padding:72px 22px;color:var(--ui-text-muted);line-height:1.8}
+.footnote{color:var(--ui-text-muted);font-size:12px;margin-top:30px;line-height:1.7;border-top:1px solid var(--ui-border);padding-top:14px}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.42);display:none;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
-.dialog{width:min(780px,100%);max-height:min(90vh,900px);overflow:auto;background:#1b1d21;border:1px solid #41454d;border-radius:18px;padding:24px;box-shadow:0 28px 100px rgba(0,0,0,.55)}
-.dialog h2{margin:0;font-size:20px;letter-spacing:-.03em}
+.dialog{width:min(760px,100%);max-height:min(90vh,900px);overflow:auto;background:var(--ui-bg);border:1px solid var(--ui-border);border-radius:14px;padding:22px;box-shadow:0 16px 48px rgba(0,0,0,.18)}
+.dialog h2{margin:0;font-size:18px;letter-spacing:-.025em}
 .dialog h3{font-size:14px;font-weight:650;margin:0 0 12px}
-.dialog hr{border:0;border-top:1px solid var(--line)}
+.dialog hr{border:0;border-top:1px solid var(--ui-border)}
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
 .field.full{grid-column:1/-1}
-.field label{font-size:12px;color:#c0c4cb;font-weight:550}
+.field label{font-size:12px;color:var(--ui-text);font-weight:550}
 .field input,.field textarea{width:100%}
-.candidate{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);margin:0}
+.candidate{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--ui-border);margin:0}
 .candidate .grow{flex:1;min-width:0}
 .candidate b{font-size:13px}
-.candidate small{display:block;color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+.candidate small{display:block;color:var(--ui-text-muted);font-size:12px;overflow-wrap:anywhere}
 .previewgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:14px}
-.previewgrid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;background:#24272d}
-#authPanel>p:first-child{color:var(--muted);font-size:13px;line-height:1.7}
+.previewgrid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;background:var(--ui-surface-muted)}
+#authPanel>p:first-child{color:var(--ui-text-muted);font-size:13px;line-height:1.7}
 #token{width:100%}
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:50;background:#292c32;border:1px solid #4b505a;padding:11px 16px;border-radius:10px;display:none;max-width:min(90vw,600px);box-shadow:0 10px 35px #0008;font-size:13px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:50;background:var(--ui-text);color:var(--ui-bg);padding:10px 15px;border-radius:8px;display:none;max-width:min(90vw,600px);box-shadow:0 8px 28px rgba(0,0,0,.16);font-size:13px}
 .toast.show{display:block}
-@media(max-width:1350px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:900px){.head{padding:14px 18px}.toolbar{padding:10px 18px}.wrap{padding:24px 18px 55px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.artist{grid-template-columns:minmax(120px,.9fr) minmax(130px,1.1fr)}.cover{min-height:220px}.samples{display:none}}
-@media(max-width:620px){.head{padding:12px 14px;gap:12px}.brand{font-size:15px}.stats{width:100%;margin:0;gap:7px}.stat{flex:1;min-width:0;padding:7px 9px}.stat b{font-size:17px}.toolbar{padding:10px 14px;gap:7px}.toolbar>input{order:3;width:100%;max-width:none}.toolbar select{flex:1;min-width:0}.toolbar .grow{display:none}.wrap{padding:22px 14px 48px}.sectionline{align-items:start;flex-direction:column;gap:5px}.sectionline h2{font-size:21px}.filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:12px}.chip{white-space:nowrap}.cards{grid-template-columns:1fr;gap:11px}.artist{grid-template-columns:minmax(115px,.88fr) minmax(135px,1.12fr);gap:11px;padding:10px}.cover{min-height:220px}.details{gap:8px}.name{font-size:14px}.thumbs img{height:66px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.previewgrid{grid-template-columns:repeat(3,1fr)}.dialog{padding:18px;border-radius:15px}.candidate{align-items:flex-start;flex-wrap:wrap}.candidate .grow{flex-basis:100%}}
-@media(max-width:380px){.artist{grid-template-columns:1fr}.cover{min-height:300px}.thumbs img{height:85px}}
+@media(max-width:1250px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.head{padding:0 18px}.toolbar{padding:8px 18px}.wrap{padding:0 18px 50px}.workspace{grid-template-columns:180px minmax(0,1fr);gap:24px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar{padding-right:14px}}
+@media(max-width:620px){.head{height:auto;min-height:56px;padding:10px 14px;flex-wrap:wrap}.brand{font-size:14px}.stats{gap:10px}.stat small{font-size:11px}.toolbar{padding:8px 14px;flex-wrap:wrap}.toolbar>input{order:3;width:100%;max-width:none;margin:0}.toolbar select{margin-left:auto}.wrap{padding:0 14px 40px}.workspace{display:block}.sidebar{position:static;min-height:0;border:0;padding:14px 0 0}.side-label{padding:0;margin-bottom:6px}.filters{flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}.chip{width:auto;white-space:nowrap;min-height:34px;padding:6px 10px}.content{padding-top:18px}.sectionline{align-items:start;flex-direction:column;gap:5px}.sectionline h2{font-size:21px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.cover{border-radius:7px}.details{padding-top:8px}.name{font-size:13px}.thumbs img{height:52px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.previewgrid{grid-template-columns:repeat(3,1fr)}.dialog{padding:18px;border-radius:12px}.candidate{align-items:flex-start;flex-wrap:wrap}.candidate .grow{flex-basis:100%}}
+@media(max-width:380px){.cards{grid-template-columns:1fr 1fr}.head .stats{width:100%;margin:0 0 2px}.artist .thumbs img{height:44px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
 </style>
 </head>
 <body>
 <header class="top">
- <div class="head"><div class="brand"><div class="logo">✧</div><div>画师图鉴<div class="sub">ARTIST ATLAS · REPOSITORY EDITION</div></div></div>
- <div class="stats"><div class="stat"><b id="statArtists">—</b><small>收录画师</small></div><div class="stat"><b id="statWorks">—</b><small>代表作索引</small></div><div class="stat"><b id="statTags">—</b><small>分类标签</small></div></div>
+ <div class="head">
+  <div class="brand"><div class="logo" aria-hidden="true">A</div><div>画师图鉴<span class="sub">Artist Atlas</span></div></div>
+  <div class="stats" aria-label="图鉴统计"><div class="stat"><b id="statArtists">—</b><small>位画师</small></div><div class="stat"><b id="statWorks">—</b><small>件作品</small></div><div class="stat"><b id="statTags">—</b><small>个标签</small></div></div>
  </div>
- <div class="toolbar"><span class="muted">仓库数据</span><span id="repoState" class="pill">读取中</span><input id="search" type="search" aria-label="搜索画师名、别名或标签" placeholder="搜索画师名、别名或标签…" style="width:min(320px,48vw)"><select id="sort" aria-label="画师排序方式"><option value="recent">最近收录</option><option value="name">名称 A-Z</option><option value="works">作品数量</option></select><span class="grow"></span><button id="refresh">↻ 刷新</button><button id="manage" class="primary">✚ 管理图鉴</button></div>
+ <div class="toolbar">
+  <span class="muted">仓库</span><span id="repoState" class="pill">读取中</span>
+  <input id="search" type="search" aria-label="搜索画师名、别名或标签" placeholder="搜索画师、风格或标签…">
+  <select id="sort" aria-label="画师排序方式"><option value="recent">最近收录</option><option value="name">名称 A–Z</option><option value="works">作品数量</option></select>
+  <button id="refresh" title="重新读取仓库">刷新</button>
+  <button id="manage" class="primary">管理图鉴</button>
+ </div>
 </header>
 <main class="wrap">
- <div class="sectionline"><div><div class="sub">CURATED ARTISTS</div><h2>灵感画师 · 精选图鉴</h2></div><span class="muted" id="resultCount">正在读取仓库…</span></div>
- <div class="filters" id="filters" aria-label="按分类筛选"></div>
- <section class="spot" id="spot" style="display:none"><div class="avatar">✦</div><div class="spotinfo"><div class="sub">FEATURED ARTIST</div><h2 id="spotName"></h2><span class="muted" id="spotMeta"></span></div><div class="samples" id="spotSamples"></div></section>
- <div class="cards" id="cards" aria-live="polite"></div>
- <div class="empty-state" id="empty" style="display:none">图鉴还没有收录画师。进入「管理图鉴」，搜索 Danbooru 并核验后，就可以把喜欢的画师加入仓库。</div>
- <p class="footnote">作品预览来自 Danbooru 公共 API，仅展示安全级别为 General 的缩略图。作品版权归原作者所有；本项目仅保存画师索引与公开作品链接。</p>
+ <div class="workspace">
+  <aside class="sidebar" aria-label="画师分类">
+   <div class="side-label">图鉴</div>
+   <div class="filters" id="filters" aria-label="按分类筛选"></div>
+  </aside>
+  <section class="content">
+   <div class="sectionline"><div><div class="sub">ARTIST COLLECTION</div><h2>画师收藏</h2></div><span class="muted" id="resultCount">正在读取仓库…</span></div>
+   <section class="spot" id="spot" style="display:none"><div class="avatar">✦</div><div class="spotinfo"><div class="sub">精选画师</div><h2 id="spotName"></h2><span class="muted" id="spotMeta"></span></div><div class="samples" id="spotSamples"></div></section>
+   <div class="cards" id="cards" aria-live="polite"></div>
+   <div class="empty-state" id="empty" style="display:none">还没有收录画师。点击右上角「管理图鉴」，搜索并核验 Danbooru 画师后即可添加。</div>
+   <p class="footnote">作品预览来自 Danbooru 公共 API，仅展示 General 级别作品。作品版权归原作者所有；本项目仅保存画师索引与公开作品链接。</p>
+  </section>
+ </div>
 </main>
-<div class="modal" id="modal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" tabindex="-1"><div class="row"><h2 id="dialogTitle" style="flex:1">图鉴管理</h2><button id="close">✕</button></div>
- <div id="authPanel"><p class="muted">使用 GitHub Fine-grained Token 授权当前浏览器向仓库提交资料。建议只授予 <b>artist-atlas</b> 这个仓库的 <b>Contents: Read and write</b> 权限。</p><div class="field"><label>GitHub Token（不会上传到仓库）</label><input id="token" type="password" autocomplete="off" aria-label="GitHub Fine-grained Token" placeholder="github_pat_…"></div><div class="row" style="margin-top:10px"><button id="connect" class="primary">连接仓库</button><button id="forget">清除会话授权</button><a href="https://github.com/settings/personal-access-tokens/new" target="_blank">创建 Fine-grained Token ↗</a></div><p class="footnote">Token 只保存在当前标签页会话内存中，关闭页面即失效。不要把 Token 发给他人或写进任何文件。</p></div>
- <div id="editor" style="display:none"><hr style="border-color:var(--line);margin:18px 0"><h3>① 搜索并核验 Danbooru 画师</h3><div class="row"><input id="artistQuery" type="search" aria-label="Danbooru 画师名或 artist tag" placeholder="输入 Danbooru artist tag / 画师名" style="flex:1"><button id="lookup" class="primary">搜索 D 站</button></div><div id="candidates" aria-live="polite"></div><div id="selected" style="display:none"><hr style="border-color:var(--line);margin:18px 0"><h3>② 整理收录信息</h3><div class="formgrid">
- <div class="field"><label>画师名称（以 D 站 tag 为准）</label><input id="fName"></div><div class="field"><label>分类</label><input id="fCategory" value="插画"></div>
- <div class="field"><label>别名（逗号分隔）</label><input id="fAliases"></div><div class="field"><label>个人评分（1–10，可空）</label><input id="fScore" type="number" min="1" max="10" step=".5" placeholder="例如 8.5"></div>
- <div class="field full"><label>风格 / 特点标签（逗号分隔）</label><input id="fTags" placeholder="厚涂, 少女感, 复古"></div><div class="field full"><label>备注 / 喜欢的理由</label><textarea id="fNote" rows="2" placeholder="记录你喜欢这位画师的地方…"></textarea></div>
- </div><div class="previewgrid" id="previews"></div><div class="row" style="justify-content:flex-end;margin-top:14px"><button id="saveArtist" class="primary">保存到 GitHub 仓库</button></div></div>
- <p class="footnote">核验规则：精确命中 D 站 artist 名称或 other_names 才标记为已核验；模糊搜索结果必须由你选择。找不到条目时不会自动建立 D 站身份。</p>
- <hr style="border-color:var(--line);margin:18px 0"><h3>③ 已收录画师</h3><div id="managedList"></div></div>
+<div class="modal" id="modal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" tabindex="-1"><div class="row"><h2 id="dialogTitle" style="flex:1">管理图鉴</h2><button id="close" aria-label="关闭">关闭</button></div>
+ <div id="authPanel"><p class="muted">连接 GitHub 后，可直接将核验通过的画师保存到仓库。建议只授予 <b>artist-atlas</b> 仓库的 <b>Contents: Read and write</b> 权限。</p><div class="field"><label for="token">GitHub Fine-grained Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_…"></div><div class="row" style="margin-top:10px"><button id="connect" class="primary">连接仓库</button><button id="forget">清除会话授权</button><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">创建 Token ↗</a></div><p class="footnote">Token 仅保存在当前标签页会话中，不会写入仓库。不要分享给他人。</p></div>
+ <div id="editor" style="display:none"><hr style="border-color:var(--ui-border);margin:18px 0"><h3>搜索 Danbooru 画师</h3><div class="row"><input id="artistQuery" type="search" aria-label="Danbooru 画师名或 artist tag" placeholder="输入画师名或 artist tag" style="flex:1"><button id="lookup" class="primary">搜索</button></div><div id="candidates" aria-live="polite"></div><div id="selected" style="display:none"><hr style="border-color:var(--ui-border);margin:18px 0"><h3>画师资料</h3><div class="formgrid">
+ <div class="field"><label for="fName">画师名称</label><input id="fName"></div><div class="field"><label for="fCategory">分类</label><input id="fCategory" value="插画"></div>
+ <div class="field"><label for="fAliases">别名（逗号分隔）</label><input id="fAliases"></div><div class="field"><label for="fScore">个人评分（1–10）</label><input id="fScore" type="number" min="1" max="10" step=".5" placeholder="可留空"></div>
+ <div class="field full"><label for="fTags">风格标签（逗号分隔）</label><input id="fTags" placeholder="厚涂, 少女感, 复古"></div><div class="field full"><label for="fNote">备注</label><textarea id="fNote" rows="2" placeholder="记录喜欢这位画师的原因…"></textarea></div>
+ </div><div class="previewgrid" id="previews"></div><div class="row" style="justify-content:flex-end;margin-top:14px"><button id="saveArtist" class="primary">保存到仓库</button></div></div>
+ <p class="footnote">只有精确命中 Danbooru artist 名称或别名的条目才可作为已核验画师收录。请确认候选身份无误后再保存。</p>
+ <hr style="border-color:var(--ui-border);margin:18px 0"><h3>已收录画师</h3><div id="managedList"></div></div>
  </section></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
@@ -162,7 +175,7 @@ $("empty").style.display=list.length?"none":"block";$("cards").innerHTML=list.ma
 $("cards").querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>window.open("https://danbooru.donmai.us/artists/"+b.dataset.open,"_blank"));
 const featured=list.find(a=>a.featured);if(featured){$("spot").style.display="flex";$("spotName").textContent=featured.name;$("spotMeta").textContent=(featured.post_count||0)+" 张作品 · "+(featured.category||"未分类");$("spotSamples").innerHTML=(featured.preview_urls||[]).slice(0,6).map(u=>'<img src="'+esc(u)+'" loading="lazy">').join("")}else $("spot").style.display="none";
 }
-function card(a){const imgs=(a.preview_urls||[]).slice(0,3);const verified=a.danbooru_id?"D站已核验":"待核验";return '<article class="artist"><div class="cover">'+(imgs[0]?'<img src="'+esc(imgs[0])+'" loading="lazy" referrerpolicy="no-referrer">':'<div class="empty">✧</div>')+'<span class="count">'+(a.post_count||0)+' 张作品</span></div><div class="details"><div class="row"><div class="avatar sm">'+esc((a.name||"?").slice(0,1).toUpperCase())+'</div><div style="min-width:0"><div class="name">'+esc(a.name)+'</div><div class="muted" style="font-size:10px">'+esc(a.category||"未分类")+'</div></div></div><span class="pill '+(a.danbooru_id?"":"pending")+'">'+verified+'</span><div class="thumbs">'+imgs.slice(1).map(u=>'<img src="'+esc(u)+'" loading="lazy" referrerpolicy="no-referrer">').join("")+'</div><div class="tags">'+(a.tags||[]).slice(0,5).map(t=>'<span class="tag">'+esc(t)+'</span>').join("")+'</div><div class="muted" style="font-size:11px;max-height:42px;overflow:hidden">'+esc(a.note||"")+'</div><div class="actions">'+(a.danbooru_id?'<button data-open="'+esc(a.danbooru_id)+'">D站条目 ↗</button>':'')+'<button data-edit="'+esc(a.id)+'">编辑</button></div></div></article>'}
+function card(a){const imgs=(a.preview_urls||[]).slice(0,3);const verified=a.danbooru_id?"D站已核验":"待核验";return '<article class="artist"><div class="cover">'+(imgs[0]?'<img src="'+esc(imgs[0])+'" alt="'+esc(a.name)+' 的代表作品" loading="lazy" referrerpolicy="no-referrer">':'<div class="empty" aria-hidden="true">◇</div>')+'<span class="count">'+(a.post_count||0)+' 件作品</span></div><div class="details"><div class="row"><div class="avatar sm" aria-hidden="true">'+esc((a.name||"?").slice(0,1).toUpperCase())+'</div><div style="min-width:0"><div class="name">'+esc(a.name)+'</div><div class="muted">'+esc(a.category||"未分类")+' · '+verified+'</div></div></div>'+(imgs.length>1?'<div class="thumbs">'+imgs.slice(1).map((u,i)=>'<img src="'+esc(u)+'" alt="'+esc(a.name)+' 作品预览 '+(i+2)+'" loading="lazy" referrerpolicy="no-referrer">').join("")+'</div>':'')+(a.tags?.length?'<div class="tags">'+a.tags.slice(0,4).map(t=>'<span class="tag">'+esc(t)+'</span>').join("")+'</div>':'')+(a.note?'<div class="muted">'+esc(a.note)+'</div>':'')+'<div class="actions">'+(a.danbooru_id?'<button data-open="'+esc(a.danbooru_id)+'">打开 D 站 ↗</button>':'')+'<button data-edit="'+esc(a.id)+'">编辑</button></div></div></article>'}
 async function lookupDanbooru(){const q=$("artistQuery").value.trim();if(!q)return toast("先输入画师名");$("lookup").disabled=true;$("lookup").textContent="查询中…";$("candidates").innerHTML="";chosen=null;$("selected").style.display="none";try{const url="https://danbooru.donmai.us/artists.json?search[any_name_matches]="+encodeURIComponent(q)+"&limit=12";const r=await fetch(url,{headers:{"Accept":"application/json"}});if(!r.ok)throw Error("D站返回 "+r.status);const rows=await r.json();if(!rows.length){$("candidates").innerHTML='<p class="muted">没有找到对应条目。可以检查拼写，或暂时不收录，避免错误匹配。</p>';return}
 $("candidates").innerHTML=rows.map(x=>'<div class="candidate"><div class="grow"><b>'+esc(x.name)+'</b><small>ID '+x.id+' · 别名：'+esc((x.other_names||[]).join(", ")||"无")+(x.is_banned?" · 已封禁":"")+(x.is_deleted?" · 已删除":"")+'</small></div><button data-pick="'+x.id+'">选择并取样</button></div>').join("");$("candidates").querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>selectArtist(rows.find(x=>String(x.id)===b.dataset.pick)))}catch(e){$("candidates").innerHTML='<p class="muted">查询失败：'+esc(e.message)+'。可能是网络或浏览器跨域限制；可以稍后重试。</p>'}finally{$("lookup").disabled=false;$("lookup").textContent="搜索 D 站"}}
 async function selectArtist(a){chosen=a;$("selected").style.display="block";$("fName").value=a.name;$("fAliases").value=(a.other_names||[]).join(", ");$("previews").innerHTML="正在读取安全级别为 General 的代表作…";try{const url="https://danbooru.donmai.us/posts.json?tags="+encodeURIComponent("artist:"+a.name+" rating:g")+"&limit=6&only=id,preview_file_url,large_file_url,file_url";const r=await fetch(url);if(!r.ok)throw Error("posts "+r.status);const posts=await r.json();chosen.posts=posts;$("previews").innerHTML=posts.map(p=>'<img src="'+esc(p.preview_file_url||p.large_file_url||p.file_url||"")+'" loading="lazy">').join("")||'<span class="muted">暂时没有可用的 General 预览图</span>';chosen.preview_urls=posts.map(p=>p.preview_file_url||p.large_file_url||p.file_url).filter(Boolean);chosen.post_count=posts.length;try{const cr=await fetch("https://danbooru.donmai.us/counts/posts.json?tags="+encodeURIComponent("artist:"+a.name+" rating:g"));if(cr.ok){const cd=await cr.json();chosen.post_count=cd.counts?.posts??chosen.post_count}}catch(_){}}catch(e){chosen.posts=[];chosen.preview_urls=[];$("previews").textContent="作品预览获取失败："+e.message} }
