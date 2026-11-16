@@ -96,6 +96,7 @@ The static editor requires a user-supplied fine-grained PAT because GitHub Pages
 - data/artists.json — canonical curated records.
 - data/artist.schema.json — machine-readable record contract.
 - scripts/validate-data.mjs — dependency-free data and page sanity checks.
+- scripts/import-verified-artists.mjs — publish unique active verification results while preserving existing curation.
 - .github/workflows/validate.yml — validation on pushes and pull requests.
 - .github/workflows/pages.yml — publish the static docs/ site after validation.
 - docs/ — static public catalogue and product documentation.

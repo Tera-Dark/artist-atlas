@@ -55,6 +55,7 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 
 - `data/artist.schema.json`：正式数据结构。
 - `scripts/validate-data.mjs`：检查 JSON、重复身份、预览链接和页面脚本。
+- `scripts/import-verified-artists.mjs`：将唯一有效的核验结果生成或刷新图鉴卡片，保留已有个人整理字段。
 - `.github/workflows/validate.yml`：推送和 Pull Request 自动检查。
 - Pages 发布前也会先执行数据校验。
 - `docs/ARCHITECTURE.md`：数据边界、核验规则和演进路线。
@@ -62,7 +63,7 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 
 ## 原 Windows 工具
 
-仓库仍保留早期 Windows 本地采集工具源码，供需要从小红书推荐笔记整理候选名单的人使用。它不再是在线图鉴的主数据库，也不会自动把本地采集结果写入仓库。后续可增加「候选名单导入」功能，将候选画师批量送入 Danbooru 核验队列。
+仓库仍保留早期 Windows 本地采集工具源码，供需要从小红书推荐笔记整理候选名单的人使用。它不再是在线图鉴的主数据库，也不会自动把本地采集结果写入仓库。网页内的候选名单导入仍待实现；已核验候选可通过 `node scripts/import-verified-artists.mjs` 批量生成图鉴记录。
 
 ## 版权与隐私
 

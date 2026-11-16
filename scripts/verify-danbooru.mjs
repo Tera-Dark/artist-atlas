@@ -21,9 +21,12 @@ for(const c of source.candidates){
  try{
   const artists=await get(BASE+"/artists.json?search[any_name_matches]="+encodeURIComponent(q)+"&limit=20");
   const exact=artists.filter(a=>norm(a.name)===norm(q)||(a.other_names||[]).some(x=>norm(x)===norm(q)));
-  if(exact.length===1){
-   const a=exact[0]; row.artist_id=a.id;row.canonical_name=a.name;row.aliases=a.other_names||[];row.is_banned=!!a.is_banned;row.is_deleted=!!a.is_deleted;row.artist_url=BASE+"/artists/"+a.id;
-   row.status=(row.is_banned||row.is_deleted)?"blocked":"verified";
+  const activeExact=exact.filter(a=>!a.is_banned&&!a.is_deleted);
+  if(activeExact.length===1){
+   // Deleted historical aliases can duplicate a current exact match. Keep the
+   // unique active Artist; still send multiple active matches to human review.
+   const a=activeExact[0]; row.artist_id=a.id;row.canonical_name=a.name;row.aliases=a.other_names||[];row.is_banned=!!a.is_banned;row.is_deleted=!!a.is_deleted;row.artist_url=BASE+"/artists/"+a.id;
+   row.status="verified";
    if(row.status==="verified"){
     await sleep(1100);
     const tagQuery="artist:"+tag(a.name)+" rating:g order:score";
@@ -31,8 +34,10 @@ for(const c of source.candidates){
     row.previews=posts.filter(p=>!p.is_deleted).map(p=>({id:p.id,rating:p.rating,score:p.score,fav_count:p.fav_count,preview_url:p.preview_file_url||p.media_asset?.variants?.find(v=>v.type==="180x180")?.url||null,large_url:p.large_file_url||p.file_url||null,post_url:BASE+"/posts/"+p.id})).filter(p=>p.preview_url||p.large_url).slice(0,6);
     row.post_count=row.previews.length;if(!row.previews.length)row.status="verified_no_previews";
    }
+  }else if(!activeExact.length&&exact.length===1){
+   const a=exact[0]; row.artist_id=a.id;row.canonical_name=a.name;row.aliases=a.other_names||[];row.is_banned=!!a.is_banned;row.is_deleted=!!a.is_deleted;row.artist_url=BASE+"/artists/"+a.id;row.status="blocked";
   }else{
-   row.status=exact.length>1||artists.length?"needs_review":"not_found";
+   row.status=activeExact.length>1||exact.length>1||artists.length?"needs_review":"not_found";
    row.matches=artists.slice(0,8).map(a=>({id:a.id,name:a.name,aliases:a.other_names||[],is_banned:!!a.is_banned,is_deleted:!!a.is_deleted,url:BASE+"/artists/"+a.id}));
   }
  }catch(e){row.status="error";row.error=String(e.message||e)}

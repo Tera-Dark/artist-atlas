@@ -1,92 +1,54 @@
 {
   "version": 1,
-  "source_updated_at": "2026-11-16T08:49:53.264Z",
-  "checked_at": "2026-11-16T08:55:32.706Z",
+  "source_updated_at": "2026-11-16T08:53:27.581Z",
+  "checked_at": "2026-11-16T09:04:15.939Z",
   "source_count": 73,
   "results": [
     {
       "candidate_id": "candidate-001",
       "source_tag": "artist:zhanzhan lan",
       "query": "zhanzhan lan",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:25.327Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:01.064Z",
+      "artist_id": 63362,
+      "canonical_name": "zhanzhan_lan",
+      "aliases": [
+        "-云间蓝-",
+        "liaoruoxingche1",
+        "yunjian_lan",
+        "yunjianlan",
+        "yunjianlann",
+        "云间蓝",
+        "沾沾★蓝"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/63362",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 288695,
-          "name": "yunjianlan",
-          "aliases": [
-            "zhanzhan_lan"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/288695"
-        },
-        {
-          "id": 63362,
-          "name": "zhanzhan_lan",
-          "aliases": [
-            "-云间蓝-",
-            "liaoruoxingche1",
-            "yunjian_lan",
-            "yunjianlan",
-            "yunjianlann",
-            "云间蓝",
-            "沾沾★蓝"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/63362"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-002",
       "source_tag": "artist:zhi xu li ming",
       "query": "zhi xu li ming",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:26.653Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:04.144Z",
+      "artist_id": 408507,
+      "canonical_name": "zhi_xu_li_ming",
+      "aliases": [
+        "只需黎明",
+        "kontai",
+        "xxxc1014",
+        "zhi_xu_liming"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/408507",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 627552,
-          "name": "zhi_xu_liming",
-          "aliases": [
-            "zhi_xu_li_ming"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/627552"
-        },
-        {
-          "id": 408507,
-          "name": "zhi_xu_li_ming",
-          "aliases": [
-            "只需黎明",
-            "kontai",
-            "xxxc1014",
-            "zhi_xu_liming"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/408507"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -94,7 +56,7 @@
       "source_tag": "artist:z3zz4",
       "query": "z3zz4",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:27.856Z",
+      "checked_at": "2026-11-16T09:01:06.870Z",
       "artist_id": 261471,
       "canonical_name": "z3zz4",
       "aliases": [
@@ -116,7 +78,7 @@
       "source_tag": "artist:yunouou10",
       "query": "yunouou10",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:30.271Z",
+      "checked_at": "2026-11-16T09:01:09.578Z",
       "artist_id": 292748,
       "canonical_name": "yunouou10",
       "aliases": [
@@ -136,40 +98,21 @@
       "candidate_id": "candidate-005",
       "source_tag": "artist:yellowshark601",
       "query": "yellowshark601",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:32.690Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:12.787Z",
+      "artist_id": 414379,
+      "canonical_name": "yellowshark601",
+      "aliases": [
+        "小黄biu",
+        "小黄鲨鱼",
+        "鲨咩洗衣机"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/414379",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 582911,
-          "name": "littleshark",
-          "aliases": [
-            "yellowshark601"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/582911"
-        },
-        {
-          "id": 414379,
-          "name": "yellowshark601",
-          "aliases": [
-            "小黄biu",
-            "小黄鲨鱼",
-            "鲨咩洗衣机"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/414379"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -177,7 +120,7 @@
       "source_tag": "artist:ye xing caomei",
       "query": "ye xing caomei",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:33.890Z",
+      "checked_at": "2026-11-16T09:01:15.487Z",
       "artist_id": 416168,
       "canonical_name": "ye_xing_caomei",
       "aliases": [
@@ -197,42 +140,23 @@
       "candidate_id": "candidate-007",
       "source_tag": "artist:xixun",
       "query": "xixun",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:36.280Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:18.195Z",
+      "artist_id": 310941,
+      "canonical_name": "xixun",
+      "aliases": [
+        "2103175686",
+        "sPpQT4wRD3xa1KK",
+        "ygxhs",
+        "淅洵",
+        "溯野洵"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/310941",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 310941,
-          "name": "xixun",
-          "aliases": [
-            "2103175686",
-            "sPpQT4wRD3xa1KK",
-            "ygxhs",
-            "淅洵",
-            "溯野洵"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/310941"
-        },
-        {
-          "id": 253620,
-          "name": "ygxhs",
-          "aliases": [
-            "xixun"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/253620"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -240,7 +164,7 @@
       "source_tag": "artist:xiayu93",
       "query": "xiayu93",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:37.476Z",
+      "checked_at": "2026-11-16T09:01:21.722Z",
       "artist_id": 76640,
       "canonical_name": "xiayu93",
       "aliases": [],
@@ -256,115 +180,57 @@
       "candidate_id": "candidate-009",
       "source_tag": "artist:tracyton",
       "query": "tracyton",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:39.872Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:24.427Z",
+      "artist_id": 116606,
+      "canonical_name": "tracyton",
+      "aliases": [
+        "-KANA酱-",
+        "KANA",
+        "Kana_bgyjs",
+        "kana_jiang",
+        "kana_kana",
+        "kanakana2018",
+        "qq991686935",
+        "tu兔子",
+        "vignybaby",
+        "xi09291180",
+        "含泪吃下小饼干",
+        "野生kana酱"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/116606",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 358903,
-          "name": "xi_(xi09291180)",
-          "aliases": [
-            "tracyton"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/358903"
-        },
-        {
-          "id": 249061,
-          "name": "kana_jiang",
-          "aliases": [
-            "tracyton"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/249061"
-        },
-        {
-          "id": 116606,
-          "name": "tracyton",
-          "aliases": [
-            "-KANA酱-",
-            "KANA",
-            "Kana_bgyjs",
-            "kana_jiang",
-            "kana_kana",
-            "kanakana2018",
-            "qq991686935",
-            "tu兔子",
-            "vignybaby",
-            "xi09291180",
-            "含泪吃下小饼干",
-            "野生kana酱"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/116606"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-010",
       "source_tag": "artist:sumooo (ga ilil)",
       "query": "sumooo (ga ilil)",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:41.065Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:27.139Z",
+      "artist_id": 249702,
+      "canonical_name": "sumooo_(ga_ilil)",
+      "aliases": [
+        "Gai",
+        "Gailil0",
+        "SumoOo",
+        "Sumosumo",
+        "ga_ilil",
+        "godie0",
+        "ililGai320M",
+        "sumoOo",
+        "盖古斯"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/249702",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 439092,
-          "name": "gailil0",
-          "aliases": [
-            "sumooo_(ga_ilil)"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/439092"
-        },
-        {
-          "id": 249702,
-          "name": "sumooo_(ga_ilil)",
-          "aliases": [
-            "Gai",
-            "Gailil0",
-            "SumoOo",
-            "Sumosumo",
-            "ga_ilil",
-            "godie0",
-            "ililGai320M",
-            "sumoOo",
-            "盖古斯"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/249702"
-        },
-        {
-          "id": 228029,
-          "name": "godie0",
-          "aliases": [
-            "sumooo_(ga_ilil)"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/228029"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -372,7 +238,7 @@
       "source_tag": "artist:smusmuve",
       "query": "smusmuve",
       "status": "not_found",
-      "checked_at": "2026-11-16T08:53:42.261Z",
+      "checked_at": "2026-11-16T09:01:29.852Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -389,7 +255,7 @@
       "source_tag": "artist:shuiyemusan",
       "query": "shuiyemusan",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:43.456Z",
+      "checked_at": "2026-11-16T09:01:31.438Z",
       "artist_id": 396958,
       "canonical_name": "shuiyemusan",
       "aliases": [
@@ -410,142 +276,75 @@
       "candidate_id": "candidate-013",
       "source_tag": "artist:shule de yu",
       "query": "shule de yu",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:45.851Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:34.149Z",
+      "artist_id": 286004,
+      "canonical_name": "shule_de_yu",
+      "aliases": [
+        "_熟了的鱼_",
+        "feirenshi885",
+        "shuyu08382645",
+        "幼稚柿",
+        "熟了的鱼",
+        "熟鱼"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/286004",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 292421,
-          "name": "shuyu08382645",
-          "aliases": [
-            "shule_de_yu"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/292421"
-        },
-        {
-          "id": 286004,
-          "name": "shule_de_yu",
-          "aliases": [
-            "_熟了的鱼_",
-            "feirenshi885",
-            "shuyu08382645",
-            "幼稚柿",
-            "熟了的鱼",
-            "熟鱼"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/286004"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-014",
       "source_tag": "artist:shaiziji",
       "query": "shaiziji",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:47.096Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:36.873Z",
+      "artist_id": 293621,
+      "canonical_name": "shaiziji",
+      "aliases": [
+        "op305228",
+        "touziniao",
+        "凉水石",
+        "扬名立万淀粉肠",
+        "色子鸡",
+        "色子鸡-笔刷在置顶",
+        "色子鸡_笔刷蹲课在置顶",
+        "骰子",
+        "骰子【色子鸡or凉水石】",
+        "骰子鸟"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/293621",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 469778,
-          "name": "touzi_(shaiziji_or_liangshuishi)",
-          "aliases": [
-            "shaiziji"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/469778"
-        },
-        {
-          "id": 401254,
-          "name": "yangming_li_wan_dianfen_chang",
-          "aliases": [
-            "shaiziji"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/401254"
-        },
-        {
-          "id": 293621,
-          "name": "shaiziji",
-          "aliases": [
-            "op305228",
-            "touziniao",
-            "凉水石",
-            "扬名立万淀粉肠",
-            "色子鸡",
-            "色子鸡-笔刷在置顶",
-            "色子鸡_笔刷蹲课在置顶",
-            "骰子",
-            "骰子【色子鸡or凉水石】",
-            "骰子鸟"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/293621"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-015",
       "source_tag": "artist:shaokao lajitong",
       "query": "shaokao lajitong",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:48.288Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:39.571Z",
+      "artist_id": 373477,
+      "canonical_name": "shaokao_lajitong",
+      "aliases": [
+        "_烧烤垃圾桶_",
+        "烧烤垃圾桶",
+        "香菜冰激凌好吃吗",
+        "liuchengyisan",
+        "zutto"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/373477",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 533267,
-          "name": "zutto_(dfvn7377)",
-          "aliases": [
-            "shaokao_lajitong"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/533267"
-        },
-        {
-          "id": 373477,
-          "name": "shaokao_lajitong",
-          "aliases": [
-            "_烧烤垃圾桶_",
-            "烧烤垃圾桶",
-            "香菜冰激凌好吃吗",
-            "liuchengyisan",
-            "zutto"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/373477"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -553,7 +352,7 @@
       "source_tag": "artist:sanfu qwq",
       "query": "sanfu qwq",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:49.484Z",
+      "checked_at": "2026-11-16T09:01:42.611Z",
       "artist_id": 303871,
       "canonical_name": "sanfu_qwq",
       "aliases": [
@@ -572,7 +371,7 @@
       "source_tag": "artist:rrr (reason)",
       "query": "rrr (reason)",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:52.029Z",
+      "checked_at": "2026-11-16T09:01:45.322Z",
       "artist_id": 93984,
       "canonical_name": "rrr_(reason)",
       "aliases": [
@@ -599,163 +398,87 @@
       "candidate_id": "candidate-018",
       "source_tag": "artist:qingming tiaohetu",
       "query": "qingming tiaohetu",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:54.422Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:48.062Z",
+      "artist_id": 171154,
+      "canonical_name": "qingming_tiaohetu",
+      "aliases": [
+        "qingmingye",
+        "qmthtdy",
+        "清明跳河图"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/171154",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 247107,
-          "name": "qmthtdy",
-          "aliases": [
-            "qingming_tiaohetu"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/247107"
-        },
-        {
-          "id": 171154,
-          "name": "qingming_tiaohetu",
-          "aliases": [
-            "qingmingye",
-            "qmthtdy",
-            "清明跳河图"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/171154"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-019",
       "source_tag": "artist:qianben shan",
       "query": "qianben shan",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:55.615Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:51.017Z",
+      "artist_id": 325654,
+      "canonical_name": "qianben_shan",
+      "aliases": [
+        "千本扇",
+        "千本扇_",
+        "qianbenshan",
+        "rimutuyuan415",
+        "senbonfan"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/325654",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 387170,
-          "name": "senbonfan",
-          "aliases": [
-            "qianben_shan"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/387170"
-        },
-        {
-          "id": 325654,
-          "name": "qianben_shan",
-          "aliases": [
-            "千本扇",
-            "千本扇_",
-            "qianbenshan",
-            "rimutuyuan415",
-            "senbonfan"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/325654"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-020",
       "source_tag": "artist:panni xing",
       "query": "panni xing",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:56.808Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:53.722Z",
+      "artist_id": 241752,
+      "canonical_name": "panni_xing",
+      "aliases": [
+        "KoY8frqRyZJMxXY",
+        "pannixing",
+        "shisisongdelaogong",
+        "叛逆星",
+        "叛逆的星"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/241752",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 285307,
-          "name": "koy8frqryzjmxxy",
-          "aliases": [
-            "panni_xing"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/285307"
-        },
-        {
-          "id": 241752,
-          "name": "panni_xing",
-          "aliases": [
-            "KoY8frqRyZJMxXY",
-            "pannixing",
-            "shisisongdelaogong",
-            "叛逆星",
-            "叛逆的星"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/241752"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-021",
       "source_tag": "artist:nokoya",
       "query": "nokoya",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:53:58.003Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:01:56.639Z",
+      "artist_id": 404599,
+      "canonical_name": "nokoya",
+      "aliases": [
+        "墨鱼nokoya",
+        "nokoyayaya"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/404599",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 404599,
-          "name": "nokoya",
-          "aliases": [
-            "墨鱼nokoya",
-            "nokoyayaya"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/404599"
-        },
-        {
-          "id": 273426,
-          "name": "nokoyayaya",
-          "aliases": [
-            "nokoya"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/273426"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -763,7 +486,7 @@
       "source_tag": "artist:niukou kouzi",
       "query": "niukou kouzi",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:53:59.196Z",
+      "checked_at": "2026-11-16T09:01:59.590Z",
       "artist_id": 366560,
       "canonical_name": "niukou_kouzi",
       "aliases": [
@@ -786,7 +509,7 @@
       "source_tag": "artist:naux",
       "query": "naux",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:01.639Z",
+      "checked_at": "2026-11-16T09:02:02.289Z",
       "artist_id": 198706,
       "canonical_name": "naux",
       "aliases": [
@@ -806,7 +529,7 @@
       "source_tag": "artist:narakuuu",
       "query": "narakuuu",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:04.031Z",
+      "checked_at": "2026-11-16T09:02:04.994Z",
       "artist_id": 181949,
       "canonical_name": "narakuuu",
       "aliases": [
@@ -826,96 +549,48 @@
       "candidate_id": "candidate-025",
       "source_tag": "artist:mugoa mugo",
       "query": "mugoa mugo",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:06.421Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:07.945Z",
+      "artist_id": 255935,
+      "canonical_name": "mugoa_mugo",
+      "aliases": [
+        "mugo0",
+        "木果",
+        "木果阿木果",
+        "木果阿木果_",
+        "画画的果几"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/255935",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 373983,
-          "name": "artist_373983",
-          "aliases": [
-            "mugoa_mugo"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/373983"
-        },
-        {
-          "id": 255935,
-          "name": "mugoa_mugo",
-          "aliases": [
-            "mugo0",
-            "木果",
-            "木果阿木果",
-            "木果阿木果_",
-            "画画的果几"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/255935"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-026",
       "source_tag": "artist:mr. owlish",
       "query": "mr. owlish",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:07.617Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:10.654Z",
+      "artist_id": 240642,
+      "canonical_name": "mr._owlish",
+      "aliases": [
+        "Mr.owlish",
+        "OwlishMr",
+        "ggg0909",
+        "liangye009",
+        "惑特不落十",
+        "早睡惑特不落十",
+        "早睡的蛙"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/240642",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 301099,
-          "name": "ggg0909",
-          "aliases": [
-            "mr._owlish"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/301099"
-        },
-        {
-          "id": 245945,
-          "name": "mr.esacap",
-          "aliases": [
-            "mr._owlish"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/245945"
-        },
-        {
-          "id": 240642,
-          "name": "mr._owlish",
-          "aliases": [
-            "Mr.owlish",
-            "OwlishMr",
-            "ggg0909",
-            "liangye009",
-            "惑特不落十",
-            "早睡惑特不落十",
-            "早睡的蛙"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/240642"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -923,7 +598,7 @@
       "source_tag": "artist:mihiro 00122",
       "query": "mihiro 00122",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:08.814Z",
+      "checked_at": "2026-11-16T09:02:13.601Z",
       "artist_id": 188291,
       "canonical_name": "mihiro_00122",
       "aliases": [
@@ -944,7 +619,7 @@
       "source_tag": "artist:maosen",
       "query": "maosen",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:11.207Z",
+      "checked_at": "2026-11-16T09:02:16.304Z",
       "artist_id": 154567,
       "canonical_name": "maosen",
       "aliases": [
@@ -966,7 +641,7 @@
       "source_tag": "artist:luckyia",
       "query": "luckyia",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:13.606Z",
+      "checked_at": "2026-11-16T09:02:19.011Z",
       "artist_id": 98452,
       "canonical_name": "luckyia",
       "aliases": [
@@ -989,7 +664,7 @@
       "source_tag": "artist:llmia4",
       "query": "llmia4",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:16.003Z",
+      "checked_at": "2026-11-16T09:02:21.706Z",
       "artist_id": 214074,
       "canonical_name": "llmia4",
       "aliases": [
@@ -1010,7 +685,7 @@
       "source_tag": "artist:lkppp",
       "query": "lkppp",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:18.393Z",
+      "checked_at": "2026-11-16T09:02:24.411Z",
       "artist_id": 370925,
       "canonical_name": "lkppp",
       "aliases": [
@@ -1028,197 +703,101 @@
       "candidate_id": "candidate-032",
       "source_tag": "artist:liyuliyuzhou",
       "query": "liyuliyuzhou",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:20.788Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:27.106Z",
+      "artist_id": 341467,
+      "canonical_name": "liyuliyuzhou",
+      "aliases": [
+        "躺在路边的炸薯鱼条",
+        "躺在路边的炸鱼薯条",
+        "xiaba628"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/341467",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 357030,
-          "name": "xiaba628",
-          "aliases": [
-            "liyuliyuzhou"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/357030"
-        },
-        {
-          "id": 341467,
-          "name": "liyuliyuzhou",
-          "aliases": [
-            "躺在路边的炸薯鱼条",
-            "躺在路边的炸鱼薯条",
-            "xiaba628"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/341467"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-033",
       "source_tag": "artist:lin qing (phosphorus 1104)",
       "query": "lin qing (phosphorus 1104)",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:21.982Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:29.816Z",
+      "artist_id": 429707,
+      "canonical_name": "lin_qing_(phosphorus_1104)",
+      "aliases": [
+        "haku9638",
+        "jianxingyanghuawu65409",
+        "phosphorus1104",
+        "phosphorus_1104",
+        "故事乡",
+        "磷",
+        "轥琹",
+        "酸性氧化物",
+        "霖晴Phosphorus",
+        "霖晴🍎"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/429707",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 429707,
-          "name": "lin_qing_(phosphorus_1104)",
-          "aliases": [
-            "haku9638",
-            "jianxingyanghuawu65409",
-            "phosphorus1104",
-            "phosphorus_1104",
-            "故事乡",
-            "磷",
-            "轥琹",
-            "酸性氧化物",
-            "霖晴Phosphorus",
-            "霖晴🍎"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/429707"
-        },
-        {
-          "id": 364305,
-          "name": "jianxingyanghuawu65409",
-          "aliases": [
-            "lin_qing_(phosphorus_1104)"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/364305"
-        },
-        {
-          "id": 219974,
-          "name": "haku9638",
-          "aliases": [
-            "lin_qing_(phosphorus_1104)"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/219974"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-034",
       "source_tag": "artist:kurikabacha",
       "query": "kurikabacha",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:23.174Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:32.507Z",
+      "artist_id": 199613,
+      "canonical_name": "kurikabacha",
+      "aliases": [
+        "_KU__",
+        "kurii89800727",
+        "kuriko",
+        "kuu_rikO_",
+        "栗",
+        "栗樺茶",
+        "栗樺茶茶"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/199613",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 410100,
-          "name": "kuu_riko",
-          "aliases": [
-            "kurikabacha"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/410100"
-        },
-        {
-          "id": 219199,
-          "name": "pps08192302",
-          "aliases": [
-            "kurikabacha"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/219199"
-        },
-        {
-          "id": 199613,
-          "name": "kurikabacha",
-          "aliases": [
-            "_KU__",
-            "kurii89800727",
-            "kuriko",
-            "kuu_rikO_",
-            "栗",
-            "栗樺茶",
-            "栗樺茶茶"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/199613"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-035",
       "source_tag": "artist:kelezi",
       "query": "kelezi",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:24.375Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:35.205Z",
+      "artist_id": 154547,
+      "canonical_name": "kelezi",
+      "aliases": [
+        "cocora_kelezi",
+        "cocora可楽子",
+        "colacolayo",
+        "kanari_rakuko",
+        "kelezi520",
+        "可楽子",
+        "可楽子D",
+        "可楽子ddd",
+        "可楽子捏"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/154547",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 445978,
-          "name": "cocora_kelezi",
-          "aliases": [
-            "kelezi"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/445978"
-        },
-        {
-          "id": 154547,
-          "name": "kelezi",
-          "aliases": [
-            "cocora_kelezi",
-            "cocora可楽子",
-            "colacolayo",
-            "kanari_rakuko",
-            "kelezi520",
-            "可楽子",
-            "可楽子D",
-            "可楽子ddd",
-            "可楽子捏"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/154547"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -1226,7 +805,7 @@
       "source_tag": "artist:irple",
       "query": "irple",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:25.576Z",
+      "checked_at": "2026-11-16T09:02:37.907Z",
       "artist_id": 241769,
       "canonical_name": "irple",
       "aliases": [
@@ -1244,55 +823,26 @@
       "candidate_id": "candidate-037",
       "source_tag": "artist:hanaseto",
       "query": "hanaseto",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:27.970Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:40.617Z",
+      "artist_id": 337733,
+      "canonical_name": "hanaseto",
+      "aliases": [
+        "Hanaseto_",
+        "Hanaseto_0913",
+        "liyu",
+        "liyu215722",
+        "liyu_(hanaseto)",
+        "lyly71875425",
+        "篱屿",
+        "鯉魚"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/337733",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 363913,
-          "name": "liyu_(hanaseto)",
-          "aliases": [
-            "hanaseto"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/363913"
-        },
-        {
-          "id": 337733,
-          "name": "hanaseto",
-          "aliases": [
-            "Hanaseto_",
-            "Hanaseto_0913",
-            "liyu",
-            "liyu215722",
-            "liyu_(hanaseto)",
-            "lyly71875425",
-            "篱屿",
-            "鯉魚"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/337733"
-        },
-        {
-          "id": 330316,
-          "name": "liyu215722",
-          "aliases": [
-            "hanaseto"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/330316"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -1300,7 +850,7 @@
       "source_tag": "artist:guigui rongrong",
       "query": "guigui rongrong",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:29.163Z",
+      "checked_at": "2026-11-16T09:02:43.916Z",
       "artist_id": 355309,
       "canonical_name": "guigui_rongrong",
       "aliases": [
@@ -1323,7 +873,7 @@
       "source_tag": "artist:gu yue yuan",
       "query": "gu yue yuan",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:31.553Z",
+      "checked_at": "2026-11-16T09:02:46.610Z",
       "artist_id": 265975,
       "canonical_name": "gu_yue_yuan",
       "aliases": [
@@ -1348,7 +898,7 @@
       "source_tag": "artist:glutton (181527409271x)",
       "query": "glutton (181527409271x)",
       "status": "not_found",
-      "checked_at": "2026-11-16T08:54:33.950Z",
+      "checked_at": "2026-11-16T09:02:49.562Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1365,7 +915,7 @@
       "source_tag": "artist:gejiandengluo",
       "query": "gejiandengluo",
       "status": "not_found",
-      "checked_at": "2026-11-16T08:54:35.166Z",
+      "checked_at": "2026-11-16T09:02:50.915Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1381,39 +931,20 @@
       "candidate_id": "candidate-042",
       "source_tag": "artist:fengjian yuzhi",
       "query": "fengjian yuzhi",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:36.361Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:02:52.268Z",
+      "artist_id": 435133,
+      "canonical_name": "fengjian_yuzhi",
+      "aliases": [
+        "feng_jian_yu_zhi",
+        "风见隅之"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/435133",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 476936,
-          "name": "feng_jian_yu_zhi",
-          "aliases": [
-            "fengjian_yuzhi"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/476936"
-        },
-        {
-          "id": 435133,
-          "name": "fengjian_yuzhi",
-          "aliases": [
-            "feng_jian_yu_zhi",
-            "风见隅之"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/435133"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -1421,7 +952,7 @@
       "source_tag": "artist:g7cdpdto2i6hot6",
       "query": "g7cdpdto2i6hot6",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:37.555Z",
+      "checked_at": "2026-11-16T09:02:54.968Z",
       "artist_id": 376520,
       "canonical_name": "g7cdpdto2i6hot6",
       "aliases": [
@@ -1446,7 +977,7 @@
       "source_tag": "artist:feijiu",
       "query": "feijiu",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:39.949Z",
+      "checked_at": "2026-11-16T09:02:57.678Z",
       "artist_id": 338766,
       "canonical_name": "feijiu",
       "aliases": [
@@ -1466,7 +997,7 @@
       "source_tag": "artist:extraspiky",
       "query": "extraspiky",
       "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:42.369Z",
+      "checked_at": "2026-11-16T09:03:00.386Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1518,7 +1049,7 @@
       "source_tag": "artist:eteru",
       "query": "eteru",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:43.562Z",
+      "checked_at": "2026-11-16T09:03:02.350Z",
       "artist_id": 251412,
       "canonical_name": "eteru",
       "aliases": [
@@ -1540,7 +1071,7 @@
       "source_tag": "artist:ender xiaohai",
       "query": "ender xiaohai",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:45.973Z",
+      "checked_at": "2026-11-16T09:03:05.302Z",
       "artist_id": 291808,
       "canonical_name": "ender_xiaohai",
       "aliases": [
@@ -1560,7 +1091,7 @@
       "source_tag": "artist:eliza 804",
       "query": "eliza 804",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:48.386Z",
+      "checked_at": "2026-11-16T09:03:07.996Z",
       "artist_id": 293563,
       "canonical_name": "eliza_804",
       "aliases": [
@@ -1582,211 +1113,105 @@
       "candidate_id": "candidate-049",
       "source_tag": "artist:duoqing tie ban shao",
       "query": "duoqing tie ban shao",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:50.778Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:10.949Z",
+      "artist_id": 246644,
+      "canonical_name": "duoqing_tie_ban_shao",
+      "aliases": [
+        "ichigo52634423",
+        "ichigo_amo",
+        "多情铁板烧",
+        "🍓"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/246644",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 341431,
-          "name": "ichigo_amo",
-          "aliases": [
-            "duoqing_tie_ban_shao"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/341431"
-        },
-        {
-          "id": 246644,
-          "name": "duoqing_tie_ban_shao",
-          "aliases": [
-            "ichigo52634423",
-            "ichigo_amo",
-            "多情铁板烧",
-            "🍓"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/246644"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-050",
       "source_tag": "artist:diurtion",
       "query": "diurtion",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:51.971Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:14.015Z",
+      "artist_id": 304727,
+      "canonical_name": "diurtion",
+      "aliases": [
+        "DIURTION",
+        "krymrin",
+        "napolliaiseukeurim",
+        "oshi_(10406386)",
+        "りり",
+        "召唤我的橘子呈攻击状态",
+        "唖",
+        "小晌奶油",
+        "小裕辣酱",
+        "我对性很失望",
+        "时里",
+        "肉包大胃王对决",
+        "肉包大胄王对决",
+        "키리우"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/304727",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 531087,
-          "name": "krymrin",
-          "aliases": [
-            "diurtion"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/531087"
-        },
-        {
-          "id": 304727,
-          "name": "diurtion",
-          "aliases": [
-            "DIURTION",
-            "krymrin",
-            "napolliaiseukeurim",
-            "oshi_(10406386)",
-            "りり",
-            "召唤我的橘子呈攻击状态",
-            "唖",
-            "小晌奶油",
-            "小裕辣酱",
-            "我对性很失望",
-            "时里",
-            "肉包大胃王对决",
-            "肉包大胄王对决",
-            "키리우"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/304727"
-        },
-        {
-          "id": 131126,
-          "name": "oshi_(10406386)",
-          "aliases": [
-            "diurtion"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/131126"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-051",
       "source_tag": "artist:cuso4 suiwabutu",
       "query": "cuso4 suiwabutu",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:53.165Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:16.729Z",
+      "artist_id": 247694,
+      "canonical_name": "cuso4_suiwabutu",
+      "aliases": [
+        "ハエたたきバシバシ",
+        "硫酸銅",
+        "753oneetyan",
+        "Cuso4_suiwabutu",
+        "fhjUtQbYJgGVvRo",
+        "okoge_gorigori"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/247694",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 452071,
-          "name": "fhjutqbyjggvvro",
-          "aliases": [
-            "cuso4_suiwabutu"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/452071"
-        },
-        {
-          "id": 247694,
-          "name": "cuso4_suiwabutu",
-          "aliases": [
-            "ハエたたきバシバシ",
-            "硫酸銅",
-            "753oneetyan",
-            "Cuso4_suiwabutu",
-            "fhjUtQbYJgGVvRo",
-            "okoge_gorigori"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/247694"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-052",
       "source_tag": "artist:chunbuchou",
       "query": "chunbuchou",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:54.360Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:19.433Z",
+      "artist_id": 269232,
+      "canonical_name": "chunbuchou",
+      "aliases": [
+        "CC春愁",
+        "歹旬",
+        "歹旬xun",
+        "殉",
+        "Chunbuchou",
+        "jifei",
+        "kuchun48645",
+        "xun",
+        "xundaixun"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/269232",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 462817,
-          "name": "xundaixun",
-          "aliases": [
-            "chunbuchou"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/462817"
-        },
-        {
-          "id": 336950,
-          "name": "1443513602",
-          "aliases": [
-            "chunbuchou"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/336950"
-        },
-        {
-          "id": 291134,
-          "name": "jifei",
-          "aliases": [
-            "chunbuchou"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/291134"
-        },
-        {
-          "id": 269232,
-          "name": "chunbuchou",
-          "aliases": [
-            "CC春愁",
-            "歹旬",
-            "歹旬xun",
-            "殉",
-            "Chunbuchou",
-            "jifei",
-            "kuchun48645",
-            "xun",
-            "xundaixun"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/269232"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -1794,7 +1219,7 @@
       "source_tag": "artist:chino (user zdy d2447)",
       "query": "chino (user zdy d2447)",
       "status": "not_found",
-      "checked_at": "2026-11-16T08:54:55.554Z",
+      "checked_at": "2026-11-16T09:03:22.188Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1811,7 +1236,7 @@
       "source_tag": "artist:caicaicaicai ni caicai",
       "query": "caicaicaicai ni caicai",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:54:56.748Z",
+      "checked_at": "2026-11-16T09:03:23.528Z",
       "artist_id": 325111,
       "canonical_name": "caicaicaicai_ni_caicai",
       "aliases": [
@@ -1830,133 +1255,66 @@
       "candidate_id": "candidate-055",
       "source_tag": "artist:buqiyong",
       "query": "buqiyong",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:54:59.141Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:26.276Z",
+      "artist_id": 295521,
+      "canonical_name": "buqiyong",
+      "aliases": [
+        "jieranwangsheng",
+        "不器用",
+        "森海夏夏",
+        "雨谷丛生"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/295521",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 701223,
-          "name": "senhaixiaxia",
-          "aliases": [
-            "buqiyong"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/701223"
-        },
-        {
-          "id": 295521,
-          "name": "buqiyong",
-          "aliases": [
-            "jieranwangsheng",
-            "不器用",
-            "森海夏夏",
-            "雨谷丛生"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/295521"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-056",
       "source_tag": "artist:baicumikuo",
       "query": "baicumikuo",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:00.335Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:29.223Z",
+      "artist_id": 304483,
+      "canonical_name": "baicumikuo",
+      "aliases": [
+        "SeigenMomokawa",
+        "baichuan_qingyuan",
+        "伪命题",
+        "百川青源",
+        "百川青源seigen"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/304483",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 393086,
-          "name": "seigenmomokawa",
-          "aliases": [
-            "baicumikuo"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/393086"
-        },
-        {
-          "id": 383756,
-          "name": "baichuan_qingyuan",
-          "aliases": [
-            "baicumikuo"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/383756"
-        },
-        {
-          "id": 304483,
-          "name": "baicumikuo",
-          "aliases": [
-            "SeigenMomokawa",
-            "baichuan_qingyuan",
-            "伪命题",
-            "百川青源",
-            "百川青源seigen"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/304483"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
       "candidate_id": "candidate-057",
       "source_tag": "artist:aoseagrass",
       "query": "aoseagrass",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:01.528Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:31.934Z",
+      "artist_id": 221364,
+      "canonical_name": "aoseagrass",
+      "aliases": [
+        "iaoseagrass",
+        "敖敖敖是头海草",
+        "爻"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/221364",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 367591,
-          "name": "iaoseagrass",
-          "aliases": [
-            "aoseagrass"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/367591"
-        },
-        {
-          "id": 221364,
-          "name": "aoseagrass",
-          "aliases": [
-            "iaoseagrass",
-            "敖敖敖是头海草",
-            "爻"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/221364"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -1964,7 +1322,7 @@
       "source_tag": "artist:ainimo5",
       "query": "ainimo5",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:02.724Z",
+      "checked_at": "2026-11-16T09:03:34.634Z",
       "artist_id": 303838,
       "canonical_name": "ainimo5",
       "aliases": [
@@ -1985,39 +1343,20 @@
       "candidate_id": "candidate-059",
       "source_tag": "artist:amukeer",
       "query": "amukeer",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:05.119Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:37.591Z",
+      "artist_id": 303252,
+      "canonical_name": "amukeer",
+      "aliases": [
+        "lAmukeerl",
+        "x穆可x"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/303252",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 346943,
-          "name": "xiazhiyi32222",
-          "aliases": [
-            "amukeer"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/346943"
-        },
-        {
-          "id": 303252,
-          "name": "amukeer",
-          "aliases": [
-            "lAmukeerl",
-            "x穆可x"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/303252"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -2025,7 +1364,7 @@
       "source_tag": "artist:tanglaoban1225",
       "query": "tanglaoban1225",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:06.312Z",
+      "checked_at": "2026-11-16T09:03:40.309Z",
       "artist_id": 444638,
       "canonical_name": "tanglaoban1225",
       "aliases": [
@@ -2047,7 +1386,7 @@
       "source_tag": "artist:iotaectoplasm",
       "query": "iotaectoplasm",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:08.705Z",
+      "checked_at": "2026-11-16T09:03:43.025Z",
       "artist_id": 219068,
       "canonical_name": "baichuan_baichuan",
       "aliases": [
@@ -2067,7 +1406,7 @@
       "source_tag": "artist:liduke",
       "query": "liduke",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:11.095Z",
+      "checked_at": "2026-11-16T09:03:46.220Z",
       "artist_id": 49643,
       "canonical_name": "liduke",
       "aliases": [
@@ -2088,7 +1427,7 @@
       "source_tag": "artist:ruogan zhao",
       "query": "ruogan zhao",
       "status": "not_found",
-      "checked_at": "2026-11-16T08:55:13.509Z",
+      "checked_at": "2026-11-16T09:03:48.926Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -2104,41 +1443,22 @@
       "candidate_id": "candidate-064",
       "source_tag": "artist:zhumojian",
       "query": "zhumojian",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:14.702Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:50.267Z",
+      "artist_id": 295529,
+      "canonical_name": "zhumojian",
+      "aliases": [
+        "shiraving",
+        "zhu_mo_jian",
+        "竹墨笺",
+        "竹墨笺努力搬砖"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/295529",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 298913,
-          "name": "zhu_mo_jian",
-          "aliases": [
-            "zhumojian"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/298913"
-        },
-        {
-          "id": 295529,
-          "name": "zhumojian",
-          "aliases": [
-            "shiraving",
-            "zhu_mo_jian",
-            "竹墨笺",
-            "竹墨笺努力搬砖"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/295529"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -2146,7 +1466,7 @@
       "source_tag": "artist:tatatsu",
       "query": "tatatsu",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:15.894Z",
+      "checked_at": "2026-11-16T09:03:52.979Z",
       "artist_id": 192944,
       "canonical_name": "tatatsu",
       "aliases": [
@@ -2166,7 +1486,7 @@
       "source_tag": "artist:pkiiiiii",
       "query": "pkiiiiii",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:18.284Z",
+      "checked_at": "2026-11-16T09:03:55.676Z",
       "artist_id": 433364,
       "canonical_name": "pkiiiiii",
       "aliases": [
@@ -2187,40 +1507,21 @@
       "candidate_id": "candidate-067",
       "source_tag": "artist:mechiru",
       "query": "mechiru",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:20.676Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:03:58.367Z",
+      "artist_id": 270897,
+      "canonical_name": "mechiru",
+      "aliases": [
+        "みちる",
+        "mechillow",
+        "mechirudesu"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/270897",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 640829,
-          "name": "mechillow",
-          "aliases": [
-            "mechiru"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/640829"
-        },
-        {
-          "id": 270897,
-          "name": "mechiru",
-          "aliases": [
-            "みちる",
-            "mechillow",
-            "mechirudesu"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/270897"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -2228,7 +1529,7 @@
       "source_tag": "artist:infukun",
       "query": "infukun",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:21.946Z",
+      "checked_at": "2026-11-16T09:04:01.063Z",
       "artist_id": 88319,
       "canonical_name": "infukun",
       "aliases": [
@@ -2254,41 +1555,22 @@
       "candidate_id": "candidate-069",
       "source_tag": "artist:dare no inarikami",
       "query": "dare no inarikami",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:24.334Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:04:03.768Z",
+      "artist_id": 162585,
+      "canonical_name": "dare_no_inarikami",
+      "aliases": [
+        "kitune1132",
+        "ある稲荷神。",
+        "教主某狐仙",
+        "誰の稲荷神"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/162585",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 272396,
-          "name": "kitune1132",
-          "aliases": [
-            "dare_no_inarikami"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/272396"
-        },
-        {
-          "id": 162585,
-          "name": "dare_no_inarikami",
-          "aliases": [
-            "kitune1132",
-            "ある稲荷神。",
-            "教主某狐仙",
-            "誰の稲荷神"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/162585"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -2296,7 +1578,7 @@
       "source_tag": "artist:dabaijiang meda",
       "query": "dabaijiang meda",
       "status": "not_found",
-      "checked_at": "2026-11-16T08:55:25.529Z",
+      "checked_at": "2026-11-16T09:04:06.473Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -2313,7 +1595,7 @@
       "source_tag": "artist:azling",
       "query": "azling",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:26.725Z",
+      "checked_at": "2026-11-16T09:04:07.819Z",
       "artist_id": 85638,
       "canonical_name": "azling",
       "aliases": [
@@ -2334,41 +1616,22 @@
       "candidate_id": "candidate-072",
       "source_tag": "artist:road 233",
       "query": "road 233",
-      "status": "needs_review",
-      "checked_at": "2026-11-16T08:55:29.119Z",
-      "artist_id": null,
-      "canonical_name": null,
-      "aliases": [],
+      "status": "verified_no_previews",
+      "checked_at": "2026-11-16T09:04:10.518Z",
+      "artist_id": 99961,
+      "canonical_name": "road_233",
+      "aliases": [
+        "-華小路-",
+        "hanarue",
+        "sangenliu",
+        "華小路"
+      ],
       "is_banned": false,
       "is_deleted": false,
-      "artist_url": null,
+      "artist_url": "https://danbooru.donmai.us/artists/99961",
       "post_count": 0,
       "previews": [],
-      "matches": [
-        {
-          "id": 269730,
-          "name": "sangenliu",
-          "aliases": [
-            "road_233"
-          ],
-          "is_banned": false,
-          "is_deleted": true,
-          "url": "https://danbooru.donmai.us/artists/269730"
-        },
-        {
-          "id": 99961,
-          "name": "road_233",
-          "aliases": [
-            "-華小路-",
-            "hanarue",
-            "sangenliu",
-            "華小路"
-          ],
-          "is_banned": false,
-          "is_deleted": false,
-          "url": "https://danbooru.donmai.us/artists/99961"
-        }
-      ],
+      "matches": [],
       "error": null
     },
     {
@@ -2376,7 +1639,7 @@
       "source_tag": "artist:amejaga",
       "query": "amejaga",
       "status": "verified_no_previews",
-      "checked_at": "2026-11-16T08:55:30.311Z",
+      "checked_at": "2026-11-16T09:04:13.226Z",
       "artist_id": 147594,
       "canonical_name": "amejaga",
       "aliases": [
