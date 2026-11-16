@@ -123,19 +123,19 @@ a:hover{color:#e0d8ff;text-decoration:underline}
  <div class="head"><div class="brand"><div class="logo">✧</div><div>画师图鉴<div class="sub">ARTIST ATLAS · REPOSITORY EDITION</div></div></div>
  <div class="stats"><div class="stat"><b id="statArtists">—</b><small>收录画师</small></div><div class="stat"><b id="statWorks">—</b><small>代表作索引</small></div><div class="stat"><b id="statTags">—</b><small>分类标签</small></div></div>
  </div>
- <div class="toolbar"><span class="muted">仓库数据</span><span id="repoState" class="pill">读取中</span><input id="search" placeholder="搜索画师名、别名或标签…" style="width:min(320px,48vw)"><select id="sort"><option value="recent">最近收录</option><option value="name">名称 A-Z</option><option value="works">作品数量</option></select><span class="grow"></span><button id="refresh">↻ 刷新</button><button id="manage" class="primary">✚ 管理图鉴</button></div>
+ <div class="toolbar"><span class="muted">仓库数据</span><span id="repoState" class="pill">读取中</span><input id="search" type="search" aria-label="搜索画师名、别名或标签" placeholder="搜索画师名、别名或标签…" style="width:min(320px,48vw)"><select id="sort" aria-label="画师排序方式"><option value="recent">最近收录</option><option value="name">名称 A-Z</option><option value="works">作品数量</option></select><span class="grow"></span><button id="refresh">↻ 刷新</button><button id="manage" class="primary">✚ 管理图鉴</button></div>
 </header>
 <main class="wrap">
  <div class="sectionline"><div><div class="sub">CURATED ARTISTS</div><h2>灵感画师 · 精选图鉴</h2></div><span class="muted" id="resultCount">正在读取仓库…</span></div>
- <div class="filters" id="filters"></div>
+ <div class="filters" id="filters" aria-label="按分类筛选"></div>
  <section class="spot" id="spot" style="display:none"><div class="avatar">✦</div><div class="spotinfo"><div class="sub">FEATURED ARTIST</div><h2 id="spotName"></h2><span class="muted" id="spotMeta"></span></div><div class="samples" id="spotSamples"></div></section>
- <div class="cards" id="cards"></div>
+ <div class="cards" id="cards" aria-live="polite"></div>
  <div class="empty-state" id="empty" style="display:none">图鉴还没有收录画师。进入「管理图鉴」，搜索 Danbooru 并核验后，就可以把喜欢的画师加入仓库。</div>
  <p class="footnote">作品预览来自 Danbooru 公共 API，仅展示安全级别为 General 的缩略图。作品版权归原作者所有；本项目仅保存画师索引与公开作品链接。</p>
 </main>
-<div class="modal" id="modal"><div class="dialog"><div class="row"><h2 style="flex:1">图鉴管理</h2><button id="close">✕</button></div>
- <div id="authPanel"><p class="muted">使用 GitHub Fine-grained Token 授权当前浏览器向仓库提交资料。建议只授予 <b>artist-atlas</b> 这个仓库的 <b>Contents: Read and write</b> 权限。</p><div class="field"><label>GitHub Token（不会上传到仓库）</label><input id="token" type="password" placeholder="github_pat_…"></div><div class="row" style="margin-top:10px"><button id="connect" class="primary">连接仓库</button><button id="forget">清除会话授权</button><a href="https://github.com/settings/personal-access-tokens/new" target="_blank">创建 Fine-grained Token ↗</a></div><p class="footnote">Token 只保存在当前标签页会话内存中，关闭页面即失效。不要把 Token 发给他人或写进任何文件。</p></div>
- <div id="editor" style="display:none"><hr style="border-color:var(--line);margin:18px 0"><h3>① 搜索并核验 Danbooru 画师</h3><div class="row"><input id="artistQuery" placeholder="输入 Danbooru artist tag / 画师名" style="flex:1"><button id="lookup" class="primary">搜索 D 站</button></div><div id="candidates"></div><div id="selected" style="display:none"><hr style="border-color:var(--line);margin:18px 0"><h3>② 整理收录信息</h3><div class="formgrid">
+<div class="modal" id="modal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" tabindex="-1"><div class="row"><h2 id="dialogTitle" style="flex:1">图鉴管理</h2><button id="close">✕</button></div>
+ <div id="authPanel"><p class="muted">使用 GitHub Fine-grained Token 授权当前浏览器向仓库提交资料。建议只授予 <b>artist-atlas</b> 这个仓库的 <b>Contents: Read and write</b> 权限。</p><div class="field"><label>GitHub Token（不会上传到仓库）</label><input id="token" type="password" autocomplete="off" aria-label="GitHub Fine-grained Token" placeholder="github_pat_…"></div><div class="row" style="margin-top:10px"><button id="connect" class="primary">连接仓库</button><button id="forget">清除会话授权</button><a href="https://github.com/settings/personal-access-tokens/new" target="_blank">创建 Fine-grained Token ↗</a></div><p class="footnote">Token 只保存在当前标签页会话内存中，关闭页面即失效。不要把 Token 发给他人或写进任何文件。</p></div>
+ <div id="editor" style="display:none"><hr style="border-color:var(--line);margin:18px 0"><h3>① 搜索并核验 Danbooru 画师</h3><div class="row"><input id="artistQuery" type="search" aria-label="Danbooru 画师名或 artist tag" placeholder="输入 Danbooru artist tag / 画师名" style="flex:1"><button id="lookup" class="primary">搜索 D 站</button></div><div id="candidates" aria-live="polite"></div><div id="selected" style="display:none"><hr style="border-color:var(--line);margin:18px 0"><h3>② 整理收录信息</h3><div class="formgrid">
  <div class="field"><label>画师名称（以 D 站 tag 为准）</label><input id="fName"></div><div class="field"><label>分类</label><input id="fCategory" value="插画"></div>
  <div class="field"><label>别名（逗号分隔）</label><input id="fAliases"></div><div class="field"><label>个人评分（1–10，可空）</label><input id="fScore" type="number" min="1" max="10" step=".5" placeholder="例如 8.5"></div>
  <div class="field full"><label>风格 / 特点标签（逗号分隔）</label><input id="fTags" placeholder="厚涂, 少女感, 复古"></div><div class="field full"><label>备注 / 喜欢的理由</label><textarea id="fNote" rows="2" placeholder="记录你喜欢这位画师的地方…"></textarea></div>
@@ -174,6 +174,15 @@ function renderManaged(){$("managedList").innerHTML=artists.map(a=>'<div class="
 $("search").addEventListener("input",render);$("sort").addEventListener("change",render);$("refresh").onclick=loadData;$("manage").onclick=()=>{$("modal").classList.add("show");const t=sessionStorage.getItem("artistAtlasToken");if(t){$("token").value=t;connect()}};$("close").onclick=()=>$("modal").classList.remove("show");$("connect").onclick=connect;$("forget").onclick=()=>{sessionStorage.removeItem("artistAtlasToken");token="";$("authPanel").style.display="block";$("editor").style.display="none";$("token").value="";toast("已清除会话授权")};$("lookup").onclick=lookupDanbooru;$("saveArtist").onclick=save;
 function openEditorFor(id){const a=artists.find(x=>x.id===id);if(!a)return;chosen={id:a.danbooru_id,name:a.danbooru_name||a.name,other_names:a.aliases||[],preview_urls:a.preview_urls||[],post_count:a.post_count};$("fName").value=a.name;$("fCategory").value=a.category||"";$("fAliases").value=(a.aliases||[]).join(", ");$("fScore").value=a.score||"";$("fTags").value=(a.tags||[]).join(", ");$("fNote").value=a.note||"";$("previews").innerHTML=(a.preview_urls||[]).map(u=>'<img src="'+esc(u)+'">').join("");$("selected").style.display="block";$("artistQuery").value=a.danbooru_name||a.name}
 $("cards").addEventListener("click",e=>{const b=e.target.closest("[data-edit]");if(!b)return;pendingEditId=b.dataset.edit;$("manage").click();if(token)openEditorFor(pendingEditId)});
+
+$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").classList.remove("show")});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"&&$("modal").classList.contains("show")){$("modal").classList.remove("show");$("manage").focus()}
+ if(e.key==="Enter"&&e.target===$("artistQuery"))lookupDanbooru();
+});
+$("manage").addEventListener("click",()=>setTimeout(()=>$("dialogTitle").closest(".dialog").focus(),0));
+$("cards").addEventListener("error",e=>{if(e.target.tagName==="IMG"){e.target.style.visibility="hidden"}},true);
+
 loadData();
 </script>
 </body></html>
