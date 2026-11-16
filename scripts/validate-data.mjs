@@ -15,7 +15,21 @@ function readJson(file) {
 
 const data = readJson(path.join(root, "data", "artists.json"));
 const schema = readJson(path.join(root, "data", "artist.schema.json"));
+const candidateData = readJson(path.join(root, "data", "candidates.json"));
 if (!data || !schema) fail("Catalogue or schema could not be loaded.");
+if (!candidateData || candidateData.version !== 1 || !Array.isArray(candidateData.candidates)) fail("data/candidates.json: expected version 1 and a candidates array.");
+if (candidateData?.candidates) {
+  const candidateIds = new Set();
+  const candidateTags = new Set();
+  for (const [index, candidate] of candidateData.candidates.entries()) {
+    const at = "candidates[" + index + "]";
+    if (!candidate || typeof candidate !== "object") { fail(at + ": expected an object."); continue; }
+    if (!candidate.id || !candidate.source_tag || !candidate.query || candidate.status !== "pending" || candidate.source !== "user-import" || !isDate(candidate.added_at)) fail(at + ": invalid candidate fields.");
+    if (candidateIds.has(candidate.id)) fail(at + ": duplicate candidate id " + candidate.id + ".");
+    if (candidateTags.has(normalize(candidate.source_tag))) fail(at + ": duplicate source tag " + candidate.source_tag + ".");
+    candidateIds.add(candidate.id); candidateTags.add(normalize(candidate.source_tag));
+  }
+}
 
 if (data) {
   if (Object.keys(data).some(key => !["version", "updated_at", "artists"].includes(key))) fail("data/artists.json: unexpected top-level property.");
@@ -88,5 +102,5 @@ if (errors.length) {
   console.error("\nCatalogue validation failed: " + errors.length + " error(s), " + warnings.length + " warning(s).");
   process.exitCode = 1;
 } else {
-  console.log("Catalogue validation passed: " + data.artists.length + " artist(s), " + warnings.length + " warning(s).");
+  console.log("Catalogue validation passed: " + data.artists.length + " published artist(s), " + candidateData.candidates.length + " pending candidate(s), " + warnings.length + " warning(s).");
 }
