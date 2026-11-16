@@ -1,64 +1,42 @@
-# 新手入门：5 分钟收录第一位画师
+# Artist Atlas · 使用说明
 
 在线入口：<https://tera-dark.github.io/artist-atlas/>
 
-## 先了解它是什么
+## 当前测试范围
 
-Artist Atlas 是个人画师索引与灵感图鉴。GitHub 仓库保存正式记录，Danbooru 用于核验 Artist 身份和提供公开作品预览。个人评分、分类、风格标签和备注由收藏者自己决定。
+目前只保留三位测试画师：zhanzhan_lan、zhi_xu_li_ming、z3zz4。这不是候选池，也不是正式扩容完成后的全量图鉴；当前目标是先验收作品显示、卡片统一性与浏览交互。
 
-浏览图鉴、搜索和筛选不需要登录。只有添加、编辑、删除或设置精选时，才需要 GitHub 写入授权。
+## 浏览图鉴
 
-## 第一步：浏览
+- 主页面只有一份正式画师列表。
+- 搜索支持名称、别名、风格标签与备注。
+- 「我的收藏」仅筛选当前浏览器保存的收藏。
+- 卡片上的左右箭头和圆点用于切换最多三张最新作品。
+- 点击作品打开 Danbooru 原帖；点击 DANBOORU PROFILE 打开画师主页。
 
-1. 打开在线图鉴。
-2. 使用搜索框查画师名称、别名、风格标签或备注。
-3. 使用分类筛选和排序查看收藏。
-4. 点击画师卡片上的「收藏」记下偏好，或「加入组合」将画师放进 NAI5 搭配器。
+作品来自 Danbooru rating:g 的最新帖子，主展示优先采用较大尺寸的作品文件。页面不使用 180×180 缩略图作为主视觉。若 Danbooru 请求失败，卡片会显示提示，不会静默用模糊小图替代高清作品。
 
-收藏保存在当前浏览器。搭配器允许调整画师顺序、逐个调整标签强弱并复制候选画师串；粘贴到 NovelAI 后，请根据标签建议确认是否识别。
+## NAI5 画师串
 
-首次打开会出现简短引导；之后可随时点击顶部「使用指南」重新查看。
+在画师卡片点「加入组合」，再点页眉的「NAI5 画师串」即可调整组合顺序和标签强弱，并复制候选串。实际识别效果仍以 NovelAI 输入框的标签建议为准。
 
-## 第二步：准备 GitHub 授权
+## 管理图鉴
 
-管理功能通过 GitHub Contents API 将修改提交到本项目仓库。GitHub Pages 没有服务端密钥，因此当前版本需要维护者自己提供 Fine-grained Personal Access Token。
+仅在新增、编辑或删除画师时需要 GitHub Token：
 
-1. 打开 <https://github.com/settings/personal-access-tokens/new>。
-2. Token name 可以填写 Artist Atlas。
-3. Expiration 建议设置为较短的有效期，并在到期时重新创建。
-4. Repository access 选择 Only select repositories，只勾选 artist-atlas。
-5. Repository permissions 中将 Contents 设置为 Read and write。
-6. 其他权限保持 No access，创建后复制 Token。
-7. 回到网页，点击「管理图鉴」，粘贴 Token 并连接。
+1. 打开 <https://github.com/settings/personal-access-tokens/new> 创建 Fine-grained Token。
+2. Repository access 选择 Only select repositories，并只勾选 artist-atlas。
+3. 将 Contents 权限设为 Read and write，其余权限保持 No access。
+4. 回到图鉴，点击「管理图鉴」，连接 Token。
+5. 搜索 Danbooru Artist 名称或别名，仔细核对 Artist ID。
+6. 选择准确条目，填写自己的显示名称、分类、标签、评分与备注，再保存。
 
-**安全注意：** 不要把 Token 发给别人、贴到 Issue、写进源码或提交到仓库。公共网页使用者不应使用自己的 Token 修改不属于自己的仓库。当前 Token 只在当前浏览器会话中使用；关闭会话或点击「清除会话授权」可清除保存的会话凭据。
+Token 仅保存在当前浏览器会话，不要分享、截图或写入源码。仓库数据更新后，GitHub Actions 会校验并触发 Pages 部署。
 
-## 第三步：核验并收录
+## 常见情况
 
-1. 在管理面板输入 Danbooru 画师名称或别名。
-2. 对照规范名称、别名和 Artist ID。名字相似不等于同一个人。
-3. 封禁或删除状态的条目不能正常收录。
-4. 检查作品预览。当前只请求 General（rating:g）作品；没有预览不代表 Artist 身份无效。
-5. 填写图鉴显示名称、分类、风格标签、评分和备注。
-6. 保存前检查资料，确认后提交到 GitHub。
+**作品没有显示？** 检查浏览器网络请求是否能访问 danbooru.donmai.us。无作品或 API 请求失败时，卡片会显示说明和画师主页入口。
 
-保存成功代表 GitHub 已接受提交；公开页面还需要等待 GitHub Actions 完成 Pages 部署后才会更新。
+**保存后页面没有立即更新？** 查看 GitHub Actions 中的校验与 Pages 部署状态；部署完成后刷新页面。
 
-## 推荐的整理方式
-
-- 分类用于大方向，例如「插画」「角色设计」「厚涂」。
-- 风格标签用于交叉检索，例如「柔和光影」「复古」「少女感」。
-- 评分是个人审美评价，不是客观排名。
-- 备注写清楚你喜欢这位画师的原因，未来回看更有价值。
-
-## 常见问题
-
-**为什么需要 Token？**  因为静态 GitHub Pages 没有可以安全保存写入密钥的服务器。当前管理功能直接调用 GitHub API。
-
-**Danbooru 没搜到怎么办？**  检查拼写、常用别名或 Artist 页面链接。不要为了完成收录而选择一个相似名字的条目。
-
-**为什么没有作品预览？**  可能没有 General 级别作品、作品标签不完整，或 Danbooru 请求暂时失败。应以 Artist ID 和来源页面为主要身份依据。
-
-**为什么保存后页面没立刻变化？**  提交后需要 GitHub Actions 构建并部署 Pages。可以在仓库 Actions 页面查看部署状态。
-
-**可以批量导入候选画师吗？**  目前候选收集箱和批量导入仍在规划中；当前版本以逐个核验、逐个收录为主。
+**什么时候恢复完整画师列表？** 等三位测试卡片的视觉与交互验收通过，再决定下一轮导入。当前阶段不会自动恢复之前移除的名单。
