@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>画师采集工作台</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FF6B9D%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23A78BFA%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%3Crect%20x%3D%225%22%20y%3D%227%22%20width%3D%2222%22%20height%3D%2218%22%20rx%3D%223.6%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20opacity%3D%22.92%22%2F%3E%0A%3Cpath%20d%3D%22M9%2020.5l4.6-4.8%203.2%203%203-2.6%203.6%204.4%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%2211.6%22%20cy%3D%2212%22%20r%3D%221.8%22%20fill%3D%22%23fff%22%2F%3E%0A%3Cpath%20d%3D%22M23.2%203.6l4.2%204.2-8.4%208.4-5%20.8.8-5z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.3%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E">
+<link rel="alternate icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/应用图标.png">
+<meta name="theme-color" content="#0A0C13">
+<meta name="application-name" content="画师采集工作台">
+<meta name="description" content="从小红书推荐笔记中采集画师与作品，按画师归档并在线浏览。">
+<style>
+/* ============================================================
+   设计语言：夜樱 Yozakura
+   墨蓝底 + 樱粉/藤紫点缀 + 青色高亮
+   原则：图片是主角，界面退后；深色底让作品色彩不被环境干扰
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  /* 层次：石墨底 + 灰蓝卡，作品是主角，界面退后 */
+  --bg:#0F1115; --bg2:#12141A;
+  --panel:#171A21; --panel2:#1D212B; --panel3:#242936;
+  --line:#262B36; --line2:#323846;
+  /* 文字 */
+  --txt:#E8EAF2; --txt2:#B0B7C6; --dim:#8B93A5; --dim2:#818999;
+  /* 品牌：柔和紫为主强调，低饱和粉为辅；仅 logo 保留一小块渐变 */
+  --sakura:#C97F9B; --sakura2:#D9A8BC;
+  --fuji:#A78BFA; --aqua:#5EB1EF;
+  /* 语义色保持高对比：它们是工作信号，不是装饰 */
+  --ok:#34D399; --warn:#FBBF24; --danger:#F87171; --info:#5EB1EF;
+  /* 语义色的低饱和承载底，避免每处各写一遍 rgba */
+  --ok-bg:rgba(52,211,153,.12); --ok-line:rgba(52,211,153,.26);
+  --warn-bg:rgba(251,191,36,.12); --warn-line:rgba(251,191,36,.28);
+  --danger-bg:rgba(248,113,113,.12); --danger-line:rgba(248,113,113,.26);
+  --info-bg:rgba(56,189,248,.12); --info-line:rgba(56,189,248,.28);
+  --sakura-bg:rgba(201,127,155,.12); --sakura-line:rgba(201,127,155,.3);
+  --fuji-bg:rgba(167,139,250,.12); --fuji-line:rgba(167,139,250,.26);
+  /* 画框底：中性深场，不带色偏，比画师时背景不能干扰作品颜色 */
+  --mat:#14161C;
+  /* 氛围底：用画师自己的代表作虚化压暗做卡片氛围，卡片与焦点区共用一套参数 */
+  --amb-blur:26px; --amb-bright:.95; --amb-sat:1.5; --amb-scale:1.2;
+  --scrim:rgba(8,9,12,.78);
+  --scroll:#2A303C; --scroll-hi:#414A5C;
+
+  /* ---- 排印系统：模块化音阶 1.2，只允许这 8 级 ---- */
+  --t-display:26px;   /* 焦点画师名 */
+  --t-title:19px;     /* 区块/灯箱标题 */
+  --t-head:15px;      /* 卡片画师名 */
+  --t-body:13px;      /* 正文、控件 */
+  --t-label:12px;     /* 标签、次要说明 */
+  --t-meta:11px;      /* 元信息 */
+  --t-micro:10px;     /* 角标、极小标注（下限） */
+  --lh-tight:1.3; --lh-normal:1.6; --lh-loose:1.85;
+  --ls-tight:-.01em;  /* 大字号收紧 */
+  --ls-wide:.08em;    /* 全大写小字放宽 */
+
+  /* ---- 间距：4px 基准栅格 ---- */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px;
+
+  /* 尺度：圆角收两档，间距走统一栅格 */
+  --r-s:8px; --r-m:12px; --r-l:12px; --r-xl:12px;
+  --sp:24px;
+  --shadow:0 6px 24px rgba(0,0,0,.35);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.5);
+  --glow:0 0 0 1px rgba(167,139,250,.28);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  /* 中日文各自最优字形：日文假名走 Yu Gothic，汉字走雅黑，西文走 Inter 系 */
+  font-family:"Inter","Segoe UI Variable Text","Segoe UI",
+              "Yu Gothic UI","Hiragino Sans","Microsoft YaHei UI","PingFang SC",
+              system-ui,-apple-system,sans-serif;
+  font-size:var(--t-body);line-height:var(--lh-normal);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  /* 数字等宽 + 中日文标点挤压 + 禁用连字干扰 */
+  font-feature-settings:"tnum" 1,"palt" 1,"kern" 1;
+  font-variant-numeric:tabular-nums;
+  text-rendering:optimizeLegibility;
+}
+/* 标题类统一收紧字距、平衡换行，避免孤字成行 */
+h1,h2,h3,.btitle,.spot-name,.who h3,.lb-hd h3{
+  letter-spacing:var(--ls-tight);text-wrap:balance;
+}
+/* 全大写小标签需要放宽字距才不挤 */
+.bsub,.spot-kicker,.pal-lb{letter-spacing:var(--ls-wide)}
+a{color:var(--sakura2);text-decoration:none}
+:focus-visible{outline:2px solid var(--aqua);outline-offset:2px;border-radius:4px}
+::selection{background:rgba(167,139,250,.3)}
+/* 长名字优雅截断而非硬切 */
+.who h3,.spot-name,.gcell figcaption b{overflow-wrap:anywhere}
+
+
+/* ---------- 图标体系 ---------- */
+.ic{width:1em;height:1em;flex-shrink:0;display:inline-block;vertical-align:-.14em;
+  fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;
+  pointer-events:none}
+.ic-fill{fill:currentColor;stroke:none}
+.ic-16{width:16px;height:16px}
+.ic-14{width:14px;height:14px}
+.ic-18{width:18px;height:18px}
+.ic-20{width:20px;height:20px}
+.ic-28{width:30px;height:30px;stroke-width:1.5}
+button .ic,.segbtn .ic,.lb-tool .ic{margin-right:6px}
+button.icon-only .ic,.lb-nav .ic,.mini .ic,.tx .ic{margin-right:0}
+.mini{display:inline-flex;align-items:center;gap:4px}
+.lb-tool{display:inline-flex;align-items:center}
+.btn-main,.btn-ghost,.segbtn{display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------- 顶栏 ---------- */
+header{
+  position:sticky;top:0;z-index:60;
+  padding:15px var(--sp);
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  background:rgba(15,17,21,.9);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.mark{
+  width:34px;height:34px;border-radius:11px;flex-shrink:0;position:relative;
+  background:linear-gradient(135deg,var(--sakura),var(--fuji));
+  display:flex;align-items:center;justify-content:center;
+}
+.mark::after{
+  content:"";position:absolute;inset:0;border-radius:11px;
+  background:linear-gradient(135deg,rgba(255,255,255,.28),transparent 55%);
+}
+.mark svg{width:23px;height:23px;position:relative;z-index:1}
+.btitle{font-size:var(--t-title);font-weight:800;letter-spacing:.3px;white-space:nowrap}
+.btitle em{font-style:normal;color:var(--sakura2)}
+.bsub{font-size:var(--t-micro);color:var(--dim2);letter-spacing:.14em;text-transform:uppercase;margin-top:-2px}
+
+.stats{display:flex;gap:8px;margin-left:auto}
+.stat{
+  min-width:88px;padding:8px 14px;border-radius:var(--r-m);
+  background:var(--panel);border:1px solid var(--line);text-align:center;
+}
+.stat b{
+  display:block;font-size:var(--t-title);font-weight:800;line-height:1.25;
+  font-variant-numeric:tabular-nums;color:var(--txt);
+}
+.stat i{font-style:normal;font-size:var(--t-micro);color:var(--dim2);letter-spacing:.04em}
+
+/* ---------- 控制条 ---------- */
+.ctrl{
+  padding:12px var(--sp);
+  background:var(--bg2);
+  border-bottom:1px solid var(--line);
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+.grp{display:flex;gap:8px;align-items:center}
+.grp+.grp{padding-left:12px;margin-left:2px;border-left:1px solid var(--line)}
+.field{display:flex;align-items:center;gap:7px}
+.field label{font-size:var(--t-meta);color:var(--dim);white-space:nowrap}
+input,select{
+  background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+  border-radius:var(--r-s);padding:8px 11px;font-size:var(--t-body);
+  font-family:inherit;outline:none;transition:.16s;
+}
+input:hover{border-color:var(--line2)}
+input:focus{border-color:var(--fuji);box-shadow:0 0 0 3px rgba(167,139,250,.12)}
+input#kw{width:168px}
+input#limit{width:66px;font-variant-numeric:tabular-nums}
+input#perArtist{font-variant-numeric:tabular-nums}
+
+button{
+  border:none;border-radius:var(--r-s);padding:9px 17px;font-size:var(--t-body);
+  font-family:inherit;cursor:pointer;font-weight:700;transition:.16s;
+  white-space:nowrap;
+}
+/* 只留「开始采集」一个实心强调色，其余全幽灵化 */
+.btn-main{background:var(--fuji);color:#fff}
+.btn-main:hover{background:#B49CFF}
+.btn-main:active{background:#977DF2}
+.btn-ghost{background:var(--panel2);color:var(--txt2);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--fuji);color:var(--txt);background:var(--panel3)}
+button:disabled{opacity:.38;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+.chk{
+  display:flex;align-items:center;gap:6px;font-size:var(--t-meta);color:var(--dim);
+  cursor:pointer;user-select:none;padding:5px 9px;border-radius:var(--r-s);
+  border:1px solid transparent;transition:.15s;
+}
+.chk:hover{color:var(--txt2);background:var(--panel);border-color:var(--line)}
+.chk input{width:14px;height:14px;accent-color:var(--fuji);cursor:pointer}
+
+.badge{
+  font-size:var(--t-meta);padding:5px 13px;border-radius:20px;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.badge .ic{flex-shrink:0}
+.badge.wait .ic{animation:pulse 1.3s ease-in-out infinite}
+.badge.no{background:var(--danger-bg);color:#FF9B9B;border:1px solid var(--danger-line)}
+.badge.yes{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-line)}
+.badge.wait{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line)}
+.badge.wait::before{animation:pulse 1.3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* 视图切换 */
+.seg{display:flex;background:var(--panel2);border:1px solid var(--line);
+  border-radius:var(--r-s);overflow:hidden;padding:2px;gap:2px}
+.segbtn{background:transparent;color:var(--dim);border-radius:6px;padding:6px 13px;
+  font-size:var(--t-label);font-weight:700}
+.segbtn.on{background:var(--panel3);color:var(--txt);box-shadow:inset 0 0 0 1px var(--fuji)}
+.segbtn:not(.on):hover{color:var(--txt);background:var(--panel3)}
+
+
+/* ---------- 账号菜单 ---------- */
+.accwrap{position:relative}
+#btnAcc{gap:6px;max-width:190px}
+#accName{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:104px}
+.acc-caret{transform:rotate(90deg);opacity:.6;transition:transform .2s}
+#btnAcc[aria-expanded="true"] .acc-caret{transform:rotate(-90deg)}
+.accmenu{position:absolute;left:0;top:calc(100% + 8px);z-index:120;min-width:268px;
+  padding:var(--s2);border-radius:var(--r-m);
+  background:rgba(20,24,36,.98);backdrop-filter:blur(16px);
+  border:1px solid var(--line2);box-shadow:var(--shadow-lg);
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:.18s var(--ease)}
+.accmenu.on{opacity:1;visibility:visible;transform:none}
+.acc-hd{padding:6px 10px;font-size:var(--t-micro);letter-spacing:var(--ls-wide);
+  color:var(--dim2);text-transform:uppercase;font-weight:700}
+.acc-sep{height:1px;background:var(--line);margin:var(--s2) 4px}
+.acc-row{display:flex;align-items:center;gap:var(--s2);padding:7px 10px;
+  border-radius:var(--r-s);transition:.15s}
+.acc-row:hover{background:var(--panel2)}
+.acc-row.on{background:var(--sakura-bg);border:1px solid var(--sakura-line)}
+.acc-pick{flex:1;display:flex;align-items:center;gap:var(--s2);min-width:0;
+  background:none;border:none;padding:0;cursor:pointer;color:var(--txt);
+  font-family:inherit;font-size:var(--t-label);font-weight:600;text-align:left}
+.acc-pick .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--dim2)}
+.acc-dot.live{background:var(--ok)}
+.acc-cur{font-size:var(--t-micro);color:var(--sakura2);flex-shrink:0;font-weight:700}
+.acc-acts{display:flex;gap:3px;flex-shrink:0}
+.acc-mini{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:5px;background:transparent;border:1px solid transparent;color:var(--dim2);
+  cursor:pointer;padding:0;transition:.14s}
+.acc-mini:hover{background:var(--panel3);border-color:var(--line2);color:var(--txt2)}
+.acc-mini.del:hover{color:#FF9B9B;border-color:var(--danger-line)}
+.acc-item{display:flex;align-items:center;gap:var(--s2);width:100%;
+  padding:8px 10px;border-radius:var(--r-s);background:none;border:none;
+  color:var(--txt2);font-family:inherit;font-size:var(--t-label);font-weight:600;
+  cursor:pointer;text-align:left;transition:.15s}
+.acc-item:hover{background:var(--panel2);color:var(--txt)}
+.acc-item.danger{color:#FF9B9B}
+.acc-item.danger:hover{background:var(--danger-bg)}
+.acc-tip{padding:7px 10px 4px;font-size:var(--t-micro);color:var(--dim2);line-height:1.6}
+
+/* ---------- 核验徽章 ---------- */
+.vbadge{display:inline-flex;align-items:center;margin-top:5px;
+  font-size:var(--t-micro);font-weight:700;padding:2px 8px;border-radius:20px;
+  border:1px solid transparent;white-space:nowrap}
+.vbadge.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}
+.vbadge.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-line)}
+.vbadge.bad{background:var(--danger-bg);color:#FF9B9B;border-color:var(--danger-line)}
+.vbadge.dim{background:var(--panel2);color:var(--dim2);border-color:var(--line)}
+.vact{display:inline-flex;align-items:center;margin-top:5px;margin-left:5px;
+  font-size:var(--t-micro);font-weight:700;padding:2px 8px;border-radius:20px;
+  background:var(--panel2);border:1px solid var(--line2);color:var(--txt2);
+  cursor:pointer;transition:.14s}
+.vact:hover{border-color:var(--ok);color:var(--ok)}
+.vact.no:hover{border-color:var(--danger);color:#FF9B9B}
+/* 同名待消歧：候选竖排，每行「条目名(可点开预览) + 选这个」 */
+.vpick{display:flex;flex-direction:column;gap:4px;margin-top:6px;width:100%}
+.vpick-row{display:flex;align-items:center;gap:6px}
+.vpick-row a{flex:1;min-width:0;font-size:var(--t-micro);color:var(--info);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vpick-row a:hover{text-decoration:underline}
+.vpick-row .vact{margin:0;flex-shrink:0}
+
+/* ---------- 接口设置面板 ---------- */
+.vcount{margin-left:6px;font-size:var(--t-micro);font-weight:800;
+  padding:1px 7px;border-radius:20px;background:var(--warn-bg);color:var(--warn);
+  border:1px solid var(--warn-line)}
+.vcount:empty{display:none}
+.api-dot{width:7px;height:7px;border-radius:50%;background:var(--dim2);margin-left:6px;
+  display:inline-block;flex-shrink:0}
+.api-dot.on{background:var(--ok)}
+.modal{position:fixed;inset:0;z-index:220;display:none;align-items:center;
+  justify-content:center;background:rgba(6,8,13,.82);backdrop-filter:blur(6px);
+  padding:var(--s5);animation:fade .2s ease}
+.modal.on{display:flex}
+.modal-box{width:min(560px,100%);max-height:88vh;display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--line2);border-radius:var(--r-l);
+  box-shadow:var(--shadow-lg);overflow:hidden}
+.modal-hd{display:flex;align-items:center;gap:var(--s3);padding:var(--s4) var(--s5);
+  border-bottom:1px solid var(--line)}
+.modal-hd h3{flex:1;font-size:var(--t-title);font-weight:800}
+.modal-bd{padding:var(--s5);overflow-y:auto;display:flex;flex-direction:column;gap:var(--s4)}
+.modal-ft{display:flex;gap:var(--s2);justify-content:flex-end;
+  padding:var(--s4) var(--s5);border-top:1px solid var(--line);background:var(--bg2)}
+.api-note{font-size:var(--t-label);color:var(--dim);line-height:var(--lh-loose)}
+.api-field{display:flex;align-items:center;gap:var(--s3)}
+.api-field label{width:92px;flex-shrink:0;font-size:var(--t-label);color:var(--txt2)}
+.api-field input{flex:1;min-width:0}
+.api-state{font-size:var(--t-label);color:var(--dim)}
+.api-state.ok{color:var(--ok)}
+.api-result{font-size:var(--t-label);line-height:var(--lh-loose)}
+.api-result .rbox{padding:var(--s3) var(--s4);border-radius:var(--r-s);
+  background:var(--panel2);border:1px solid var(--line)}
+.api-result .rbox.good{background:var(--ok-bg);border-color:var(--ok-line)}
+.api-result .rbox.bad{background:var(--danger-bg);border-color:var(--danger-line)}
+.api-result b{color:var(--txt)}
+.api-result .rnames{color:var(--dim);margin-top:4px;word-break:break-all}
+.api-result .rsub{margin-top:var(--s3);font-size:var(--t-micro);color:var(--dim2);
+  letter-spacing:var(--ls-wide);text-transform:uppercase;font-weight:700}
+.api-result .nchips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 var(--s3)}
+.api-result .nchip{font-size:var(--t-meta);padding:3px 9px;border-radius:20px;
+  background:var(--panel);border:1px solid var(--line2);color:var(--txt2);
+  word-break:break-all;max-width:100%}
+.api-result .rflag{color:var(--warn);font-weight:700}
+
+/* ---------- 状态条 ---------- */
+.connbar{display:none;padding:11px var(--sp);font-size:var(--t-label);
+  background:var(--danger-bg);color:#FFA8A8;
+  border-bottom:1px solid var(--danger-line)}
+.connbar.on{display:flex;align-items:flex-start;gap:8px}
+.connbar .ic{margin-top:2px;flex-shrink:0}
+.prog{height:2px;background:var(--panel2);display:none;overflow:hidden}
+.prog.on{display:block}
+.prog i{display:block;height:100%;width:0;transition:width .45s ease;
+  background:var(--fuji)}
+
+.logbox{margin:13px var(--sp) 0;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-m);max-height:46px;overflow:hidden;
+  transition:max-height .32s ease;position:relative;z-index:1}
+.logbox.open{max-height:230px}
+.logbox .hd{padding:11px 15px;font-size:var(--t-meta);color:var(--dim);
+  border-bottom:1px solid transparent;display:flex;justify-content:space-between;
+  align-items:center;letter-spacing:.03em;cursor:pointer;user-select:none;transition:.15s}
+.logbox .hd:hover{color:var(--txt2)}
+.logbox.open .hd{border-bottom-color:var(--line)}
+.logbox .hd .lft{display:flex;align-items:center;gap:8px}
+.logbox .hd .caret{transition:transform .25s;font-size:var(--t-micro);color:var(--dim2)}
+.logbox.open .hd .caret{transform:rotate(90deg)}
+.logbox .hd .rgt{display:flex;align-items:center;gap:10px}
+.logbox .hd .last{color:var(--dim2);font-size:var(--t-meta);max-width:52vw;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;font-family:"Cascadia Mono",Consolas,monospace}
+.logbox.open .hd .last{display:none}
+.logbox .hd .st{color:var(--txt2);font-weight:700}
+.logbox pre{padding:11px 15px;max-height:158px;overflow-y:auto;font-size:var(--t-meta);
+  font-family:"Cascadia Mono",Consolas,monospace;color:#98A2B8;
+  white-space:pre-wrap;line-height:1.75}
+
+/* ---------- 同人合并提示 ---------- */
+.mergebar{display:none;margin:13px var(--sp) 0;padding:11px 15px;
+  background:var(--warn-bg);border:1px solid var(--warn-line);
+  border-radius:var(--r-m);font-size:var(--t-label);color:var(--txt2);
+  align-items:center;gap:10px;flex-wrap:wrap}
+.mergebar.on{display:flex}
+.mergebar .mg{display:inline-flex;align-items:center;gap:8px}
+.mergebar b{color:var(--warn)}
+
+/* ---------- 归属冲突提示（风险A 可见化）---------- */
+.confbar{display:none;margin:13px var(--sp) 0;padding:11px 15px;
+  background:var(--info-bg);border:1px solid var(--info-line);
+  border-radius:var(--r-m);font-size:var(--t-label);color:var(--txt2)}
+.confbar.on{display:block}
+.confbar .ch{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--info)}
+.confbar ul{margin:8px 0 0;padding-left:18px;line-height:1.85}
+.confbar li b{color:var(--txt)}
+.confbar .cx{margin-left:auto;background:none;border:none;color:var(--dim);
+  cursor:pointer;font-size:var(--t-title);padding:0 2px;line-height:1}
+.confbar .cx:hover{color:var(--txt)}
+.confbar .more{color:var(--dim2);font-size:var(--t-meta);margin-top:6px}
+
+/* ---------- 筛选 ---------- */
+.filters{padding:17px var(--sp) 4px;display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.chip{
+  padding:5px 14px;border-radius:20px;background:var(--panel);
+  border:1px solid var(--line);font-size:var(--t-meta);cursor:pointer;color:var(--dim);
+  transition:.15s;user-select:none;
+}
+.chip:hover{border-color:var(--fuji);color:var(--txt)}
+.chip.on{background:var(--fuji-bg);color:var(--txt);border-color:var(--fuji)}
+.chip.warnchip{border-color:rgba(251,191,36,.3);color:var(--warn)}
+.chip.warnchip.on{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.search{margin-left:auto;display:flex;gap:7px;align-items:center}
+.search input{width:170px;border-radius:20px;padding-left:14px}
+.search select{border-radius:20px;padding:6px 12px;font-size:var(--t-meta);cursor:pointer;
+  color:var(--dim);background:var(--panel)}
+.search select:hover{border-color:var(--fuji);color:var(--txt)}
+
+/* 撤销提示 */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:300;
+  display:flex;align-items:center;gap:14px;padding:12px 18px;border-radius:var(--r-m);
+  background:rgba(20,24,36,.97);border:1px solid var(--line2);
+  box-shadow:0 12px 40px rgba(0,0,0,.6);backdrop-filter:blur(12px);
+  font-size:var(--t-label);opacity:0;pointer-events:none;transition:.26s ease;
+}
+.toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast b{color:var(--sakura2)}
+.toast button{padding:6px 14px;font-size:var(--t-label);
+  background:var(--fuji);color:#fff}
+.toast .tx{cursor:pointer;color:var(--dim);font-size:var(--t-title);line-height:1;padding:0 2px}
+.toast .tx:hover{color:var(--txt)}
+
+/* ---------- 焦点画师 ---------- */
+.spot{
+  margin:var(--s4) var(--sp) var(--s1);padding:var(--s4) var(--s5);border-radius:var(--r-l);
+  display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap;isolation:isolate;
+  background:var(--panel);
+  border:1px solid var(--line2);position:relative;overflow:hidden;
+}
+.spot::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;z-index:2;
+  background:var(--fuji);
+}
+.spot-art{position:absolute;inset:0;z-index:-1;overflow:hidden;border-radius:var(--r-l)}
+.spot-art img{width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  filter:blur(var(--amb-blur)) brightness(var(--amb-bright)) saturate(var(--amb-sat));
+  transform:scale(var(--amb-scale));
+  opacity:0;transition:opacity .8s var(--ease)}
+.spot-art.ready img{opacity:.5}
+.spot-art::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(15,17,21,.92) 0%,rgba(15,17,21,.78) 38%,rgba(15,17,21,.42) 100%)}
+.spot-id{display:flex;align-items:center;gap:var(--s3);min-width:210px;position:relative;z-index:2}
+.spot-av{
+  width:52px;height:52px;border-radius:15px;flex-shrink:0;position:relative;
+  background:linear-gradient(135deg,var(--sakura),var(--fuji));
+  display:flex;align-items:center;justify-content:center;
+  font-size:var(--t-display);font-weight:800;color:#fff;
+}
+.spot-av::after{content:"";position:absolute;inset:0;border-radius:15px;
+  background:linear-gradient(135deg,rgba(255,255,255,.14),transparent 58%)}
+.spot-meta{min-width:0;display:flex;flex-direction:column;gap:2px}
+.spot-kicker{display:inline-flex;align-items:center;gap:5px;font-size:var(--t-micro);
+  letter-spacing:var(--ls-wide);color:var(--dim);text-transform:uppercase;font-weight:700}
+.spot-name{font-size:var(--t-title);font-weight:800;line-height:var(--lh-tight);
+  letter-spacing:var(--ls-tight);overflow-wrap:anywhere}
+.spot-sub{font-size:var(--t-meta);color:var(--txt2);margin-top:3px}
+.spot-sub b{color:var(--txt2);font-variant-numeric:tabular-nums}
+.spot-strip{display:flex;gap:var(--s2);margin-left:auto;flex-wrap:nowrap;overflow:hidden;
+  position:relative;z-index:2;padding:2px}
+.spot-strip .sth{
+  width:62px;height:82px;border-radius:var(--r-s);overflow:hidden;flex-shrink:0;
+  background:var(--panel2);cursor:zoom-in;border:1px solid var(--line);
+  transition:.2s;position:relative;
+}
+.spot-strip .sth img{width:100%;height:100%;object-fit:cover;display:block}
+.spot-strip .sth:hover{border-color:var(--fuji);z-index:3}
+.spot-go{
+  padding:10px 18px;border-radius:var(--r-s);font-size:var(--t-label);font-weight:700;
+  background:var(--panel2);border:1px solid var(--line2);color:var(--txt2);
+  cursor:pointer;white-space:nowrap;transition:.18s var(--ease);position:relative;z-index:2;
+}
+.spot-go:hover{border-color:var(--fuji);color:var(--txt)}
+@media(max-width:1100px){
+  .spot-strip{margin-left:0;width:100%;order:3}
+  .spot-go{margin-left:auto}
+}
+
+
+/* 统计卡图标 */
+.stat{position:relative}
+.st-ic{position:absolute;left:9px;top:9px;color:var(--dim2);opacity:.85}
+.stat:hover .st-ic{color:var(--txt2);opacity:1}
+/* 搜索与排序：图标内嵌 */
+.qwrap,.sortwrap{position:relative;display:inline-flex;align-items:center}
+.q-ic,.sort-ic{position:absolute;left:12px;color:var(--dim2);pointer-events:none;z-index:1}
+.qwrap input{padding-left:32px!important}
+.sortwrap select{padding-left:31px}
+.qwrap:focus-within .q-ic,.sortwrap:focus-within .sort-ic{color:var(--fuji)}
+
+/* ---------- 画师卡片 ---------- */
+/* 竖构图作品用「左画框 + 右信息」横向卡片承载，
+   比上方下信息的窄卡片更贴合插画比例，也让名字与作品同屏可见 */
+.grid{padding:var(--s4) var(--sp) var(--s8);display:grid;gap:var(--s5);align-items:stretch;
+  grid-template-columns:repeat(auto-fill,minmax(430px,1fr))}
+@media(max-width:960px){.grid{grid-template-columns:1fr}}
+.card{
+  /* 用最小高度而非固定高度：加了氛围承托底后信息列变高，
+     固定 428px 会把底部「按标签看圈」裁掉。 */
+  min-height:428px;
+  background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r-l);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .22s,box-shadow .22s;
+  position:relative;isolation:isolate;
+}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card:hover{border-color:var(--line2);box-shadow:var(--shadow)}
+/* 氛围底：画师自己的代表作虚化压暗铺在卡片最底层，
+   卡片因此自带作品色调；清晰主图在上层，作品本身绝不虚化。
+   加载失败时该层隐藏，自动退回纯色底，卡片不受影响。 */
+.card-amb{position:absolute;inset:0;z-index:0;overflow:hidden;
+  border-radius:inherit;pointer-events:none}
+.card-amb img{width:100%;height:100%;object-fit:cover;object-position:center 26%;
+  display:block;
+  filter:blur(var(--amb-blur)) brightness(var(--amb-bright)) saturate(var(--amb-sat));
+  transform:scale(var(--amb-scale));
+  opacity:0;transition:opacity .5s var(--ease)}
+.card-amb.ready img{opacity:1}
+/* 石墨遮罩：主图一侧透出作品色调，信息文字一侧压深保证可读。
+   透明度按实测配平——再高就看不出氛围，再低文字对比度不够。 */
+.card-amb::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,
+    rgba(15,17,21,.22) 0%,rgba(15,17,21,.36) 26%,
+    rgba(15,17,21,.60) 56%,rgba(15,17,21,.72) 100%)}
+/* 识别色带：取画师自己的作品色，让每张卡的身份一眼可辨 */
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;z-index:2;
+  background:var(--accent,var(--fuji));opacity:.9}
+body.no-amb .card-amb,body.no-amb .spot-art{display:none}
+/* 氛围底上的弱文字（风格标签、来源、配色说明）需要局部承托：
+   实测这些字在氛围底上只有 3.1 对比度，加一层薄底即可达 AA，
+   同时保留卡片整体的作品色调。 */
+.card-amb ~ .cbody .tag{background:#171A21;border-color:var(--line2);color:#D9CDFB}
+.card-amb ~ .cbody .card-ft{background:rgba(15,17,21,.55);border-radius:var(--r-s);
+  padding:5px var(--s2) 5px var(--s1);border-top-color:var(--line2)}
+.card-amb ~ .cbody .card-ft .src{color:var(--txt2)}
+.card-amb ~ .cbody .pal-lb{color:var(--txt2)}
+.card-amb ~ .cbody .cnt{color:var(--txt);background:#171A21;
+  border-radius:6px;padding:1px 7px;display:table}
+.card-amb ~ .cbody .vbadge.dim{background:rgba(15,17,21,.62);color:var(--txt2)}
+.card-amb ~ .cbody .mini{background:rgba(15,17,21,.62);border-color:var(--line2);color:var(--txt2)}
+.card-amb ~ .cbody .dsub a{color:var(--txt2)}
+.card-amb ~ .cbody .dbtn{background:rgba(15,17,21,.66);border-color:var(--line2)}
+.card-amb ~ .cbody .dtxt em{color:var(--txt2)}
+/* 焦点区同样是氛围底，弱文字需同等承托，保证 AA */
+.spot .tag{background:#171A21;border-color:var(--line2);color:#C9BDF7}
+.spot .cnt,.spot .spot-sub{color:var(--txt2)}
+/* 横向画廊卡片：左画框固定宽，右信息自适应 */
+.cbody{display:flex;gap:var(--s4);padding:var(--s4) var(--s4) var(--s5);min-height:428px;
+  position:relative;z-index:1}
+.cleft{width:214px;flex-shrink:0;min-height:0}
+.cright{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s2);min-height:0}
+.cright .card-ft{margin-top:auto;padding:var(--s2) 0 0;font-size:var(--t-meta);color:var(--dim);
+  border-top:1px solid var(--line);display:flex;justify-content:space-between;
+  align-items:center;gap:var(--s2);flex-shrink:0}
+.meta-row{display:flex;flex-direction:column;gap:var(--s2);flex-shrink:0}
+@media(max-width:560px){
+  .card{height:auto}
+  .cbody{flex-direction:column;height:auto}
+  .cleft{width:100%;height:300px}
+  }
+
+.card-hd{display:flex;align-items:flex-start;gap:var(--s3);flex-shrink:0;flex-wrap:wrap}
+.avatar{
+  width:40px;height:40px;border-radius:12px;flex-shrink:0;position:relative;
+  background:linear-gradient(135deg,var(--sakura),var(--fuji));
+  display:flex;align-items:center;justify-content:center;
+  font-size:var(--t-title);font-weight:800;color:#fff;
+}
+.avatar::after{content:"";position:absolute;inset:0;border-radius:12px;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 58%)}
+.who{flex:1;min-width:0}
+.who h3{font-size:var(--t-head);font-weight:800;line-height:var(--lh-tight);
+  letter-spacing:var(--ls-tight);overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pal{display:flex;gap:3px;align-items:center;min-height:8px}
+.pal i{width:17px;height:7px;border-radius:3px;display:block;transition:.18s;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 1px 3px rgba(0,0,0,.3)}
+.pal:hover i{height:10px}
+.pal-lb{font-size:var(--t-micro);color:var(--dim2);margin-left:5px;letter-spacing:.1em;
+  text-transform:uppercase}
+.who .tags,.tags{display:flex;gap:var(--s1);flex-wrap:wrap}
+.tag{font-size:var(--t-micro);padding:2px 8px;border-radius:5px;
+  background:var(--fuji-bg);color:#C4B5FD;border:1px solid var(--fuji-line)}
+.hd-right{text-align:right;flex-shrink:0}
+.cnt{font-size:var(--t-meta);color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums;margin-top:2px}
+/* 操作按钮独立成行、右对齐，把完整宽度还给画师名，避免名字被挤断 */
+.acts{display:flex;gap:var(--s1);flex-shrink:0;margin-left:auto;width:100%;justify-content:flex-end}
+.mini{font-size:var(--t-micro);padding:3px 8px;border-radius:5px;background:var(--panel2);
+  border:1px solid var(--line);color:var(--dim);cursor:pointer;white-space:nowrap;transition:.14s}
+.mini:hover{border-color:var(--fuji);color:var(--txt)}
+.mini.del:hover{border-color:var(--danger);color:#FF9B9B}
+.warn-dot{display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;border-radius:50%;background:var(--warn);color:#231A05;
+  font-size:var(--t-micro);font-weight:800;margin-left:6px;vertical-align:middle}
+
+/* 主图 + 缩略图条：主图完整呈现画风，缩略图展示其余作品 */
+.imgs{padding:0}
+/* 作品实测 87% 为竖构图（中位宽高比 0.65），故用 3:4 竖框承载，
+   而非方形框——方框会让竖图两侧出现大片模糊带 */
+.hero{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  border-radius:var(--r-m);cursor:zoom-in;
+  background:var(--mat);
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+/* 同图模糊铺底：竖图/横图都能完整展示，留白不突兀 */
+.hero-bg{display:none}
+.hero img.hero-fg{
+  position:absolute;inset:0;z-index:1;width:100%;height:100%;
+  object-fit:cover;object-position:center 22%;display:block;
+  transition:transform .6s var(--ease),filter .3s;
+}
+.hero:hover img.hero-fg{transform:scale(1.06)}
+.hero:hover{border-color:var(--line2)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(6,8,13,.72));pointer-events:none}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  position:absolute;left:9px;top:9px;z-index:3;font-size:var(--t-micro);font-weight:700;
+  padding:3px 9px;border-radius:20px;color:#fff;letter-spacing:.03em;
+  background:rgba(10,12,19,.72);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.14);
+}
+.hero-more{
+  display:inline-flex;align-items:center;gap:4px;
+  position:absolute;right:9px;bottom:9px;z-index:3;font-size:var(--t-meta);font-weight:800;
+  padding:4px 11px;border-radius:20px;color:#fff;
+  background:rgba(15,17,21,.82);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.16);
+}
+/* 缩略图区固定高度：卡片高度不再随例图数量漂移，整行保持齐平 */
+.strip{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s2);
+  height:150px;flex:0 0 auto}
+.im{position:relative;overflow:hidden;cursor:zoom-in;height:100%;
+  background:var(--mat);
+  border-radius:var(--r-s);border:1px solid var(--line);min-width:0}
+.im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
+.im:hover img{transform:scale(1.09)}
+.im:hover{border-color:var(--fuji)}
+.im .idx{position:absolute;left:5px;top:5px;z-index:2;font-size:var(--t-micro);
+  font-weight:700;color:#fff;background:rgba(10,12,19,.7);backdrop-filter:blur(4px);
+  padding:1px 6px;border-radius:20px;opacity:0;transition:.18s;pointer-events:none}
+.im:hover .idx{opacity:1}
+.more{position:absolute;right:5px;bottom:5px;z-index:2;
+  padding:2px 8px;border-radius:20px;color:#fff;
+  font-size:var(--t-micro);font-weight:800;letter-spacing:.02em;
+  background:rgba(10,12,19,.82);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.16);pointer-events:none}
+.card-ft{padding:var(--s2) 0 0;font-size:var(--t-meta);color:var(--dim);
+  border-top:1px solid var(--line);margin-top:var(--s1);
+  display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card-ft .src{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;
+  display:block;min-width:0;padding-left:9px;position:relative}
+.card-ft .src::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:3px;height:11px;border-radius:2px;
+  background:var(--fuji);opacity:.75}
+.card-ft .lnk{white-space:nowrap;font-weight:700;font-size:var(--t-micro);
+  padding:3px 9px;border-radius:20px;background:var(--panel2);
+  border:1px solid var(--line);color:var(--txt2);transition:.15s}
+.card-ft .lnk:hover{border-color:var(--fuji);color:var(--txt)}
+
+/* D 站入口 */
+.dwrap{margin:0;flex-shrink:0}
+.card .cright>.dwrap{margin-top:var(--s1)}
+.dsub{display:flex;gap:var(--s4);padding:var(--s2) 2px 2px;font-size:var(--t-micro)}
+.dsub a{display:inline-flex;align-items:center;gap:4px}
+.dsub a{color:var(--dim);transition:.15s}
+.dsub a:hover{color:var(--aqua)}
+.dbtn{display:flex;align-items:center;gap:10px;margin:0;
+  padding:10px 13px;border-radius:var(--r-m);
+  background:var(--panel2);border:1px solid var(--line);color:var(--txt2);transition:.18s}
+.dbtn:hover{border-color:var(--info)}
+.dico{width:25px;height:25px;border-radius:8px;flex-shrink:0;
+  background:var(--info);color:#fff;
+  font-weight:800;font-size:var(--t-body);display:flex;align-items:center;justify-content:center}
+.dtxt{flex:1;font-size:var(--t-label);font-weight:700;line-height:1.35;min-width:0}
+.dtxt em{display:block;font-style:normal;font-size:var(--t-micro);color:var(--dim);
+  font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.darr{display:inline-flex;align-items:center;color:var(--dim);flex-shrink:0}
+
+/* ---------- 在线图廊 ---------- */
+.gallery{display:none;padding:14px var(--sp) 46px;column-gap:16px;column-count:4}
+@media(max-width:1500px){.gallery{column-count:3}}
+@media(max-width:1040px){.gallery{column-count:2}}
+@media(max-width:640px){.gallery{column-count:1}}
+.gcell{break-inside:avoid;margin:0 0 16px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;
+  position:relative;transition:.22s}
+.gcell .gframe{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;
+  background:var(--mat);cursor:zoom-in}
+.gcell img{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-in;
+  transition:.35s var(--ease)}
+.gcell:hover{border-color:var(--line2);box-shadow:var(--shadow)}
+.gcell figcaption{padding:9px 12px;display:flex;align-items:center;gap:8px;
+  font-size:var(--t-meta);border-top:1px solid var(--line)}
+.gframe::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(6,8,13,.7));
+  opacity:0;transition:opacity .25s var(--ease)}
+.gcell:hover .gframe::after{opacity:1}
+.gview{display:inline-flex;align-items:center;gap:5px;
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-46%) scale(.94);
+  z-index:2;padding:7px 15px;border-radius:20px;font-size:var(--t-meta);font-weight:700;
+  color:#fff;background:rgba(10,12,19,.8);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.2);opacity:0;pointer-events:none;
+  transition:.25s var(--ease);white-space:nowrap}
+.gcell:hover .gview{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.gcell figcaption b{flex:1;font-weight:700;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.gnum{font-size:var(--t-micro);color:var(--dim2);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* 视图切换过渡 */
+@keyframes swapIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.grid.swap,.gallery.swap{animation:swapIn .34s var(--ease) both}
+
+/* ---------- 骨架屏 / 失败态 ---------- */
+.im.loading::before,.hero.loading::before,.sth.loading::before,.gframe.loading::before,.gcell.loading::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(100deg,var(--panel2) 30%,var(--panel3) 50%,var(--panel2) 70%);
+  background-size:220% 100%;animation:shimmer 1.5s linear infinite;
+}
+@keyframes shimmer{from{background-position:180% 0}to{background-position:-80% 0}}
+.gcell.loading{min-height:220px}
+.im.broken,.hero.broken{display:flex;align-items:center;justify-content:center}
+.im.broken::after,.hero.broken::after{content:"图片丢失";font-size:var(--t-meta);color:var(--dim2)}
+.hero.broken .hero-badge,.hero.broken .hero-more{display:none}
+.imgfail{aspect-ratio:3/4;display:flex;flex-direction:column;gap:3px;
+  align-items:center;justify-content:center;background:var(--panel2);
+  border-radius:var(--r-m);color:var(--dim);font-size:var(--t-label);text-align:center;padding:12px}
+.imgfail span{font-size:var(--t-micro);opacity:.7}
+
+/* ---------- 空态 ---------- */
+.empty{padding:72px var(--sp) 88px;text-align:center;color:var(--dim)}
+.empty .steps{display:flex;gap:var(--s3);justify-content:center;flex-wrap:wrap;
+  margin-top:var(--s6);max-width:640px;margin-left:auto;margin-right:auto}
+.empty .step{flex:1 1 180px;min-width:170px;padding:var(--s4);border-radius:var(--r-m);
+  background:var(--panel);
+  border:1px solid var(--line);text-align:left;transition:.2s var(--ease)}
+.empty .step:hover{border-color:var(--line2)}
+.empty .step b{display:flex;align-items:center;gap:var(--s2);font-size:var(--t-label);
+  color:var(--txt);margin-bottom:6px}
+.empty .step b i{font-style:normal;width:20px;height:20px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:var(--t-micro);
+  font-weight:800;color:#fff;background:var(--fuji)}
+.empty .step span{font-size:var(--t-meta);color:var(--dim);line-height:var(--lh-normal)}
+.empty .big{
+  position:relative;width:78px;height:78px;margin:0 auto var(--s5);border-radius:20px;
+  background:var(--fuji-bg);
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-size:30px;color:var(--fuji);
+}
+.empty h2{font-size:var(--t-title);color:var(--txt);margin-bottom:9px;font-weight:800}
+.empty p{font-size:var(--t-label);max-width:430px;margin:0 auto;line-height:1.95;color:var(--dim)}
+
+/* ---------- 灯箱 ---------- */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(10,11,14,.97);
+  backdrop-filter:blur(8px);display:none;flex-direction:column;
+  animation:fade .22s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.lb.on{display:flex}
+.lb-hd{padding:16px var(--sp);display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid var(--line);background:rgba(18,20,26,.7)}
+.lb-hd h3{font-size:var(--t-title);font-weight:800}
+.lb-dbtn{font-size:var(--t-meta);font-weight:700;padding:7px 14px;border-radius:var(--r-s);
+  background:var(--info-bg);border:1px solid var(--info-line);
+  color:#CFE6F7;white-space:nowrap;transition:.16s}
+.lb-dbtn:hover{border-color:var(--aqua);color:#fff}
+.lb-hd .x{margin-left:auto;font-size:var(--t-display);cursor:pointer;color:var(--dim);
+  line-height:1;width:34px;height:34px;border-radius:var(--r-s);flex-shrink:0;
+  background:transparent;border:none;padding:0;font-family:inherit;font-weight:400;
+  display:flex;align-items:center;justify-content:center;transition:.15s}
+.lb-hd .x:hover{color:#fff;background:var(--panel2)}
+.lb-stage{flex:1;min-height:0;position:relative;display:flex;
+  align-items:center;justify-content:center;padding:16px 78px}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;
+  border-radius:var(--r-s);box-shadow:0 12px 40px rgba(0,0,0,.5);
+  animation:lbin .3s ease}
+@keyframes lbin{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+.lb-stage.failed #lbImg{display:none}
+.lb-stage.failed::after{
+  content:"这张图的链接已失效，可在原帖查看";
+  color:var(--dim);font-size:var(--t-body);padding:26px 34px;border-radius:var(--r-m);
+  background:var(--panel);border:1px dashed var(--line2);
+}
+.lb-film .fth.dead{opacity:.2;position:relative}
+.lb-film .fth.dead::after{content:"×";position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;color:var(--danger);font-size:var(--t-title)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+  width:46px;height:46px;border-radius:50%;padding:0;
+  background:rgba(20,24,36,.85);border:1px solid var(--line2);color:var(--txt);
+  font-size:var(--t-display);line-height:1;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);transition:.16s}
+.lb-nav:hover{background:var(--fuji);border-color:transparent;color:#fff}
+.lb-nav.prev{left:16px}
+.lb-nav.next{right:16px}
+.lb-nav:disabled{opacity:.22;cursor:not-allowed}
+.lb-nav:disabled:hover{background:rgba(20,24,36,.85);color:var(--txt);box-shadow:none}
+.lb-tools{display:flex;gap:7px;align-items:center}
+.lb-tool{font-size:var(--t-meta);font-weight:700;padding:7px 13px;border-radius:var(--r-s);
+  background:var(--panel2);border:1px solid var(--line);color:var(--txt2);
+  cursor:pointer;white-space:nowrap;transition:.15s}
+.lb-tool:hover{border-color:var(--fuji);color:var(--txt)}
+.lb-tool.on{background:var(--fuji);color:#fff;border-color:transparent}
+.lb-film{display:flex;gap:7px;padding:11px var(--sp);overflow-x:auto;
+  border-top:1px solid var(--line);background:rgba(18,20,26,.78);flex-shrink:0}
+.lb-film .fth{width:48px;height:64px;border-radius:6px;overflow:hidden;flex-shrink:0;
+  cursor:pointer;border:2px solid transparent;opacity:.45;transition:.16s;
+  background:var(--panel2)}
+.lb-film .fth img{width:100%;height:100%;object-fit:cover;display:block}
+.lb-film .fth:hover{opacity:.85}
+.lb-film .fth.on{opacity:1;border-color:var(--fuji);
+  box-shadow:0 0 0 3px rgba(167,139,250,.15)}
+.lb-body{flex:1;overflow-y:auto;padding:22px var(--sp);
+  display:none;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  align-content:start}
+.lb.gridmode .lb-stage,.lb.gridmode .lb-film{display:none}
+.lb.gridmode .lb-body{display:grid}
+.lb-body img{width:100%;border-radius:var(--r-m);display:block;background:var(--panel2)}
+.lb-body figure{position:relative;margin:0}
+.lb-body figure.risky img{outline:2px solid var(--warn);outline-offset:-2px}
+.lb-body figcaption{font-size:var(--t-meta);color:var(--dim);padding:7px 2px;
+  display:flex;align-items:center;gap:6px}
+.conf{font-size:var(--t-micro);padding:2px 8px;border-radius:5px;white-space:nowrap;font-weight:600}
+.conf.good{background:var(--ok-bg);color:var(--ok)}
+.conf.bad{background:var(--warn-bg);color:var(--warn)}
+.fig-acts{margin-left:auto;display:flex;gap:5px}
+
+/* ---------- 滚动条 ---------- */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:6px;border:2px solid transparent;
+  background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:var(--scroll-hi);background-clip:content-box}
+
+@media(max-width:820px){
+  :root{--sp:15px}
+  /* 分组允许换行，输入框自适应，避免撑破视口 */
+  .ctrl{gap:8px}
+  .grp{flex-wrap:wrap;min-width:0;flex:1 1 100%}
+  .field{flex:1 1 auto;min-width:0}
+  .field input{min-width:0;width:100%!important;flex:1}
+  input#kw{width:auto}
+  .seg{flex:1 1 auto}
+  .segbtn{flex:1}
+  .spot{padding:14px}
+  .spot-id{min-width:0;flex:1 1 auto}
+  .spot-strip{overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .spot-strip .sth{width:60px;height:60px}
+  .grid{grid-template-columns:1fr}
+  .lb-stage{padding:10px 52px}
+  .lb-nav{width:38px;height:38px;font-size:var(--t-display)}
+  .lb-nav.prev{left:6px}
+  .lb-nav.next{right:6px}
+  .lb-hd{flex-wrap:wrap;gap:9px}
+  .lb-tools{order:3;width:100%}
+  .stats{width:100%;margin-left:0}
+  .grp+.grp{padding-left:0;margin-left:0;border-left:none}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 图标体系：统一 24 栅格 / 1.75 描边 / 圆角端点 ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol>
+<symbol id="i-login" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4.5l13 7.5-13 7.5z"/></symbol>
+<symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2.5h8a2 2 0 012 2V17a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="7" rx="2"/><rect x="13" y="13" width="8" height="7" rx="2"/></symbol>
+<symbol id="i-gallery" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.6"/><rect x="14" y="3" width="7" height="6" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="11" width="7" height="10" rx="1.6"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M4 17l5-4.5 4 3.5 3-2.5 4 3.5"/></symbol>
+<symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 13.5a4 4 0 006 .5l2.5-2.5a4.2 4.2 0 00-6-6L11.5 7"/><path d="M13.5 10.5a4 4 0 00-6-.5L5 12.5a4.2 4.2 0 006 6L12.5 17"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h4"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4l10-10a2.8 2.8 0 10-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V5a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0115 5v2"/><path d="M6.5 7l1 12a2 2 0 002 1.9h5a2 2 0 002-1.9l1-12"/><path d="M10.5 11v6M13.5 11v6"/></symbol>
+<symbol id="i-move" viewBox="0 0 24 24"><path d="M3 8a2 2 0 012-2h3.5l2 2.5H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M10 14h6"/><path d="M13.5 11.5L16 14l-2.5 2.5"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 9h10a5.5 5.5 0 010 11H8"/><path d="M7.5 5.5L4 9l3.5 3.5"/></symbol>
+<symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4.5l8.5 15h-17z"/><path d="M12 10v4.5"/><circle cx="12" cy="17.4" r=".9" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16"/><path d="M3.5 16.5L7 20l3.5-3.5"/><path d="M13 6h8M13 11h6M13 16h4"/></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7.5 9.5L10 12l-2.5 2.5"/><path d="M12.5 15h4"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><path d="M6 3.5h8l4.5 4.5V20a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 20V5A1.5 1.5 0 016 3.5z"/><path d="M14 3.5V8h4.5"/><path d="M8 13h7M8 16.5h5"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 100 17c1.4 0 2-1 2-1.8s-.7-1.4-.7-2.2c0-.9.7-1.5 1.7-1.5h1.6a4 4 0 004-4c0-4.2-3.9-7.5-8.6-7.5z"/><circle cx="8" cy="10" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="7.6" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1.15" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.4L19.5 10l-5.6 1.6L12 17l-1.9-5.4L4.5 10l5.6-1.6z"/><path d="M18.5 15.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0115 0"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.5 3L5 13.5h5.5L10 21l8.5-10.5H13z"/></symbol>
+</defs></svg>
+
+
+<header>
+  <div class="brand">
+    <span class="mark" title="画师采集工作台">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="4.5" y="6" width="23" height="19" rx="4"
+              stroke="#fff" stroke-width="2.1" opacity=".92"/>
+        <path d="M8.5 20.5l4.8-5 3.4 3.2 3.1-2.7 3.7 4.5"
+              stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="11.4" cy="11.6" r="1.9" fill="#fff"/>
+        <path d="M23.4 3.2l4.4 4.4-8.6 8.6-5.2.8.8-5.2z"
+              fill="#fff" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M21.6 5l4.4 4.4" stroke="#FF6B9D" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <div>
+      <div class="btitle">画师采集<em>工作台</em></div>
+      <div class="bsub">Artist Gallery</div>
+    </div>
+  </div>
+  <div class="stats" role="status" aria-live="polite" aria-label="采集统计">
+    <div class="stat"><svg class="ic ic-14 st-ic" aria-hidden="true"><use href="#i-user"/></svg><b id="sArtist">0</b><i>位画师</i></div>
+    <div class="stat"><svg class="ic ic-14 st-ic" aria-hidden="true"><use href="#i-image"/></svg><b id="sImg">0</b><i>张作品</i></div>
+    <div class="stat"><svg class="ic ic-14 st-ic" aria-hidden="true"><use href="#i-note"/></svg><b id="sNote">0</b><i>篇笔记</i></div>
+  </div>
+</header>
+
+<div class="ctrl">
+  <div class="grp">
+    <span class="badge no" id="loginBadge">未登录</span>
+    <button class="btn-ghost" id="btnLogin"><svg class="ic ic-16" aria-hidden="true"><use href="#i-login"/></svg>登录小红书</button>
+    <div class="accwrap">
+      <button class="btn-ghost" id="btnAcc" aria-haspopup="true" aria-expanded="false"
+              title="切换或退出小红书账号"><svg class="ic ic-16" aria-hidden="true"><use href="#i-user"/></svg><span id="accName">默认账号</span><svg class="ic ic-14 acc-caret" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+      <div class="accmenu" id="accMenu" role="menu" aria-label="账号管理">
+        <div class="acc-hd">小红书账号</div>
+        <div id="accList"></div>
+        <div class="acc-sep"></div>
+        <button class="acc-item" id="accAdd" role="menuitem"><svg class="ic ic-14" aria-hidden="true"><use href="#i-user"/></svg>添加新账号</button>
+        <button class="acc-item danger" id="accLogout" role="menuitem"><svg class="ic ic-14" aria-hidden="true"><use href="#i-close"/></svg>退出当前账号登录</button>
+        <div class="acc-tip">退出只清除登录状态，已采集的画师和图片不会丢失。</div>
+      </div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="field"><label>关键词</label><input id="kw" value="画师推荐"></div>
+    <div class="field"><label>篇数</label><input id="limit" type="number" value="20" min="1" max="200"></div>
+    <div class="field" title="每位画师在卡片和图廊里展示几张例图；数据仍全部保留，点开大图可看全部。填 0 表示全部展示">
+      <label>例图/人</label><input id="perArtist" type="number" value="10" min="0" max="200" style="width:64px"></div>
+    <div class="field" title="每位画师最多采集多少张作品，达到上限就不再收他的图，避免同一人被多篇推荐后无限累积。填 0 表示不限制">
+      <label>收图/人</label><input id="maxPerArtist" type="number" value="30" min="0" max="500" style="width:64px"></div>
+  </div>
+  <div class="grp">
+    <label class="chk"><input type="checkbox" id="headless" checked>后台静默</label>
+    <label class="chk" title="默认只用图床链接在线看图，不占本地空间；勾选后额外下载原图做离线备份">
+      <input type="checkbox" id="saveLocal">存本地备份</label>
+    <label class="chk" title="采集结束后自动用 D 站官方接口核验画师。整轮采完才核验，此时别名已累积完整">
+      <input type="checkbox" id="autoVerify" checked>采完自动核验</label>
+    <label class="chk" title="用画师自己的代表作虚化压暗做卡片氛围底，让每张卡自带作品色调；关闭则用纯色底。清晰主图与灯箱不受影响">
+      <input type="checkbox" id="ambBg" checked>氛围背景</label>
+  </div>
+  <div class="grp">
+    <span class="seg">
+      <button class="segbtn on" id="viewCard"><svg class="ic ic-14" aria-hidden="true"><use href="#i-cards"/></svg>画师卡片</button>
+      <button class="segbtn" id="viewGal"><svg class="ic ic-14" aria-hidden="true"><use href="#i-gallery"/></svg>在线图廊</button>
+    </span>
+    <button class="btn-main" id="btnGo"><svg class="ic ic-16 ic-fill" aria-hidden="true"><use href="#i-play"/></svg>开始采集</button>
+    <button class="btn-ghost" id="btnStop" disabled><svg class="ic ic-14 ic-fill" aria-hidden="true"><use href="#i-stop"/></svg>停止</button>
+    <button class="btn-ghost" id="btnFolder"><svg class="ic ic-16" aria-hidden="true"><use href="#i-folder"/></svg>图片文件夹</button>
+    <button class="btn-ghost" id="btnVerifyAll" title="对还没核验成功的画师补跑一次核验"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check"/></svg>补核验<span class="vcount" id="vCount"></span></button>
+    <button class="btn-ghost" id="btnApi" title="配置 D 站官方 API，用于核验画师是否真实存在"><svg class="ic ic-16" aria-hidden="true"><use href="#i-link"/></svg>D站接口<span class="api-dot" id="apiDot"></span></button>
+    <button class="btn-ghost" id="btnSauce" title="配置 SauceNAO 搜图：仅在 D 站搜不到或对应不上时，用作品图反查作者"><svg class="ic ic-16" aria-hidden="true"><use href="#i-search"/></svg>搜图兜底<span class="api-dot" id="sauceDot"></span></button>
+  </div>
+</div>
+
+<div class="modal" id="sauceModal" role="dialog" aria-modal="true" aria-labelledby="sauceTitle">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <h3 id="sauceTitle">SauceNAO 搜图兜底</h3>
+      <button class="x icon-only" id="sauceClose" aria-label="关闭"><svg class="ic ic-20" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="modal-bd">
+      <p class="api-note">仅在 <b>D 站搜不到</b> 或 <b>搜到的对应不上</b> 时启用：拿作品图反查作者，比名字比对更可靠。Key 只保存在本机文件里，不写日志、不回显、不随交付外发。</p>
+      <div class="api-field">
+        <label for="sauceKey">API Key</label>
+        <input id="sauceKey" type="password" autocomplete="off" spellcheck="false" placeholder="在 SauceNAO 账号页获取">
+        <button class="mini" id="sauceEye" type="button" title="显示或隐藏">显示</button>
+      </div>
+      <div class="api-field">
+        <label for="sauceTestUrl">测试图链接</label>
+        <input id="sauceTestUrl" type="text" spellcheck="false" placeholder="留空则自动取库里第一张作品图">
+      </div>
+      <div class="api-state" id="sauceState">尚未配置</div>
+      <div class="api-result" id="sauceQuota"></div>
+      <div class="api-result" id="sauceResult"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn-ghost" id="sauceClear">清除凭证</button>
+      <button class="btn-ghost" id="sauceSave">保存</button>
+      <button class="btn-main" id="sauceTest">保存并测试搜图</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="apiModal" role="dialog" aria-modal="true" aria-labelledby="apiTitle">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <h3 id="apiTitle">D 站官方 API</h3>
+      <button class="x icon-only" id="apiClose" aria-label="关闭"><svg class="ic ic-20" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="modal-bd">
+      <p class="api-note">用你自己的 Danbooru 账号凭证走官方接口，核验画师是否真的存在、是否与小红书写的是同一人。凭证只保存在本机文件里，不会写进日志，也不会随交付文件外发。</p>
+      <div class="api-field">
+        <label for="apiLogin">账号名</label>
+        <input id="apiLogin" type="text" autocomplete="off" spellcheck="false" placeholder="你的 Danbooru 用户名">
+      </div>
+      <div class="api-field">
+        <label for="apiKey">API Key</label>
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="在 D 站账号设置里生成">
+        <button class="mini" id="apiEye" type="button" title="显示或隐藏">显示</button>
+      </div>
+      <div class="api-field">
+        <label for="apiProbeId">测试画师 ID</label>
+        <input id="apiProbeId" type="text" value="149913" spellcheck="false" style="flex:0 0 120px;width:120px">
+      </div>
+      <div class="api-state" id="apiState">尚未配置</div>
+      <div class="api-result" id="apiResult"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn-ghost" id="apiClear">清除凭证</button>
+      <button class="btn-ghost" id="apiSave">保存</button>
+      <button class="btn-main" id="apiTest">保存并测试连接</button>
+    </div>
+  </div>
+</div>
+
+<div class="connbar" id="connBar"><svg class="ic ic-16" aria-hidden="true"><use href="#i-warn"/></svg> 与工作台服务的连接已断开。请确认那个黑色命令行窗口还开着；若已关闭，重新双击「启动工作台.bat」。</div>
+
+<div class="prog" id="prog"><i id="progBar"></i></div>
+
+<div class="logbox" id="logbox">
+  <div class="hd" id="logHd" title="点击展开或收起日志">
+    <span class="lft"><span class="caret"><svg class="ic ic-14" aria-hidden="true"><use href="#i-chevron"/></svg></span><svg class="ic ic-14" aria-hidden="true"><use href="#i-terminal"/></svg><span>运行日志</span></span>
+    <span class="rgt"><span class="last" id="logLast"></span><span class="st" id="logState">待命</span></span>
+  </div>
+  <pre id="log" role="log" aria-live="polite" aria-label="运行日志"></pre>
+</div>
+
+<div class="mergebar" id="mergeBar"></div>
+<div class="confbar" id="confBar"></div>
+<div class="filters" id="filters"></div>
+<div id="spot"></div>
+<div class="grid" id="grid" role="list" aria-label="画师列表"></div>
+<div class="gallery" id="gallery" role="list" aria-label="作品图廊"></div>
+<div class="empty" id="empty"></div>
+
+<div class="toast" id="toast" role="alert">
+  <span id="toastMsg"></span>
+  <button id="toastUndo"><svg class="ic ic-14" aria-hidden="true"><use href="#i-undo"/></svg>撤销</button>
+  <span class="tx" id="toastX" title="关闭" role="button" tabindex="0" aria-label="关闭提示"><svg class="ic ic-16" aria-hidden="true"><use href="#i-close"/></svg></span>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbName">
+  <div class="lb-hd">
+    <h3 id="lbName"></h3>
+    <span class="cnt" id="lbCnt"></span>
+    <div class="lb-tools">
+      <button class="lb-tool icon-only" id="lbPrevT" title="上一张（←）" aria-label="上一张"><svg class="ic ic-16" aria-hidden="true"><use href="#i-left"/></svg></button>
+      <button class="lb-tool icon-only" id="lbNextT" title="下一张（→）" aria-label="下一张"><svg class="ic ic-16" aria-hidden="true"><use href="#i-right"/></svg></button>
+      <button class="lb-tool" id="lbGrid" title="切换为网格总览"><svg class="ic ic-14" aria-hidden="true"><use href="#i-grid"/></svg>网格总览</button>
+      <button class="lb-tool" id="lbDl" title="下载当前这张原图"><svg class="ic ic-14" aria-hidden="true"><use href="#i-download"/></svg>下载原图</button>
+      <button class="lb-tool" id="lbCopy" title="复制这张图的图床链接"><svg class="ic ic-14" aria-hidden="true"><use href="#i-link"/></svg>复制链接</button>
+    </div>
+    <button class="x icon-only" id="lbClose" title="关闭（Esc）" aria-label="关闭大图"><svg class="ic ic-20" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="lb-stage" id="lbStage">
+    <button class="lb-nav prev icon-only" id="lbPrev" title="上一张（←）" aria-label="上一张"><svg class="ic ic-20" aria-hidden="true"><use href="#i-left"/></svg></button>
+    <img id="lbImg" alt="">
+    <button class="lb-nav next icon-only" id="lbNext" title="下一张（→）" aria-label="下一张"><svg class="ic ic-20" aria-hidden="true"><use href="#i-right"/></svg></button>
+  </div>
+  <div class="lb-film" id="lbFilm"></div>
+  <div class="lb-body" id="lbBody"></div>
+</div>
+
+<script>
+let DATA = [], FILTER = '全部', QUERY = '', TIMER = null;
+let LAST_SIG = '', LAST_DATA = '', LB_OPEN = null, ONLY_GUESS = false, OFFLINE = false;
+let VIEW = 'card';
+let LB_IDX = 0;
+let LB_FOCUS = null;
+let SORT = 'count';
+let UNDO = null, TOAST_T = null, LOG_AUTO = false;
+
+// 偏好记忆：视图、排序、例图数量下次打开保持
+function savePref(k, v) {
+  try { localStorage.setItem(k, v); } catch(err) { /* 隐私模式忽略 */ }
+}
+function readPref(k, dflt) {
+  try { const v = localStorage.getItem(k); return v === null ? dflt : v; }
+  catch(err) { return dflt; }
+}
+
+// 撤销：删除类操作先记快照，提示条内可一键还原
+function offerUndo(msg, restore) {
+  UNDO = restore;
+  $('toastMsg').innerHTML = msg;
+  $('toast').classList.add('on');
+  clearTimeout(TOAST_T);
+  TOAST_T = setTimeout(hideToast, 8000);
+}
+function hideToast() {
+  $('toast').classList.remove('on');
+  UNDO = null;
+  clearTimeout(TOAST_T);
+}
+
+// 每位画师展示几张例图（0 = 全部）；只影响显示，数据不删
+function perCap() {
+  const el = document.getElementById('perArtist');
+  const v = parseInt(el && el.value, 10);
+  if (!isFinite(v) || v < 0) return 10;
+  return v;
+}
+function capImgs(arr) {
+  const n = perCap();
+  return n === 0 ? arr : arr.slice(0, n);
+}
+
+
+// 图标助手：与静态标记共用同一套 symbol
+function svgIcon(name, cls) {
+  return '<svg class="' + (cls || 'ic ic-16') + '" aria-hidden="true"><use href="#i-' + name + '"/></svg>';
+}
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// 只允许 http(s) 外链，挡掉 javascript: 等危险协议
+const safeUrl = u => /^https?:\/\//i.test(String(u || '')) ? String(u) : '';
+// 图片来源：优先在线图床链接，本地备份作为兜底
+// referrerpolicy=no-referrer 必须带上：图床会拒绝来自本机地址的 Referer
+const imgSrc = im => safeUrl(im.src) || (im.file ? '/img?p=' + encodeURIComponent(im.file) : '');
+const IMG_ATTR = 'referrerpolicy="no-referrer" decoding="async"';
+// 操作定位标识：在线模式下没有本地路径，用稳定键
+const imgId = im => im.file || im.key || im.src || '';
+
+// 图片就绪：撤掉骨架屏。
+// 骨架类可能挂在父级（图廊的 .gcell），需把各级祖先的 loading 都清掉，
+// 否则图片就绪后仍被骨架盖住。
+function imgOk(el) {
+  ['.im','.hero','.gframe','.gcell','.sth'].forEach(sel => {
+    const b = el.closest(sel);
+    if (b) b.classList.remove('loading');
+  });
+}
+// 在线链接失效时退回本地备份；都没有则标记失效
+function imgFail(el) {
+  const local = el.dataset.local;
+  if (local && !el.dataset.retried) {
+    el.dataset.retried = '1';
+    el.src = '/img?p=' + encodeURIComponent(local);
+    return;
+  }
+  // 灯箱舞台的图片元素必须保留，只标记失效态
+  if (el.id === 'lbImg') {
+    $('lbStage').classList.add('failed');
+    return;
+  }
+  const box = el.closest('.im') || el.closest('.hero');
+  if (box) { box.classList.remove('loading'); box.classList.add('broken'); el.remove(); return; }
+  const cell = el.closest('.gframe') || el.closest('.gcell');
+  if (cell) { cell.classList.remove('loading');
+    el.outerHTML = '<div class="imgfail">链接已失效<br><span>可在原帖查看</span></div>'; return; }
+  const fth = el.closest('.fth');
+  if (fth) { fth.classList.add('dead'); el.remove(); return; }
+  el.style.visibility = 'hidden';
+}
+
+// 画师的色彩身份：由服务端从代表作取色
+// （图床不允许浏览器跨域读像素，故不在前端取）
+const PAL_CACHE = {};
+const PAL_PENDING = new Set();
+async function loadPalette(name, holder) {
+  if (!holder || holder.dataset.done) return;
+  if (PAL_CACHE[name]) { paintPalette(holder, PAL_CACHE[name]); return; }
+  if (PAL_PENDING.has(name)) return;
+  PAL_PENDING.add(name);
+  try {
+    const r = await api('/api/palette?n=' + encodeURIComponent(name));
+    const cols = (r && r.colors) || [];
+    PAL_CACHE[name] = cols;
+    // 重渲染后 holder 可能已换新，按名字重新定位
+    document.querySelectorAll('.pal').forEach(el => {
+      if (el.dataset.pal === name) paintPalette(el, cols);
+    });
+  } catch(err) { /* 取色失败则不显示配色条 */ }
+  PAL_PENDING.delete(name);
+}
+function paintPalette(holder, cols) {
+  if (!holder || holder.dataset.done || !cols || !cols.length) return;
+  holder.dataset.done = '1';
+  holder.innerHTML = cols.map(c =>
+    `<i style="background:rgb(${c[0]},${c[1]},${c[2]})"></i>`).join('')
+    + '<span class="pal-lb">作品色</span>';
+  // 把画师作品色设为卡片识别色带，身份一眼可辨
+  const card = holder.closest('.card');
+  if (card) card.style.setProperty('--accent', `rgb(${cols[0].join(',')})`);
+}
+
+async function api(path, body) {
+  const opt = body ? {method:'POST', headers:{'Content-Type':'application/json'},
+                      body:JSON.stringify(body)} : {};
+  const r = await fetch(path, opt);
+  return r.json();
+}
+
+
+// ---------- 账号管理 ----------
+let ACC_OPEN = false, ACC_DATA = [];
+
+function toggleAcc(on) {
+  ACC_OPEN = (on === undefined) ? !ACC_OPEN : on;
+  $('accMenu').classList.toggle('on', ACC_OPEN);
+  $('btnAcc').setAttribute('aria-expanded', ACC_OPEN ? 'true' : 'false');
+}
+
+function renderAccounts(list, current) {
+  ACC_DATA = list || [];
+  const cur = ACC_DATA.find(a => a.id === current);
+  $('accName').textContent = cur ? cur.label : '默认账号';
+  $('accList').innerHTML = ACC_DATA.map(a => `
+    <div class="acc-row ${a.current ? 'on' : ''}">
+      <button class="acc-pick" data-acc="${esc(a.id)}" role="menuitemradio"
+              aria-checked="${a.current ? 'true' : 'false'}"
+              title="${a.has_state ? '已保存登录状态' : '尚未登录'}">
+        <span class="acc-dot ${a.has_state ? 'live' : ''}"></span>
+        <span class="nm">${esc(a.label)}</span>
+      </button>
+      ${a.current ? '<span class="acc-cur">使用中</span>' : ''}
+      <span class="acc-acts">
+        <button class="acc-mini" data-acc-edit="${esc(a.id)}" title="重命名"
+                aria-label="重命名 ${esc(a.label)}">${svgIcon('edit','ic ic-14')}</button>
+        ${a.id !== 'default' ? `<button class="acc-mini del" data-acc-del="${esc(a.id)}"
+                title="删除此账号" aria-label="删除 ${esc(a.label)}">${svgIcon('trash','ic ic-14')}</button>` : ''}
+      </span>
+    </div>`).join('');
+
+  $('accList').querySelectorAll('[data-acc]').forEach(el => el.onclick = async () => {
+    const id = el.dataset.acc;
+    toggleAcc(false);
+    if (id === current) return;
+    const r = await api('/api/account_switch', {id});
+    if (!r.ok) { alert(r.error || '切换失败'); return; }
+    LAST_SIG = ''; await refresh();
+  });
+  $('accList').querySelectorAll('[data-acc-edit]').forEach(el => el.onclick = async () => {
+    const id = el.dataset.accEdit;
+    const a = ACC_DATA.find(x => x.id === id);
+    const v = prompt('给这个账号起个名字：', a ? a.label : '');
+    if (!v || !v.trim()) return;
+    const r = await api('/api/account_rename', {id, label: v.trim()});
+    if (!r.ok) alert(r.error || '重命名失败');
+    await refresh();
+  });
+  $('accList').querySelectorAll('[data-acc-del]').forEach(el => el.onclick = async () => {
+    const id = el.dataset.accDel;
+    const a = ACC_DATA.find(x => x.id === id);
+    if (!confirm('删除账号「' + (a ? a.label : id) + '」？\n只清除它的登录状态，已采集的画师和图片不会丢失。')) return;
+    const r = await api('/api/account_remove', {id});
+    if (!r.ok) { alert(r.error || '删除失败'); return; }
+    LAST_SIG = ''; await refresh();
+  });
+}
+
+function renderFilters() {
+  const styles = new Set();
+  DATA.forEach(a => (a.styles || []).forEach(s => s.split('/').forEach(x => x && styles.add(x))));
+  const list = ['全部', ...Array.from(styles).slice(0, 24)];
+  if (!styles.size) { $('filters').innerHTML = ''; return; }
+  const nCheck = DATA.filter(needCheck).length;
+  $('filters').innerHTML = list.map(s =>
+    `<span class="chip ${s===FILTER?'on':''}" data-s="${esc(s)}">${esc(s)}</span>`).join('')
+    + (nCheck ? `<span class="chip warnchip ${ONLY_GUESS?'on':''}" id="cGuess">只看待确认 ${nCheck}</span>` : '')
+    + `<span class="search">
+         <span class="sortwrap">${svgIcon('sort','ic ic-14 sort-ic')}<select id="sortSel" title="排序方式">
+           <option value="count">作品最多</option>
+           <option value="name">名称顺序</option>
+           <option value="style">风格分组</option>
+           <option value="check">待确认优先</option>
+         </select></span>
+         <span class="qwrap">${svgIcon('search','ic ic-14 q-ic')}<input id="q" placeholder="搜画师名…" value="${esc(QUERY)}"></span>
+       </span>`;
+  const ss = $('sortSel');
+  if (ss) {
+    ss.value = SORT;
+    ss.onchange = () => { SORT = ss.value; savePref('sortMode', SORT); render(); };
+  }
+  $('filters').querySelectorAll('.chip[data-s]').forEach(c => c.onclick = () => {
+    FILTER = c.dataset.s; renderFilters(); render();
+  });
+  const cg = $('cGuess');
+  if (cg) cg.onclick = () => { ONLY_GUESS = !ONLY_GUESS; renderFilters(); render(); };
+  const q = $('q');
+  if (q) {
+    q.oninput = () => { QUERY = q.value.trim(); render(); };
+    if (document.activeElement && document.activeElement.id === 'q') q.focus();
+  }
+}
+
+const CONF_TXT = {explicit:'正文标明', single:'全篇一人', order:'顺序对应',
+                  guess:'待确认', unknown:'待认领', manual:'已手动确认'};
+
+function needCheck(a) {
+  return (a.images || []).some(im => im.conf === 'guess' || im.conf === 'unknown');
+}
+
+// ---------- D 站核验状态 ----------
+const V_TXT = {
+  confirmed: ['已确认', 'ok'], matched: ['D站命中', 'ok'],
+  suspect: ['疑似·待确认', 'warn'], missing: ['D站未找到', 'bad'],
+  ambiguous: ['同名·待消歧', 'warn'],
+  absent: ['确认未收录', 'dim'], error: ['核验失败', 'bad'],
+};
+function vBadge(a) {
+  const v = a.verify || {};
+  const st = v.state;
+  if (!st) return '<span class="vbadge dim">未核验</span>';
+  const [txt, cls] = V_TXT[st] || [st, 'dim'];
+  let extra = '';
+  if (st === 'suspect' && (v.nears || []).length) {
+    const n = v.nears[0];
+    extra = ` 差${n.distance}字符`;
+  }
+  if (st === 'ambiguous' && (v.candidates || []).length) {
+    extra = ` ${v.candidates.length}选1`;
+  }
+  // 只有 id 非空才代表已核对到同一人；suggest_* 只是待你过目的候选
+  const title = v.id
+    ? `${v.name} · ID ${v.id}${v.evidence ? '\n依据：' + v.evidence : ''}`
+      + (v.cross ? '\n' + v.cross : '')
+    : (v.message || (v.suggest_name ? `仅供核对的候选：${v.suggest_name}` : ''));
+  let acts = '';
+  if (st === 'ambiguous') {
+    // 同名待消歧：列出全部候选，点「选这个」确认是哪一位
+    acts = `<div class="vpick">${(v.candidates || []).map(c =>
+      `<span class="vpick-row">`
+      + `<a href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer" title="先看这个条目">${esc(c.name || c.id)}</a>`
+      + `<span class="vact" data-vpick="${esc(a.name)}" data-pid="${esc(c.id)}" data-pname="${esc(c.name || '')}" title="确认是这一位">选这个</span>`
+      + `</span>`).join('')}`
+      + `<span class="vact no" data-vno="${esc(a.name)}" title="标记为都不是/D站未收录">都不是</span></div>`;
+  } else if (st === 'suspect' || st === 'missing' || st === 'error') {
+    acts = `<span class="vact" data-vok="${esc(a.name)}" title="确认就是这位画师">同一人</span>`
+         + `<span class="vact no" data-vno="${esc(a.name)}" title="标记为 D 站确实未收录">不是</span>`;
+  }
+  return `<span class="vbadge ${cls}" title="${esc(title)}">${esc(txt + extra)}</span>${acts}`;
+}
+
+function match(a) {
+  if (QUERY && !a.name.toLowerCase().includes(QUERY.toLowerCase())) return false;
+  if (ONLY_GUESS && !needCheck(a)) return false;
+  if (FILTER === '全部') return true;
+  return (a.styles || []).some(s => s.split('/').includes(FILTER));
+}
+
+// 按所选方式排序（不改动原始数据顺序）
+function sorted(list) {
+  const arr = list.slice();
+  const n = a => (a.images || []).length;
+  if (SORT === 'name') {
+    arr.sort((x, y) => x.name.localeCompare(y.name, 'zh-Hans-CN'));
+  } else if (SORT === 'style') {
+    const key = a => (a.styles || []).join('/') || '\uffff';
+    arr.sort((x, y) => key(x).localeCompare(key(y), 'zh-Hans-CN') || n(y) - n(x));
+  } else if (SORT === 'check') {
+    arr.sort((x, y) => (needCheck(y) - needCheck(x)) || n(y) - n(x));
+  } else {
+    arr.sort((x, y) => n(y) - n(x));
+  }
+  return arr;
+}
+
+const EMPTY_STEPS = '<div class="steps"><div class="step"><b><i>1</i>登录小红书</b><span>扫码一次，登录状态会记住，之后不用再登。</span></div><div class="step"><b><i>2</i>填关键词采集</b><span>如「画师推荐」「插画师安利」，自动识别画师与作品。</span></div><div class="step"><b><i>3</i>浏览与跳转</b><span>卡片看画风，点开看大图，一键去 D 站找本人。</span></div></div>';
+function emptyGuide() {
+  return '<div class="big">' + svgIcon('sparkle','ic ic-28') + '</div><h2>还没有采集到画师</h2>'
+    + '<p>三步就能把散落在笔记里的画师和作品整理成册。</p>' + EMPTY_STEPS;
+}
+
+// 卡片氛围底：用该画师代表作虚化压暗做底，让卡片自带作品色调。
+// 复用主图同一 URL（浏览器已缓存，不额外下载）；
+// 失败则整层移除，退回纯色底；开关关闭时直接不渲染。
+function ambLayer(im) {
+  if (!im || document.body.classList.contains('no-amb')) return '';
+  const src = imgSrc(im);
+  if (!src) return '';
+  return `<div class="card-amb" aria-hidden="true">
+    <img ${IMG_ATTR} src="${esc(src)}" alt="" data-local="${esc(im.file||'')}"
+         onload="ambOk(this)" onerror="ambFail(this)">
+  </div>`;
+}
+function ambOk(el) {
+  const box = el.closest('.card-amb');
+  if (box) box.classList.add('ready');
+}
+function ambFail(el) {
+  const local = el.dataset.local;
+  if (local && !el.dataset.retried) {
+    el.dataset.retried = '1';
+    el.src = '/img?p=' + encodeURIComponent(local);
+    return;
+  }
+  const box = el.closest('.card-amb');
+  if (box) box.remove();
+}
+
+function render() {
+  const list = sorted(DATA.filter(match));
+  renderSpot();
+  if (VIEW === 'gallery') {
+    const n = renderGallery();
+    const em = $('empty');
+    em.style.display = n ? 'none' : 'block';
+    if (!n) {
+      em.innerHTML = DATA.length
+        ? '<div class="big">' + svgIcon('search','ic ic-28') + '</div><h2>没有匹配的作品</h2><p>换个筛选或清空搜索词试试。</p>'
+        : emptyGuide();
+    }
+    return;
+  }
+  const em = $('empty');
+  em.style.display = list.length ? 'none' : 'block';
+  if (!list.length) {
+    if (DATA.length) {
+      em.innerHTML = '<div class="big">' + svgIcon('search','ic ic-28') + '</div><h2>没有匹配的画师</h2>'
+        + '<p>当前筛选条件下没有结果，换个筛选或清空搜索词试试。</p>';
+    } else {
+      em.innerHTML = emptyGuide();
+    }
+  }
+  $('grid').innerHTML = list.map((a, idx) => {
+    const imgs = a.images || [];
+    const show = capImgs(imgs);
+    const cls = show.length === 1 ? 'n1' : (show.length === 2 ? 'n2' : '');
+    const extra = imgs.length - show.length;
+    const note = (a.notes || [])[0] || {};
+    const thumbs = show.slice(1, 3);
+    const rest = imgs.length - Math.min(show.length, 3);
+    return `<div class="card" style="animation-delay:${Math.min(idx*40,320)}ms">
+      ${ambLayer(show[0])}
+      <div class="cbody">
+        <div class="cleft">
+          ${show.length?`<div class="hero loading" data-a="${idx}" data-i="0">
+            <img class="hero-bg" aria-hidden="true" ${IMG_ATTR} src="${esc(imgSrc(show[0]))}"
+                 data-local="${esc(show[0].file||'')}" onerror="this.style.display='none'">
+            <img class="hero-fg" loading="lazy" ${IMG_ATTR} src="${esc(imgSrc(show[0]))}" alt="${esc(a.name)} 代表作"
+                 data-local="${esc(show[0].file||'')}"
+                 onload="imgOk(this)" onerror="imgFail(this)">
+            <span class="hero-badge">代表作</span>
+            ${imgs.length>1?`<span class="hero-more">${imgs.length} 张 ${svgIcon('ext','ic ic-14')}</span>`:''}
+          </div>`:'<div class="hero broken"></div>'}
+        </div>
+        <div class="cright">
+          <div class="card-hd">
+            <div class="avatar">${esc(a.name.slice(0,1))}</div>
+            <div class="who">
+              <h3>${esc(a.name)}${needCheck(a)?'<span class="warn-dot" title="有图片归属需要确认">!</span>':''}</h3>
+              <div class="cnt">${extra>0?`${show.length}/${imgs.length} 张`:`${imgs.length} 张`}</div>
+              ${vBadge(a)}
+            </div>
+            <div class="acts">
+              <span class="mini" data-act="verify" data-n="${esc(a.name)}" title="用 D 站官方接口核验这位画师">${svgIcon('check','ic ic-14')}核验</span>
+              <span class="mini" data-act="rename" data-n="${esc(a.name)}" title="改名或合并到已有画师">${svgIcon('edit','ic ic-14')}改名</span>
+              <span class="mini del icon-only" data-act="del" data-n="${esc(a.name)}" title="从清单移除（可撤销）" role="button" tabindex="0" aria-label="移除 ${esc(a.name)}">${svgIcon('trash','ic ic-14')}</span>
+            </div>
+          </div>
+          <div class="meta-row">
+            <div class="tags">${(a.styles||[]).flatMap(s=>s.split('/'))
+              .filter((v,i,arr)=>v&&arr.indexOf(v)===i).slice(0,4)
+              .map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div>
+            <div class="pal" data-pal="${esc(a.name)}"></div>
+          </div>
+          ${thumbs.length?`<div class="strip">
+            ${thumbs.map((im,k)=>{
+              const i=k+1;
+              const last=(k===thumbs.length-1);
+              return `<div class="im loading" data-a="${idx}" data-i="${i}" title="${esc(a.name)} · 第 ${i+1} 张">
+                <img loading="lazy" ${IMG_ATTR} src="${esc(imgSrc(im))}" alt="${esc(a.name)} 作品 ${i+1}"
+                     data-local="${esc(im.file||'')}"
+                     onload="imgOk(this)" onerror="imgFail(this)">
+                <span class="idx">${i+1}</span>
+                ${(last&&rest>0)?`<div class="more">+${rest}</div>`:''}
+              </div>`;}).join('')}
+          </div>`:''}
+          <div class="card-ft">
+            <span class="src" title="${esc(note.title||'')}">${esc(note.title||'')}</span>
+            ${safeUrl(note.url)?`<a class="lnk" href="${esc(safeUrl(note.url))}" target="_blank" rel="noopener noreferrer">原帖 ${svgIcon('ext','ic ic-14')}</a>`:''}
+          </div>
+          ${safeUrl(a.d_url)?`<div class="dwrap">
+            <a class="dbtn" href="${esc(safeUrl(a.d_url))}" target="_blank" rel="noopener noreferrer"
+               title="在 Danbooru 检索画师条目：${esc(a.d_query||a.name)}（本名与别名一起匹配）">
+              <span class="dico">D</span>
+              <span class="dtxt">在 D 站找这位画师<em>${esc(a.d_query||a.name)}</em></span>
+              <span class="darr">${svgIcon('ext','ic ic-14')}</span></a>
+            ${(safeUrl(a.d_alt_url)||safeUrl(a.d_posts_url))?`<div class="dsub">
+              ${safeUrl(a.d_alt_url)?`<a href="${esc(safeUrl(a.d_alt_url))}" target="_blank"
+                 rel="noopener noreferrer" title="用别名再检索一次">按别名找 ${svgIcon('ext','ic ic-14')}</a>`:''}
+              ${safeUrl(a.d_posts_url)?`<a href="${esc(safeUrl(a.d_posts_url))}" target="_blank"
+                 rel="noopener noreferrer" title="直接按作品标签浏览：${esc(a.d_tag||'')}">按标签看图 ${svgIcon('image','ic ic-14')}</a>`:''}
+            </div>`:''}
+          </div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  $('grid').querySelectorAll('.pal').forEach(el => loadPalette(el.dataset.pal, el));
+  $('grid').querySelectorAll('.im,.hero').forEach(el => el.onclick = () => {
+    openLB(list[+el.dataset.a], +el.dataset.i || 0);
+  });
+  $('grid').querySelectorAll('.mini').forEach(el => el.onclick = async ev => {
+    ev.stopPropagation();
+    const n = el.dataset.n;
+    if (el.dataset.act === 'verify') {
+      const old = el.innerHTML;
+      el.innerHTML = svgIcon('bolt','ic ic-14') + '核验中';
+      el.style.pointerEvents = 'none';
+      const r = await api('/api/d_verify_one', {name:n, force:true});
+      el.innerHTML = old; el.style.pointerEvents = '';
+      if (!r.ok) { alert(r.error || '核验失败'); return; }
+      LAST_SIG=''; LAST_DATA=''; await refresh();
+    } else if (el.dataset.act === 'rename') {
+      const v = prompt(`把「${n}」改成什么名字？\n（改成已有画师名会合并两人）`, n);
+      if (v && v.trim() && v.trim() !== n) {
+        const r = await api('/api/rename', {old:n, new:v.trim()});
+        if (!r.ok) alert(r.error); else { LAST_SIG=''; refresh(); }
+      }
+    } else {
+      const snapshot = JSON.parse(JSON.stringify(DATA.find(x => x.name === n) || null));
+      if (!snapshot) return;
+      // 乐观更新：先从界面移除，再落库；提示条内可撤销
+      DATA = DATA.filter(x => x.name !== n);
+      LAST_DATA = JSON.stringify(DATA); LAST_SIG = '';
+      renderFilters(); render();
+      const r = await api('/api/delete_artist', {name:n});
+      if (!r.ok) {
+        DATA.push(snapshot); LAST_DATA = ''; renderFilters(); render();
+        alert(r.error); return;
+      }
+      offerUndo(`已移除 <b>${esc(n)}</b>（${(snapshot.images||[]).length} 张，文件仍在硬盘）`,
+        async () => { await api('/api/restore_artist', {artist:snapshot}); });
+    }
+  });
+  // 核验结果的人工确认：同一人 / 不是
+  $('grid').querySelectorAll('[data-vok]').forEach(el => el.onclick = async ev => {
+    ev.stopPropagation();
+    const n = el.dataset.vok;
+    const a = DATA.find(x => x.name === n) || {};
+    const v = a.verify || {};
+    const aid = prompt(`确认「${n}」就是 D 站这位画师吗？\n可修改 ID（当前 ${v.id || '无'}）`, v.id || '');
+    if (aid === null) return;
+    const r = await api('/api/d_confirm', {name:n, artist_id:aid.trim()});
+    if (!r.ok) { alert(r.error || '确认失败'); return; }
+    LAST_SIG=''; LAST_DATA=''; await refresh();
+  });
+  $('grid').querySelectorAll('[data-vno]').forEach(el => el.onclick = async ev => {
+    ev.stopPropagation();
+    const n = el.dataset.vno;
+    if (!confirm(`把「${n}」标记为 D 站确实未收录？\n这只影响核验标记，不动图片数据。`)) return;
+    const r = await api('/api/d_confirm', {name:n, reject:true});
+    if (!r.ok) { alert(r.error || '操作失败'); return; }
+    LAST_SIG=''; LAST_DATA=''; await refresh();
+  });
+  // 同名待消歧：点选其中一个候选，确认为本人
+  $('grid').querySelectorAll('[data-vpick]').forEach(el => el.onclick = async ev => {
+    ev.stopPropagation();
+    const n = el.dataset.vpick, pid = el.dataset.pid, pname = el.dataset.pname;
+    if (!confirm(`确认「${n}」就是 D 站画师 ${pname || pid}（ID ${pid}）吗？`)) return;
+    const r = await api('/api/d_confirm', {name:n, artist_id:pid});
+    if (!r.ok) { alert(r.error || '确认失败'); return; }
+    LAST_SIG=''; LAST_DATA=''; await refresh();
+  });
+}
+
+// 在线图廊：所有作品瀑布流平铺，每张标注画师
+function renderGallery() {
+  const list = sorted(DATA.filter(match));
+  const items = [];
+  list.forEach(a => capImgs(a.images || []).forEach((im, i) => items.push({a, im, i})));
+  $('gallery').innerHTML = items.map(({a, im, i}) => `
+    <figure class="gcell loading">
+      <div class="gframe">
+        <img loading="lazy" ${IMG_ATTR} src="${esc(imgSrc(im))}" data-local="${esc(im.file||'')}"
+             onload="imgOk(this)" onerror="imgFail(this)" alt="${esc(a.name)} 作品 ${i+1}">
+        <span class="gview">${svgIcon('search','ic ic-14')} 查看大图</span>
+      </div>
+      <figcaption>
+        <b>${esc(a.name)}</b>
+        <span class="gnum">${i + 1}/${a.images.length}</span>
+      </figcaption>
+    </figure>`).join('');
+  $('gallery').querySelectorAll('.gcell').forEach(el => el.onclick = () => {
+    const nm = el.querySelector('b').textContent;
+    const a = DATA.find(x => x.name === nm);
+    const num = el.querySelector('.gnum');
+    const i = num ? parseInt(num.textContent, 10) - 1 : 0;
+    if (a) openLB(a, isFinite(i) ? i : 0);
+  });
+  return items.length;
+}
+
+// 焦点画师：作品最多的一位，给页面一个视觉锚点
+function renderSpot() {
+  const box = $('spot');
+  if (VIEW !== 'card' || !DATA.length) { box.innerHTML = ''; return; }
+  const list = sorted(DATA.filter(match));
+  if (!list.length) { box.innerHTML = ''; return; }
+  const a = list[0];
+  const thumbs = (a.images || []).slice(0, 6);
+  const styles = (a.styles || []).flatMap(s => s.split('/'))
+    .filter((v, i, arr) => v && arr.indexOf(v) === i).slice(0, 3);
+  const cover = (a.images || [])[0];
+  box.innerHTML = `<div class="spot">
+    ${cover?`<div class="spot-art" aria-hidden="true">
+      <img ${IMG_ATTR} src="${esc(imgSrc(cover))}" data-local="${esc(cover.file||'')}"
+           decoding="async" onload="this.parentNode.classList.add('ready')"
+           onerror="this.parentNode.style.display='none'">
+    </div>`:''}
+    <div class="spot-id">
+      <div class="spot-av">${esc(a.name.slice(0,1))}</div>
+      <div class="spot-meta">
+        <div class="spot-kicker">${svgIcon('bolt','ic ic-14')} 收藏最多</div>
+        <div class="spot-name">${esc(a.name)}</div>
+        <div class="spot-sub"><b>${(a.images||[]).length}</b> 张作品${
+          styles.length ? ' · ' + esc(styles.join(' / ')) : ''}</div>
+      </div>
+    </div>
+    <div class="spot-strip">
+      ${thumbs.map((im,i) => `<div class="sth loading" data-i="${i}" title="第 ${i+1} 张">
+        <img loading="lazy" ${IMG_ATTR} src="${esc(imgSrc(im))}" alt="${esc(a.name)} 作品 ${i+1}"
+             data-local="${esc(im.file||'')}" onload="imgOk(this)" onerror="imgFail(this)">
+      </div>`).join('')}
+    </div>
+    <button class="spot-go" id="spotGo">查看全部作品 ${svgIcon('right','ic ic-14')}</button>
+  </div>`;
+  box.querySelectorAll('.sth').forEach(el =>
+    el.onclick = () => openLB(a, +el.dataset.i || 0));
+  const go = $('spotGo');
+  if (go) go.onclick = () => openLB(a);
+}
+
+function applyView() {
+  const gal = VIEW === 'gallery';
+  $('grid').style.display = gal ? 'none' : 'grid';
+  $('gallery').style.display = gal ? 'block' : 'none';
+  const pane = gal ? $('gallery') : $('grid');
+  pane.classList.remove('swap'); void pane.offsetWidth; pane.classList.add('swap');
+  $('viewCard').classList.toggle('on', !gal);
+  $('viewGal').classList.toggle('on', gal);
+  render();
+}
+
+function lbArtist() { return DATA.find(x => x.name === LB_OPEN); }
+
+function showLBImg(i) {
+  const a = lbArtist();
+  if (!a || !a.images || !a.images.length) return;
+  const n = a.images.length;
+  LB_IDX = ((i % n) + n) % n;
+  const im = a.images[LB_IDX];
+  const el = $('lbImg');
+  $('lbStage').classList.remove('failed');
+  el.dataset.local = im.file || '';
+  el.dataset.retried = '';
+  el.setAttribute('referrerpolicy', 'no-referrer');
+  el.onerror = function () { imgFail(this); };
+  el.src = imgSrc(im);
+  el.alt = a.name + ' 作品 ' + (LB_IDX + 1);
+  const c = im.conf || 'guess';
+  $('lbCnt').textContent = `${LB_IDX + 1} / ${n} 张 · ${CONF_TXT[c] || c}`;
+  $('lbPrev').disabled = $('lbNext').disabled = (n < 2);
+  $('lbPrevT').disabled = $('lbNextT').disabled = (n < 2);
+  const film = $('lbFilm');
+  [...film.children].forEach((el2, k) => el2.classList.toggle('on', k === LB_IDX));
+  const act = film.children[LB_IDX];
+  if (act) act.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+}
+
+function openLB(a, startIdx) {
+  if (!LB_OPEN) LB_FOCUS = document.activeElement;
+  LB_OPEN = a.name;
+  $('lb').classList.remove('gridmode');
+  $('lbGrid').classList.remove('on');
+  $('lbGrid').innerHTML = svgIcon('grid','ic ic-14') + '网格总览';
+  $('lbName').textContent = a.name;
+  $('lbCnt').textContent = `${(a.images||[]).length} 张作品`;
+  // 缩略图导航条
+  $('lbFilm').innerHTML = (a.images||[]).map((im,i)=>
+    `<div class="fth" data-i="${i}">
+       <img loading="lazy" ${IMG_ATTR} src="${esc(imgSrc(im))}" alt=""
+            data-local="${esc(im.file||'')}" onerror="imgFail(this)">
+     </div>`).join('');
+  $('lbFilm').querySelectorAll('.fth').forEach(el =>
+    el.onclick = () => showLBImg(+el.dataset.i));
+  const old = $('lbD'); if (old) old.remove();
+  if (safeUrl(a.d_url)) {
+    const el = document.createElement('a');
+    el.id = 'lbD'; el.className = 'lb-dbtn';
+    el.href = safeUrl(a.d_url); el.target = '_blank';
+    el.rel = 'noopener noreferrer';
+    el.innerHTML = svgIcon('ext','ic ic-14') + ' D 站找画师';
+    el.title = '检索：' + (a.d_query || a.name) + '（本名与别名一起匹配）';
+    $('lbCnt').after(el);
+  }
+  $('lbBody').innerHTML = (a.images||[]).map((im,i)=>{
+    const c = im.conf || 'guess';
+    const risky = (c === 'guess' || c === 'unknown');
+    return `<figure class="${risky?'risky':''}">
+      <img loading="lazy" ${IMG_ATTR} src="${esc(imgSrc(im))}" data-local="${esc(im.file||'')}"
+           onerror="imgFail(this)">
+      <figcaption>
+        <span class="conf ${risky?'bad':'good'}">${CONF_TXT[c]||c}</span>
+        <span class="fig-acts">
+          <span class="mini" data-mv="${esc(imgId(im))}" title="归到别的画师名下">${svgIcon('move','ic ic-14')}移到…</span>
+          <span class="mini del" data-rm="${esc(imgId(im))}" title="从清单移除（可撤销）">${svgIcon('trash','ic ic-14')}移除</span>
+        </span>
+      </figcaption>
+    </figure>`;
+  }).join('');
+  $('lbBody').querySelectorAll('[data-mv]').forEach(el => el.onclick = async () => {
+    const to = prompt('把这张图归到哪位画师名下？\n（输入新名字会自动创建）', '');
+    if (to && to.trim()) {
+      const r = await api('/api/move_image',
+        {from:LB_OPEN, file:el.dataset.mv, to:to.trim()});
+      if (!r.ok) alert(r.error); else { LAST_SIG=''; await refresh(); }
+    }
+  });
+  $('lbBody').querySelectorAll('[data-rm]').forEach(el => el.onclick = async () => {
+    const nm = LB_OPEN, id = el.dataset.rm;
+    const a = DATA.find(x => x.name === nm);
+    if (!a) return;
+    const hit = (a.images||[]).find(im => imgId(im) === id);
+    if (!hit) return;
+    const snapshot = JSON.parse(JSON.stringify(hit));
+    const r = await api('/api/delete_image', {name:nm, file:id});
+    if (!r.ok) { alert(r.error); return; }
+    LAST_SIG=''; LAST_DATA='';
+    await refresh();
+    offerUndo(`已从 <b>${esc(nm)}</b> 移除 1 张（文件仍在硬盘）`,
+      async () => { await api('/api/restore_image', {name:nm, image:snapshot}); });
+  });
+  $('lb').classList.add('on');
+  document.body.style.overflow = 'hidden';
+  showLBImg(startIdx || 0);
+  setTimeout(() => { try { $('lbClose').focus(); } catch(e){} }, 60);
+}
+
+function reopenLB() {
+  if (!LB_OPEN) return;
+  const a = lbArtist();
+  if (a) openLB(a, LB_IDX); else closeLB();
+}
+function closeLB() {
+  LB_OPEN = null;
+  $('lb').classList.remove('on');
+  document.body.style.overflow = '';
+  if (LB_FOCUS && LB_FOCUS.isConnected) { try { LB_FOCUS.focus(); } catch(e){} }
+  LB_FOCUS = null;
+}
+
+$('lbClose').onclick = closeLB;
+$('lb').onclick = e => { if (e.target.id === 'lb') closeLB(); };
+$('lbPrev').onclick = () => showLBImg(LB_IDX - 1);
+$('lbNext').onclick = () => showLBImg(LB_IDX + 1);
+$('lbPrevT').onclick = () => showLBImg(LB_IDX - 1);
+$('lbNextT').onclick = () => showLBImg(LB_IDX + 1);
+$('lbImg').onclick = () => showLBImg(LB_IDX + 1);
+
+$('lbGrid').onclick = () => {
+  const on = $('lb').classList.toggle('gridmode');
+  $('lbGrid').classList.toggle('on', on);
+  $('lbGrid').innerHTML = svgIcon(on ? 'image' : 'grid','ic ic-14') + (on ? '单图浏览' : '网格总览');
+};
+
+$('lbDl').onclick = async () => {
+  const a = lbArtist(); if (!a) return;
+  const im = a.images[LB_IDX];
+  const btn = $('lbDl'), old = btn.innerHTML;
+  btn.innerHTML = svgIcon('download','ic ic-14') + '下载中…'; btn.disabled = true;
+  try {
+    const r = await fetch(imgSrc(im), {referrerPolicy:'no-referrer'});
+    const blob = await r.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const ext = (blob.type.split('/')[1] || 'jpg').replace('jpeg','jpg');
+    link.href = url;
+    link.download = `${a.name}_${String(LB_IDX+1).padStart(2,'0')}.${ext}`;
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    btn.innerHTML = svgIcon('check','ic ic-14') + '已下载';
+  } catch(err) {
+    btn.innerHTML = svgIcon('warn','ic ic-14') + '下载失败';
+  }
+  setTimeout(() => { btn.innerHTML = old; btn.disabled = false; }, 1600);
+};
+
+$('lbCopy').onclick = async () => {
+  const a = lbArtist(); if (!a) return;
+  const im = a.images[LB_IDX];
+  const btn = $('lbCopy'), old = btn.innerHTML;
+  try {
+    await navigator.clipboard.writeText(imgSrc(im));
+    btn.innerHTML = svgIcon('check','ic ic-14') + '已复制';
+  } catch(err) {
+    // 非安全上下文下 clipboard 不可用，退回选中提示
+    window.prompt('复制下面的链接：', imgSrc(im));
+    btn.innerHTML = old;
+  }
+  setTimeout(() => { btn.innerHTML = old; }, 1600);
+};
+
+document.onkeydown = e => {
+  // Esc 先关账号菜单，再关灯箱；不依赖灯箱是否打开
+  if (e.key === 'Escape') {
+    if ($('apiModal').classList.contains('on')) { openApi(false); return; }
+    if ($('sauceModal').classList.contains('on')) { openSauce(false); return; }
+    if (ACC_OPEN) { toggleAcc(false); return; }
+    if ($('lb').classList.contains('on')) closeLB();
+    return;
+  }
+  if (!$('lb').classList.contains('on')) return;
+  if ($('lb').classList.contains('gridmode')) return;
+  if (e.key === 'ArrowLeft') { e.preventDefault(); showLBImg(LB_IDX - 1); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); showLBImg(LB_IDX + 1); }
+  if (e.key === 'Home') { e.preventDefault(); showLBImg(0); }
+  if (e.key === 'End') { const a = lbArtist(); if (a) showLBImg(a.images.length - 1); }
+};
+
+// ---------- 同人合并（同一 D 站 ID 被拆成多条） ----------
+function renderMerge(groups) {
+  const bar = $('mergeBar');
+  if (!groups.length) { bar.classList.remove('on'); bar.innerHTML = ''; return; }
+  bar.classList.add('on');
+  bar.innerHTML = '<span>检测到同一 D 站画师被拆成多条：</span>'
+    + groups.map(g =>
+        `<span class="mg"><b>${esc(g.names.join(' / '))}</b>`
+        + `<button class="mini" data-merge="${esc(g.names.join('|'))}">合并</button></span>`
+      ).join('');
+  bar.querySelectorAll('[data-merge]').forEach(btn => {
+    btn.onclick = async () => {
+      const names = btn.dataset.merge.split('|');
+      const keep = prompt(`把这几条合并为一条（图片会合到一起）。\n保留哪个名字？\n${names.join(' / ')}`, names[0]);
+      if (!keep || !names.includes(keep)) return;
+      for (const n of names) {
+        if (n === keep) continue;
+        const r = await api('/api/rename', {old: n, new: keep});
+        if (!r.ok) { alert(r.error || '合并失败'); return; }
+      }
+      LAST_SIG = ''; LAST_DATA = ''; await refresh();
+    };
+  });
+}
+
+// 归属冲突（风险A）：同一张图被不同笔记归给不同画师，系统未自动裁决，
+// 在这里显式列出，避免后到的画师被静默吞掉而无人察觉。
+let CONF_HIDDEN = false;
+let CONF_SIG = '';
+function renderConflicts(conflicts, identityConflicts) {
+  const bar = $('confBar');
+  const items = conflicts || [];
+  const idc = identityConflicts || [];
+  const sig = JSON.stringify([items, idc]);
+  // 每 1.5 秒的自动刷新都会调到这里。数据没变就不重建 DOM，
+  // 否则用户正要点的「收起」按钮会被换成新节点，点击落空。
+  if (sig === CONF_SIG) {
+    bar.classList.toggle('on', !!(items.length || idc.length) && !CONF_HIDDEN);
+    return;
+  }
+  CONF_SIG = sig;
+  if (!items.length && !idc.length) { bar.classList.remove('on'); bar.innerHTML = ''; return; }
+  if (CONF_HIDDEN) { bar.classList.remove('on'); return; }
+  bar.classList.add('on');
+  let html = `<div class="ch">${svgIcon('warn','ic ic-14')}`
+    + `<span>归属需你核对（系统未自动改动任何归属）</span>`
+    + `<button class="cx" id="confX" aria-label="收起">×</button></div>`;
+  if (items.length) {
+    const show = items.slice(0, 8);
+    html += '<ul>' + show.map(c =>
+      `<li>一张图当前归在 <b>${esc(c.held_by)}</b>，`
+      + `但《${esc((c.note_title||'').slice(0,16))}》认为属于 <b>${esc(c.want)}</b>`
+      + (c.note_url ? ` <a href="${esc(safeUrl(c.note_url))}" target="_blank" rel="noopener noreferrer">原帖↗</a>` : '')
+      + `</li>`).join('') + '</ul>';
+    if (items.length > show.length)
+      html += `<div class="more">另有 ${items.length - show.length} 条，见「归属冲突.json」</div>`;
+  }
+  if (idc.length) {
+    html += '<div class="more">身份异常（未自动合并）：'
+      + idc.slice(0, 4).map(x => esc(x)).join('；') + '</div>';
+  }
+  bar.innerHTML = html;
+  const x = $('confX');
+  if (x) x.onclick = () => { CONF_HIDDEN = true; bar.classList.remove('on'); };
+}
+
+async function refresh() {
+  try {
+    const s = await api('/api/state');
+    $('sArtist').textContent = s.artist_count;
+    $('sImg').textContent = s.image_count;
+    $('sNote').textContent = s.notes_done;
+    renderMerge(s.same_id || []);
+    renderConflicts(s.conflicts || [], s.identity_conflicts || []);
+
+    const b = $('loginBadge');
+    // 本次会话还没验证过时，用账号目录里是否存有登录态来判断，
+    // 避免明明已登录却显示「未登录」
+    const curAcc = (s.accounts || []).find(a => a.id === s.account);
+    const hasState = !!(curAcc && curAcc.has_state);
+    if (s.logged_in === true) { b.className='badge yes'; b.innerHTML=svgIcon('check','ic ic-14')+'已登录'; }
+    else if (s.phase === 'login') { b.className='badge wait'; b.innerHTML=svgIcon('user','ic ic-14')+'等待扫码…'; }
+    else if (s.logged_in === false) { b.className='badge no'; b.innerHTML=svgIcon('user','ic ic-14')+'未登录'; }
+    else if (hasState) { b.className='badge yes'; b.innerHTML=svgIcon('check','ic ic-14')+'已保存登录'; }
+    else { b.className='badge no'; b.innerHTML=svgIcon('user','ic ic-14')+'未登录'; }
+
+    $('accName').textContent = s.account_label || '默认账号';
+    if (JSON.stringify(s.accounts || []) !== JSON.stringify(ACC_DATA)) {
+      renderAccounts(s.accounts || [], s.account);
+    }
+    const busy = s.phase !== 'idle';
+    $('btnAcc').disabled = busy;
+    $('btnGo').disabled = busy;
+    $('btnLogin').disabled = busy;
+    $('btnStop').disabled = !busy;
+    // 核验状态：待处理数量与按钮可用性
+    const vs = s.verify_stat || {};
+    const pending = (vs.none||0) + (vs.suspect||0) + (vs.missing||0)
+                  + (vs.ambiguous||0) + (vs.error||0);
+    $('vCount').textContent = pending ? String(pending) : '';
+    $('btnVerifyAll').disabled = busy || !s.d_configured;
+    $('btnVerifyAll').title = s.d_configured
+      ? `对 ${pending} 位还没核验成功的画师补跑核验`
+      : '先在「D站接口」里配置 API 凭证';
+    const verifying = s.phase === 'verifying';
+    $('prog').classList.toggle('on', s.phase === 'collecting' || verifying);
+    $('logbox').classList.toggle('haslog', (s.logs||[]).length > 0);
+    $('progBar').style.width = verifying
+      ? (s.v_total ? (s.v_progress/s.v_total*100)+'%' : '0%')
+      : (s.total ? (s.progress/s.total*100)+'%' : '0%');
+    $('logState').textContent = s.phase === 'collecting'
+      ? `采集中 ${s.progress}/${s.total}`
+      : (verifying ? `核验中 ${s.v_progress}/${s.v_total}`
+         : (s.phase === 'login' ? '等待登录' : '待命'));
+    const lg = $('log');
+    const txt = (s.logs||[]).join('\n');
+    if (lg.textContent !== txt) { lg.textContent = txt; lg.scrollTop = lg.scrollHeight; }
+    const logs = s.logs || [];
+    $('logLast').textContent = logs.length
+      ? logs[logs.length-1].replace(/^\[[\d:]+\]\s*/, '')
+      : '暂无运行记录，点「开始采集」后这里会实时输出';
+    if (!logs.length && !lg.textContent) {
+      lg.textContent = '暂无运行记录。\n点「开始采集」后，搜索进度、画师识别结果与异常都会实时显示在这里。';
+    }
+    // 采集/登录时自动展开，空闲后自动收起为一条摘要
+    if (busy) $('logbox').classList.add('open');
+    else if (LOG_AUTO) { $('logbox').classList.remove('open'); LOG_AUTO = false; }
+    if (busy) LOG_AUTO = true;
+
+    // 指纹含核验统计：核验只改标记不改图数，不加进来徽章不会刷新
+    const sig = s.artist_count + ':' + s.image_count + ':'
+      + JSON.stringify(s.verify_stat || {});
+    if (!busy || sig !== LAST_SIG) {
+      const d = await api('/api/data');
+      const txt2 = JSON.stringify(d.artists);
+      if (txt2 !== LAST_DATA) {
+        DATA = d.artists; LAST_DATA = txt2; LAST_SIG = sig;
+        renderFilters(); render();
+        if (LB_OPEN) reopenLB();
+      }
+    }
+    if (OFFLINE) { OFFLINE = false; $('connBar').classList.remove('on'); }
+  } catch(e) {
+    if (!OFFLINE) {
+      OFFLINE = true;
+      $('connBar').classList.add('on');
+    }
+  }
+}
+
+$('btnLogin').onclick = async () => {
+  const r = await api('/api/login', {});
+  if (!r.ok) alert(r.error || '无法启动登录');
+  refresh();
+};
+$('btnGo').onclick = async () => {
+  const r = await api('/api/collect', {
+    keyword: $('kw').value.trim(),
+    limit: parseInt($('limit').value) || 20,
+    headless: $('headless').checked,
+    save_local: $('saveLocal').checked,
+    auto_verify: $('autoVerify').checked,
+    max_per_artist: parseInt($('maxPerArtist').value) || 0
+  });
+  if (!r.ok) alert(r.error || '无法启动采集');
+  refresh();
+};
+$('btnVerifyAll').onclick = async () => {
+  const r = await api('/api/d_verify_all', {only_pending: true});
+  if (!r.ok) { alert(r.error || '无法启动核验'); return; }
+  refresh();
+};
+$('autoVerify').onchange = () => savePref('autoVerify', $('autoVerify').checked ? '1' : '0');
+$('autoVerify').checked = readPref('autoVerify', '1') === '1';
+$('viewCard').onclick = () => { VIEW = 'card'; savePref('viewMode', VIEW); applyView(); };
+$('viewGal').onclick = () => { VIEW = 'gallery'; savePref('viewMode', VIEW); applyView(); };
+$('btnAcc').onclick = e => { e.stopPropagation(); toggleAcc(); };
+$('accMenu').onclick = e => e.stopPropagation();
+document.addEventListener('click', () => { if (ACC_OPEN) toggleAcc(false); });
+$('accAdd').onclick = async () => {
+  toggleAcc(false);
+  const v = prompt('新账号的名字（便于区分，例如「小号」）：', '');
+  if (v === null) return;
+  const r = await api('/api/account_add', {label: v.trim()});
+  if (!r.ok) { alert(r.error || '新建失败'); return; }
+  LAST_SIG = ''; await refresh();
+  const go = await api('/api/login', {});
+  if (!go.ok) alert(go.error || '无法启动登录');
+  refresh();
+};
+$('accLogout').onclick = async () => {
+  toggleAcc(false);
+  const cur = ACC_DATA.find(a => a.current);
+  if (!confirm('退出「' + (cur ? cur.label : '当前账号') + '」的登录？\n只清除登录状态，已采集的画师和图片不会丢失。')) return;
+  const r = await api('/api/account_logout', {});
+  if (!r.ok) { alert(r.error || '退出失败'); return; }
+  LAST_SIG = ''; await refresh();
+};
+$('btnStop').onclick = () => api('/api/stop', {});
+$('btnFolder').onclick = () => api('/api/open', {what:'img'});
+
+// ---------- D 站接口设置 ----------
+function openApi(on) {
+  $('apiModal').classList.toggle('on', on);
+  if (on) { loadCred(); $('apiResult').innerHTML = ''; }
+  else { $('apiKey').value = ''; $('apiKey').type = 'password'; $('apiEye').textContent = '显示'; }
+}
+async function loadCred() {
+  try {
+    const r = await api('/api/d_cred');
+    $('apiDot').classList.toggle('on', !!r.configured);
+    const st = $('apiState');
+    if (r.configured) {
+      st.className = 'api-state ok';
+      st.textContent = `已配置：${r.login}（Key 长度 ${r.key_len}，内容不回显）`;
+      $('apiLogin').value = r.login || '';
+    } else {
+      st.className = 'api-state';
+      st.textContent = '尚未配置';
+    }
+  } catch(e) { /* 服务未就绪时忽略 */ }
+}
+$('btnApi').onclick = () => openApi(true);
+$('apiClose').onclick = () => openApi(false);
+$('apiModal').onclick = e => { if (e.target.id === 'apiModal') openApi(false); };
+$('apiEye').onclick = () => {
+  const el = $('apiKey');
+  const show = el.type === 'password';
+  el.type = show ? 'text' : 'password';
+  $('apiEye').textContent = show ? '隐藏' : '显示';
+};
+async function saveCred() {
+  const login = $('apiLogin').value.trim();
+  const key = $('apiKey').value.trim();
+  if (!login) { alert('请填账号名'); return false; }
+  if (!key) { alert('请填 API Key（已保存过的话，重填一次才能测试）'); return false; }
+  const r = await api('/api/d_cred_save', {login, api_key: key});
+  if (!r.ok) { alert(r.error || '保存失败'); return false; }
+  $('apiKey').value = '';
+  await loadCred();
+  return true;
+}
+$('apiSave').onclick = async () => { if (await saveCred()) alert('已保存到本机。'); };
+$('apiClear').onclick = async () => {
+  if (!confirm('清除本机保存的 D 站凭证？')) return;
+  const r = await api('/api/d_cred_clear', {});
+  if (!r.ok) { alert(r.error || '清除失败'); return; }
+  $('apiLogin').value = ''; $('apiKey').value = '';
+  $('apiResult').innerHTML = '';
+  await loadCred();
+};
+$('apiTest').onclick = async () => {
+  const btn = $('apiTest'), old = btn.innerHTML;
+  // 已配置且未重填 key 时，直接用已存的凭证测试
+  const needSave = !!$('apiKey').value.trim();
+  if (needSave && !(await saveCred())) return;
+  btn.disabled = true;
+  btn.innerHTML = svgIcon('bolt','ic ic-14') + '测试中…';
+  $('apiResult').innerHTML = '';
+  try {
+    const r = await api('/api/d_probe', {artist_id: $('apiProbeId').value.trim() || '149913'});
+    if (r.ok) {
+      const list = r.other_names || [];
+      const chips = list.length
+        ? list.map(x => `<span class="nchip">${esc(x)}</span>`).join('')
+        : '<span class="rnames">（无其它名称）</span>';
+      const flags = [r.is_deleted ? '已删除' : '', r.is_banned ? '已封禁' : '']
+        .filter(Boolean).join(' · ');
+      $('apiResult').innerHTML =
+        `<div class="rbox good"><b>接口可用</b><br>`
+        + `画师：<b>${esc(r.name)}</b>　ID ${esc(r.artist_id)}`
+        + (flags ? `　<span class="rflag">${esc(flags)}</span>` : '')
+        + `<div class="rsub">其它名称（${list.length}）</div>`
+        + `<div class="nchips">${chips}</div>`
+        + `<a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener noreferrer">在 D 站打开 ↗</a></div>`;
+    } else {
+      $('apiResult').innerHTML =
+        `<div class="rbox bad"><b>接口不可用</b><br>${esc(r.error || '未知原因')}</div>`;
+    }
+  } catch(e) {
+    $('apiResult').innerHTML = '<div class="rbox bad">请求失败，请确认工作台服务在运行。</div>';
+  }
+  btn.innerHTML = old; btn.disabled = false;
+};
+loadCred();
+
+// ---------- SauceNAO 搜图兜底 ----------
+function openSauce(on) {
+  $('sauceModal').classList.toggle('on', on);
+  if (on) { loadSauce(); $('sauceResult').innerHTML = ''; }
+  else { $('sauceKey').value = ''; $('sauceKey').type = 'password'; $('sauceEye').textContent = '显示'; }
+}
+async function loadSauce() {
+  try {
+    const r = await api('/api/s_cred');
+    $('sauceDot').classList.toggle('on', !!r.configured);
+    const st = $('sauceState');
+    if (r.configured) {
+      st.className = 'api-state ok';
+      st.textContent = `已配置（Key 长度 ${r.key_len}，内容不回显）`;
+    } else {
+      st.className = 'api-state';
+      st.textContent = '尚未配置';
+    }
+    const q = r.quota;
+    $('sauceQuota').innerHTML = q
+      ? `<div class="rbox">今日已用 <b>${q.day_used}</b> / ${q.daily_cap} 次`
+        + `　近 30 秒 <b>${q.short_used}</b> / ${q.short_cap} 次</div>`
+      : '';
+  } catch(e) { /* 服务未就绪时忽略 */ }
+}
+$('btnSauce').onclick = () => openSauce(true);
+$('sauceClose').onclick = () => openSauce(false);
+$('sauceModal').onclick = e => { if (e.target.id === 'sauceModal') openSauce(false); };
+$('sauceEye').onclick = () => {
+  const el = $('sauceKey');
+  const show = el.type === 'password';
+  el.type = show ? 'text' : 'password';
+  $('sauceEye').textContent = show ? '隐藏' : '显示';
+};
+async function saveSauce() {
+  const key = $('sauceKey').value.trim();
+  if (!key) { alert('请填 API Key（已保存过的话，重填一次才能测试）'); return false; }
+  const r = await api('/api/s_cred_save', {api_key: key});
+  if (!r.ok) { alert(r.error || '保存失败'); return false; }
+  $('sauceKey').value = '';
+  await loadSauce();
+  return true;
+}
+$('sauceSave').onclick = async () => { if (await saveSauce()) alert('已保存到本机。'); };
+$('sauceClear').onclick = async () => {
+  if (!confirm('清除本机保存的搜图凭证？')) return;
+  const r = await api('/api/s_cred_clear', {});
+  if (!r.ok) { alert(r.error || '清除失败'); return; }
+  $('sauceKey').value = '';
+  $('sauceResult').innerHTML = '';
+  await loadSauce();
+};
+$('sauceTest').onclick = async () => {
+  const btn = $('sauceTest'), old = btn.innerHTML;
+  if ($('sauceKey').value.trim() && !(await saveSauce())) return;
+  btn.disabled = true;
+  btn.innerHTML = svgIcon('bolt','ic ic-14') + '搜图中…';
+  $('sauceResult').innerHTML = '';
+  try {
+    const r = await api('/api/s_probe', {url: $('sauceTestUrl').value.trim()});
+    if (r.ok) {
+      const t = r.top;
+      const detail = t
+        ? `<div class="rsub">最高相似候选</div>`
+          + `<div class="nchips"><span class="nchip">${esc(t.index_name || '未知库')}</span>`
+          + `<span class="nchip">相似度 ${esc(String(t.similarity))}%</span>`
+          + (t.author ? `<span class="nchip">作者 ${esc(t.author)}</span>` : '')
+          + `</div>`
+          + (t.title ? `<div class="rnames">${esc(t.title)}</div>` : '')
+        : '<div class="rnames">通道正常，但这张图没有高于阈值的候选。</div>';
+      $('sauceResult').innerHTML =
+        `<div class="rbox good"><b>搜图可用</b>　返回 ${r.results} 条候选`
+        + detail
+        + `<div class="rnames">测试图：${esc((r.tested_url || '').slice(-46))}</div></div>`;
+    } else {
+      $('sauceResult').innerHTML =
+        `<div class="rbox bad"><b>搜图不可用</b><br>${esc(r.error || '未知原因')}</div>`;
+    }
+    await loadSauce();
+  } catch(e) {
+    $('sauceResult').innerHTML = '<div class="rbox bad">请求失败，请确认工作台服务在运行。</div>';
+  }
+  btn.innerHTML = old; btn.disabled = false;
+};
+loadSauce();
+
+// 例图数量：改动即时生效，并记住下次打开的选择
+$('perArtist').oninput = () => {
+  savePref('perArtist', $('perArtist').value);
+  render();
+};
+$('perArtist').value = readPref('perArtist', '10');
+
+// 收图上限：记住选择，避免下次采集又回到无限累积
+$('maxPerArtist').value = readPref('maxPerArtist', '30');
+$('maxPerArtist').oninput = () => savePref('maxPerArtist', $('maxPerArtist').value);
+
+// 氛围背景：纯显示偏好，记住选择，切换即时重渲染
+function applyAmb() {
+  const on = $('ambBg').checked;
+  document.body.classList.toggle('no-amb', !on);
+  render();
+}
+$('ambBg').checked = readPref('ambBg', '1') === '1';
+document.body.classList.toggle('no-amb', !$('ambBg').checked);
+$('ambBg').onchange = () => {
+  savePref('ambBg', $('ambBg').checked ? '1' : '0');
+  applyAmb();
+};
+
+$('toastUndo').onclick = async () => {
+  const fn = UNDO;
+  hideToast();
+  if (fn) { await fn(); LAST_SIG = ''; LAST_DATA = ''; await refresh(); }
+};
+$('toastX').onclick = hideToast;
+$('toastX').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hideToast(); } };
+$('logHd').onclick = () => $('logbox').classList.toggle('open');
+
+// 恢复上次的视图与排序
+SORT = readPref('sortMode', 'count');
+VIEW = readPref('viewMode', 'card');
+applyView();
+
+refresh();
+TIMER = setInterval(refresh, 1500);
+</script>
+</body>
+</html>

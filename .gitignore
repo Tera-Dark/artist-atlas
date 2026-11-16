@@ -17,6 +17,7 @@ _accounts/
 build/
 dist/
 *.spec
+_incoming/
 
 # OS/editor
 .DS_Store

@@ -20,6 +20,7 @@
   },
 
   "改名": {
+    "_说明": "规则层抽出的名字其实是账号/错拼，正确身份在右边。",
     "gomdori.muousse.cake": "곰미",
     "zbibuji loom": "Zhibuiiloom",
     "zbibujiloom": "Zhibuiiloom",
@@ -29,6 +30,7 @@
   },
 
   "补别名": {
+    "_说明": "正文里明确给出、但规则层没吸收的账号与异写。补上可显著提高 D 站核验命中率。",
     "곰미": ["gomdori.muousse.cake"],
     "Z3zz": ["z3zz_", "Z3 zz", "Z3zz4"],
     "Zhibuiiloom": ["LOOM", "鲁姆", "织布机loom", "zbibuji loom", "Zhibuiiloom"],
