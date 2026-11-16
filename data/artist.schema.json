@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tera-dark.github.io/artist-atlas/data/artist.schema.json",
+  "title": "Artist Atlas catalogue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "updated_at",
+    "artists"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "artists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artist"
+      }
+    }
+  },
+  "$defs": {
+    "artist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "danbooru_id",
+        "danbooru_name",
+        "aliases",
+        "category",
+        "tags",
+        "score",
+        "note",
+        "post_count",
+        "preview_urls",
+        "added_at",
+        "updated_at",
+        "featured"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "danbooru_id": {
+          "type": [
+            "string",
+            "integer"
+          ],
+          "pattern": "^[0-9]+$"
+        },
+        "danbooru_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "uniqueItems": true
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "uniqueItems": true
+        },
+        "score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "post_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "preview_urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "maxItems": 12
+        },
+        "added_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "featured": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
