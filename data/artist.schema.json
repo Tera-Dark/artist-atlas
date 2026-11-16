@@ -124,6 +124,29 @@
         },
         "featured": {
           "type": "boolean"
+        },
+        "danbooru_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "danbooru_verified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "preview_post_ids": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          },
+          "maxItems": 12,
+          "uniqueItems": true
+        },
+        "preview_updated_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }
