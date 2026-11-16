@@ -68,7 +68,7 @@ A Danbooru ID is the stable external key. Do not use display names as primary ke
 - A missing General-rated preview is not proof that the Artist record is invalid.
 - Query previews with an explicit safe-rating filter (rating:g). Do not store or render unrestricted preview results.
 - Store source links and timestamps so stale metadata can be refreshed without losing personal notes.
-- Respect Danbooru identification and rate-limit guidance; avoid parallel bursts and repeated full refreshes.
+- Respect Danbooru identification and rate-limit guidance; avoid parallel bursts and repeated full refreshes. Danbooru asks API clients to use a distinctive User-Agent containing the user's Danbooru ID. A browser-hosted static page cannot reliably override User-Agent in Chromium Fetch, so this direct-browser integration remains a documented limitation; a small trusted relay or curator-side helper should be evaluated before high-volume use. See MDN's User-Agent header notes.
 
 ## Data quality and duplicate policy
 
