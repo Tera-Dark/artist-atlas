@@ -1,347 +1,716 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ffffff"><title>Artist Atlas · 画师图鉴</title>
-<link rel="icon" href="../应用图标.svg" type="image/svg+xml">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2f0ea">
+<meta name="description" content="Artist Atlas — 个人画师与视觉灵感档案">
+<title>Artist Atlas · 画师图鉴</title>
 <style>
 :root{
  color-scheme:light;
- --ui-bg:#fff;--ui-nav:#f7f7f8;--ui-surface:#fff;--ui-surface-muted:#f5f5f5;--ui-hover:#f2f2f3;
- --ui-text:#202123;--ui-text-muted:#5f6368;--ui-border:#e5e5e7;--ui-control-border:#767676;
- --ui-accent:#252525;--ui-accent-text:#fff;--ui-focus:#2563eb;--ui-danger:#b42318;--ui-success:#167347;
- --ui-font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
- --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;
- --radius-control:8px;--radius-panel:12px;--duration:160ms;
+ --paper:#f2f0ea;--paper-deep:#eae7df;--surface:#faf9f5;--surface-raised:#fffefa;
+ --ink:#222a27;--muted:#777e77;--line:#dcded6;--line-strong:#c8cec4;
+ --moss:#50695f;--moss-dark:#354d43;--moss-pale:#e5ebe5;--clay:#b78c6b;
+ --danger:#a34b43;--shadow:0 18px 52px rgba(42,48,42,.08);
+ --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+ --serif:"Iowan Old Style","Baskerville","Songti SC","STSong",Georgia,serif;
+ --radius:16px;--ease:cubic-bezier(.2,.7,.2,1);
 }
-[data-theme="dark"]{color-scheme:dark;--ui-bg:#171717;--ui-nav:#1f1f1f;--ui-surface:#252525;--ui-surface-muted:#2b2b2b;--ui-hover:#343434;--ui-text:#f2f2f2;--ui-text-muted:#b7b7b7;--ui-border:#414141;--ui-control-border:#858585;--ui-accent:#f3f3f3;--ui-accent-text:#171717;--ui-focus:#8cb4ff;--ui-danger:#ff928a;--ui-success:#6ed4a0}
+[data-theme="dark"]{
+ color-scheme:dark;--paper:#191e1b;--paper-deep:#222924;--surface:#232a25;--surface-raised:#29312c;
+ --ink:#edf0e9;--muted:#a8b0a8;--line:#38413a;--line-strong:#4b584d;
+ --moss:#9db7a6;--moss-dark:#c1d2c5;--moss-pale:#2d3a31;--clay:#d0a986;
+ --danger:#e18a7f;--shadow:0 18px 52px rgba(0,0,0,.22);
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{margin:0;background:var(--ui-bg);color:var(--ui-text);font:14px/1.55 var(--ui-font)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit;color:inherit}
-button{min-height:38px;padding:8px 12px;border:1px solid transparent;border-radius:var(--radius-control);background:transparent;cursor:pointer;transition:background var(--duration),border-color var(--duration),color var(--duration)}
-button:hover{background:var(--ui-hover)}
-button:active{background:var(--ui-surface-muted)}
-button:disabled{opacity:.48;cursor:not-allowed}
-button.primary{background:var(--ui-accent);color:var(--ui-accent-text);border-color:var(--ui-accent);font-weight:600}
-button.primary:hover{opacity:.88}
-button.danger{color:var(--ui-danger)}
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--ui-focus);outline-offset:2px}
-input,select,textarea{min-width:0;background:var(--ui-surface);border:1px solid var(--ui-control-border);border-radius:var(--radius-control);padding:9px 11px;outline:none;transition:border-color var(--duration),box-shadow var(--duration)}
-input::placeholder,textarea::placeholder{color:var(--ui-text-muted);opacity:.8}
-input:focus,select:focus,textarea:focus{border-color:var(--ui-text);box-shadow:0 0 0 1px var(--ui-text)}
-a{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
-a:hover{text-decoration-color:currentColor}
-.top{position:sticky;top:0;z-index:10;background:var(--ui-bg);border-bottom:1px solid var(--ui-border)}
-.head{height:60px;max-width:1800px;margin:auto;display:flex;align-items:center;gap:14px;padding:0 28px}
-.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:650;letter-spacing:-.02em}
-.logo{width:30px;height:30px;border:1px solid var(--ui-border);border-radius:9px;display:grid;place-items:center;font-size:16px;background:var(--ui-surface-muted);color:var(--ui-text)}
-.brand .sub{display:block;margin-top:0;font-size:10px;letter-spacing:.02em;color:var(--ui-text-muted);font-weight:400}
-.sub{font-size:11px;color:var(--ui-text-muted);font-weight:500}
-.stats{display:flex;gap:16px;margin-left:auto}
-.stat{display:flex;align-items:baseline;gap:5px;padding:0;border:0;background:transparent;min-width:0}
-.stat b{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums}
-.stat small{font-size:12px;color:var(--ui-text-muted)}
-.toolbar{max-width:1800px;margin:auto;padding:8px 28px;display:flex;align-items:center;gap:10px;border-top:0;flex-wrap:wrap}
-.toolbar .muted{font-size:12px;color:var(--ui-text-muted)}
-#repoState{font-size:11px;padding:2px 0;background:none;border:0;color:var(--ui-text-muted)}
-.toolbar>input{flex:1 1 300px;width:auto;max-width:420px;min-width:220px;height:38px;margin-left:auto}\n.toolbar>#sort{flex:0 0 142px;width:142px;min-width:142px;margin-right:4px}\n.toolbar>button{flex:0 0 auto;white-space:nowrap}
-.toolbar select{height:38px;min-width:120px}
-.toolbar .grow{display:none}
-.wrap{max-width:1800px;margin:auto;padding:0 28px 64px}
-.workspace{display:grid;grid-template-columns:220px minmax(0,1fr);gap:38px;align-items:start}
-.sidebar{position:sticky;top:128px;padding:26px 0 30px;min-height:calc(100vh - 128px);border-right:1px solid var(--ui-border);padding-right:20px}
-.side-label{font-size:11px;color:var(--ui-text-muted);font-weight:600;margin:0 0 10px;padding:0 10px}
-.filters{display:flex;flex-direction:column;gap:2px;margin:0}
-.chip{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;min-height:36px;padding:7px 10px;border:0;border-radius:7px;background:transparent;color:var(--ui-text-muted);font-size:13px}
-.chip:hover{background:var(--ui-hover);color:var(--ui-text)}
-.chip.active{background:var(--ui-hover);color:var(--ui-text);font-weight:600}
-.content{min-width:0;padding:30px 0 0}
-.sectionline{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 18px}
-.sectionline h2{font-size:24px;line-height:1.25;letter-spacing:-.04em;margin:0;font-weight:650}
-.sectionline .sub{font-size:12px;margin-bottom:5px}
-#resultCount{font-size:12px;color:var(--ui-text-muted);white-space:nowrap}
-.spot{display:none!important}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:20px;row-gap:30px;align-items:start}
-.candidate-panel{margin:0 0 28px;padding:18px;border:1px solid var(--ui-border);border-radius:10px;background:var(--ui-surface)}.candidate-head{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:14px}.candidate-head h3{font-size:15px;margin:0 0 3px}.candidate-head p{font-size:12px;color:var(--ui-text-muted);margin:0}.candidate-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px 12px}.candidate-item{min-width:0;display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;background:var(--ui-surface-muted)}.candidate-item .num{font-size:10px;color:var(--ui-text-muted);font-variant-numeric:tabular-nums}.candidate-item .candidate-name{font-size:12px;min-width:0;overflow-wrap:anywhere}.candidate-item .pill{margin-left:auto;flex:none;font-size:10px}
-#candidateList{display:block}.candidate-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
-.verified-card{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:12px;padding:12px;border:1px solid var(--ui-border);border-radius:10px;background:var(--ui-surface);min-width:0}
-.verified-card .hero{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:7px;background:var(--ui-surface-muted)}
-.verified-card .vinfo{min-width:0;display:flex;flex-direction:column;gap:7px}
-.verified-card .vname{font-weight:650;font-size:14px;overflow-wrap:anywhere}
-.verified-card .vmeta{font-size:11px;color:var(--ui-text-muted);overflow-wrap:anywhere}
-.verified-card .vthumbs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
-.verified-card .vthumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:5px;background:var(--ui-surface-muted)}
-.verified-card .vlinks{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;margin-top:auto}
-.verified-card .vlinks a{text-decoration:underline}
-.verified-card.review{grid-template-columns:1fr}
-.verified-card.review .matches{font-size:11px;color:var(--ui-text-muted);line-height:1.7}
-@media(max-width:1250px){.candidate-results{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:620px){.candidate-results{grid-template-columns:1fr}.verified-card{grid-template-columns:minmax(0,1fr) 104px}}
-.artist{position:relative;display:flex;flex-direction:column;gap:0;padding:0;border:0;border-radius:0;background:transparent;min-width:0;overflow:visible;transition:none}
-.artist:hover{background:transparent;transform:none}
-.cover{position:relative;width:100%;aspect-ratio:4/5;min-height:0;background:var(--ui-surface-muted);border-radius:9px;overflow:hidden}
-.cover>a{display:block;position:absolute;inset:0}
-.cover img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 300ms ease}
-.artist:hover .cover img{transform:scale(1.015)}
-.cover .empty{height:100%;display:grid;place-items:center;color:var(--ui-text-muted);font-size:26px}
-.count{position:absolute;bottom:8px;right:8px;background:rgba(20,20,20,.78);padding:3px 7px;border-radius:5px;font-size:11px;color:#fff;font-variant-numeric:tabular-nums}
-.details{min-width:0;display:flex;flex-direction:column;gap:7px;padding:10px 1px 0}
-.row{display:flex;align-items:center;gap:8px;min-width:0}
-.avatar{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ui-surface-muted);color:var(--ui-text);border:1px solid var(--ui-border);display:grid;place-items:center;font-size:13px;font-weight:600}
-.avatar.sm{width:30px;height:30px;border-radius:50%;font-size:13px}
-.name{font-size:14px;line-height:1.35;font-weight:600;letter-spacing:-.01em;overflow-wrap:anywhere}
-.details .muted{font-size:12px;color:var(--ui-text-muted)}
-.pill{font-size:11px;border-radius:5px;padding:2px 6px;background:var(--ui-surface-muted);color:var(--ui-text-muted);border:0;display:inline-flex;align-items:center;width:max-content}
-.pill.pending{color:var(--ui-text-muted);background:var(--ui-surface-muted)}
-.pill.bad{color:var(--ui-danger);background:transparent}
-.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.thumbs img{width:100%;height:64px;object-fit:cover;border-radius:5px;background:var(--ui-surface-muted);border:0}
-.thumbs a{display:block;min-width:0;overflow:hidden;border-radius:5px}
-.tags{display:flex;gap:5px;flex-wrap:wrap}
-.tag{font-size:11px;color:var(--ui-text-muted);background:var(--ui-surface-muted);border:0;border-radius:4px;padding:2px 6px}
-.actions{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
-.actions button{font-size:12px;min-height:30px;padding:4px 8px;color:var(--ui-text-muted)}
-.actions button:hover{color:var(--ui-text)}
-.actions button.is-favorite{color:#a33a4a}.actions button.is-composed{color:var(--ui-success)}
-.composition-list{list-style:none;padding:0;margin:12px 0;display:grid;gap:8px}.composition-item{display:grid;grid-template-columns:minmax(0,1fr) 130px auto auto auto;align-items:center;gap:8px;padding:10px;border:1px solid var(--ui-border);border-radius:8px;background:var(--ui-surface)}.composition-item b{overflow-wrap:anywhere}.composition-item select{width:100%}.composition-output{width:100%;min-height:112px;resize:vertical;font:13px/1.65 ui-monospace,Consolas,monospace}.composition-help{font-size:12px;color:var(--ui-text-muted);line-height:1.7}
-@media(max-width:620px){.composition-item{grid-template-columns:minmax(0,1fr) 88px auto auto auto;gap:5px;padding:8px}.composition-item button{padding:5px 7px}}
-.empty-state{text-align:center;padding:72px 22px;color:var(--ui-text-muted);line-height:1.8}
-.footnote{color:var(--ui-text-muted);font-size:12px;margin-top:30px;line-height:1.7;border-top:1px solid var(--ui-border);padding-top:14px}
-.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.42);display:none;align-items:center;justify-content:center;padding:20px}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
+a{color:inherit;text-decoration:none}
+.site-shell{width:min(1480px,calc(100% - 72px));margin:auto}
+.site-header{height:76px;display:flex;align-items:center;border-bottom:1px solid var(--line);gap:24px}
+.brand{display:flex;align-items:center;gap:12px;min-width:230px}
+.brand-mark{width:34px;height:34px;border:1px solid var(--moss);border-radius:50%;display:grid;place-items:center;color:var(--moss);font:italic 19px var(--serif)}
+.brand-name{font:600 15px/1.15 var(--serif);letter-spacing:.02em}
+.brand-caption{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.header-note{margin-left:auto;color:var(--muted);font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.header-actions{display:flex;align-items:center;gap:7px}
+.icon-button,.quiet-button,.primary-button,.filter-button,.action-button{
+ border:1px solid transparent;border-radius:999px;background:transparent;transition:background .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease),transform .18s var(--ease)
+}
+.icon-button{width:38px;height:38px;display:grid;place-items:center;border-color:var(--line);font-size:16px}
+.icon-button:hover,.quiet-button:hover,.filter-button:hover{background:var(--surface-raised);border-color:var(--line-strong)}
+.quiet-button{min-height:38px;padding:0 14px;border-color:var(--line);font-size:12px;color:var(--muted)}
+.primary-button{min-height:39px;padding:0 17px;background:var(--moss);color:#fff;border-color:var(--moss);font-size:12px;font-weight:600}
+.primary-button:hover{background:var(--moss-dark);border-color:var(--moss-dark);transform:translateY(-1px)}
+.page-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;padding:62px 0 46px;border-bottom:1px solid var(--line)}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--moss);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.eyebrow:before{content:"";width:24px;height:1px;background:var(--clay)}
+.page-title{margin:15px 0 10px;font:400 clamp(42px,6vw,70px)/1.05 var(--serif);letter-spacing:-.045em}
+.page-subtitle{max-width:620px;margin:0;color:var(--muted);font-size:13px;line-height:1.9}
+.intro-stats{display:flex;gap:34px;padding:0 2px 5px}
+.intro-stat{min-width:76px}
+.intro-stat strong{display:block;font:400 29px/1 var(--serif);font-variant-numeric:tabular-nums}
+.intro-stat span{display:block;margin-top:8px;color:var(--muted);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.collection{padding:36px 0 88px}
+.collection-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:20px}
+.collection-title{margin:0;font:400 25px/1.2 var(--serif);letter-spacing:-.02em}
+.collection-kicker{margin-bottom:7px;color:var(--muted);font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.collection-count{color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 27px}
+.search-wrap{position:relative;flex:1 1 320px;max-width:460px}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
+.search-input{width:100%;height:43px;padding:0 14px 0 40px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:12px;transition:border-color .18s,box-shadow .18s}
+.search-input::placeholder{color:var(--muted)}
+.search-input:focus{border-color:var(--moss);box-shadow:0 0 0 3px var(--moss-pale);outline:0}
+.filter-group{display:flex;align-items:center;gap:5px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.filter-button{min-height:32px;padding:0 14px;color:var(--muted);font-size:11px}
+.filter-button.active{background:var(--moss-pale);color:var(--moss-dark);font-weight:650}
+.sort-select{height:42px;padding:0 34px 0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:11px;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start}
+.artist-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease)}
+.artist-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:var(--shadow)}
+.art-stage{position:relative;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(145deg,var(--paper-deep),var(--surface-raised));isolation:isolate}
+.art-link{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.art-image{display:block;width:100%;height:100%;object-fit:contain;padding:10px;transition:transform .5s var(--ease),opacity .25s}
+.artist-card:hover .art-image{transform:scale(1.018)}
+.stage-top{position:absolute;z-index:2;left:15px;right:15px;top:14px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.work-index,.category-stamp{padding:5px 9px;border:1px solid rgba(255,255,255,.5);border-radius:999px;background:rgba(28,35,31,.5);color:#fff;font-size:9px;letter-spacing:.12em;backdrop-filter:blur(9px)}
+.category-stamp{letter-spacing:.04em}
+.stage-bottom{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;pointer-events:none}
+.slide-count{color:#fff;font-size:10px;letter-spacing:.13em;text-shadow:0 1px 8px rgba(0,0,0,.6);font-variant-numeric:tabular-nums}
+.slide-dots{display:flex;align-items:center;gap:5px}
+.slide-dot{width:5px;height:5px;padding:0;border:0;border-radius:99px;background:rgba(255,255,255,.55);pointer-events:auto}
+.slide-dot.active{width:17px;background:#fff}
+.slide-nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.52);border-radius:50%;background:rgba(28,35,31,.38);color:white;font-size:20px;line-height:1;opacity:0;backdrop-filter:blur(8px);transition:opacity .2s,background .2s}
+.artist-card:hover .slide-nav,.slide-nav:focus-visible{opacity:1}
+.slide-nav:hover{background:rgba(28,35,31,.8)}
+.slide-nav.prev{left:12px}.slide-nav.next{right:12px}
+.art-state{position:absolute;inset:0;display:grid;place-items:center;padding:26px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
+.art-state b{display:block;margin-bottom:4px;color:var(--ink);font:400 20px var(--serif)}
+.card-body{padding:20px 20px 18px}
+.artist-overline{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+.artist-name{margin:10px 0 5px;font:400 clamp(21px,2vw,27px)/1.15 var(--serif);letter-spacing:-.035em;overflow-wrap:anywhere}
+.artist-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px}
+.meta-separator{width:3px;height:3px;border-radius:50%;background:var(--clay)}
+.artist-note{min-height:22px;margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.7}
+.artist-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.artist-tag{padding:4px 8px;border-radius:5px;background:var(--moss-pale);color:var(--moss-dark);font-size:9px}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:17px;padding-top:13px;border-top:1px solid var(--line)}
+.source-link{color:var(--moss);font-size:10px;font-weight:650;letter-spacing:.04em}
+.source-link:hover{text-decoration:underline;text-underline-offset:3px}
+.card-actions{display:flex;align-items:center;gap:5px}
+.action-button{min-height:31px;padding:0 10px;border-color:var(--line);color:var(--muted);font-size:10px}
+.action-button:hover{border-color:var(--line-strong);background:var(--surface-raised);color:var(--ink)}
+.action-button.favorited{border-color:#d8b5aa;color:var(--danger);background:rgba(177,94,82,.07)}
+.action-button.composed{border-color:var(--moss);color:var(--moss-dark);background:var(--moss-pale)}
+.empty-state{grid-column:1/-1;padding:72px 20px;border:1px dashed var(--line-strong);border-radius:var(--radius);text-align:center;color:var(--muted)}
+.empty-state strong{display:block;margin-bottom:8px;color:var(--ink);font:400 24px var(--serif)}
+.site-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0 32px;border-top:1px solid var(--line);color:var(--muted);font-size:10px}
+.footer-brand{font:italic 15px var(--serif);color:var(--moss)}
+.modal{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(15,22,18,.52);backdrop-filter:blur(5px)}
 .modal.show{display:flex}
-.dialog{width:min(760px,100%);max-height:min(90vh,900px);overflow:auto;background:var(--ui-bg);border:1px solid var(--ui-border);border-radius:14px;padding:22px;box-shadow:0 16px 48px rgba(0,0,0,.18)}
-.dialog h2{margin:0;font-size:18px;letter-spacing:-.025em}
-.dialog h3{font-size:14px;font-weight:650;margin:0 0 12px}
-.dialog hr{border:0;border-top:1px solid var(--ui-border)}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:flex;flex-direction:column;gap:6px;min-width:0}
-.field.full{grid-column:1/-1}
-.field label{font-size:12px;color:var(--ui-text);font-weight:550}
-.field input,.field textarea{width:100%}
-.candidate{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--ui-border);margin:0}
-.candidate .grow{flex:1;min-width:0}
-.candidate b{font-size:13px}
-.candidate small{display:block;color:var(--ui-text-muted);font-size:12px;overflow-wrap:anywhere}
-.previewgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:14px}
-.previewgrid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;background:var(--ui-surface-muted)}
-#authPanel>p:first-child{color:var(--ui-text-muted);font-size:13px;line-height:1.7}
-#token{width:100%}
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:50;background:var(--ui-text);color:var(--ui-bg);padding:10px 15px;border-radius:8px;display:none;max-width:min(90vw,600px);box-shadow:0 8px 28px rgba(0,0,0,.16);font-size:13px}
+.dialog{width:min(760px,100%);max-height:min(91vh,920px);overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 24px 90px rgba(0,0,0,.24)}
+.dialog-header{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:19px 23px;border-bottom:1px solid var(--line);background:var(--surface)}
+.dialog-header h2{flex:1;margin:0;font:400 23px var(--serif)}
+.dialog-content{padding:22px 23px 25px}
+.dialog-intro{margin:0 0 17px;color:var(--muted);font-size:12px;line-height:1.8}
+.section-label{margin:0 0 9px;color:var(--moss);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.field{display:grid;gap:6px;margin-bottom:13px}
+.field label{color:var(--muted);font-size:11px}
+.field input,.field textarea{width:100%;min-height:40px;padding:9px 11px;border:1px solid var(--line-strong);border-radius:9px;background:var(--surface-raised);font-size:12px}
+.field textarea{min-height:72px;resize:vertical}
+.inline-form{display:flex;gap:9px;align-items:end}
+.inline-form .field{flex:1;margin:0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.form-grid .full{grid-column:1/-1}
+.help-text{margin:9px 0 0;color:var(--muted);font-size:10px;line-height:1.8}
+.rule{height:1px;margin:20px 0;background:var(--line)}
+.result-list,.managed-list{display:grid;gap:7px;margin-top:14px}
+.result-row,.managed-row{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-raised)}
+.result-main,.managed-main{flex:1;min-width:0}
+.result-main strong,.managed-main strong{display:block;overflow-wrap:anywhere;font-size:12px}
+.result-main small,.managed-main small{display:block;margin-top:3px;color:var(--muted);font-size:10px;overflow-wrap:anywhere}
+.preview-strip{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.preview-strip a{width:76px;height:92px;overflow:hidden;border-radius:7px;background:var(--paper-deep)}
+.preview-strip img{width:100%;height:100%;object-fit:contain}
+.status-line{min-height:18px;margin-top:10px;color:var(--muted);font-size:11px}
+.composer-list{display:grid;gap:8px;margin:16px 0;padding:0;list-style:none}
+.composer-row{display:grid;grid-template-columns:minmax(0,1fr) 112px auto auto auto;align-items:center;gap:7px;padding:10px;border:1px solid var(--line);border-radius:9px}
+.composer-row strong{font-size:12px;overflow-wrap:anywhere}
+.composer-row select{min-width:0;height:34px;padding:0 8px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface-raised);font-size:10px}
+.composer-row button{min-height:32px;padding:0 9px;border:1px solid var(--line);border-radius:7px;background:transparent;font-size:10px}
+.composer-output{width:100%;min-height:94px;resize:vertical;padding:12px;border:1px solid var(--line-strong);border-radius:9px;background:var(--surface-raised);font:12px/1.6 ui-monospace,Consolas,monospace}
+.toast{position:fixed;z-index:50;left:50%;bottom:24px;transform:translateX(-50%);display:none;max-width:min(90vw,560px);padding:11px 16px;border-radius:999px;background:var(--ink);color:var(--paper);box-shadow:var(--shadow);font-size:11px}
 .toast.show{display:block}
-@media(max-width:1250px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.candidate-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:900px){.head{padding:0 18px}.toolbar{padding:8px 18px}.wrap{padding:0 18px 50px}.workspace{grid-template-columns:180px minmax(0,1fr);gap:24px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar{padding-right:14px}}
-@media(max-width:620px){.candidate-panel{padding:13px}.candidate-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.head{height:auto;min-height:56px;padding:10px 14px;flex-wrap:wrap}.brand{font-size:14px}.stats{gap:10px}.stat small{font-size:11px}.toolbar{padding:8px 14px;flex-wrap:wrap}.toolbar>input{order:3;width:100%;max-width:none;margin:0}.toolbar select{margin-left:auto}.wrap{padding:0 14px 40px}.workspace{display:block}.sidebar{position:static;min-height:0;border:0;padding:14px 0 0}.side-label{padding:0;margin-bottom:6px}.filters{flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}.chip{width:auto;white-space:nowrap;min-height:34px;padding:6px 10px}.content{padding-top:18px}.sectionline{align-items:start;flex-direction:column;gap:5px}.sectionline h2{font-size:21px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.cover{border-radius:7px}.details{padding-top:8px}.name{font-size:13px}.thumbs img{height:52px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.previewgrid{grid-template-columns:repeat(3,1fr)}.dialog{padding:18px;border-radius:12px}.candidate{align-items:flex-start;flex-wrap:wrap}.candidate .grow{flex-basis:100%}}
-@media(max-width:380px){.cards{grid-template-columns:1fr 1fr}.head .stats{width:100%;margin:0 0 2px}.artist .thumbs img{height:44px}}
-@media(max-width:900px){.toolbar>input{margin-left:0;max-width:none;flex:1 1 45%}.toolbar>#sort{flex:1 1 150px;width:auto;min-width:140px;margin-right:0}.toolbar{gap:7px}}\n@media(max-width:620px){.toolbar{padding:8px 16px}.toolbar>input{flex:1 1 100%;order:1}.toolbar>#sort{flex:1 1 100%;order:2}.toolbar>#guide{order:3}.toolbar #manage{margin-left:auto;order:6}}\n@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-
-
-.batch-tools{margin:14px 0;padding:14px;border:1px solid var(--ui-border);border-radius:10px;background:var(--ui-surface-muted)}.batch-tools textarea{width:100%;min-height:100px;resize:vertical}.batch-results{display:grid;gap:8px;margin-top:12px}.batch-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px;border:1px solid var(--ui-border);border-radius:8px;background:var(--ui-surface)}.batch-row small{display:block;color:var(--ui-text-muted);overflow-wrap:anywhere}.batch-row .batch-preview{display:flex;gap:5px;margin-top:7px}.batch-row .batch-preview img{width:54px;height:66px;object-fit:cover;border-radius:4px;background:var(--ui-surface-muted)}.batch-row .batch-status{font-size:11px;color:var(--ui-text-muted)}.batch-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}@media(max-width:620px){.batch-row{grid-template-columns:auto minmax(0,1fr)}.batch-row>a{grid-column:2}}
-
-/* zhanzhan_lan single-card prototype */
-.artist.zhan-prototype{grid-column:span 2;position:relative;border:1px solid var(--ui-border);border-radius:16px;padding:12px;background:linear-gradient(145deg,var(--ui-surface),var(--ui-surface-muted));box-shadow:0 12px 34px rgba(0,0,0,.07);overflow:hidden;gap:0}
-.zhan-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:3px 3px 11px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ui-text-muted)}
-.zhan-stage{position:relative;aspect-ratio:4/3;min-height:260px;border-radius:11px;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,rgba(130,120,110,.18),rgba(20,20,20,.96));display:grid;place-items:center}
-.zhan-stage>a{position:absolute;inset:0;display:grid;place-items:center}
-.zhan-stage img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;transition:opacity .2s ease}
-.zhan-stage:after{content:"";pointer-events:none;position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.28))}
-.zhan-nav{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.36);background:rgba(15,15,15,.42);color:white;font-size:21px;backdrop-filter:blur(12px);display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
-.zhan-nav:hover{background:rgba(15,15,15,.78);transform:translateY(-50%) scale(1.06)}
-.zhan-prev{left:12px}.zhan-next{right:12px}
-.zhan-index{position:absolute;z-index:2;bottom:13px;left:15px;color:#fff;font-size:11px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
-.zhan-dots{position:absolute;z-index:2;bottom:16px;right:15px;display:flex;gap:6px}
-.zhan-dot{width:6px;height:6px;border:0;border-radius:99px;padding:0;background:rgba(255,255,255,.48);cursor:pointer}
-.zhan-dot.active{width:19px;background:#fff}
-.zhan-info{display:flex;justify-content:space-between;align-items:end;gap:12px;padding:15px 4px 3px}
-.zhan-name{font-size:22px;letter-spacing:-.035em;font-weight:650;line-height:1.15}
-.zhan-sub{font-size:11px;color:var(--ui-text-muted);margin-top:6px;letter-spacing:.04em}
-.zhan-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.zhan-meta span{border:1px solid var(--ui-border);border-radius:99px;padding:4px 9px;font-size:10px;color:var(--ui-text-muted)}
-.zhan-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.zhan-actions button{font-size:11px;min-height:30px;padding:5px 9px}
-.zhan-loading{position:absolute;z-index:1;color:rgba(255,255,255,.65);font-size:12px;letter-spacing:.08em}
-.zhan-stage.ready .zhan-loading{display:none}
-@media(max-width:900px){.artist.zhan-prototype{grid-column:span 2}}
-@media(max-width:620px){.artist.zhan-prototype{grid-column:span 1;padding:8px;border-radius:12px}.zhan-stage{aspect-ratio:4/5;min-height:230px}.zhan-info{align-items:start;flex-direction:column}.zhan-actions{justify-content:flex-start}.zhan-name{font-size:20px}}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.page-intro{padding:52px 0 38px}}
+@media(max-width:700px){
+ .site-shell{width:calc(100% - 32px)}.site-header{height:66px;gap:10px}.brand{min-width:0}.brand-caption{font-size:8px}.header-note{display:none}.header-actions{margin-left:auto}.header-actions .quiet-button{display:none}
+ .page-intro{grid-template-columns:1fr;gap:25px;padding:43px 0 31px}.page-title{font-size:49px}.intro-stats{gap:28px}.intro-stat strong{font-size:25px}
+ .collection{padding:28px 0 58px}.collection-heading{align-items:start;flex-direction:column;gap:5px}.controls{gap:8px}.search-wrap{flex-basis:100%;max-width:none}.sort-select{flex:1}.cards{grid-template-columns:1fr;gap:19px}.artist-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}.art-stage{aspect-ratio:4/5;min-width:0}.card-body{display:flex;flex-direction:column;justify-content:center;padding:15px 14px}.artist-name{font-size:21px}.artist-note{margin-top:10px}.card-footer{align-items:start;flex-direction:column;margin-top:12px;padding-top:10px}.card-actions{flex-wrap:wrap}.slide-nav{opacity:1;width:31px;height:31px}
+ .site-footer{align-items:start;flex-direction:column;gap:8px}.dialog-content{padding:18px}.dialog-header{padding:16px 18px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}
+}
+@media(max-width:460px){
+ .site-shell{width:calc(100% - 26px)}.brand-mark{width:31px;height:31px}.brand-name{font-size:14px}.header-actions{gap:5px}.icon-button{width:34px;height:34px}
+ .page-title{font-size:43px}.intro-stats{justify-content:space-between;gap:15px}.intro-stat{min-width:0}
+ .artist-card{grid-template-columns:1fr}.art-stage{aspect-ratio:4/5}.card-body{padding:17px}.artist-name{font-size:24px}.card-footer{flex-direction:row;align-items:center}.slide-nav{opacity:0}.artist-card:hover .slide-nav,.slide-nav:focus-visible{opacity:1}
+ .composer-row{grid-template-columns:minmax(0,1fr) auto auto;gap:5px}.composer-row select{grid-column:1/-1;grid-row:2}.composer-row button{padding:0 7px}
+ .modal{padding:10px}.dialog{max-height:95vh;border-radius:13px}.inline-form{align-items:stretch;flex-direction:column}.inline-form .primary-button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 </head>
 <body>
-<header class="top">
- <div class="head">
-  <div class="brand"><div class="logo" aria-hidden="true">A</div><div>画师图鉴<span class="sub">Artist Atlas</span></div></div>
-  <div class="stats" aria-label="图鉴统计"><div class="stat"><b id="statArtists">—</b><small>位画师</small></div><div class="stat"><b id="statWorks">—</b><small>张预览</small></div><div class="stat"><b id="statTags">—</b><small>个标签</small></div></div>
- </div>
- <div class="toolbar">
-  <span class="muted">仓库</span><span id="repoState" class="pill">读取中</span>
-  <input id="search" type="search" aria-label="搜索画师名、别名或标签" placeholder="搜索画师、风格或标签…">
-  <select id="sort" aria-label="画师排序方式"><option value="recent">最近收录</option><option value="name">名称 A–Z</option><option value="works">预览数量</option></select>
-  <button id="favoritesToggle" type="button" aria-pressed="false">♡ 收藏 <span id="favoriteCount">0</span></button><button id="compositionOpen" type="button">NAI5 画师串 <span id="compositionCount">0</span></button>
-  <button id="guide" type="button">使用指南</button><button id="themeToggle" type="button" aria-label="切换浅色或深色主题">深色模式</button><button id="refresh" title="重新读取仓库">刷新</button>
-  <button id="manage" class="primary">管理图鉴</button>
- </div>
-</header>
-<main class="wrap">
- <div class="workspace">
-  <aside class="sidebar" aria-label="画师分类">
-   <div class="side-label">图鉴</div>
-   <div class="filters" id="filters" aria-label="按分类筛选"></div>
-  </aside>
-  <section class="content">
-   <div class="sectionline"><div><div class="sub">ARTIST COLLECTION</div><h2>画师收藏</h2></div><span class="muted" id="resultCount">正在读取仓库…</span></div>
-   <section class="spot" id="spot" style="display:none"><div class="avatar">✦</div><div class="spotinfo"><div class="sub">精选画师</div><h2 id="spotName"></h2><span class="muted" id="spotMeta"></span></div><div class="samples" id="spotSamples"></div></section>
-   <section class="candidate-panel" id="candidatePanel"><div class="candidate-head"><div><h3>核验批次</h3><p>保留原始候选与核验状态；只有唯一有效身份会进入正式画师图鉴</p></div><span id="candidateCount" class="pill">读取中</span></div><div id="candidateList" class="candidate-grid"></div></section>
-   <div class="cards" id="cards" aria-live="polite"></div>
-   <div class="empty-state" id="empty" style="display:none"><div style="font-size:28px;margin-bottom:8px">◇</div><b style="color:var(--ui-text)">你的画师图鉴还空着</b><p>先从一位喜欢的画师开始。搜索 Danbooru 身份、检查代表作，再添加自己的标签和评价。</p><button class="primary" id="emptyManage">添加第一位画师</button><p class="sub">也可以先浏览使用指南，了解整个流程。</p></div>
-   <p class="footnote">作品预览来自 Danbooru 公共 API，仅展示 General 级别作品。作品版权归原作者所有；本项目仅保存画师索引与公开作品链接。</p>
-  </section>
- </div>
-</main>
-<div class="modal" id="modal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" tabindex="-1"><div class="row"><h2 id="dialogTitle" style="flex:1">管理图鉴</h2><button id="close" aria-label="关闭">关闭</button></div>
- <div id="authPanel"><p class="muted">连接 GitHub 后，可直接将核验通过的画师保存到仓库。建议只授予 <b>artist-atlas</b> 仓库的 <b>Contents: Read and write</b> 权限。</p><div class="field"><label for="token">GitHub Fine-grained Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_…"></div><div class="row" style="margin-top:10px"><button id="connect" class="primary">连接仓库</button><button id="forget">清除会话授权</button><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">创建 Token ↗</a></div><p class="footnote">Token 仅保存在当前标签页会话中，不会写入仓库。不要分享给他人。</p></div>
- <div id="editor" style="display:none"><hr style="border-color:var(--ui-border);margin:18px 0"><h3>搜索 Danbooru 画师</h3><div class="row"><input id="artistQuery" type="search" aria-label="Danbooru 画师名或 artist tag" placeholder="输入画师名或 artist tag" style="flex:1"><button id="lookup" class="primary">搜索</button></div><div id="candidates" aria-live="polite"></div><div class="batch-tools"><h3>批量导入画师</h3><p class="muted">每行输入一个 Danbooru Artist 主页链接或画师名称，支持混合粘贴。系统会逐条核验身份，并为每位画师抓取 3 张 General 预览；名称匹配不唯一时会提示改用主页链接。</p><textarea id="batchInput" placeholder="https://danbooru.donmai.us/artists/12345&#10;artist_name&#10;https://danbooru.donmai.us/artists/67890"></textarea><div class="batch-actions"><button id="batchResolve" class="primary">解析并核验</button><button id="batchSelectAll">全选可导入项</button><button id="batchImport" disabled>导入所选画师</button></div><div id="batchStatus" class="muted" aria-live="polite"></div><div id="batchResults" class="batch-results"></div></div><div id="selected" style="display:none"><hr style="border-color:var(--ui-border);margin:18px 0"><h3>画师资料</h3><div class="formgrid">
- <div class="field"><label for="fName">画师名称</label><input id="fName"></div><div class="field"><label for="fCategory">分类</label><input id="fCategory" value="插画"></div>
- <div class="field"><label for="fAliases">别名（逗号分隔）</label><input id="fAliases"></div><div class="field"><label for="fScore">个人评分（1–10）</label><input id="fScore" type="number" min="1" max="10" step=".5" placeholder="可留空"></div>
- <div class="field full"><label for="fTags">风格标签（逗号分隔）</label><input id="fTags" placeholder="厚涂, 少女感, 复古"></div><div class="field full"><label for="fNote">备注</label><textarea id="fNote" rows="2" placeholder="记录喜欢这位画师的原因…"></textarea></div>
- </div><div class="previewgrid" id="previews"></div><div class="row" style="justify-content:flex-end;margin-top:14px"><button id="saveArtist" class="primary">保存到仓库</button></div></div>
- <p class="footnote">只有精确命中 Danbooru artist 名称或别名的条目才可作为已核验画师收录。请确认候选身份无误后再保存。</p>
- <hr style="border-color:var(--ui-border);margin:18px 0"><h3>已收录画师</h3><div id="managedList"></div></div>
- </section></div>
-<div class="modal" id="compositionModal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="compositionTitle" tabindex="-1"><div class="row"><h2 id="compositionTitle" style="flex:1">NAI5 画师串搭配器</h2><button id="compositionClose" aria-label="关闭">关闭</button></div>
- <p class="composition-help">在画师卡片点「加入组合」，再调整顺序和强弱。喜欢的画师可单独收藏；收藏只保存在当前浏览器。</p>
- <div id="compositionEmpty" class="empty-state" style="padding:20px">还没有选入画师。回到图鉴卡片点「加入组合」。</div><ol id="compositionList" class="composition-list"></ol>
- <div class="field"><label for="compositionOutput">组合串</label><textarea id="compositionOutput" class="composition-output" readonly placeholder="artist:artist_name, {artist:another_artist}"></textarea></div>
- <div class="row" style="justify-content:space-between;flex-wrap:wrap;margin-top:12px"><button id="compositionClear">清空组合</button><button id="compositionCopy" class="primary">复制画师串</button></div>
- <p class="composition-help">输出为逗号分隔的 <code>artist:名称</code> 标签；强弱选项使用 NAI 支持的 <code>{}</code> / <code>[]</code>。V5 对不同 artist tag 的识别程度会有差异，粘贴到 NAI 后可结合标签建议调整。</p>
-</section></div>
+<div class="site-shell">
+ <header class="site-header">
+  <a class="brand" href="#" aria-label="Artist Atlas 首页"><span class="brand-mark">A</span><span><span class="brand-name">Artist Atlas</span><span class="brand-caption">Visual Reference Archive</span></span></a>
+  <div class="header-note">A PERSONAL INDEX OF ARTISTS</div>
+  <div class="header-actions">
+   <button class="quiet-button" id="guideButton" type="button">使用说明</button>
+   <button class="icon-button" id="themeButton" type="button" aria-label="切换主题" title="切换主题">◐</button>
+   <button class="primary-button" id="manageButton" type="button">管理图鉴</button>
+  </div>
+ </header>
+
+ <section class="page-intro">
+  <div>
+   <div class="eyebrow">Curated visual references · Vol. 01</div>
+   <h1 class="page-title">画师图鉴</h1>
+   <p class="page-subtitle">把值得反复研究的画面，整理成自己的视觉索引。每一张作品都回到原始来源，每一位创作者都保留独立的身份与风格线索。</p>
+  </div>
+  <div class="intro-stats" aria-label="图鉴统计">
+   <div class="intro-stat"><strong id="artistTotal">—</strong><span>Artists</span></div>
+   <div class="intro-stat"><strong id="workTotal">—</strong><span>Selected works</span></div>
+   <div class="intro-stat"><strong id="favoriteTotal">—</strong><span>Favorites</span></div>
+  </div>
+ </section>
+
+ <main class="collection">
+  <div class="collection-heading">
+   <div><div class="collection-kicker">The collection</div><h2 class="collection-title">画师收藏</h2></div>
+   <div class="collection-count" id="collectionCount">正在读取图鉴…</div>
+  </div>
+  <div class="controls">
+   <label class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input class="search-input" id="searchInput" type="search" placeholder="搜索画师名称、别名或风格…" aria-label="搜索画师"></label>
+   <div class="filter-group" aria-label="图鉴筛选">
+    <button class="filter-button active" type="button" data-filter="all">全部</button>
+    <button class="filter-button" type="button" data-filter="favorites">我的收藏</button>
+   </div>
+   <select class="sort-select" id="sortSelect" aria-label="排序"><option value="recent">最近收录</option><option value="name">名称 A–Z</option><option value="score">个人评分</option></select>
+  </div>
+  <section class="cards" id="artistGrid" aria-live="polite"></section>
+  <div class="empty-state" id="emptyState" hidden><strong>这里暂时还没有画师</strong><span>试试更换搜索词，或清除收藏筛选。</span></div>
+ </main>
+
+ <footer class="site-footer">
+  <div><span class="footer-brand">Artist Atlas</span> <span>· Personal visual reference archive</span></div>
+  <div>作品与版权归原作者所有 · 预览来自 Danbooru 公共 API</div>
+ </footer>
+</div>
+
+<div class="modal" id="manageModal" aria-hidden="true">
+ <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="manageTitle" tabindex="-1">
+  <div class="dialog-header"><h2 id="manageTitle">管理图鉴</h2><button class="icon-button" id="manageClose" type="button" aria-label="关闭">×</button></div>
+  <div class="dialog-content">
+   <p class="dialog-intro">公开页面只显示正式收录的画师。新增或修改资料时，才需要连接 GitHub；Token 仅保存在当前浏览器会话中。</p>
+   <div id="authPanel">
+    <div class="section-label">Repository access</div>
+    <div class="field"><label for="tokenInput">GitHub Fine-grained Personal Access Token</label><input id="tokenInput" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+    <div class="inline-form"><button class="primary-button" id="connectButton" type="button">连接仓库</button><button class="quiet-button" id="forgetButton" type="button">清除会话授权</button><a class="source-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">创建 Token ↗</a></div>
+    <p class="help-text">只授予 artist-atlas 仓库的 Contents: Read and write 权限。不要把 Token 发给他人或提交到代码仓库。</p>
+   </div>
+   <div id="editorPanel" hidden>
+    <div class="rule"></div>
+    <div class="section-label">Find an artist</div>
+    <div class="inline-form">
+     <div class="field"><label for="artistQuery">Danbooru 画师名称或别名</label><input id="artistQuery" type="search" placeholder="输入 artist name"></div>
+     <button class="primary-button" id="lookupButton" type="button">搜索</button>
+    </div>
+    <div class="result-list" id="candidateResults"></div>
+    <div id="artistEditor" hidden>
+     <div class="rule"></div>
+     <div class="section-label">Artist details</div>
+     <div class="form-grid">
+      <div class="field"><label for="fieldName">图鉴显示名称</label><input id="fieldName"></div>
+      <div class="field"><label for="fieldCategory">分类</label><input id="fieldCategory" placeholder="例如：插画 / 角色设计"></div>
+      <div class="field"><label for="fieldAliases">别名（逗号分隔）</label><input id="fieldAliases"></div>
+      <div class="field"><label for="fieldScore">个人评分（1–10）</label><input id="fieldScore" type="number" min="1" max="10" step=".5" placeholder="可留空"></div>
+      <div class="field full"><label for="fieldTags">风格标签（逗号分隔）</label><input id="fieldTags" placeholder="厚涂, 柔和光影, 少女感"></div>
+      <div class="field full"><label for="fieldNote">个人备注</label><textarea id="fieldNote" placeholder="记录值得保留的画面特点…"></textarea></div>
+     </div>
+     <div class="preview-strip" id="editorPreviews"></div>
+     <div class="inline-form"><button class="primary-button" id="saveArtistButton" type="button">保存资料</button><button class="quiet-button" id="cancelEditButton" type="button">取消</button></div>
+    </div>
+    <div class="rule"></div>
+    <div class="section-label">Published artists</div>
+    <div class="managed-list" id="managedList"></div>
+   </div>
+   <div class="status-line" id="manageStatus" role="status" aria-live="polite"></div>
+  </div>
+ </section>
+</div>
+
+<div class="modal" id="composerModal" aria-hidden="true">
+ <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="composerTitle" tabindex="-1" style="width:min(680px,100%)">
+  <div class="dialog-header"><h2 id="composerTitle">NAI5 画师串搭配器</h2><button class="icon-button" id="composerClose" type="button" aria-label="关闭">×</button></div>
+  <div class="dialog-content">
+   <p class="dialog-intro">从卡片加入画师后，可以调整顺序和标签强弱，再复制成 NAI5 可用的 artist 标签候选串。</p>
+   <div id="composerEmpty" class="empty-state">还没有选入画师。先从图鉴卡片加入一位画师。</div>
+   <ol class="composer-list" id="composerList"></ol>
+   <div class="field"><label for="composerOutput">组合串</label><textarea class="composer-output" id="composerOutput" readonly placeholder="artist:artist_name"></textarea></div>
+   <div class="inline-form"><button class="quiet-button" id="composerClear" type="button">清空组合</button><button class="primary-button" id="composerCopy" type="button">复制画师串</button></div>
+  </div>
+ </section>
+</div>
+
+<div class="modal" id="guideModal" aria-hidden="true">
+ <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="guideTitle" tabindex="-1" style="width:min(620px,100%)">
+  <div class="dialog-header"><h2 id="guideTitle">使用说明</h2><button class="icon-button" id="guideClose" type="button" aria-label="关闭">×</button></div>
+  <div class="dialog-content">
+   <div class="section-label">Browse</div>
+   <p class="dialog-intro">主页面只有一个正式画师图鉴。搜索支持名称、别名、风格标签与备注；「我的收藏」只筛选当前浏览器保存的收藏。</p>
+   <div class="section-label">Artwork</div>
+   <p class="dialog-intro">作品区实时读取 Danbooru 上最新的 General 级别作品，优先使用较大尺寸的作品文件，不使用 180×180 缩略图充当主展示。点击作品可以打开 Danbooru 原帖。</p>
+   <div class="section-label">Curate</div>
+   <p class="dialog-intro">连接 GitHub 后可添加、编辑或删除正式画师。每条记录包含 Danbooru Artist ID、个人分类、风格标签、评分和备注。公开页面不展示待核验候选池。</p>
+   <div class="section-label">Privacy</div>
+   <p class="dialog-intro">收藏、主题和 GitHub 会话凭据保存在当前浏览器；画师正式资料保存在仓库的 data/artists.json 中。</p>
+  </div>
+ </section>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="modal" id="welcomeModal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" tabindex="-1" style="max-width:560px">
- <div class="row"><div style="flex:1"><div class="sub">ARTIST ATLAS · QUICK START</div><h2 id="welcomeTitle" style="font-size:24px;margin-top:5px">把喜欢的画师，整理成自己的图鉴。</h2></div><button id="welcomeClose" aria-label="关闭引导">关闭</button></div>
- <p class="muted" style="line-height:1.8">这里不是自动排行榜。Danbooru 帮你确认画师身份和查看公开作品；分类、风格标签、评分和收藏理由由你自己决定。</p>
- <div style="display:grid;gap:12px;margin:20px 0">
-  <div class="row"><span class="pill">01</span><div><b>先浏览</b><div class="muted">搜索、收藏画师，挑选图片参考，不需要登录。</div></div></div>
-  <div class="row"><span class="pill">02</span><div><b>连接仓库</b><div class="muted">只有需要添加或修改时，才需要 GitHub Token。</div></div></div>
-  <div class="row"><span class="pill">03</span><div><b>核验并整理</b><div class="muted">确认 Danbooru Artist ID 和别名，再写自己的标签、评分和备注。</div></div></div>
-  <div class="row"><span class="pill">04</span><div><b>保存到图鉴</b><div class="muted">提交到 GitHub，等待 Pages 自动更新。</div></div></div>
- </div>
- <div class="row" style="justify-content:flex-end;flex-wrap:wrap"><button id="welcomeGuide">查看完整教程</button><button class="primary" id="welcomeStart">开始浏览</button></div>
- <p class="footnote">安全提醒：只使用 Fine-grained Token，并仅授权 artist-atlas 仓库的 Contents 读写权限。不要把 Token 发给任何人。</p>
-</section></div>
-<div class="modal" id="guideModal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="guideTitle" tabindex="-1">
- <div class="row"><h2 id="guideTitle" style="flex:1">新手使用指南</h2><button id="guideClose">关闭</button></div>
- <h3>浏览图鉴</h3><p class="muted">直接使用顶部搜索框查画师名、别名、风格标签或备注；左侧分类可以缩小范围。浏览不需要 GitHub 登录。</p>
- <hr><h3>连接 GitHub（只在需要编辑时）</h3><ol class="muted" style="line-height:1.9;padding-left:20px"><li>打开 GitHub 的 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Fine-grained Token 创建页面</a>。</li><li>Repository access 选择 Only select repositories，再选 <b>artist-atlas</b>。</li><li>Repository permissions 中将 Contents 设为 Read and write；其他权限保持 No access。</li><li>创建 Token，复制后回到「管理图鉴」连接。Token 仅用于当前浏览器会话，切勿分享或提交到仓库。</li></ol>
- <hr><h3>收录一位画师</h3><ol class="muted" style="line-height:1.9;padding-left:20px"><li>输入画师在 Danbooru 上的名称或别名并搜索。</li><li>对照 Artist ID、规范名称和别名；不要只凭相似名字选择。</li><li>检查 General 级别作品预览。没有预览不代表身份无效，但应谨慎确认。</li><li>填写自己的分类、风格标签、评分和收藏理由。</li><li>保存前再次检查资料。提交成功后，公开图鉴会在 Pages 部署完成后更新。</li></ol>
- <hr><h3>收藏与 NAI5 画师串</h3><p class="muted">点卡片的「收藏」可将偏好保存在当前浏览器；点「加入组合」后，可在顶部 NAI5 画师串搭配器排序、调整强弱并复制结果。复制出来的是 artist 标签候选串，实际识别程度请以 NAI 输入框的标签建议为准。</p>
- <hr><h3>几个重要概念</h3><p class="muted"><b>Danbooru ID</b> 是外部身份标识；<b>分类和标签</b> 是你自己的整理方式；每位画师最多展示 3 张 General 级别预览。预览由 Danbooru 托管，卡片图片可点开对应原帖。本项目只保存索引和图片链接，不复制作品文件。</p>
- <div class="row" style="justify-content:flex-end"><button class="primary" id="guideManage">去管理图鉴</button></div>
-</section></div>
+
 <script>
-const OWNER="Tera-Dark",REPO="artist-atlas",BRANCH="main",DATA_PATH="data/artists.json";
-const RAW="data/artists.json";
+"use strict";
+const OWNER="Tera-Dark";
+const REPO="artist-atlas";
+const BRANCH="main";
+const DATA_PATH="data/artists.json";
+const RAW_DATA="data/artists.json";
 const API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/"+DATA_PATH;
-const FAVORITES_KEY="artistAtlasFavoritesV1";
-function readFavoriteIds(){try{const values=JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]");return new Set(Array.isArray(values)?values.filter(x=>typeof x==="string"):[])}catch(_){return new Set()}}
-let artists=[],candidates=[],verifiedCandidates=[],fileSha="",token="",chosen=null,activeCategory="全部",pendingEditId=null,favoriteIds=readFavoriteIds(),favoritesOnly=false,composition=[],compositionStrength={};
+const FAVORITES_KEY="artistAtlasFavoritesV2";
+const THEME_KEY="artistAtlasThemeV2";
+let artists=[];
+let worksByArtist={};
+let slideByArtist={};
+let favorites=new Set(readStoredArray(FAVORITES_KEY));
+let activeFilter="all";
+let composition=[];
+let compositionStrength={};
+let token="";
+let fileSha="";
+let selectedArtist=null;
+let editingId=null;
 const $=id=>document.getElementById(id);
-function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),3200)}
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function tagsOf(a){return [...(a.tags||[]),a.category].filter(Boolean)}
-function renderComposition(){
- const selected=composition.map(id=>artists.find(a=>a.id===id)).filter(Boolean);
- $("compositionCount").textContent=selected.length;
- $("compositionEmpty").style.display=selected.length?"none":"block";
- $("compositionList").innerHTML=selected.map((a,i)=>'<li class="composition-item"><b>'+esc(a.name)+'</b><select data-strength="'+esc(a.id)+'" aria-label="'+esc(a.name)+' 的画师标签强度"><option value="normal" '+((compositionStrength[a.id]||"normal")==="normal"?"selected":"")+'>正常</option><option value="strong" '+(compositionStrength[a.id]==="strong"?"selected":"")+'>加强</option><option value="weak" '+(compositionStrength[a.id]==="weak"?"selected":"")+'>减弱</option></select><button data-up="'+esc(a.id)+'" aria-label="上移" '+(i===0?"disabled":"")+'>↑</button><button data-down="'+esc(a.id)+'" aria-label="下移" '+(i===selected.length-1?"disabled":"")+'>↓</button><button data-remove="'+esc(a.id)+'" aria-label="移出组合">移除</button></li>').join("");
- const prompt=selected.map(a=>{const tag="artist:"+String(a.danbooru_name||a.name).trim().replace(/\s+/g,"_").toLowerCase(),strength=compositionStrength[a.id]||"normal";return strength==="strong"?"{"+tag+"}":strength==="weak"?"["+tag+"]":tag}).join(", ");
- $("compositionOutput").value=prompt;
- $("compositionCopy").disabled=!prompt;
+
+function readStoredArray(key){
+ try{const value=JSON.parse(localStorage.getItem(key)||"[]");return Array.isArray(value)?value.filter(x=>typeof x==="string"):[]}
+ catch(_){return []}
 }
-async function refreshZhanPrototype(){
- const a=artists.find(x=>String(x.danbooru_id)==="63362"||x.id==="artist-63362");if(!a)return;
- const tag=String(a.danbooru_name||a.name).trim().replace(/\s+/g,"_");
- const url="https://danbooru.donmai.us/posts.json?tags="+encodeURIComponent(tag+" rating:g order:id_desc")+"&limit=3&only=id,rating,file_url,large_file_url,preview_file_url,is_deleted,image_width,image_height,created_at";
- try{const r=await fetch(url,{headers:{Accept:"application/json"}});if(!r.ok)throw Error("Danbooru API "+r.status);const rows=(await r.json()).filter(p=>p.rating==="g"&&!p.is_deleted&&(p.file_url||p.large_file_url||p.preview_file_url)).slice(0,3);if(!rows.length)throw Error("没有找到可展示的 General 作品");a.live_posts=rows;a._slide_index=0;render()}catch(e){a.live_error=e.message;const card=document.querySelector("[data-zhan-card]");if(card){const loading=card.querySelector(".zhan-loading");if(loading)loading.textContent="高清作品暂时无法加载："+e.message}}
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]});
 }
-function moveZhanSlide(card,step){const a=artists.find(x=>String(x.danbooru_id)==="63362"||x.id==="artist-63362");if(!a||!a.live_posts?.length)return;a._slide_index=(a._slide_index+step+a.live_posts.length)%a.live_posts.length;const p=a.live_posts[a._slide_index],src=p.file_url||p.large_file_url||p.preview_file_url,img=card.querySelector("[data-zhan-image]"),link=card.querySelector("[data-zhan-link]");if(img){img.src=src;img.alt=a.name+" 最新作品 "+(a._slide_index+1)}if(link){link.href=src}card.querySelector("[data-zhan-index]").textContent=String(a._slide_index+1).padStart(2,"0")+" / "+String(a.live_posts.length).padStart(2,"0");card.querySelector("[data-zhan-dots]").innerHTML=a.live_posts.map((_,i)=>'<button class="zhan-dot '+(i===a._slide_index?"active":"")+'" data-zhan-dot="'+i+'" aria-label="查看第 '+(i+1)+' 张作品"></button>').join("")}
-async function loadData(){ $("repoState").textContent="同步中";try{const [r,cr,vr]=await Promise.all([fetch(RAW+"?t="+Date.now()),fetch("data/candidates.json?t="+Date.now()),fetch("data/verified-artists.json?t="+Date.now()).catch(()=>null)]);if(!r.ok)throw Error("HTTP "+r.status);if(!cr.ok)throw Error("候选池 HTTP "+cr.status);const d=await r.json(),cd=await cr.json(),vd=vr&&vr.ok?await vr.json():null;artists=Array.isArray(d.artists)?d.artists:[];candidates=Array.isArray(cd.candidates)?cd.candidates:[];verifiedCandidates=Array.isArray(vd?.results)?vd.results:[];$("repoState").textContent="已同步 main";$("repoState").className="pill";render();refreshZhanPrototype()}catch(e){$("repoState").textContent="读取失败";$("repoState").className="pill bad";toast("读取仓库失败："+e.message)}}
-function render(){const cats=["全部",...new Set(artists.map(a=>a.category).filter(Boolean))];$("filters").innerHTML=cats.map(c=>'<button class="chip '+(c===activeCategory?"active":"")+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join("");$("filters").querySelectorAll("button").forEach(b=>b.onclick=()=>{activeCategory=b.dataset.cat;render()});
-let q=$("search").value.trim().toLowerCase(),list=artists.filter(a=>(activeCategory==="全部"||a.category===activeCategory)&&(!favoritesOnly||favoriteIds.has(a.id))&&[a.name,...(a.aliases||[]),...(a.tags||[]),a.note||""].join(" ").toLowerCase().includes(q));
-const sort=$("sort").value;list.sort((a,b)=>sort==="name"?a.name.localeCompare(b.name):sort==="works"?(b.post_count||0)-(a.post_count||0):(b.added_at||"").localeCompare(a.added_at||""));
-$("statArtists").textContent=artists.length;$("statWorks").textContent=artists.reduce((n,a)=>n+(a.post_count||0),0);$("statTags").textContent=new Set(artists.flatMap(tagsOf)).size;$("resultCount").textContent="显示 "+list.length+" / "+artists.length+" 位画师";$("favoriteCount").textContent=[...favoriteIds].filter(id=>artists.some(a=>a.id===id)).length;$("favoritesToggle").setAttribute("aria-pressed",String(favoritesOnly));$("favoritesToggle").classList.toggle("primary",favoritesOnly);
-$("empty").style.display=list.length?"none":"block";$("cards").innerHTML=list.map(card).join("");renderCandidates(q);
-$("cards").querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>window.open("https://danbooru.donmai.us/artists/"+b.dataset.open,"_blank"));
-const featured=list.find(a=>a.featured);if(featured){$("spot").style.display="flex";$("spotName").textContent=featured.name;$("spotMeta").textContent=(featured.post_count||0)+" 张预览 · "+(featured.category||"未分类");$("spotSamples").innerHTML=(featured.preview_urls||[]).slice(0,6).map(u=>'<img src="'+esc(u)+'" loading="lazy">').join("")}else $("spot").style.display="none";renderComposition();
+function toast(message){
+ $("toast").textContent=message;
+ $("toast").classList.add("show");
+ clearTimeout(toast.timer);
+ toast.timer=setTimeout(()=>$("toast").classList.remove("show"),3200);
 }
-function renderCandidates(q=""){
- const byId=new Map(verifiedCandidates.map(v=>[v.candidate_id,v]));
- const list=candidates.filter(c=>(c.query||"").toLowerCase().includes(q));
- const confirmedCount=verifiedCandidates.filter(v=>["verified","verified_no_previews"].includes(v.status)).length;$("candidateCount").textContent=candidates.length+" 位 · 身份确认 "+confirmedCount+" 位";
- const labels={verified:"身份已核验",verified_no_previews:"身份已核验 · 暂无预览",needs_review:"需要人工确认",not_found:"未找到",blocked:"已封禁/删除",error:"查询失败"};
- const cards=list.map(c=>{
-  const v=byId.get(c.id);
-  if(!v)return '<div class="candidate-item"><span class="num">'+esc(c.id.replace("candidate-",""))+'</span><span class="candidate-name">'+esc(c.source_tag)+'</span><span class="pill pending">待核验</span></div>';
-  const hero=v.previews?.[0]?.preview_url||v.previews?.[0]?.large_url||"";
-  const thumbs=(v.previews||[]).slice(1,5).map(p=>p.preview_url||p.large_url).filter(Boolean);
-  const meta=v.artist_id?'Artist ID '+v.artist_id+' · '+(v.post_count||0)+' 张预览':'原始标签：'+c.source_tag;
-  const links=(v.artist_url?'<a href="'+esc(v.artist_url)+'" target="_blank" rel="noopener">Artist 主页 ↗</a>':'')+(v.canonical_name?'<a href="https://danbooru.donmai.us/posts?tags='+encodeURIComponent(String(v.canonical_name).replace(/\s+/g,"_"))+'" target="_blank" rel="noopener">查看作品 ↗</a>':"");
-  const matches=(v.matches||[]).map(m=>'<div>'+esc(m.name)+' · ID '+esc(m.id)+(m.is_banned?' · 封禁':m.is_deleted?' · 已删除':'')+'</div>').join("");
-  return '<article class="verified-card '+(["needs_review","not_found","error"].includes(v.status)?"review":"")+'">'+(hero?'<img class="hero" src="'+esc(hero)+'" alt="'+esc(v.canonical_name||c.query)+' 代表作" loading="lazy" referrerpolicy="no-referrer">':'<div class="hero" style="display:grid;place-items:center;color:var(--ui-text-muted)">◇</div>')+'<div class="vinfo"><div class="vname">'+esc(v.canonical_name||c.query)+'</div><span class="pill '+(v.status==="verified"||v.status==="verified_no_previews"?"":"pending")+'">'+esc(labels[v.status]||v.status)+'</span><div class="vmeta">'+esc(meta)+'</div>'+(thumbs.length?'<div class="vthumbs">'+thumbs.map((u,i)=>'<img src="'+esc(u)+'" alt="作品预览 '+(i+2)+'" loading="lazy" referrerpolicy="no-referrer">').join("")+'</div>':"")+(matches?'<div class="matches">候选匹配：'+matches+'</div>':"")+(v.error?'<div class="vmeta">'+esc(v.error)+'</div>':"")+'<div class="vlinks">'+links+'</div></div></article>';
- }).join("");
- $("candidateList").innerHTML='<div class="candidate-results">'+cards+'</div>';
+function artistTag(artist){
+ return String(artist.danbooru_name||artist.name||"").trim().replace(/\s+/g,"_");
 }
-function card(a){
- if(String(a.danbooru_id)==="63362"||a.id==="artist-63362"){
-  const posts=a.live_posts||[],index=Math.min(a._slide_index||0,Math.max(0,posts.length-1)),p=posts[index],src=p?(p.file_url||p.large_file_url||p.preview_file_url):((a.preview_urls||[])[index]||(a.preview_urls||[])[0]),href=p?"https://danbooru.donmai.us/posts/"+p.id:(a.danbooru_url||"https://danbooru.donmai.us/artists/63362");
-  const dots=posts.map((_,i)=>'<button class="zhan-dot '+(i===index?"active":"")+'" data-zhan-dot="'+i+'" aria-label="查看第 '+(i+1)+' 张作品"></button>').join("");
-  return '<article class="artist zhan-prototype" data-zhan-card><div class="zhan-topline"><span>Artist study · 001</span><span>'+ (posts.length?"LATEST WORKS":"LIVE PREVIEW")+'</span></div><div class="zhan-stage '+(src?"ready":"")+'" data-zhan-stage><span class="zhan-loading">正在获取高清作品…</span>'+(src?'<a href="'+esc(src)+'" target="_blank" rel="noopener" data-zhan-link><img src="'+esc(src)+'" alt="'+esc(a.name)+' 最新作品 '+(index+1)+'" data-zhan-image loading="eager"></a>':'<div class="empty">◇</div>')+'<button class="zhan-nav zhan-prev" data-zhan-prev aria-label="上一张">‹</button><button class="zhan-nav zhan-next" data-zhan-next aria-label="下一张">›</button><span class="zhan-index" data-zhan-index>'+String(index+1).padStart(2,"0")+' / '+String(posts.length||3).padStart(2,"0")+'</span><div class="zhan-dots" data-zhan-dots>'+dots+'</div></div><div class="zhan-info"><div><div class="zhan-name">'+esc(a.name)+'</div><div class="zhan-sub">DANBOORU ARTIST · #63362 · '+esc(a.category||"未分类")+'</div><div class="zhan-meta"><span>3 latest works</span><span>High-resolution source</span><span>General</span></div></div><div class="zhan-actions"><button data-open="63362">Artist 主页 ↗</button><button data-favorite="'+esc(a.id)+'" class="'+(favoriteIds.has(a.id)?"is-favorite":"")+'">'+(favoriteIds.has(a.id)?"♥ 已收藏":"♡ 收藏")+'</button><button data-edit="'+esc(a.id)+'">编辑资料</button></div></div></article>';
+function workSource(post){
+ return post.large_file_url||post.file_url||post.preview_file_url||"";
+}
+function postPage(post){
+ return "https://danbooru.donmai.us/posts/"+Number(post.id);
+}
+function visibleArtists(){
+ const query=$("searchInput").value.trim().toLocaleLowerCase();
+ let list=artists.filter(function(a){
+  const matches=[a.name,...(a.aliases||[]),...(a.tags||[]),a.category||"",a.note||""].join(" ").toLocaleLowerCase().includes(query);
+  return matches&&(activeFilter!=="favorites"||favorites.has(a.id));
+ });
+ const sort=$("sortSelect").value;
+ list.sort(function(a,b){
+  if(sort==="name")return a.name.localeCompare(b.name);
+  if(sort==="score")return (b.score||0)-(a.score||0)||a.name.localeCompare(b.name);
+  return String(b.added_at||"").localeCompare(String(a.added_at||""));
+ });
+ return list;
+}
+function cardMarkup(artist,index){
+ const works=worksByArtist[artist.id]||[];
+ const active=Math.min(slideByArtist[artist.id]||0,Math.max(0,works.length-1));
+ const post=works[active];
+ const image=post?workSource(post):"";
+ const hasError=artist.workError;
+ const isFavorite=favorites.has(artist.id);
+ const isComposed=composition.includes(artist.id);
+ const number=String(index+1).padStart(2,"0");
+ let stage="";
+ if(image){
+  const dots=works.map(function(_,i){
+   return '<button class="slide-dot '+(i===active?"active":"")+'" type="button" data-slide-to="'+i+'" aria-label="查看第 '+(i+1)+' 张作品"></button>';
+  }).join("");
+  stage='<a class="art-link" href="'+esc(postPage(post))+'" target="_blank" rel="noopener noreferrer" aria-label="在 Danbooru 打开 '+esc(artist.name)+' 的作品"><img class="art-image" src="'+esc(image)+'" alt="'+esc(artist.name)+' 的作品 '+(active+1)+'" loading="'+(index<2?"eager":"lazy")+'" decoding="async" referrerpolicy="no-referrer"></a>'+
+   '<div class="stage-top"><span class="work-index">STUDY / '+number+'</span><span class="category-stamp">'+esc(artist.category||"未分类")+'</span></div>'+
+   '<div class="stage-bottom"><span class="slide-count">'+String(active+1).padStart(2,"0")+' / '+String(works.length).padStart(2,"0")+'</span><div class="slide-dots">'+dots+'</div></div>'+
+   (works.length>1?'<button class="slide-nav prev" type="button" data-slide="-1" aria-label="上一张作品">‹</button><button class="slide-nav next" type="button" data-slide="1" aria-label="下一张作品">›</button>':"");
+ }else{
+  stage='<div class="stage-top"><span class="work-index">STUDY / '+number+'</span><span class="category-stamp">'+esc(artist.category||"未分类")+'</span></div><div class="art-state">'+(hasError?'<div><b>作品暂不可用</b>'+esc(hasError)+'<br><a class="source-link" href="'+esc(artist.danbooru_url||("https://danbooru.donmai.us/artists/"+artist.danbooru_id))+'" target="_blank" rel="noopener">打开画师主页 ↗</a></div>':'<div><b>正在读取作品</b>正在从 Danbooru 获取最新的 General 级别作品…</div>')+'</div>';
  }
- const imgs=(a.preview_urls||[]).slice(0,3),ids=a.preview_post_ids||[],verified=a.danbooru_id?"D站已核验":"待核验",favorite=favoriteIds.has(a.id),composed=composition.includes(a.id);
- const sourceLink=(url,index,alt,cls)=>{const id=Number(ids[index]),href=Number.isInteger(id)&&id>0?"https://danbooru.donmai.us/posts/"+id:(a.danbooru_url||"https://danbooru.donmai.us/");return '<a class="'+cls+'" data-post-id="'+(Number.isInteger(id)&&id>0?id:"")+'" href="'+esc(href)+'" target="_blank" rel="noopener noreferrer" title="在 Danbooru 查看原帖"><img src="'+esc(url)+'" alt="'+esc(alt)+'" loading="lazy"></a>'};
- return '<article class="artist"><div class="cover">'+(imgs[0]?sourceLink(imgs[0],0,a.name+' 的代表作品',"hero-link"):'<div class="empty" aria-hidden="true">◇</div>')+'<span class="count">'+imgs.length+' 张预览</span></div><div class="details"><div class="row"><div class="avatar sm" aria-hidden="true">'+esc((a.name||"?").slice(0,1).toUpperCase())+'</div><div style="min-width:0"><div class="name">'+esc(a.name)+'</div><div class="muted">'+esc(a.category||"未分类")+' · '+verified+'</div></div></div>'+(imgs.length>1?'<div class="thumbs">'+imgs.slice(1).map((u,i)=>sourceLink(u,i+1,a.name+' 作品预览 '+(i+2),"thumb-link")).join("")+'</div>':"")+(a.tags?.length?'<div class="tags">'+a.tags.slice(0,4).map(t=>'<span class="tag">'+esc(t)+'</span>').join("")+'</div>':"")+(a.note?'<div class="muted">'+esc(a.note)+'</div>':"")+'<div class="actions">'+(a.danbooru_id?'<button data-open="'+esc(a.danbooru_id)+'">打开 D 站 ↗</button>':'')+'<button data-favorite="'+esc(a.id)+'" class="'+(favorite?'is-favorite':'')+'" aria-pressed="'+favorite+'" title="'+(favorite?'取消收藏':'收藏画师')+'">'+(favorite?'♥ 已收藏':'♡ 收藏')+'</button><button data-compose="'+esc(a.id)+'" class="'+(composed?'is-composed':'')+'">'+(composed?'移出组合':'加入组合')+'</button><button data-edit="'+esc(a.id)+'">编辑</button></div></div></article>';
+ const tags=(artist.tags||[]).slice(0,5).map(function(tag){return '<span class="artist-tag">'+esc(tag)+'</span>'}).join("");
+ const note=artist.note?esc(artist.note):"";
+ return '<article class="artist-card" data-artist-card="'+esc(artist.id)+'"><div class="art-stage" data-stage>'+stage+'</div><div class="card-body">'+
+  '<div class="artist-overline"><span>Artist index · '+number+'</span><span>'+(artist.score?("PERSONAL SCORE · "+artist.score.toFixed(1)):"DANBOORU VERIFIED")+'</span></div>'+
+  '<h3 class="artist-name">'+esc(artist.name)+'</h3>'+
+  '<div class="artist-meta"><span>Artist ID '+esc(artist.danbooru_id)+'</span><i class="meta-separator"></i><span>'+esc(artist.category||"未分类")+'</span></div>'+
+  '<p class="artist-note">'+(note||"尚未添加个人备注。")+'</p>'+
+  (tags?'<div class="artist-tags">'+tags+'</div>':"")+
+  '<div class="card-footer"><a class="source-link" href="'+esc(artist.danbooru_url||("https://danbooru.donmai.us/artists/"+artist.danbooru_id))+'" target="_blank" rel="noopener noreferrer">DANBOORU PROFILE ↗</a>'+
+  '<div class="card-actions"><button class="action-button '+(isFavorite?"favorited":"")+'" type="button" data-favorite="'+esc(artist.id)+'" aria-pressed="'+isFavorite+'">'+(isFavorite?"♥ 已收藏":"♡ 收藏")+'</button><button class="action-button '+(isComposed?"composed":"")+'" type="button" data-compose="'+esc(artist.id)+'">'+(isComposed?"已加入":"加入组合")+'</button><button class="action-button" type="button" data-edit="'+esc(artist.id)+'" aria-label="编辑 '+esc(artist.name)+'">编辑</button></div></div>'+
+ '</div></article>';
 }
-const BATCH_PREVIEW_LIMIT=3;
-let batchItems=[];
-function parseArtistInput(line){const raw=line.trim();if(!raw)return null;const m=raw.match(/(?:danbooru\.donmai\.us|donmai\.us)\/artists\/(\d+)/i);if(m)return {kind:"id",id:m[1],raw};if(/^\d+$/.test(raw))return {kind:"id",id:raw,raw};return {kind:"name",name:raw,raw}}
-function postImageUrls(p){const v=p.media_asset?.variants||[],pick=t=>v.find(x=>x.type===t)?.url;return [...new Set([pick("360x360"),pick("180x180"),pick("720x720"),p.preview_file_url,p.large_file_url,p.file_url].filter(Boolean))]}
-async function resolveArtistInput(item){let r;if(item.kind==="id")r=await fetch("https://danbooru.donmai.us/artists/"+item.id+".json",{headers:{Accept:"application/json"}});else r=await fetch("https://danbooru.donmai.us/artists.json?search[any_name_matches]="+encodeURIComponent(item.name)+"&limit=12",{headers:{Accept:"application/json"}});if(!r.ok)throw Error("Danbooru 查询失败（"+r.status+"）");if(item.kind==="id")return r.json();const rows=await r.json(),q=item.name.toLowerCase(),exact=rows.find(a=>String(a.name||"").toLowerCase()===q||(a.other_names||[]).some(n=>String(n).toLowerCase()===q));if(exact)return exact;if(rows.length===1)return rows[0];if(rows.length>1)throw Error("名称存在多个候选，请改用 Artist 主页链接");throw Error("没有找到该画师")}
-async function getBatchPreviews(a){const tag=String(a.name).replace(/\s+/g,"_"),url="https://danbooru.donmai.us/posts.json?tags="+encodeURIComponent(tag+" rating:g order:score")+"&limit=3&only=id,rating,preview_file_url,large_file_url,file_url,is_deleted,media_asset";const r=await fetch(url,{headers:{Accept:"application/json"}});if(!r.ok)throw Error("作品查询失败（"+r.status+"）");const posts=(await r.json()).filter(p=>p.rating==="g"&&!p.is_deleted).slice(0,3);return {posts,urls:posts.map(p=>postImageUrls(p)[0]).filter(Boolean),ids:posts.map(p=>p.id).filter(Boolean)}}
-function renderBatch(){const box=$("batchResults");box.innerHTML=batchItems.map((x,i)=>{const a=x.artist||{},old=artists.find(z=>String(z.danbooru_id)===String(a.id)),blocked=!x.ok||x.error||a.is_banned||a.is_deleted||!!old,checked=x.selected??(x.ok&&!blocked);const pics=(x.urls||[]).map(u=>'<img src="'+esc(u)+'" loading="lazy" alt="预览">').join("");return '<div class="batch-row"><input type="checkbox" data-batch-check="'+i+'" '+(checked?"checked":"")+(blocked?" disabled":"")+' aria-label="选择 '+esc(a.name||x.input.raw)+'"><div><b>'+esc(a.name||x.input.raw)+'</b><small>Artist ID '+esc(a.id||"—")+' · '+esc((a.other_names||[]).slice(0,5).join("、")||"无别名")+'</small><div class="batch-status">'+esc(x.error||(a.is_banned?"已封禁":a.is_deleted?"已删除":old?"已收录，自动跳过":(x.urls||[]).length+" 张预览就绪"))+'</div><div class="batch-preview">'+pics+'</div></div><a href="https://danbooru.donmai.us/artists/'+esc(a.id||"")+'" target="_blank" rel="noopener">主页 ↗</a></div>'}).join("");const count=[...box.querySelectorAll("[data-batch-check]:checked")].length;$("batchImport").disabled=count===0}
-async function resolveBatch(){const lines=$("batchInput").value.split(/\r?\n/).map(parseArtistInput).filter(Boolean);if(!lines.length)return toast("请先输入画师名称或主页链接");$("batchResolve").disabled=true;$("batchResolve").textContent="核验中…";batchItems=[];for(let i=0;i<lines.length;i++){const x={input:lines[i],ok:false,urls:[],ids:[]};try{const a=await resolveArtistInput(lines[i]);x.artist=a;if(a.is_banned||a.is_deleted)throw Error(a.is_banned?"Artist 已封禁":"Artist 已删除");const p=await getBatchPreviews(a);x.posts=p.posts;x.urls=p.urls;x.ids=p.ids;x.ok=true;x.selected=true}catch(e){x.error=e.message}batchItems.push(x);renderBatch();$("batchStatus").textContent="核验进度："+(i+1)+"/"+lines.length+"。已收录画师会自动跳过。"}$("batchResolve").disabled=false;$("batchResolve").textContent="重新解析"}
-async function importBatch(){const chosen=batchItems.filter((x,i)=>x.ok&&!x.error&&!x.artist?.is_banned&&!x.artist?.is_deleted&&$("batchResults").querySelector('[data-batch-check="'+i+'"]')?.checked);if(!chosen.length)return toast("请勾选要导入的画师");let next=artists.map(a=>({...a}));const now=new Date().toISOString();for(const x of chosen){const a=x.artist,old=next.find(z=>String(z.danbooru_id)===String(a.id));const entry={...(old||{}),id:old?.id||"artist-"+a.id,name:old?.name||a.name,danbooru_id:a.id,danbooru_name:a.name,aliases:old?.aliases||a.other_names||[],category:old?.category||"未分类",tags:old?.tags||[],score:old?.score??null,note:old?.note||"",post_count:old?.post_count||x.posts.length,preview_urls:x.urls,preview_post_ids:x.ids,danbooru_url:"https://danbooru.donmai.us/artists/"+a.id,danbooru_verified_at:now,preview_updated_at:now,added_at:old?.added_at||now,updated_at:now,featured:old?.featured||false};next=next.filter(z=>String(z.danbooru_id)!==String(a.id));next.push(entry)}await commit(next,"Batch import "+chosen.length+" Danbooru artists");$("batchStatus").textContent="已提交 "+chosen.length+" 位画师。"}
-async function lookupDanbooru(){const q=$("artistQuery").value.trim();if(!q)return toast("先输入画师名");$("lookup").disabled=true;$("lookup").textContent="查询中…";$("candidates").innerHTML="";chosen=null;$("selected").style.display="none";try{const url="https://danbooru.donmai.us/artists.json?search[any_name_matches]="+encodeURIComponent(q)+"&limit=12";const r=await fetch(url,{headers:{"Accept":"application/json"}});if(!r.ok)throw Error("D站返回 "+r.status);const rows=await r.json();if(!rows.length){$("candidates").innerHTML='<p class="muted">没有找到对应条目。可以检查拼写，或暂时不收录，避免错误匹配。</p>';return}
-$("candidates").innerHTML=rows.map(x=>{const blocked=!!(x.is_banned||x.is_deleted);const exact=String(x.name||"").toLowerCase()===q.toLowerCase()||(x.other_names||[]).some(n=>String(n).toLowerCase()===q.toLowerCase());return '<div class="candidate"><div class="grow"><b>'+esc(x.name)+'</b><small>ID '+x.id+(exact?" · 名称精确匹配":" · 名称/别名候选，请人工核对") +' · 别名：'+esc((x.other_names||[]).join(", ")||"无")+(x.is_banned?" · 已封禁":"")+(x.is_deleted?" · 已删除":"")+(blocked?" · 不允许正常收录":"") +'</small></div><button data-pick="'+x.id+'" '+(blocked?"disabled":"")+'>'+(blocked?"不可收录":"选择并取样")+'</button></div>'}).join("");$("candidates").querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>selectArtist(rows.find(x=>String(x.id)===b.dataset.pick)))}catch(e){$("candidates").innerHTML='<p class="muted">查询失败：'+esc(e.message)+'。可能是网络或浏览器跨域限制；可以稍后重试。</p>'}finally{$("lookup").disabled=false;$("lookup").textContent="搜索 D 站"}}
-async function selectArtist(a){if(!a||a.is_banned||a.is_deleted){chosen=null;return toast("该 Danbooru Artist 已封禁或删除，不能正常收录")}chosen=a;$("selected").style.display="block";$("fName").value=a.name;$("fAliases").value=(a.other_names||[]).join(", ");$("previews").innerHTML="正在读取安全级别为 General 的代表作…";try{const previews=await getBatchPreviews(a);const posts=previews.posts;chosen.posts=posts;$("previews").innerHTML=posts.map(p=>{const urls=postImageUrls(p);return '<a href="https://danbooru.donmai.us/posts/'+Number(p.id)+'" target="_blank" rel="noopener"><img src="'+esc(urls[0]||"")+'" data-fallbacks="'+esc(JSON.stringify(urls.slice(1)))+'" loading="lazy" alt="作品预览"></a>'}).join("")||'<span class="muted">暂时没有可用的 General 预览图</span>';chosen.preview_urls=previews.urls;chosen.preview_post_ids=previews.ids;chosen.post_count=posts.length;const safeTag=String(a.name).replace(/\\s+/g,"_");try{const cr=await fetch("https://danbooru.donmai.us/counts/posts.json?tags="+encodeURIComponent(safeTag+" rating:g"));if(cr.ok){const cd=await cr.json();chosen.post_count=cd.counts?.posts??chosen.post_count}}catch(_){}}catch(e){chosen.posts=[];chosen.preview_urls=[];$("previews").textContent="作品预览获取失败："+e.message} }
-async function connect(){const t=$("token").value.trim();if(!t)return toast("请先输入 GitHub Token");token=t;try{const r=await fetch(API,{headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}});if(!r.ok)throw Error("GitHub API "+r.status);const d=await r.json();fileSha=d.sha;sessionStorage.setItem("artistAtlasToken",token);$("authPanel").style.display="none";$("editor").style.display="block";renderManaged();if(pendingEditId){openEditorFor(pendingEditId);pendingEditId=null}toast("仓库授权成功")}catch(e){token="";toast("连接失败："+e.message)}}
-async function save(){if(!chosen)return toast("请先选择并核验一个 D 站条目");if(chosen.is_banned||chosen.is_deleted)return toast("该 D 站条目已封禁或删除，不能收录");const name=$("fName").value.trim();if(!name)return toast("画师名称不能为空");const scoreValue=$("fScore").value?Number($("fScore").value):null;if(scoreValue!==null&&(!Number.isFinite(scoreValue)||scoreValue<1||scoreValue>10))return toast("评分请填写 1–10 之间的数字");const old=artists.find(a=>String(a.danbooru_id)===String(chosen.id));const entry={id:old?.id||"artist-"+chosen.id,name,danbooru_id:chosen.id,danbooru_name:chosen.name,aliases:$("fAliases").value.split(",").map(x=>x.trim()).filter(Boolean),category:$("fCategory").value.trim()||"未分类",score:scoreValue,tags:$("fTags").value.split(",").map(x=>x.trim()).filter(Boolean),note:$("fNote").value.trim(),post_count:chosen.post_count||0,preview_urls:chosen.preview_urls||[],preview_post_ids:chosen.preview_post_ids||[],danbooru_url:"https://danbooru.donmai.us/artists/"+chosen.id,danbooru_verified_at:new Date().toISOString(),preview_updated_at:new Date().toISOString(),added_at:old?.added_at||new Date().toISOString(),updated_at:new Date().toISOString(),featured:old?.featured||false};
-const normalizeName=x=>String(x).normalize("NFKC").trim().toLowerCase().replace(/[\\s._-]+/g,"_");const ownNames=[entry.name,...entry.aliases].map(normalizeName).filter(Boolean);if(new Set(ownNames).size!==ownNames.length)return toast("当前名称或别名重复，请检查后再保存");const aliasKeys=new Set(ownNames);const collision=artists.find(a=>a.danbooru_id!==chosen.id&&[a.name,...(a.aliases||[])].some(x=>aliasKeys.has(String(x).normalize("NFKC").trim().toLowerCase().replace(/[\\s._-]+/g,"_"))));if(collision)return toast("名称或别名与已收录画师「"+collision.name+"」冲突，请先核对");const next=artists.filter(a=>a.danbooru_id!==chosen.id);next.push(entry);await commit(next,"Add/update artist: "+name)}
-async function commit(next,message){try{const base=artists.map(a=>({...a}));const changed=new Set([...base.map(a=>a.id),...next.map(a=>a.id)].filter(id=>JSON.stringify(base.find(a=>a.id===id)||null)!==JSON.stringify(next.find(a=>a.id===id)||null)));const latest=await fetch(API,{headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}});if(!latest.ok)throw Error("读取仓库文件失败 "+latest.status);const current=await latest.json();const decoded=new TextDecoder().decode(Uint8Array.from(atob((current.content||"").replace(/\\s/g,"")),c=>c.charCodeAt(0)));const latestData=JSON.parse(decoded);const latestArtists=Array.isArray(latestData.artists)?latestData.artists:[];for(const id of changed){const before=base.find(a=>a.id===id)||null;const remote=latestArtists.find(a=>a.id===id)||null;if(JSON.stringify(before)!==JSON.stringify(remote))throw Error("检测到并发修改（"+id+"）。为避免覆盖他人的更新，请刷新页面后重新操作。")}let merged=latestArtists.filter(a=>!changed.has(a.id));merged.push(...next.filter(a=>changed.has(a.id)));const seenIds=new Set(),seenDb=new Set();for(const a of merged){if(seenIds.has(a.id)||seenDb.has(String(a.danbooru_id)))throw Error("合并后检测到重复画师记录，请刷新并处理重复项");seenIds.add(a.id);seenDb.add(String(a.danbooru_id))}const payload={message,content:btoa(unescape(encodeURIComponent(JSON.stringify({version:1,updated_at:new Date().toISOString(),artists:merged},null,2)))),sha:current.sha,branch:BRANCH};const r=await fetch(API,{method:"PUT",headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json","Content-Type":"application/json"},body:JSON.stringify(payload)});if(!r.ok){const e=await r.json();throw Error(e.message||"提交失败 "+r.status)}artists=merged;fileSha=(await r.json()).content?.sha||"";render();renderManaged();toast("已提交到 GitHub，Pages 稍后自动更新")}catch(e){toast("保存失败："+e.message)}}
-function renderManaged(){$("managedList").innerHTML=artists.map(a=>'<div class="candidate"><div class="grow"><b>'+esc(a.name)+'</b><small>'+esc(a.category||"未分类")+' · '+(a.danbooru_id?"D站 #"+a.danbooru_id:"未核验")+'</small></div><button data-feature="'+esc(a.id)+'">'+(a.featured?"取消精选":"设为精选")+'</button><button data-remove="'+esc(a.id)+'">删除</button></div>').join("")||'<p class="muted">仓库里还没有画师。</p>';$("managedList").querySelectorAll("[data-feature]").forEach(b=>b.onclick=()=>{const n=artists.map(a=>({...a,featured:a.id===b.dataset.feature?!a.featured:false}));commit(n,"Update featured artist")});$("managedList").querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{if(confirm("确定从仓库图鉴中删除这位画师？"))commit(artists.filter(a=>a.id!==b.dataset.remove),"Remove artist")})}
-$("search").addEventListener("input",render);$("sort").addEventListener("change",render);$("refresh").onclick=loadData;$("manage").onclick=()=>{$("modal").classList.add("show");const t=sessionStorage.getItem("artistAtlasToken");if(t){$("token").value=t;connect()}};$("emptyManage").onclick=()=>$("manage").click();$("guide").onclick=()=>{$("guideModal").classList.add("show");$("guideModal").querySelector(".dialog").focus()};$("guideClose").onclick=()=>$("guideModal").classList.remove("show");$("guideManage").onclick=()=>{$("guideModal").classList.remove("show");$("manage").click()};$("welcomeClose").onclick=()=>$("welcomeModal").classList.remove("show");$("welcomeStart").onclick=()=>{$("welcomeModal").classList.remove("show");localStorage.setItem("artistAtlasWelcomeSeen","1")};$("welcomeGuide").onclick=()=>{$("welcomeModal").classList.remove("show");$("guideModal").classList.add("show");localStorage.setItem("artistAtlasWelcomeSeen","1")};$("close").onclick=()=>$("modal").classList.remove("show");$("connect").onclick=connect;$("forget").onclick=()=>{sessionStorage.removeItem("artistAtlasToken");token="";$("authPanel").style.display="block";$("editor").style.display="none";$("token").value="";toast("已清除会话授权")};$("lookup").onclick=lookupDanbooru;$("saveArtist").onclick=save;$("batchResolve").onclick=resolveBatch;$("batchSelectAll").onclick=()=>{$("batchResults").querySelectorAll("[data-batch-check]:not(:disabled)").forEach(c=>c.checked=true);renderBatch()};$("batchImport").onclick=importBatch;$("batchResults").addEventListener("change",e=>{const c=e.target.closest("[data-batch-check]");if(c&&batchItems[Number(c.dataset.batchCheck)])batchItems[Number(c.dataset.batchCheck)].selected=c.checked;renderBatch()});
-function openEditorFor(id){const a=artists.find(x=>x.id===id);if(!a)return;chosen={id:a.danbooru_id,name:a.danbooru_name||a.name,other_names:a.aliases||[],preview_urls:a.preview_urls||[],preview_post_ids:a.preview_post_ids||[],post_count:a.post_count};$("fName").value=a.name;$("fCategory").value=a.category||"";$("fAliases").value=(a.aliases||[]).join(", ");$("fScore").value=a.score||"";$("fTags").value=(a.tags||[]).join(", ");$("fNote").value=a.note||"";$("previews").innerHTML=(a.preview_urls||[]).map(u=>'<img src="'+esc(u)+'">').join("");$("selected").style.display="block";$("artistQuery").value=a.danbooru_name||a.name}
-$("cards").addEventListener("click",e=>{
- const zcard=e.target.closest("[data-zhan-card]");if(zcard){if(e.target.closest("[data-zhan-prev]")){moveZhanSlide(zcard,-1);return}if(e.target.closest("[data-zhan-next]")){moveZhanSlide(zcard,1);return}const dot=e.target.closest("[data-zhan-dot]");if(dot){const a=artists.find(x=>String(x.danbooru_id)==="63362"||x.id==="artist-63362");if(a){const target=Number(dot.dataset.zhanDot);moveZhanSlide(zcard,(target-(a._slide_index||0)+a.live_posts.length)%a.live_posts.length)}return}}
- const fav=e.target.closest("[data-favorite]");if(fav){const id=fav.dataset.favorite;if(favoriteIds.has(id))favoriteIds.delete(id);else favoriteIds.add(id);try{localStorage.setItem(FAVORITES_KEY,JSON.stringify([...favoriteIds]))}catch(_){toast("浏览器未允许保存本地收藏")}render();return}
- const add=e.target.closest("[data-compose]");if(add){const id=add.dataset.compose;if(composition.includes(id)){composition=composition.filter(x=>x!==id);delete compositionStrength[id]}else composition.push(id);render();return}
- const b=e.target.closest("[data-edit]");if(!b)return;pendingEditId=b.dataset.edit;$("manage").click();if(token)openEditorFor(pendingEditId)
+function render(){
+ const list=visibleArtists();
+ $("artistGrid").innerHTML=list.map(cardMarkup).join("");
+ $("emptyState").hidden=list.length>0;
+ $("collectionCount").textContent="显示 "+list.length+" / "+artists.length+" 位画师";
+ $("artistTotal").textContent=String(artists.length).padStart(2,"0");
+ $("workTotal").textContent=String(Object.values(worksByArtist).reduce((sum,arr)=>sum+arr.length,0)).padStart(2,"0");
+ $("favoriteTotal").textContent=String(favorites.size).padStart(2,"0");
+ document.querySelectorAll("[data-filter]").forEach(function(button){
+  button.classList.toggle("active",button.dataset.filter===activeFilter);
+ });
+ renderComposer();
+}
+async function fetchLatestWorks(artist){
+ const tag=artistTag(artist);
+ const query=tag+" rating:g order:id_desc";
+ const url="https://danbooru.donmai.us/posts.json?tags="+encodeURIComponent(query)+"&limit=3&only=id,rating,file_url,large_file_url,preview_file_url,is_deleted,image_width,image_height,created_at";
+ const response=await fetch(url,{headers:{Accept:"application/json"}});
+ if(!response.ok)throw new Error("Danbooru API "+response.status);
+ const posts=await response.json();
+ return posts.filter(function(post){
+  return post.rating==="g"&&!post.is_deleted&&!!workSource(post);
+ }).sort(function(a,b){return Number(b.id)-Number(a.id)}).slice(0,3);
+}
+async function loadLatestWorks(){
+ const results=await Promise.all(artists.map(async function(artist){
+  try{return {id:artist.id,posts:await fetchLatestWorks(artist),error:""}}
+  catch(error){return {id:artist.id,posts:[],error:"请求失败："+error.message}}
+ }));
+ worksByArtist={};
+ results.forEach(function(result){
+  worksByArtist[result.id]=result.posts;
+  const artist=artists.find(function(a){return a.id===result.id});
+  if(artist)artist.workError=result.posts.length?"":(result.error||"没有找到可展示的 General 作品");
+ });
+ render();
+}
+async function loadData(){
+ $("collectionCount").textContent="正在读取图鉴…";
+ $("artistGrid").innerHTML='<div class="empty-state">正在读取正式收录的画师资料…</div>';
+ try{
+  const response=await fetch(RAW_DATA+"?t="+Date.now(),{cache:"no-store"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const payload=await response.json();
+  if(!Array.isArray(payload.artists))throw new Error("artists 数据格式不正确");
+  artists=payload.artists;
+  render();
+  await loadLatestWorks();
+ }catch(error){
+  $("collectionCount").textContent="读取失败";
+  $("artistGrid").innerHTML='<div class="empty-state"><strong>暂时无法读取图鉴</strong>'+esc(error.message)+'<br>请检查网络后刷新页面。</div>';
+  $("artistTotal").textContent="—";$("workTotal").textContent="—";
+ }
+}
+function moveSlide(card,step){
+ const id=card.dataset.artistCard;
+ const works=worksByArtist[id]||[];
+ if(works.length<2)return;
+ const current=slideByArtist[id]||0;
+ slideByArtist[id]=(current+step+works.length)%works.length;
+ render();
+}
+$("artistGrid").addEventListener("click",function(event){
+ const card=event.target.closest("[data-artist-card]");
+ if(!card)return;
+ const fav=event.target.closest("[data-favorite]");
+ if(fav){
+  const id=fav.dataset.favorite;
+  if(favorites.has(id))favorites.delete(id);else favorites.add(id);
+  try{localStorage.setItem(FAVORITES_KEY,JSON.stringify(Array.from(favorites)))}catch(_){}
+  render();return;
+ }
+ const compose=event.target.closest("[data-compose]");
+ if(compose){
+  const id=compose.dataset.compose;
+  if(composition.includes(id))composition=composition.filter(function(x){return x!==id});
+  else composition.push(id);
+  render();return;
+ }
+ const edit=event.target.closest("[data-edit]");
+ if(edit){openManage(edit.dataset.edit);return}
+ const nav=event.target.closest("[data-slide]");
+ if(nav){moveSlide(card,Number(nav.dataset.slide));return}
+ const dot=event.target.closest("[data-slide-to]");
+ if(dot){slideByArtist[card.dataset.artistCard]=Number(dot.dataset.slideTo);render();return}
 });
-$("favoritesToggle").onclick=()=>{favoritesOnly=!favoritesOnly;render()};
-$("compositionOpen").onclick=()=>{$("compositionModal").classList.add("show");renderComposition();$("compositionTitle").closest(".dialog").focus()};
-$("compositionClose").onclick=()=>$("compositionModal").classList.remove("show");
-$("compositionModal").addEventListener("click",e=>{if(e.target===$("compositionModal"))$("compositionModal").classList.remove("show")});
-$("compositionList").addEventListener("change",e=>{const s=e.target.closest("[data-strength]");if(!s)return;compositionStrength[s.dataset.strength]=s.value;renderComposition()});
-$("compositionList").addEventListener("click",e=>{const remove=e.target.closest("[data-remove]");if(remove){const id=remove.dataset.remove;composition=composition.filter(x=>x!==id);delete compositionStrength[id];render();return}const up=e.target.closest("[data-up]"),down=e.target.closest("[data-down]"),button=up||down;if(!button)return;const index=composition.indexOf(button.dataset[up?"up":"down"]),next=index+(up?-1:1);if(index<0||next<0||next>=composition.length)return;[composition[index],composition[next]]=[composition[next],composition[index]];render()});
-$("compositionClear").onclick=()=>{composition=[];compositionStrength={};render()};
-$("compositionCopy").onclick=async()=>{const text=$("compositionOutput").value;if(!text)return;try{await navigator.clipboard.writeText(text);toast("画师串已复制")}catch(_){const field=$("compositionOutput");field.focus();field.select();if(document.execCommand("copy"))toast("画师串已复制");else toast("复制失败，请手动选择画师串")}};
-
-$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").classList.remove("show")});
-document.addEventListener("keydown",e=>{
- if(e.key==="Escape"&&$("compositionModal").classList.contains("show")){$("compositionModal").classList.remove("show");$("compositionOpen").focus()}
- if(e.key==="Escape"&&$("modal").classList.contains("show")){$("modal").classList.remove("show");$("manage").focus()}
- if(e.key==="Enter"&&e.target===$("artistQuery"))lookupDanbooru();
+$("searchInput").addEventListener("input",render);
+$("sortSelect").addEventListener("change",render);
+document.querySelectorAll("[data-filter]").forEach(function(button){
+ button.addEventListener("click",function(){activeFilter=button.dataset.filter;render()});
 });
-$("manage").addEventListener("click",()=>setTimeout(()=>$("dialogTitle").closest(".dialog").focus(),0));
-document.addEventListener("error",async e=>{const img=e.target;if(!(img instanceof HTMLImageElement))return;let list=[];try{list=JSON.parse(img.dataset.fallbacks||"[]")}catch(_){}if(list.length){img.dataset.fallbacks=JSON.stringify(list.slice(1));img.src=list[0];return}const link=img.closest("[data-post-id]"),postId=link?.dataset.postId;if(postId&&!img.dataset.refreshed){img.dataset.refreshed="1";try{const r=await fetch("https://danbooru.donmai.us/posts/"+postId+".json",{headers:{Accept:"application/json"}});if(r.ok){const p=await r.json(),urls=postImageUrls(p);if(urls.length){img.dataset.fallbacks=JSON.stringify(urls.slice(1));img.src=urls[0];return}}}catch(_){}}img.style.display="none";const host=img.parentElement;if(host&&!host.querySelector(".image-fallback")){const n=document.createElement("span");n.className="image-fallback muted";n.textContent="预览暂不可用 · 可打开原帖查看";host.appendChild(n)}},true);
+function setTheme(dark){
+ if(dark)document.documentElement.dataset.theme="dark";
+ else delete document.documentElement.dataset.theme;
+ try{localStorage.setItem(THEME_KEY,dark?"dark":"light")}catch(_){}
+ $("themeButton").textContent=dark?"☼":"◐";
+}
+$("themeButton").addEventListener("click",function(){setTheme(document.documentElement.dataset.theme!=="dark")});
+try{setTheme(localStorage.getItem(THEME_KEY)==="dark")}catch(_){setTheme(false)}
 
-const savedTheme=sessionStorage.getItem("artistAtlasTheme");if(savedTheme==="dark")document.documentElement.dataset.theme="dark";$("themeToggle").textContent=document.documentElement.dataset.theme==="dark"?"浅色模式":"深色模式";$("themeToggle").onclick=()=>{const dark=document.documentElement.dataset.theme!=="dark";if(dark)document.documentElement.dataset.theme="dark";else delete document.documentElement.dataset.theme;sessionStorage.setItem("artistAtlasTheme",dark?"dark":"light");$("themeToggle").textContent=dark?"浅色模式":"深色模式"};
+function renderComposer(){
+ const selected=composition.map(function(id){return artists.find(function(a){return a.id===id})}).filter(Boolean);
+ $("composerEmpty").style.display=selected.length?"none":"block";
+ $("composerList").innerHTML=selected.map(function(artist,index){
+  const strength=compositionStrength[artist.id]||"normal";
+  return '<li class="composer-row"><strong>'+esc(artist.name)+'</strong><select data-strength="'+esc(artist.id)+'" aria-label="'+esc(artist.name)+' 标签强弱"><option value="normal" '+(strength==="normal"?"selected":"")+'>正常强度</option><option value="strong" '+(strength==="strong"?"selected":"")+'>加强</option><option value="weak" '+(strength==="weak"?"selected":"")+'>减弱</option></select><button type="button" data-up="'+esc(artist.id)+'" '+(index===0?"disabled":"")+' aria-label="上移">↑</button><button type="button" data-down="'+esc(artist.id)+'" '+(index===selected.length-1?"disabled":"")+' aria-label="下移">↓</button><button type="button" data-remove="'+esc(artist.id)+'">移除</button></li>';
+ }).join("");
+ const output=selected.map(function(artist){
+  const tag="artist:"+artistTag(artist).toLowerCase();
+  const strength=compositionStrength[artist.id]||"normal";
+  return strength==="strong"?"{"+tag+"}":strength==="weak"?"["+tag+"]":tag;
+ }).join(", ");
+ $("composerOutput").value=output;
+ $("composerCopy").disabled=!output;
+ $("composerClear").disabled=!selected.length;
+}
+$("composerList").addEventListener("change",function(event){
+ const field=event.target.closest("[data-strength]");
+ if(!field)return;
+ compositionStrength[field.dataset.strength]=field.value;
+ renderComposer();
+});
+$("composerList").addEventListener("click",function(event){
+ const remove=event.target.closest("[data-remove]");
+ if(remove){composition=composition.filter(function(id){return id!==remove.dataset.remove});delete compositionStrength[remove.dataset.remove];render();return}
+ const up=event.target.closest("[data-up]"),down=event.target.closest("[data-down]");
+ const button=up||down;if(!button)return;
+ const id=button.dataset[up?"up":"down"],index=composition.indexOf(id),next=index+(up?-1:1);
+ if(index<0||next<0||next>=composition.length)return;
+ const swap=composition[index];composition[index]=composition[next];composition[next]=swap;render();
+});
+$("composerOpen")?.addEventListener("click",function(){$("composerModal").classList.add("show")});
+$("composerClear").addEventListener("click",function(){composition=[];compositionStrength={};render()});
+$("composerCopy").addEventListener("click",async function(){
+ const value=$("composerOutput").value;if(!value)return;
+ try{await navigator.clipboard.writeText(value);toast("画师串已复制")}
+ catch(_){$("composerOutput").focus();$("composerOutput").select();if(document.execCommand("copy"))toast("画师串已复制");else toast("复制失败，请手动复制")}
+});
+
+function openModal(id){
+ const modal=$(id);modal.classList.add("show");modal.setAttribute("aria-hidden","false");
+ const dialog=modal.querySelector(".dialog");if(dialog)dialog.focus();
+}
+function closeModal(id){
+ const modal=$(id);modal.classList.remove("show");modal.setAttribute("aria-hidden","true");
+}
+$("manageButton").addEventListener("click",function(){openManage("")});
+$("manageClose").addEventListener("click",function(){closeModal("manageModal")});
+$("composerClose").addEventListener("click",function(){closeModal("composerModal")});
+$("guideButton").addEventListener("click",function(){openModal("guideModal")});
+$("guideClose").addEventListener("click",function(){closeModal("guideModal")});
+$("composerOpen")?.addEventListener("click",function(){openModal("composerModal")});
+$("manageModal").addEventListener("click",function(e){if(e.target===$("manageModal"))closeModal("manageModal")});
+$("composerModal").addEventListener("click",function(e){if(e.target===$("composerModal"))closeModal("composerModal")});
+$("guideModal").addEventListener("click",function(e){if(e.target===$("guideModal"))closeModal("guideModal")});
+document.addEventListener("keydown",function(e){
+ if(e.key!=="Escape")return;
+ ["manageModal","composerModal","guideModal"].forEach(function(id){if($(id).classList.contains("show"))closeModal(id)});
+});
+function setManageStatus(message){$("manageStatus").textContent=message||""}
+async function connectRepository(){
+ const value=$("tokenInput").value.trim();
+ if(!value){setManageStatus("请先输入 GitHub Token。");return}
+ token=value;
+ $("connectButton").disabled=true;
+ setManageStatus("正在连接 GitHub…");
+ try{
+  const response=await fetch(API,{headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}});
+  if(!response.ok)throw new Error("GitHub API "+response.status);
+  const data=await response.json();
+  fileSha=data.sha;
+  sessionStorage.setItem("artistAtlasToken",token);
+  $("authPanel").hidden=true;$("editorPanel").hidden=false;
+  renderManagedList();setManageStatus("仓库连接成功。");
+  if(editingId)await editArtist(editingId);
+ }catch(error){token="";setManageStatus("连接失败："+error.message)}
+ finally{$("connectButton").disabled=false}
+}
+$("connectButton").addEventListener("click",connectRepository);
+$("forgetButton").addEventListener("click",function(){
+ sessionStorage.removeItem("artistAtlasToken");token="";fileSha="";
+ $("tokenInput").value="";$("authPanel").hidden=false;$("editorPanel").hidden=true;
+ setManageStatus("已清除当前会话授权。");
+});
+function openManage(id){
+ editingId=id||null;
+ openModal("manageModal");
+ const saved=sessionStorage.getItem("artistAtlasToken");
+ if(saved){$("tokenInput").value=saved;connectRepository()}
+ else if(editingId){setManageStatus("编辑资料需要先连接 GitHub。")}
+}
+async function lookupArtist(){
+ const query=$("artistQuery").value.trim();
+ if(!query){setManageStatus("先输入 Danbooru 画师名称。");return}
+ $("lookupButton").disabled=true;$("candidateResults").innerHTML="";
+ setManageStatus("正在查询 Danbooru Artist…");
+ try{
+  const url="https://danbooru.donmai.us/artists.json?search[any_name_matches]="+encodeURIComponent(query)+"&limit=12";
+  const response=await fetch(url,{headers:{Accept:"application/json"}});
+  if(!response.ok)throw new Error("Danbooru API "+response.status);
+  const rows=await response.json();
+  if(!rows.length){setManageStatus("没有找到匹配条目，请检查拼写或别名。");return}
+  $("candidateResults").innerHTML=rows.map(function(row){
+   const blocked=!!(row.is_banned||row.is_deleted);
+   const exact=String(row.name||"").toLowerCase()===query.toLowerCase()||(row.other_names||[]).some(function(name){return String(name).toLowerCase()===query.toLowerCase()});
+   return '<div class="result-row"><div class="result-main"><strong>'+esc(row.name)+'</strong><small>Artist ID '+esc(row.id)+' · '+(exact?"名称精确匹配":"候选匹配，需人工核对")+' · '+esc((row.other_names||[]).slice(0,4).join("、")||"无别名")+'</small></div><button class="action-button" type="button" data-pick="'+esc(row.id)+'" '+(blocked?"disabled":"")+'>'+(blocked?"不可收录":"选择")+'</button></div>';
+  }).join("");
+  $("candidateResults").querySelectorAll("[data-pick]").forEach(function(button){
+   button.addEventListener("click",function(){const row=rows.find(function(item){return String(item.id)===button.dataset.pick});selectArtistForEdit(row)});
+  });
+  setManageStatus("找到 "+rows.length+" 个候选。请核对 Artist ID 后再选择。");
+ }catch(error){setManageStatus("查询失败："+error.message)}
+ finally{$("lookupButton").disabled=false}
+}
+$("lookupButton").addEventListener("click",lookupArtist);
+$("artistQuery").addEventListener("keydown",function(e){if(e.key==="Enter")lookupArtist()});
+async function selectArtistForEdit(row){
+ if(!row||row.is_banned||row.is_deleted){setManageStatus("该条目已封禁或删除，不能正常收录。");return}
+ selectedArtist={row:row,posts:[]};
+ editingId=null;
+ $("artistEditor").hidden=false;
+ $("fieldName").value=row.name||"";
+ $("fieldCategory").value="";$("fieldAliases").value=(row.other_names||[]).join(", ");
+ $("fieldScore").value="";$("fieldTags").value="";$("fieldNote").value="";
+ $("editorPreviews").innerHTML="";
+ setManageStatus("正在读取作品预览…");
+ try{
+  selectedArtist.posts=await fetchLatestWorks({name:row.name,danbooru_name:row.name});
+  renderEditorPreviews();
+  setManageStatus("身份已选定：Artist ID "+row.id+" · "+selectedArtist.posts.length+" 张 General 作品。");
+ }catch(error){setManageStatus("身份已选定，但作品预览暂时无法读取："+error.message)}
+}
+function renderEditorPreviews(){
+ const posts=selectedArtist?.posts||[];
+ $("editorPreviews").innerHTML=posts.map(function(post){
+  return '<a href="'+esc(postPage(post))+'" target="_blank" rel="noopener"><img src="'+esc(workSource(post))+'" alt="作品预览" loading="lazy"></a>';
+ }).join("");
+}
+async function editArtist(id){
+ const artist=artists.find(function(item){return item.id===id});
+ if(!artist)return;
+ editingId=id;
+ selectedArtist={row:{id:artist.danbooru_id,name:artist.danbooru_name||artist.name,other_names:artist.aliases||[]},posts:worksByArtist[id]||[]};
+ $("artistEditor").hidden=false;
+ $("fieldName").value=artist.name||"";
+ $("fieldCategory").value=artist.category||"";
+ $("fieldAliases").value=(artist.aliases||[]).join(", ");
+ $("fieldScore").value=artist.score??"";
+ $("fieldTags").value=(artist.tags||[]).join(", ");
+ $("fieldNote").value=artist.note||"";
+ renderEditorPreviews();
+}
+$("cancelEditButton").addEventListener("click",function(){editingId=null;selectedArtist=null;$("artistEditor").hidden=true});
+$("saveArtistButton").addEventListener("click",saveArtist);
+async function saveArtist(){
+ if(!selectedArtist?.row)return setManageStatus("请先搜索并选择一位 Danbooru Artist。");
+ const name=$("fieldName").value.trim();
+ const scoreText=$("fieldScore").value.trim();
+ const score=scoreText?Number(scoreText):null;
+ if(!name)return setManageStatus("图鉴显示名称不能为空。");
+ if(score!==null&&(!Number.isFinite(score)||score<1||score>10))return setManageStatus("个人评分须在 1–10 之间。");
+ const row=selectedArtist.row;
+ const old=artists.find(function(item){return String(item.danbooru_id)===String(row.id)});
+ const posts=selectedArtist.posts||[];
+ const now=new Date().toISOString();
+ const entry={
+  id:old?.id||"artist-"+row.id,name:name,danbooru_id:String(row.id),
+  danbooru_name:row.name,aliases:$("fieldAliases").value.split(",").map(function(x){return x.trim()}).filter(Boolean),
+  category:$("fieldCategory").value.trim()||"未分类",tags:$("fieldTags").value.split(",").map(function(x){return x.trim()}).filter(Boolean),
+  score:score,note:$("fieldNote").value.trim(),post_count:posts.length,
+  preview_urls:posts.map(workSource).filter(Boolean),preview_post_ids:posts.map(function(p){return p.id}),
+  danbooru_url:"https://danbooru.donmai.us/artists/"+row.id,
+  danbooru_verified_at:now,preview_updated_at:now,added_at:old?.added_at||now,updated_at:now,featured:false
+ };
+ const normalize=function(value){return String(value).normalize("NFKC").trim().toLowerCase().replace(/[\s._-]+/g,"_")};
+ const keys=[entry.name,...entry.aliases].map(normalize).filter(Boolean);
+ if(new Set(keys).size!==keys.length)return setManageStatus("名称与别名中存在重复项，请先整理。");
+ const collision=artists.find(function(item){
+  return String(item.danbooru_id)!==String(row.id)&&[item.name,...(item.aliases||[])].some(function(value){return keys.includes(normalize(value))});
+ });
+ if(collision)return setManageStatus("名称或别名与「"+collision.name+"」冲突，请先核对。");
+ const next=artists.filter(function(item){return String(item.danbooru_id)!==String(row.id)}).concat(entry);
+ await commitCatalogue(next,"Add/update artist: "+name);
+}
+async function commitCatalogue(next,message){
+ if(!token)return setManageStatus("尚未连接 GitHub。");
+ $("saveArtistButton").disabled=true;
+ setManageStatus("正在提交到 GitHub…");
+ try{
+  const latest=await fetch(API,{headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}});
+  if(!latest.ok)throw new Error("读取仓库文件失败（"+latest.status+"）");
+  const remote=await latest.json();
+  if(fileSha&&remote.sha!==fileSha)throw new Error("仓库数据已被其他操作更新。请刷新页面并重新连接，再提交修改。");
+  const payload={version:1,updated_at:new Date().toISOString(),artists:next};
+  const content=btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2))));
+  const response=await fetch(API,{
+   method:"PUT",
+   headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json","Content-Type":"application/json"},
+   body:JSON.stringify({message:message,content:content,sha:remote.sha,branch:BRANCH})
+  });
+  if(!response.ok){const error=await response.json();throw new Error(error.message||"提交失败（"+response.status+"）")}
+  const result=await response.json();fileSha=result.content?.sha||"";
+  artists=next;worksByArtist={};slideByArtist={};
+  await loadLatestWorks();
+  renderManagedList();
+  $("artistEditor").hidden=true;selectedArtist=null;editingId=null;
+  setManageStatus("提交成功，GitHub Pages 将在部署完成后更新。");
+  toast("画师资料已保存到 GitHub");
+ }catch(error){setManageStatus("保存失败："+error.message)}
+ finally{$("saveArtistButton").disabled=false}
+}
+function renderManagedList(){
+ $("managedList").innerHTML=artists.map(function(artist){
+  return '<div class="managed-row"><div class="managed-main"><strong>'+esc(artist.name)+'</strong><small>Artist ID '+esc(artist.danbooru_id)+' · '+esc(artist.category||"未分类")+'</small></div><button class="action-button" type="button" data-manage-edit="'+esc(artist.id)+'">编辑</button><button class="action-button" type="button" data-manage-remove="'+esc(artist.id)+'">删除</button></div>';
+ }).join("");
+ $("managedList").querySelectorAll("[data-manage-edit]").forEach(function(button){
+  button.addEventListener("click",function(){editArtist(button.dataset.manageEdit)});
+ });
+ $("managedList").querySelectorAll("[data-manage-remove]").forEach(function(button){
+  button.addEventListener("click",async function(){
+   const artist=artists.find(function(item){return item.id===button.dataset.manageRemove});
+   if(!artist||!confirm("确定从正式图鉴中删除「"+artist.name+"」？"))return;
+   await commitCatalogue(artists.filter(function(item){return item.id!==artist.id}),"Remove artist: "+artist.name);
+  });
+ });
+}
+$("composerOpen")?.addEventListener("click",function(){openModal("composerModal")});
+const legacyComposerOpen=document.createElement("button");
+legacyComposerOpen.type="button";
+legacyComposerOpen.className="quiet-button";
+legacyComposerOpen.textContent="NAI5 画师串";
+legacyComposerOpen.addEventListener("click",function(){openModal("composerModal")});
+$("guideButton").insertAdjacentElement("beforebegin",legacyComposerOpen);
+const storedToken=sessionStorage.getItem("artistAtlasToken");
+if(storedToken){token=storedToken}
 loadData();
 </script>
-</body></html>
+</body>
+</html>
