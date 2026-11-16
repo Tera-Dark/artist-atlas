@@ -526,7 +526,6 @@ $("manageClose").addEventListener("click",function(){closeModal("manageModal")})
 $("composerClose").addEventListener("click",function(){closeModal("composerModal")});
 $("guideButton").addEventListener("click",function(){openModal("guideModal")});
 $("guideClose").addEventListener("click",function(){closeModal("guideModal")});
-$("composerOpen")?.addEventListener("click",function(){openModal("composerModal")});
 $("manageModal").addEventListener("click",function(e){if(e.target===$("manageModal"))closeModal("manageModal")});
 $("composerModal").addEventListener("click",function(e){if(e.target===$("composerModal"))closeModal("composerModal")});
 $("guideModal").addEventListener("click",function(e){if(e.target===$("guideModal"))closeModal("guideModal")});
@@ -701,7 +700,6 @@ function renderManagedList(){
   });
  });
 }
-$("composerOpen")?.addEventListener("click",function(){openModal("composerModal")});
 const legacyComposerOpen=document.createElement("button");
 legacyComposerOpen.type="button";
 legacyComposerOpen.className="quiet-button";
