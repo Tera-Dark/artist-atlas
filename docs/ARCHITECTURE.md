@@ -1,155 +1,88 @@
-# Artist Atlas — Architecture & Product Decisions
+# Artist Atlas · 前端与数据结构
 
-> Status: living design note · 2026-11-16
+> 当前状态：三位画师的统一卡片验收版
 
-## Product boundary
+## 产品边界
 
-Artist Atlas is a personal, repository-first artist reference library. Its primary job is to turn a discovered artist into a reliably identified, searchable, reviewable record with useful public references. It is not a general-purpose image downloader, social network, ranking engine, or replacement for Danbooru.
+Artist Atlas 是个人画师与视觉参考档案。它只维护一份正式画师索引，不在公开浏览页展示候选列表、核验批次或第二套作品目录。
 
-The repository is the source of truth. GitHub Pages is a read-only public projection of committed data. The browser is an editor client, not a database. The old Windows collector is an optional candidate source and must not become a second source of truth.
+当前验收数据仅保留三位画师：zhanzhan_lan、zhi_xu_li_ming、z3zz4。验收完成前，不恢复旧名单，也不执行批量导入。
 
-## Core user journey
+## 单一数据流
 
-1. Capture a lead — enter a name, alias, profile URL, or import a candidate from the legacy collector.
-2. Resolve identity — query Danbooru Artist records; show canonical name, aliases, ID, URLs, and status.
-3. Review evidence — inspect the exact match and safe preview posts. A fuzzy/name-only match is a lead, never proof.
-4. Curate — add personal category, style tags, score, notes, and optional featured status.
-5. Commit — validate the full dataset, detect duplicates, then write a Git commit.
-6. Browse — the public catalogue reads only committed repository data.
-7. Maintain — re-check records when Danbooru data changes; preserve provenance and edit history through Git.
+data/artists.json
+       |
+       v
+页面读取唯一正式索引
+       |
+       +---- Danbooru Posts API
+       |       最新 3 张 rating:g 作品
+       |       large_file_url 优先，其次 file_url
+       |
+       v
+统一画师卡片与作品轮播
+       |
+       +---- 本地收藏 / 主题 / NAI5 组合
+       |
+       +---- 管理弹窗
+                 |
+                 v
+       GitHub Contents API 写回
+                 |
+                 v
+       data/artists.json
+                 |
+          CI 校验 / Pages 部署
 
-## System boundaries
+## 页面信息架构
 
-```text
-Candidate sources (manual / legacy Windows collector)
-                    |
-                    v
-        Candidate review + identity resolution
-                    |
-          Danbooru read-only API
-                    |
-                    v
-          Curated artist record editor
-                    |
-          GitHub Contents API (write)
-                    |
-                    v
-             data/artists.json
-                    |
-          CI validation / Pages deploy
-                    |
-                    v
-       GitHub Pages public catalogue
-```
+公开页面只保留以下层级：
 
-- GitHub repository: canonical records, schema, validation, documentation, version history.
-- Danbooru: external identity evidence and public preview source; never the owner of personal curation fields.
-- GitHub Pages: static read-only catalogue. No Python server, private database, or scheduled server process runs on Pages.
-- Browser session: temporary GitHub credential and transient UI state only. Never store credentials in JSON, URLs, logs, commits, or localStorage.
+1. 站点标识与全局操作。
+2. 图鉴标题与轻量统计。
+3. 搜索、收藏筛选和排序。
+4. 唯一的画师卡片网格。
+5. 来源与版权说明。
 
-## Data ownership
+候选审核、批量导入、核验队列不属于公开浏览页面。身份核验只在管理弹窗中按单个 Artist 进行。
 
-| Field group | Examples | Owner |
-| --- | --- | --- |
-| Stable identity | Danbooru artist ID, canonical name | Danbooru |
-| Identity evidence | aliases, source URLs, last verification timestamp/status | Danbooru snapshot + curator review |
-| Personal curation | display name, category, style tags, score, notes, featured | Curator |
-| Preview cache | post IDs, preview URLs, preview refresh timestamp | Derived from Danbooru; disposable |
-| Audit | added/updated timestamps, schema version | Artist Atlas |
+## 画师卡片约束
 
-A Danbooru ID is the stable external key. Do not use display names as primary keys. Do not silently merge two records because their names look similar.
+- 所有画师使用同一套卡片模板和信息顺序，不允许按单个 ID 编写特例卡片。
+- 每位画师最多展示 3 张最新 General 作品。
+- 作品展示优先使用 Danbooru 的 large sample，缺少 sample 时使用原图；不将 180×180 preview 用作主展示。
+- 图片保持原始长宽比完整显示，不使用强制裁切。
+- 左右按钮和圆点控制同一卡片内部的作品索引。
+- 点击作品打开对应 Danbooru Post；资料入口打开 Artist 页面。
+- 图片请求失败时展示明确的错误提示与 Artist 主页链接。
 
-## Verification policy
+## 状态与持久化
 
-- Search with Danbooru's Artist API, not only the artist tag search.
-- Preserve the selected artist ID and canonical name.
-- Show is_banned and is_deleted prominently. Block normal publication of banned/deleted records; allow an explicit, separately documented exception only if the product later needs historical references.
-- Exact canonical/alias matches are strong evidence. Fuzzy results are suggestions requiring manual confirmation.
-- A missing General-rated preview is not proof that the Artist record is invalid.
-- Query previews with an explicit safe-rating filter (rating:g). Do not store or render unrestricted preview results.
-- Store source links and timestamps so stale metadata can be refreshed without losing personal notes.
-- Respect Danbooru identification and rate-limit guidance; avoid parallel bursts and repeated full refreshes. Danbooru asks API clients to use a distinctive User-Agent containing the user's Danbooru ID. A browser-hosted static page cannot reliably override User-Agent in Chromium Fetch, so this direct-browser integration remains a documented limitation; a small trusted relay or curator-side helper should be evaluated before high-volume use. See MDN's User-Agent header notes.
+浏览器本地状态：
+- 收藏列表：localStorage。
+- 主题偏好：localStorage。
+- NAI5 组合与强弱：当前页面会话内存。
 
-## Data quality and duplicate policy
+仓库正式资料：
+- 画师名称、别名、Danbooru Artist ID。
+- 分类、风格标签、个人评分与备注。
+- 作品 Post ID 和来源 URL。
+- 添加与更新时间。
 
-1. id is an Artist Atlas stable record key.
-2. danbooru_id must be unique across published records.
-3. Canonical names are normalized for comparison, but the original source spelling is preserved.
-4. Aliases are searchable metadata, not identity keys. Alias collisions are surfaced for human review rather than auto-merged.
-5. A duplicate Danbooru ID updates the existing record; it must never create a second card.
-6. Every write validates the complete next dataset before commit.
-7. Concurrent edits must be detected against the latest repository version. A stale in-memory array must never overwrite newer records.
+不将远程作品文件下载或重新托管到仓库。
 
-## GitHub write model and security
+## 管理流程
 
-The static editor requires a user-supplied fine-grained PAT because GitHub Pages has no trusted server-side secret store. Keep this limitation explicit.
+管理弹窗使用 Fine-grained GitHub Token 访问 Contents API。建议仅授权本仓库的 Contents Read and write 权限。
 
-- Request access only to this repository and only the Contents: Read and write permission.
-- Keep the token in memory for the active session; if session persistence is used, clear it on explicit disconnect and never put it in URLs or logs.
-- Treat every rendered API string as untrusted text; escape HTML and validate URLs before using them in links or image sources.
-- Do not add third-party scripts or analytics to the editor without a separate security review.
-- GitHub Contents API writes are not a database transaction. Re-read the latest file, merge the intended operation by stable ID, and handle SHA conflicts with a bounded retry or ask the user to reload. Never blindly retry a stale full-file replacement.
-- For broader community contributions, prefer Pull Requests with CI validation rather than asking contributors to use a write token in the public page.
+提交前重新读取远端文件并比对 blob SHA；若远端已有其他修改，则停止写入并要求刷新，避免覆盖并发更新。
 
-## Repository layout
+## 质量检查
 
-- data/artists.json — canonical curated records.
-- data/artist.schema.json — machine-readable record contract.
-- scripts/validate-data.mjs — dependency-free data and page sanity checks.
-- scripts/import-verified-artists.mjs — publish unique active verification results while preserving existing curation.
-- .github/workflows/validate.yml — validation on pushes and pull requests.
-- .github/workflows/pages.yml — publish the static docs/ site after validation.
-- docs/ — static public catalogue and product documentation.
-- Legacy Python collector files — optional candidate acquisition tool, not the catalogue database.
+使用 node scripts/validate-data.mjs 检查正式数据、重复身份、DOM ID、页面脚本语法。
 
-## Quality gates
+GitHub Actions 在 main 分支推送和 Pull Request 时执行校验。GitHub Pages 发布工作流应在部署前执行同一校验。
 
-Every change should pass:
-- JSON parsing and schema/semantic checks.
-- Unique record ID and Danbooru ID checks.
-- Safe URL and safe-preview metadata checks.
-- HTML duplicate-ID and inline JavaScript syntax checks.
-- Desktop and mobile browser checks for empty, populated, loading, and error states.
-- Keyboard checks for search, dialogs, and save flows.
-- A manual review of Danbooru identity evidence before publishing a new artist.
+## 后续扩容原则
 
-## Deliberate non-goals for the first stable release
-
-- No automated aesthetic score or AI ranking of artists.
-- No copying/re-hosting artist images in this repository.
-- No automatic identity merge based on fuzzy name similarity.
-- No private backend or paid infrastructure.
-- No multi-booru support until the Danbooru workflow is dependable.
-- No large framework migration merely to reorganize a small static catalogue.
-
-## Reference implementations and what to borrow
-
-- Danbooru Artist API: use first-class Artist records, IDs, aliases, banned/deleted state, and source URLs. Do not infer artist identity from a tag string alone.
-- Booru Tags Gallery: borrow the separation of data, API services, search, and presentation; load remote detail/preview data only when needed. Its large offline tag index is not necessary for this smaller curated catalogue.
-- BooruBrowser: borrow the artist-centric discovery workflow and clear source adapters; do not inherit its local-first downloader architecture.
-- Booru Studio: borrow the idea of following artists and recognizing artist metadata; do not copy its desktop/local infrastructure or add download-management features that are outside this project's purpose.
-- GitHub Pages starter workflow: keep deployment least-privileged, deterministic, and separate from validation. The published artifact should contain only the static site.
-
-These are selective design references, not dependencies or templates to copy wholesale.
-
-## Roadmap
-
-### P0 — trust and data integrity
-- Schema + CI validation.
-- Block banned/deleted Danbooru records from ordinary publishing.
-- Prevent duplicate IDs and alias collisions from being silently accepted.
-- Make writes merge-safe and conflict-aware.
-- Validate preview URLs and retain source post IDs/timestamps.
-
-### P1 — curator workflow
-- Separate candidate inbox from published artists.
-- Batch-import candidates from the legacy collector, then verify each candidate.
-- Add duplicate suggestions and an explicit merge workflow.
-- Add re-verify / refresh preview actions that preserve curator fields.
-- Provide export/import with schema version and validation.
-
-### P2 — community quality
-- Add CONTRIBUTING guidance and issue templates.
-- Accept curated additions through Pull Requests.
-- Add CI summaries that explain invalid records and duplicate candidates.
-- Add accessibility/performance checks and browser-level regression tests.
+只有在三张卡片的作品清晰度、信息层级、桌面与移动端布局、轮播与管理流程完成验收后，才恢复完整名单。扩容时只增加正式索引数据，不为单个画师写专属卡片结构。
