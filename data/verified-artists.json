@@ -1,15 +1,15 @@
 {
   "version": 1,
   "source_updated_at": "2026-11-16T08:53:27.581Z",
-  "checked_at": "2026-11-16T09:10:48.903Z",
+  "checked_at": "2026-11-16T09:22:45.027Z",
   "source_count": 73,
   "results": [
     {
       "candidate_id": "candidate-001",
       "source_tag": "artist:zhanzhan lan",
       "query": "zhanzhan lan",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:11.084Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:30.723Z",
       "artist_id": 63362,
       "canonical_name": "zhanzhan_lan",
       "aliases": [
@@ -24,8 +24,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/63362",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7393663,
+          "rating": "g",
+          "score": 58,
+          "fav_count": 56,
+          "preview_url": "https://cdn.donmai.us/180x180/5a/77/5a778c3de55244bd2578df917e90c563.jpg",
+          "large_url": "https://cdn.donmai.us/sample/5a/77/sample-5a778c3de55244bd2578df917e90c563.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7393663"
+        },
+        {
+          "id": 7285602,
+          "rating": "g",
+          "score": 48,
+          "fav_count": 44,
+          "preview_url": "https://cdn.donmai.us/180x180/7e/1c/7e1cf4fe03e2ca938741a8b9af3f4fe3.jpg",
+          "large_url": "https://cdn.donmai.us/sample/7e/1c/sample-7e1cf4fe03e2ca938741a8b9af3f4fe3.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7285602"
+        },
+        {
+          "id": 5354639,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 43,
+          "preview_url": "https://cdn.donmai.us/180x180/db/67/db6781459cbe9cda478dbf8ef6324c98.jpg",
+          "large_url": "https://cdn.donmai.us/original/db/67/db6781459cbe9cda478dbf8ef6324c98.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5354639"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -33,8 +61,8 @@
       "candidate_id": "candidate-002",
       "source_tag": "artist:zhi xu li ming",
       "query": "zhi xu li ming",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:13.451Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:33.842Z",
       "artist_id": 408507,
       "canonical_name": "zhi_xu_li_ming",
       "aliases": [
@@ -46,8 +74,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/408507",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8651495,
+          "rating": "g",
+          "score": 25,
+          "fav_count": 23,
+          "preview_url": "https://cdn.donmai.us/180x180/8b/84/8b849935223ad894ca756d7ba02f7340.jpg",
+          "large_url": "https://cdn.donmai.us/sample/8b/84/sample-8b849935223ad894ca756d7ba02f7340.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8651495"
+        },
+        {
+          "id": 7285475,
+          "rating": "g",
+          "score": 23,
+          "fav_count": 19,
+          "preview_url": "https://cdn.donmai.us/180x180/81/49/81493933a421c438bde6a0b18d818360.jpg",
+          "large_url": "https://cdn.donmai.us/sample/81/49/sample-81493933a421c438bde6a0b18d818360.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7285475"
+        },
+        {
+          "id": 8850377,
+          "rating": "g",
+          "score": 21,
+          "fav_count": 21,
+          "preview_url": "https://cdn.donmai.us/180x180/10/c1/10c1da027bef1894952d161b4340a80b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/10/c1/sample-10c1da027bef1894952d161b4340a80b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8850377"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -55,8 +111,8 @@
       "candidate_id": "candidate-003",
       "source_tag": "artist:z3zz4",
       "query": "z3zz4",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:15.723Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:36.550Z",
       "artist_id": 261471,
       "canonical_name": "z3zz4",
       "aliases": [
@@ -68,8 +124,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/261471",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9554645,
+          "rating": "g",
+          "score": 95,
+          "fav_count": 85,
+          "preview_url": "https://cdn.donmai.us/180x180/4d/54/4d54542c70e2c6f161f5adc660278086.jpg",
+          "large_url": "https://cdn.donmai.us/sample/4d/54/sample-4d54542c70e2c6f161f5adc660278086.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9554645"
+        },
+        {
+          "id": 7993061,
+          "rating": "g",
+          "score": 83,
+          "fav_count": 75,
+          "preview_url": "https://cdn.donmai.us/180x180/2b/92/2b92532166333701933f5c77d3321721.jpg",
+          "large_url": "https://cdn.donmai.us/sample/2b/92/sample-2b92532166333701933f5c77d3321721.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7993061"
+        },
+        {
+          "id": 8478598,
+          "rating": "g",
+          "score": 77,
+          "fav_count": 71,
+          "preview_url": "https://cdn.donmai.us/180x180/2d/0f/2d0fab907ea68a2efab51e4705aad816.jpg",
+          "large_url": "https://cdn.donmai.us/sample/2d/0f/sample-2d0fab907ea68a2efab51e4705aad816.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8478598"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -77,8 +161,8 @@
       "candidate_id": "candidate-004",
       "source_tag": "artist:yunouou10",
       "query": "yunouou10",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:17.989Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:39.265Z",
       "artist_id": 292748,
       "canonical_name": "yunouou10",
       "aliases": [
@@ -89,8 +173,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/292748",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7808576,
+          "rating": "g",
+          "score": 97,
+          "fav_count": 93,
+          "preview_url": "https://cdn.donmai.us/180x180/3f/f1/3ff1e6fb3b5f032ab046ed8d0d770ea1.jpg",
+          "large_url": "https://cdn.donmai.us/sample/3f/f1/sample-3ff1e6fb3b5f032ab046ed8d0d770ea1.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7808576"
+        },
+        {
+          "id": 6223372,
+          "rating": "g",
+          "score": 72,
+          "fav_count": 71,
+          "preview_url": "https://cdn.donmai.us/180x180/55/dd/55dd51712fa655dda8879bb3cefb73ca.jpg",
+          "large_url": "https://cdn.donmai.us/sample/55/dd/sample-55dd51712fa655dda8879bb3cefb73ca.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6223372"
+        },
+        {
+          "id": 8850517,
+          "rating": "g",
+          "score": 52,
+          "fav_count": 51,
+          "preview_url": "https://cdn.donmai.us/180x180/12/4d/124da91c64c0208f5bed5667c6069bc9.jpg",
+          "large_url": "https://cdn.donmai.us/sample/12/4d/sample-124da91c64c0208f5bed5667c6069bc9.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8850517"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -98,8 +210,8 @@
       "candidate_id": "candidate-005",
       "source_tag": "artist:yellowshark601",
       "query": "yellowshark601",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:20.248Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:41.981Z",
       "artist_id": 414379,
       "canonical_name": "yellowshark601",
       "aliases": [
@@ -110,8 +222,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/414379",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8889727,
+          "rating": "g",
+          "score": 9,
+          "fav_count": 9,
+          "preview_url": "https://cdn.donmai.us/180x180/37/e6/37e6fe1f17f0755f782f1b3aed67e988.jpg",
+          "large_url": "https://cdn.donmai.us/sample/37/e6/sample-37e6fe1f17f0755f782f1b3aed67e988.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8889727"
+        },
+        {
+          "id": 7315917,
+          "rating": "g",
+          "score": 8,
+          "fav_count": 8,
+          "preview_url": "https://cdn.donmai.us/180x180/f5/30/f530f90d0e18b0c0b09bab36221877c3.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f5/30/sample-f530f90d0e18b0c0b09bab36221877c3.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7315917"
+        },
+        {
+          "id": 7315926,
+          "rating": "g",
+          "score": 7,
+          "fav_count": 7,
+          "preview_url": "https://cdn.donmai.us/180x180/23/31/2331bb21b599994e3ecf73f2d451056e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/23/31/sample-2331bb21b599994e3ecf73f2d451056e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7315926"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -119,8 +259,8 @@
       "candidate_id": "candidate-006",
       "source_tag": "artist:ye xing caomei",
       "query": "ye xing caomei",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:22.528Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:44.700Z",
       "artist_id": 416168,
       "canonical_name": "ye_xing_caomei",
       "aliases": [
@@ -131,8 +271,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/416168",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8917020,
+          "rating": "g",
+          "score": 97,
+          "fav_count": 91,
+          "preview_url": "https://cdn.donmai.us/180x180/a0/04/a004b052ae1fdf9a947f17a0e1505008.jpg",
+          "large_url": "https://cdn.donmai.us/sample/a0/04/sample-a004b052ae1fdf9a947f17a0e1505008.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8917020"
+        },
+        {
+          "id": 7345133,
+          "rating": "g",
+          "score": 75,
+          "fav_count": 70,
+          "preview_url": "https://cdn.donmai.us/180x180/2b/71/2b7134dcb62b0550199add9500fa0785.jpg",
+          "large_url": "https://cdn.donmai.us/sample/2b/71/sample-2b7134dcb62b0550199add9500fa0785.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7345133"
+        },
+        {
+          "id": 7345129,
+          "rating": "g",
+          "score": 74,
+          "fav_count": 71,
+          "preview_url": "https://cdn.donmai.us/180x180/3a/7b/3a7b615ab79ba5e9094ba1e8c1e76468.jpg",
+          "large_url": "https://cdn.donmai.us/sample/3a/7b/sample-3a7b615ab79ba5e9094ba1e8c1e76468.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7345129"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -140,8 +308,8 @@
       "candidate_id": "candidate-007",
       "source_tag": "artist:xixun",
       "query": "xixun",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:24.791Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:47.676Z",
       "artist_id": 310941,
       "canonical_name": "xixun",
       "aliases": [
@@ -154,8 +322,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/310941",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6753379,
+          "rating": "g",
+          "score": 57,
+          "fav_count": 51,
+          "preview_url": "https://cdn.donmai.us/180x180/9f/f8/9ff8e6459f472cbc1d8b5029f173d1ef.jpg",
+          "large_url": "https://cdn.donmai.us/sample/9f/f8/sample-9ff8e6459f472cbc1d8b5029f173d1ef.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6753379"
+        },
+        {
+          "id": 5826454,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 45,
+          "preview_url": "https://cdn.donmai.us/180x180/d0/65/d0654759ad0db131524ae0c684f5bddb.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d0/65/sample-d0654759ad0db131524ae0c684f5bddb.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5826454"
+        },
+        {
+          "id": 6884319,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/3a/54/3a545fc5c927458208472e75c378857b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/3a/54/sample-3a545fc5c927458208472e75c378857b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6884319"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -163,16 +359,44 @@
       "candidate_id": "candidate-008",
       "source_tag": "artist:xiayu93",
       "query": "xiayu93",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:27.062Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:50.384Z",
       "artist_id": 76640,
       "canonical_name": "xiayu93",
       "aliases": [],
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/76640",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 1399507,
+          "rating": "g",
+          "score": 14,
+          "fav_count": 15,
+          "preview_url": "https://cdn.donmai.us/180x180/20/09/200922974b4e29a856e0e73332e08307.jpg",
+          "large_url": "https://cdn.donmai.us/original/20/09/200922974b4e29a856e0e73332e08307.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/1399507"
+        },
+        {
+          "id": 1427170,
+          "rating": "g",
+          "score": 8,
+          "fav_count": 14,
+          "preview_url": "https://cdn.donmai.us/180x180/0c/7b/0c7bdfe29f583e25f848ae2787f9ef45.jpg",
+          "large_url": "https://cdn.donmai.us/sample/0c/7b/sample-0c7bdfe29f583e25f848ae2787f9ef45.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/1427170"
+        },
+        {
+          "id": 1293728,
+          "rating": "g",
+          "score": 6,
+          "fav_count": 11,
+          "preview_url": "https://cdn.donmai.us/180x180/95/5d/955d8ac09257d06010267954e7419010.jpg",
+          "large_url": "https://cdn.donmai.us/sample/95/5d/sample-955d8ac09257d06010267954e7419010.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/1293728"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -180,8 +404,8 @@
       "candidate_id": "candidate-009",
       "source_tag": "artist:tracyton",
       "query": "tracyton",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:29.323Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:53.080Z",
       "artist_id": 116606,
       "canonical_name": "tracyton",
       "aliases": [
@@ -201,8 +425,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/116606",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6780630,
+          "rating": "g",
+          "score": 67,
+          "fav_count": 64,
+          "preview_url": "https://cdn.donmai.us/180x180/f7/66/f766a4670f8a63535fbb9ce596f36158.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f7/66/sample-f766a4670f8a63535fbb9ce596f36158.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6780630"
+        },
+        {
+          "id": 7842594,
+          "rating": "g",
+          "score": 36,
+          "fav_count": 34,
+          "preview_url": "https://cdn.donmai.us/180x180/62/f2/62f2cadea880861c53d88799e2037675.jpg",
+          "large_url": "https://cdn.donmai.us/sample/62/f2/sample-62f2cadea880861c53d88799e2037675.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7842594"
+        },
+        {
+          "id": 5188440,
+          "rating": "g",
+          "score": 33,
+          "fav_count": 29,
+          "preview_url": "https://cdn.donmai.us/180x180/72/93/729383ebeaef70304dc9b03fd294aff2.jpg",
+          "large_url": "https://cdn.donmai.us/sample/72/93/sample-729383ebeaef70304dc9b03fd294aff2.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5188440"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -210,8 +462,8 @@
       "candidate_id": "candidate-010",
       "source_tag": "artist:sumooo (ga ilil)",
       "query": "sumooo (ga ilil)",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:31.618Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:55.789Z",
       "artist_id": 249702,
       "canonical_name": "sumooo_(ga_ilil)",
       "aliases": [
@@ -228,8 +480,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/249702",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8497120,
+          "rating": "g",
+          "score": 55,
+          "fav_count": 49,
+          "preview_url": "https://cdn.donmai.us/180x180/a2/dc/a2dce68e1e54dd60a92b8fe8815a4643.jpg",
+          "large_url": "https://cdn.donmai.us/sample/a2/dc/sample-a2dce68e1e54dd60a92b8fe8815a4643.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8497120"
+        },
+        {
+          "id": 8427895,
+          "rating": "g",
+          "score": 36,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/0d/1c/0d1c946746c2e4b46d959348d1c76d6b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/0d/1c/sample-0d1c946746c2e4b46d959348d1c76d6b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8427895"
+        },
+        {
+          "id": 7437919,
+          "rating": "g",
+          "score": 35,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/7a/58/7a58b4f5af7d3da04af439d9a6fd7844.jpg",
+          "large_url": "https://cdn.donmai.us/sample/7a/58/sample-7a58b4f5af7d3da04af439d9a6fd7844.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7437919"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -238,7 +518,7 @@
       "source_tag": "artist:smusmuve",
       "query": "smusmuve",
       "status": "not_found",
-      "checked_at": "2026-11-16T09:08:33.891Z",
+      "checked_at": "2026-11-16T09:19:58.498Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -254,8 +534,8 @@
       "candidate_id": "candidate-012",
       "source_tag": "artist:shuiyemusan",
       "query": "shuiyemusan",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:35.016Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:19:59.841Z",
       "artist_id": 396958,
       "canonical_name": "shuiyemusan",
       "aliases": [
@@ -267,8 +547,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/396958",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7062466,
+          "rating": "g",
+          "score": 28,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/08/a9/08a9f097409bf2104832e97481ce2158.jpg",
+          "large_url": "https://cdn.donmai.us/sample/08/a9/sample-08a9f097409bf2104832e97481ce2158.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7062466"
+        },
+        {
+          "id": 9299596,
+          "rating": "g",
+          "score": 16,
+          "fav_count": 16,
+          "preview_url": "https://cdn.donmai.us/180x180/7d/e9/7de99a283bd042ee876ae4aa5f30eb80.jpg",
+          "large_url": "https://cdn.donmai.us/sample/7d/e9/sample-7de99a283bd042ee876ae4aa5f30eb80.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9299596"
+        },
+        {
+          "id": 9106210,
+          "rating": "g",
+          "score": 13,
+          "fav_count": 12,
+          "preview_url": "https://cdn.donmai.us/180x180/9a/f2/9af2fffddf32f8ff897f91e4b120d25f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/9a/f2/sample-9af2fffddf32f8ff897f91e4b120d25f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9106210"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -276,8 +584,8 @@
       "candidate_id": "candidate-013",
       "source_tag": "artist:shule de yu",
       "query": "shule de yu",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:37.276Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:02.560Z",
       "artist_id": 286004,
       "canonical_name": "shule_de_yu",
       "aliases": [
@@ -291,8 +599,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/286004",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 11248414,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 38,
+          "preview_url": "https://cdn.donmai.us/180x180/e4/f6/e4f6e110a5bdcb253755a5fb958646ec.jpg",
+          "large_url": "https://cdn.donmai.us/original/e4/f6/e4f6e110a5bdcb253755a5fb958646ec.mp4",
+          "post_url": "https://danbooru.donmai.us/posts/11248414"
+        },
+        {
+          "id": 6830668,
+          "rating": "g",
+          "score": 43,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/4b/c2/4bc2b9f267ec4df69c6862a04da14ec1.jpg",
+          "large_url": "https://cdn.donmai.us/sample/4b/c2/sample-4bc2b9f267ec4df69c6862a04da14ec1.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6830668"
+        },
+        {
+          "id": 7008202,
+          "rating": "g",
+          "score": 40,
+          "fav_count": 36,
+          "preview_url": "https://cdn.donmai.us/180x180/18/09/180946235c147ecb18306e1f3f1396cc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/18/09/sample-180946235c147ecb18306e1f3f1396cc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7008202"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -300,8 +636,8 @@
       "candidate_id": "candidate-014",
       "source_tag": "artist:shaiziji",
       "query": "shaiziji",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:39.552Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:05.277Z",
       "artist_id": 293621,
       "canonical_name": "shaiziji",
       "aliases": [
@@ -319,8 +655,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/293621",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7815196,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 44,
+          "preview_url": "https://cdn.donmai.us/180x180/14/5d/145dd511018f055edc70d424f0a779dc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/14/5d/sample-145dd511018f055edc70d424f0a779dc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7815196"
+        },
+        {
+          "id": 8003880,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/b1/fe/b1fe7fb0f484823bce5f780be94e1ca5.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b1/fe/sample-b1fe7fb0f484823bce5f780be94e1ca5.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8003880"
+        },
+        {
+          "id": 7540070,
+          "rating": "g",
+          "score": 29,
+          "fav_count": 25,
+          "preview_url": "https://cdn.donmai.us/180x180/cb/41/cb411c372c5a2ae261073b91733c9a8e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/cb/41/sample-cb411c372c5a2ae261073b91733c9a8e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7540070"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -328,8 +692,8 @@
       "candidate_id": "candidate-015",
       "source_tag": "artist:shaokao lajitong",
       "query": "shaokao lajitong",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:41.813Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:08.008Z",
       "artist_id": 373477,
       "canonical_name": "shaokao_lajitong",
       "aliases": [
@@ -342,8 +706,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/373477",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 11082407,
+          "rating": "g",
+          "score": 52,
+          "fav_count": 45,
+          "preview_url": "https://cdn.donmai.us/180x180/41/e8/41e8dfe8b85e06567d316b129107b6fb.jpg",
+          "large_url": "https://cdn.donmai.us/sample/41/e8/sample-41e8dfe8b85e06567d316b129107b6fb.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11082407"
+        },
+        {
+          "id": 8458933,
+          "rating": "g",
+          "score": 43,
+          "fav_count": 40,
+          "preview_url": "https://cdn.donmai.us/180x180/59/fa/59fae95c2c4765d60a9d9d6bdf14b36c.jpg",
+          "large_url": "https://cdn.donmai.us/sample/59/fa/sample-59fae95c2c4765d60a9d9d6bdf14b36c.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8458933"
+        },
+        {
+          "id": 9133466,
+          "rating": "g",
+          "score": 38,
+          "fav_count": 36,
+          "preview_url": "https://cdn.donmai.us/180x180/ef/56/ef561991f58c200139e7422a8ec2adad.jpg",
+          "large_url": "https://cdn.donmai.us/sample/ef/56/sample-ef561991f58c200139e7422a8ec2adad.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9133466"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -351,8 +743,8 @@
       "candidate_id": "candidate-016",
       "source_tag": "artist:sanfu qwq",
       "query": "sanfu qwq",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:44.078Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:10.733Z",
       "artist_id": 303871,
       "canonical_name": "sanfu_qwq",
       "aliases": [
@@ -361,8 +753,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/303871",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5588479,
+          "rating": "g",
+          "score": 11,
+          "fav_count": 10,
+          "preview_url": "https://cdn.donmai.us/180x180/78/54/785447107e6beeac350d476960788266.jpg",
+          "large_url": "https://cdn.donmai.us/sample/78/54/sample-785447107e6beeac350d476960788266.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5588479"
+        },
+        {
+          "id": 9734126,
+          "rating": "g",
+          "score": 5,
+          "fav_count": 5,
+          "preview_url": "https://cdn.donmai.us/180x180/47/ab/47abad52ae2d33bee318b255e281ce49.jpg",
+          "large_url": "https://cdn.donmai.us/sample/47/ab/sample-47abad52ae2d33bee318b255e281ce49.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9734126"
+        },
+        {
+          "id": 8697834,
+          "rating": "g",
+          "score": 5,
+          "fav_count": 4,
+          "preview_url": "https://cdn.donmai.us/180x180/4f/f1/4ff195a8cf78e7096bcfb136cc9b3bcc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/4f/f1/sample-4ff195a8cf78e7096bcfb136cc9b3bcc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8697834"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -370,8 +790,8 @@
       "candidate_id": "candidate-017",
       "source_tag": "artist:rrr (reason)",
       "query": "rrr (reason)",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:46.332Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:13.431Z",
       "artist_id": 93984,
       "canonical_name": "rrr_(reason)",
       "aliases": [
@@ -389,8 +809,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/93984",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6079361,
+          "rating": "g",
+          "score": 74,
+          "fav_count": 69,
+          "preview_url": "https://cdn.donmai.us/180x180/8d/0c/8d0c179d708ad483213b3fdb28d27a28.jpg",
+          "large_url": "https://cdn.donmai.us/sample/8d/0c/sample-8d0c179d708ad483213b3fdb28d27a28.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6079361"
+        },
+        {
+          "id": 6144143,
+          "rating": "g",
+          "score": 73,
+          "fav_count": 68,
+          "preview_url": "https://cdn.donmai.us/180x180/b9/a6/b9a6fdbf438532cc7e5277258f7226c2.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b9/a6/sample-b9a6fdbf438532cc7e5277258f7226c2.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6144143"
+        },
+        {
+          "id": 7151293,
+          "rating": "g",
+          "score": 70,
+          "fav_count": 63,
+          "preview_url": "https://cdn.donmai.us/180x180/6c/89/6c89f97a7419192544a2fe5a6c2223e1.jpg",
+          "large_url": "https://cdn.donmai.us/sample/6c/89/sample-6c89f97a7419192544a2fe5a6c2223e1.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7151293"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -398,8 +846,8 @@
       "candidate_id": "candidate-018",
       "source_tag": "artist:qingming tiaohetu",
       "query": "qingming tiaohetu",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:48.598Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:16.149Z",
       "artist_id": 171154,
       "canonical_name": "qingming_tiaohetu",
       "aliases": [
@@ -410,8 +858,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/171154",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7079764,
+          "rating": "g",
+          "score": 64,
+          "fav_count": 60,
+          "preview_url": "https://cdn.donmai.us/180x180/61/c1/61c11fe112d713471e7fccc591e14265.jpg",
+          "large_url": "https://cdn.donmai.us/sample/61/c1/sample-61c11fe112d713471e7fccc591e14265.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7079764"
+        },
+        {
+          "id": 8099916,
+          "rating": "g",
+          "score": 53,
+          "fav_count": 51,
+          "preview_url": "https://cdn.donmai.us/180x180/73/4e/734e98bcf968acc30203b9e140048083.jpg",
+          "large_url": "https://cdn.donmai.us/sample/73/4e/sample-734e98bcf968acc30203b9e140048083.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8099916"
+        },
+        {
+          "id": 7854496,
+          "rating": "g",
+          "score": 45,
+          "fav_count": 39,
+          "preview_url": "https://cdn.donmai.us/180x180/47/33/47333109882947df6d77741cd863756d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/47/33/sample-47333109882947df6d77741cd863756d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7854496"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -419,8 +895,8 @@
       "candidate_id": "candidate-019",
       "source_tag": "artist:qianben shan",
       "query": "qianben shan",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:50.864Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:18.866Z",
       "artist_id": 325654,
       "canonical_name": "qianben_shan",
       "aliases": [
@@ -433,8 +909,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/325654",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8696329,
+          "rating": "g",
+          "score": 38,
+          "fav_count": 34,
+          "preview_url": "https://cdn.donmai.us/180x180/b2/74/b274a1a8093aa38f10729d81036a68b2.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b2/74/sample-b274a1a8093aa38f10729d81036a68b2.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8696329"
+        },
+        {
+          "id": 6312096,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/cb/fa/cbfae552faa5029f34ff7a7d37dfe91b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/cb/fa/sample-cbfae552faa5029f34ff7a7d37dfe91b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6312096"
+        },
+        {
+          "id": 8211586,
+          "rating": "g",
+          "score": 29,
+          "fav_count": 26,
+          "preview_url": "https://cdn.donmai.us/180x180/32/fc/32fcd8733c0bbe97e1e2df66df2377d0.jpg",
+          "large_url": "https://cdn.donmai.us/sample/32/fc/sample-32fcd8733c0bbe97e1e2df66df2377d0.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8211586"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -442,8 +946,8 @@
       "candidate_id": "candidate-020",
       "source_tag": "artist:panni xing",
       "query": "panni xing",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:53.154Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:21.826Z",
       "artist_id": 241752,
       "canonical_name": "panni_xing",
       "aliases": [
@@ -456,8 +960,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/241752",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 11795541,
+          "rating": "g",
+          "score": 58,
+          "fav_count": 55,
+          "preview_url": "https://cdn.donmai.us/180x180/31/42/3142a96961513728a8ab558c6849cefa.jpg",
+          "large_url": "https://cdn.donmai.us/sample/31/42/sample-3142a96961513728a8ab558c6849cefa.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11795541"
+        },
+        {
+          "id": 8715066,
+          "rating": "g",
+          "score": 49,
+          "fav_count": 48,
+          "preview_url": "https://cdn.donmai.us/180x180/c9/8c/c98cc4ccbb146aad36085f4dae27e243.jpg",
+          "large_url": "https://cdn.donmai.us/sample/c9/8c/sample-c98cc4ccbb146aad36085f4dae27e243.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8715066"
+        },
+        {
+          "id": 11378428,
+          "rating": "g",
+          "score": 35,
+          "fav_count": 31,
+          "preview_url": "https://cdn.donmai.us/180x180/7f/68/7f6896c523077ca1af09452660e09e71.jpg",
+          "large_url": "https://cdn.donmai.us/sample/7f/68/sample-7f6896c523077ca1af09452660e09e71.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11378428"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -465,8 +997,8 @@
       "candidate_id": "candidate-021",
       "source_tag": "artist:nokoya",
       "query": "nokoya",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:55.416Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:24.540Z",
       "artist_id": 404599,
       "canonical_name": "nokoya",
       "aliases": [
@@ -476,8 +1008,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/404599",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7897265,
+          "rating": "g",
+          "score": 97,
+          "fav_count": 90,
+          "preview_url": "https://cdn.donmai.us/180x180/fc/15/fc1567d856511a6449ddbbe19e348e33.jpg",
+          "large_url": "https://cdn.donmai.us/sample/fc/15/sample-fc1567d856511a6449ddbbe19e348e33.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7897265"
+        },
+        {
+          "id": 10782624,
+          "rating": "g",
+          "score": 48,
+          "fav_count": 40,
+          "preview_url": "https://cdn.donmai.us/180x180/5a/e1/5ae1b6380d0ec10fe4d26ed277977576.jpg",
+          "large_url": "https://cdn.donmai.us/sample/5a/e1/sample-5ae1b6380d0ec10fe4d26ed277977576.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10782624"
+        },
+        {
+          "id": 5673816,
+          "rating": "g",
+          "score": 23,
+          "fav_count": 21,
+          "preview_url": "https://cdn.donmai.us/180x180/7a/aa/7aaa191494572aaa3104e7e5e9f63fee.jpg",
+          "large_url": "https://cdn.donmai.us/sample/7a/aa/sample-7aaa191494572aaa3104e7e5e9f63fee.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5673816"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -485,8 +1045,8 @@
       "candidate_id": "candidate-022",
       "source_tag": "artist:niukou kouzi",
       "query": "niukou kouzi",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:57.686Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:27.264Z",
       "artist_id": 366560,
       "canonical_name": "niukou_kouzi",
       "aliases": [
@@ -499,8 +1059,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/366560",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6504909,
+          "rating": "g",
+          "score": 95,
+          "fav_count": 91,
+          "preview_url": "https://cdn.donmai.us/180x180/a5/a0/a5a0d752bf45132d2f63ec4f3b289c92.jpg",
+          "large_url": "https://cdn.donmai.us/sample/a5/a0/sample-a5a0d752bf45132d2f63ec4f3b289c92.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6504909"
+        },
+        {
+          "id": 6504907,
+          "rating": "g",
+          "score": 60,
+          "fav_count": 58,
+          "preview_url": "https://cdn.donmai.us/180x180/e4/6f/e46fdce3f91987cc75f70e5e775d944f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/e4/6f/sample-e46fdce3f91987cc75f70e5e775d944f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6504907"
+        },
+        {
+          "id": 7247440,
+          "rating": "g",
+          "score": 56,
+          "fav_count": 55,
+          "preview_url": "https://cdn.donmai.us/180x180/7d/ec/7dec319b80b9720c93928c03197d6f1a.jpg",
+          "large_url": "https://cdn.donmai.us/sample/7d/ec/sample-7dec319b80b9720c93928c03197d6f1a.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7247440"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -508,8 +1096,8 @@
       "candidate_id": "candidate-023",
       "source_tag": "artist:naux",
       "query": "naux",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:08:59.946Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:30.224Z",
       "artist_id": 198706,
       "canonical_name": "naux",
       "aliases": [
@@ -519,8 +1107,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/198706",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5077890,
+          "rating": "g",
+          "score": 39,
+          "fav_count": 38,
+          "preview_url": "https://cdn.donmai.us/180x180/d8/40/d84011f4e4a02a0c8ab3703d1216dac5.jpg",
+          "large_url": "https://cdn.donmai.us/original/d8/40/d84011f4e4a02a0c8ab3703d1216dac5.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5077890"
+        },
+        {
+          "id": 12477943,
+          "rating": "g",
+          "score": 31,
+          "fav_count": 24,
+          "preview_url": "https://cdn.donmai.us/180x180/33/f5/33f553e2bad97a4e48ae534cb32bd85f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/33/f5/sample-33f553e2bad97a4e48ae534cb32bd85f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/12477943"
+        },
+        {
+          "id": 5447808,
+          "rating": "g",
+          "score": 31,
+          "fav_count": 29,
+          "preview_url": "https://cdn.donmai.us/180x180/22/10/2210991dcbe9dfba2c38e089ec62263b.jpg",
+          "large_url": "https://cdn.donmai.us/original/22/10/2210991dcbe9dfba2c38e089ec62263b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5447808"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -528,8 +1144,8 @@
       "candidate_id": "candidate-024",
       "source_tag": "artist:narakuuu",
       "query": "narakuuu",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:02.213Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:33.204Z",
       "artist_id": 181949,
       "canonical_name": "narakuuu",
       "aliases": [
@@ -540,8 +1156,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/181949",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5502466,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/94/e9/94e952e701f8124df1687e49dc4135fd.jpg",
+          "large_url": "https://cdn.donmai.us/sample/94/e9/sample-94e952e701f8124df1687e49dc4135fd.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5502466"
+        },
+        {
+          "id": 5502465,
+          "rating": "g",
+          "score": 33,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/d1/30/d130c89f7e01071ac23c8e1b1a7e5158.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d1/30/sample-d130c89f7e01071ac23c8e1b1a7e5158.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5502465"
+        },
+        {
+          "id": 7854003,
+          "rating": "g",
+          "score": 31,
+          "fav_count": 29,
+          "preview_url": "https://cdn.donmai.us/180x180/a4/c6/a4c6d1715ff6e3255dac26e92a01bced.jpg",
+          "large_url": "https://cdn.donmai.us/sample/a4/c6/sample-a4c6d1715ff6e3255dac26e92a01bced.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7854003"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -549,8 +1193,8 @@
       "candidate_id": "candidate-025",
       "source_tag": "artist:mugoa mugo",
       "query": "mugoa mugo",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:04.473Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:35.927Z",
       "artist_id": 255935,
       "canonical_name": "mugoa_mugo",
       "aliases": [
@@ -563,8 +1207,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/255935",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5544509,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 44,
+          "preview_url": "https://cdn.donmai.us/180x180/6e/1b/6e1b30a72c83a94d6353970c704c4b26.jpg",
+          "large_url": "https://cdn.donmai.us/sample/6e/1b/sample-6e1b30a72c83a94d6353970c704c4b26.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5544509"
+        },
+        {
+          "id": 7706193,
+          "rating": "g",
+          "score": 39,
+          "fav_count": 38,
+          "preview_url": "https://cdn.donmai.us/180x180/43/39/4339e49450a0e95df72360ea266b2eff.jpg",
+          "large_url": "https://cdn.donmai.us/sample/43/39/sample-4339e49450a0e95df72360ea266b2eff.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7706193"
+        },
+        {
+          "id": 6631019,
+          "rating": "g",
+          "score": 39,
+          "fav_count": 35,
+          "preview_url": "https://cdn.donmai.us/180x180/64/24/642484379bdfd5175115858a2c96eaa4.jpg",
+          "large_url": "https://cdn.donmai.us/sample/64/24/sample-642484379bdfd5175115858a2c96eaa4.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6631019"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -572,8 +1244,8 @@
       "candidate_id": "candidate-026",
       "source_tag": "artist:mr. owlish",
       "query": "mr. owlish",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:06.742Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:38.634Z",
       "artist_id": 240642,
       "canonical_name": "mr._owlish",
       "aliases": [
@@ -588,8 +1260,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/240642",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6537535,
+          "rating": "g",
+          "score": 43,
+          "fav_count": 40,
+          "preview_url": "https://cdn.donmai.us/180x180/df/99/df999678871f5ee8b34c119b5231309b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/df/99/sample-df999678871f5ee8b34c119b5231309b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6537535"
+        },
+        {
+          "id": 4948119,
+          "rating": "g",
+          "score": 24,
+          "fav_count": 23,
+          "preview_url": "https://cdn.donmai.us/180x180/54/06/54066fb21eda0e23eb9f21a238794952.jpg",
+          "large_url": "https://cdn.donmai.us/sample/54/06/sample-54066fb21eda0e23eb9f21a238794952.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/4948119"
+        },
+        {
+          "id": 6537528,
+          "rating": "g",
+          "score": 17,
+          "fav_count": 15,
+          "preview_url": "https://cdn.donmai.us/180x180/d0/d7/d0d7c503b5448d5dcee01db9fb111992.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d0/d7/sample-d0d7c503b5448d5dcee01db9fb111992.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6537528"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -597,8 +1297,8 @@
       "candidate_id": "candidate-027",
       "source_tag": "artist:mihiro 00122",
       "query": "mihiro 00122",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:09.013Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:41.353Z",
       "artist_id": 188291,
       "canonical_name": "mihiro_00122",
       "aliases": [
@@ -609,8 +1309,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/188291",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9316398,
+          "rating": "g",
+          "score": 16,
+          "fav_count": 15,
+          "preview_url": "https://cdn.donmai.us/180x180/eb/94/eb94c17452c7fc4f4341f7656ac78b85.jpg",
+          "large_url": "https://cdn.donmai.us/sample/eb/94/sample-eb94c17452c7fc4f4341f7656ac78b85.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9316398"
+        },
+        {
+          "id": 8887819,
+          "rating": "g",
+          "score": 16,
+          "fav_count": 14,
+          "preview_url": "https://cdn.donmai.us/180x180/3c/c6/3cc62e6bda617c6c2ced745014b334db.jpg",
+          "large_url": "https://cdn.donmai.us/sample/3c/c6/sample-3cc62e6bda617c6c2ced745014b334db.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8887819"
+        },
+        {
+          "id": 7300516,
+          "rating": "g",
+          "score": 15,
+          "fav_count": 13,
+          "preview_url": "https://cdn.donmai.us/180x180/69/8f/698f5da32d3a4e8985cde24949700f4d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/69/8f/sample-698f5da32d3a4e8985cde24949700f4d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7300516"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -618,8 +1346,8 @@
       "candidate_id": "candidate-028",
       "source_tag": "artist:maosen",
       "query": "maosen",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:11.280Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:44.796Z",
       "artist_id": 154567,
       "canonical_name": "maosen",
       "aliases": [
@@ -631,8 +1359,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/154567",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5569425,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 41,
+          "preview_url": "https://cdn.donmai.us/180x180/36/14/36140bb91da73cb4dd03dcb156a03db5.jpg",
+          "large_url": "https://cdn.donmai.us/original/36/14/36140bb91da73cb4dd03dcb156a03db5.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5569425"
+        },
+        {
+          "id": 5196576,
+          "rating": "g",
+          "score": 31,
+          "fav_count": 30,
+          "preview_url": "https://cdn.donmai.us/180x180/8e/4e/8e4e646af31b826112c28d0066512a42.jpg",
+          "large_url": "https://cdn.donmai.us/original/8e/4e/8e4e646af31b826112c28d0066512a42.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5196576"
+        },
+        {
+          "id": 6534683,
+          "rating": "g",
+          "score": 24,
+          "fav_count": 23,
+          "preview_url": "https://cdn.donmai.us/180x180/23/ad/23adaa72362e249b2127fb98c1567caf.jpg",
+          "large_url": "https://cdn.donmai.us/sample/23/ad/sample-23adaa72362e249b2127fb98c1567caf.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6534683"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -640,8 +1396,8 @@
       "candidate_id": "candidate-029",
       "source_tag": "artist:luckyia",
       "query": "luckyia",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:13.547Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:47.772Z",
       "artist_id": 98452,
       "canonical_name": "luckyia",
       "aliases": [
@@ -654,8 +1410,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/98452",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7199265,
+          "rating": "g",
+          "score": 72,
+          "fav_count": 68,
+          "preview_url": "https://cdn.donmai.us/180x180/d9/04/d904fbdc454353afc3fbd4743d7c41ce.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d9/04/sample-d904fbdc454353afc3fbd4743d7c41ce.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7199265"
+        },
+        {
+          "id": 11139196,
+          "rating": "g",
+          "score": 52,
+          "fav_count": 46,
+          "preview_url": "https://cdn.donmai.us/180x180/38/79/38790f8d2572b9fe92cfe1020f9eed5f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/38/79/sample-38790f8d2572b9fe92cfe1020f9eed5f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11139196"
+        },
+        {
+          "id": 6173696,
+          "rating": "g",
+          "score": 45,
+          "fav_count": 39,
+          "preview_url": "https://cdn.donmai.us/180x180/fd/97/fd97ae8ae2464811096c2e5e1a5501ab.jpg",
+          "large_url": "https://cdn.donmai.us/sample/fd/97/sample-fd97ae8ae2464811096c2e5e1a5501ab.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6173696"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -663,8 +1447,8 @@
       "candidate_id": "candidate-030",
       "source_tag": "artist:llmia4",
       "query": "llmia4",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:15.809Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:50.974Z",
       "artist_id": 214074,
       "canonical_name": "llmia4",
       "aliases": [
@@ -675,8 +1459,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/214074",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8117955,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 35,
+          "preview_url": "https://cdn.donmai.us/180x180/df/13/df135dcfa8d66bbdfefbd828d3b390b7.jpg",
+          "large_url": "https://cdn.donmai.us/sample/df/13/sample-df135dcfa8d66bbdfefbd828d3b390b7.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8117955"
+        },
+        {
+          "id": 7946105,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 39,
+          "preview_url": "https://cdn.donmai.us/180x180/e2/7e/e27eff97053ee01a08273e243bb2f3d6.jpg",
+          "large_url": "https://cdn.donmai.us/sample/e2/7e/sample-e27eff97053ee01a08273e243bb2f3d6.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7946105"
+        },
+        {
+          "id": 5813247,
+          "rating": "g",
+          "score": 36,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/6f/b7/6fb72c0282b33586ec040fc4c760bebc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/6f/b7/sample-6fb72c0282b33586ec040fc4c760bebc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5813247"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -684,8 +1496,8 @@
       "candidate_id": "candidate-031",
       "source_tag": "artist:lkppp",
       "query": "lkppp",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:18.071Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:53.947Z",
       "artist_id": 370925,
       "canonical_name": "lkppp",
       "aliases": [
@@ -694,8 +1506,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/370925",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 10225392,
+          "rating": "g",
+          "score": 30,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/10/09/1009bcdd5f425de75431efcca38e534e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/10/09/sample-1009bcdd5f425de75431efcca38e534e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10225392"
+        },
+        {
+          "id": 10256687,
+          "rating": "g",
+          "score": 25,
+          "fav_count": 24,
+          "preview_url": "https://cdn.donmai.us/180x180/33/ff/33ffd368f7c9afc0a508e28d916fc316.jpg",
+          "large_url": "https://cdn.donmai.us/sample/33/ff/sample-33ffd368f7c9afc0a508e28d916fc316.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10256687"
+        },
+        {
+          "id": 10917346,
+          "rating": "g",
+          "score": 23,
+          "fav_count": 23,
+          "preview_url": "https://cdn.donmai.us/180x180/dc/64/dc64880e23939241dcd89465fce7ac9d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/dc/64/sample-dc64880e23939241dcd89465fce7ac9d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10917346"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -703,8 +1543,8 @@
       "candidate_id": "candidate-032",
       "source_tag": "artist:liyuliyuzhou",
       "query": "liyuliyuzhou",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:20.330Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:56.993Z",
       "artist_id": 341467,
       "canonical_name": "liyuliyuzhou",
       "aliases": [
@@ -715,8 +1555,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/341467",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9186597,
+          "rating": "g",
+          "score": 35,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/76/e2/76e27a20f06065ec6d6d5e8e4c8095a5.jpg",
+          "large_url": "https://cdn.donmai.us/sample/76/e2/sample-76e27a20f06065ec6d6d5e8e4c8095a5.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9186597"
+        },
+        {
+          "id": 8400014,
+          "rating": "g",
+          "score": 32,
+          "fav_count": 28,
+          "preview_url": "https://cdn.donmai.us/180x180/86/d1/86d17547d5c4813b81561c8c1dabcf26.jpg",
+          "large_url": "https://cdn.donmai.us/sample/86/d1/sample-86d17547d5c4813b81561c8c1dabcf26.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8400014"
+        },
+        {
+          "id": 10975948,
+          "rating": "g",
+          "score": 30,
+          "fav_count": 24,
+          "preview_url": "https://cdn.donmai.us/180x180/14/22/1422b67ae267f9c434579b5fca87c1a7.jpg",
+          "large_url": "https://cdn.donmai.us/sample/14/22/sample-1422b67ae267f9c434579b5fca87c1a7.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10975948"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -724,8 +1592,8 @@
       "candidate_id": "candidate-033",
       "source_tag": "artist:lin qing (phosphorus 1104)",
       "query": "lin qing (phosphorus 1104)",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:22.613Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:20:59.743Z",
       "artist_id": 429707,
       "canonical_name": "lin_qing_(phosphorus_1104)",
       "aliases": [
@@ -743,8 +1611,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/429707",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5781527,
+          "rating": "g",
+          "score": 173,
+          "fav_count": 165,
+          "preview_url": "https://cdn.donmai.us/180x180/a9/e9/a9e9eb5d7eff3181127bde3ee81e0bf6.jpg",
+          "large_url": "https://cdn.donmai.us/sample/a9/e9/sample-a9e9eb5d7eff3181127bde3ee81e0bf6.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5781527"
+        },
+        {
+          "id": 7971952,
+          "rating": "g",
+          "score": 86,
+          "fav_count": 77,
+          "preview_url": "https://cdn.donmai.us/180x180/00/51/00510cb00874c84da6942eb8bad894de.jpg",
+          "large_url": "https://cdn.donmai.us/sample/00/51/sample-00510cb00874c84da6942eb8bad894de.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7971952"
+        },
+        {
+          "id": 7690139,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 40,
+          "preview_url": "https://cdn.donmai.us/180x180/0f/52/0f52ba1437356e31929eaeb2b5e6900c.jpg",
+          "large_url": "https://cdn.donmai.us/sample/0f/52/sample-0f52ba1437356e31929eaeb2b5e6900c.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7690139"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -752,8 +1648,8 @@
       "candidate_id": "candidate-034",
       "source_tag": "artist:kurikabacha",
       "query": "kurikabacha",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:24.877Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:02.471Z",
       "artist_id": 199613,
       "canonical_name": "kurikabacha",
       "aliases": [
@@ -768,8 +1664,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/199613",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5295632,
+          "rating": "g",
+          "score": 61,
+          "fav_count": 55,
+          "preview_url": "https://cdn.donmai.us/180x180/5c/ee/5ceebf9dcc943b8950a706a4b256c004.jpg",
+          "large_url": "https://cdn.donmai.us/sample/5c/ee/sample-5ceebf9dcc943b8950a706a4b256c004.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5295632"
+        },
+        {
+          "id": 9464403,
+          "rating": "g",
+          "score": 58,
+          "fav_count": 57,
+          "preview_url": "https://cdn.donmai.us/180x180/25/8d/258d0995510626390058b33a43a2c47d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/25/8d/sample-258d0995510626390058b33a43a2c47d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9464403"
+        },
+        {
+          "id": 5364165,
+          "rating": "g",
+          "score": 57,
+          "fav_count": 55,
+          "preview_url": "https://cdn.donmai.us/180x180/b5/6b/b56bac313775603d656443ff59a7258e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b5/6b/sample-b56bac313775603d656443ff59a7258e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5364165"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -777,8 +1701,8 @@
       "candidate_id": "candidate-035",
       "source_tag": "artist:kelezi",
       "query": "kelezi",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:27.169Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:06.189Z",
       "artist_id": 154547,
       "canonical_name": "kelezi",
       "aliases": [
@@ -795,8 +1719,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/154547",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 10885355,
+          "rating": "g",
+          "score": 43,
+          "fav_count": 36,
+          "preview_url": "https://cdn.donmai.us/180x180/36/06/360602a0de14b522f46dae800139e068.jpg",
+          "large_url": "https://cdn.donmai.us/sample/36/06/sample-360602a0de14b522f46dae800139e068.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10885355"
+        },
+        {
+          "id": 8089437,
+          "rating": "g",
+          "score": 29,
+          "fav_count": 28,
+          "preview_url": "https://cdn.donmai.us/180x180/38/1b/381bcab6a2dabd374bc41d9328d30fd4.jpg",
+          "large_url": "https://cdn.donmai.us/sample/38/1b/sample-381bcab6a2dabd374bc41d9328d30fd4.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8089437"
+        },
+        {
+          "id": 8106631,
+          "rating": "g",
+          "score": 27,
+          "fav_count": 25,
+          "preview_url": "https://cdn.donmai.us/180x180/58/5a/585ad6897aaaa72f906937977d3b0cb6.jpg",
+          "large_url": "https://cdn.donmai.us/sample/58/5a/sample-585ad6897aaaa72f906937977d3b0cb6.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8106631"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -804,8 +1756,8 @@
       "candidate_id": "candidate-036",
       "source_tag": "artist:irple",
       "query": "irple",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:29.435Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:09.119Z",
       "artist_id": 241769,
       "canonical_name": "irple",
       "aliases": [
@@ -814,8 +1766,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/241769",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7056754,
+          "rating": "g",
+          "score": 51,
+          "fav_count": 47,
+          "preview_url": "https://cdn.donmai.us/180x180/bf/0d/bf0d22f82d62fe52612a098cea1ecfd6.jpg",
+          "large_url": "https://cdn.donmai.us/sample/bf/0d/sample-bf0d22f82d62fe52612a098cea1ecfd6.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7056754"
+        },
+        {
+          "id": 6883482,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 46,
+          "preview_url": "https://cdn.donmai.us/180x180/20/1f/201f84b5cb9b4ba2959ac2220f299888.jpg",
+          "large_url": "https://cdn.donmai.us/sample/20/1f/sample-201f84b5cb9b4ba2959ac2220f299888.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6883482"
+        },
+        {
+          "id": 7861449,
+          "rating": "g",
+          "score": 45,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/e8/90/e890056634ffa952ab4e62f1315b319b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/e8/90/sample-e890056634ffa952ab4e62f1315b319b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7861449"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -823,8 +1803,8 @@
       "candidate_id": "candidate-037",
       "source_tag": "artist:hanaseto",
       "query": "hanaseto",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:31.700Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:11.832Z",
       "artist_id": 337733,
       "canonical_name": "hanaseto",
       "aliases": [
@@ -840,8 +1820,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/337733",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8813965,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/47/c5/47c56bf5369e522dd31248407544584a.jpg",
+          "large_url": "https://cdn.donmai.us/sample/47/c5/sample-47c56bf5369e522dd31248407544584a.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8813965"
+        },
+        {
+          "id": 9178953,
+          "rating": "g",
+          "score": 35,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/b6/51/b651d6718419e6ed43bef8d2d29b72b3.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b6/51/sample-b651d6718419e6ed43bef8d2d29b72b3.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9178953"
+        },
+        {
+          "id": 5919567,
+          "rating": "g",
+          "score": 35,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/4b/ac/4bac79e5a03b47f58e083c4a80558f97.jpg",
+          "large_url": "https://cdn.donmai.us/sample/4b/ac/sample-4bac79e5a03b47f58e083c4a80558f97.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5919567"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -849,8 +1857,8 @@
       "candidate_id": "candidate-038",
       "source_tag": "artist:guigui rongrong",
       "query": "guigui rongrong",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:33.968Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:14.546Z",
       "artist_id": 355309,
       "canonical_name": "guigui_rongrong",
       "aliases": [
@@ -863,8 +1871,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/355309",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 10573184,
+          "rating": "g",
+          "score": 26,
+          "fav_count": 22,
+          "preview_url": "https://cdn.donmai.us/180x180/18/2a/182aab3bdabec6c692b518b7b10f44f6.jpg",
+          "large_url": "https://cdn.donmai.us/sample/18/2a/sample-182aab3bdabec6c692b518b7b10f44f6.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10573184"
+        },
+        {
+          "id": 9329791,
+          "rating": "g",
+          "score": 22,
+          "fav_count": 19,
+          "preview_url": "https://cdn.donmai.us/180x180/f8/14/f814134f9032d64f410a9c8e594ee7ef.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f8/14/sample-f814134f9032d64f410a9c8e594ee7ef.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9329791"
+        },
+        {
+          "id": 7906981,
+          "rating": "g",
+          "score": 21,
+          "fav_count": 21,
+          "preview_url": "https://cdn.donmai.us/180x180/fb/46/fb46da369ed6da9c978a7b548a951426.jpg",
+          "large_url": "https://cdn.donmai.us/sample/fb/46/sample-fb46da369ed6da9c978a7b548a951426.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7906981"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -872,8 +1908,8 @@
       "candidate_id": "candidate-039",
       "source_tag": "artist:gu yue yuan",
       "query": "gu yue yuan",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:36.232Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:17.268Z",
       "artist_id": 265975,
       "canonical_name": "gu_yue_yuan",
       "aliases": [
@@ -888,8 +1924,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/265975",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5581654,
+          "rating": "g",
+          "score": 48,
+          "fav_count": 43,
+          "preview_url": "https://cdn.donmai.us/180x180/94/5d/945d58a02767ceb731cdc39794baa7cb.jpg",
+          "large_url": "https://cdn.donmai.us/sample/94/5d/sample-945d58a02767ceb731cdc39794baa7cb.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5581654"
+        },
+        {
+          "id": 6086037,
+          "rating": "g",
+          "score": 40,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/f1/98/f198c4270d5a398c4091dae53fe0245d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f1/98/sample-f198c4270d5a398c4091dae53fe0245d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6086037"
+        },
+        {
+          "id": 5593590,
+          "rating": "g",
+          "score": 37,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/9a/09/9a0993c33b19e739f9a51e4c358bff9a.jpg",
+          "large_url": "https://cdn.donmai.us/sample/9a/09/sample-9a0993c33b19e739f9a51e4c358bff9a.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5593590"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -898,7 +1962,7 @@
       "source_tag": "artist:glutton (181527409271x)",
       "query": "glutton (181527409271x)",
       "status": "not_found",
-      "checked_at": "2026-11-16T09:09:38.502Z",
+      "checked_at": "2026-11-16T09:21:20.217Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -915,7 +1979,7 @@
       "source_tag": "artist:gejiandengluo",
       "query": "gejiandengluo",
       "status": "not_found",
-      "checked_at": "2026-11-16T09:09:39.637Z",
+      "checked_at": "2026-11-16T09:21:21.559Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -931,8 +1995,8 @@
       "candidate_id": "candidate-042",
       "source_tag": "artist:fengjian yuzhi",
       "query": "fengjian yuzhi",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:40.760Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:22.898Z",
       "artist_id": 435133,
       "canonical_name": "fengjian_yuzhi",
       "aliases": [
@@ -942,8 +2006,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/435133",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8409517,
+          "rating": "g",
+          "score": 28,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/66/b0/66b0b0e9083e8edece4b0b99920558d2.jpg",
+          "large_url": "https://cdn.donmai.us/sample/66/b0/sample-66b0b0e9083e8edece4b0b99920558d2.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8409517"
+        },
+        {
+          "id": 8341097,
+          "rating": "g",
+          "score": 28,
+          "fav_count": 26,
+          "preview_url": "https://cdn.donmai.us/180x180/29/6d/296dd63a6a5daed44b55a26adf7023e0.jpg",
+          "large_url": "https://cdn.donmai.us/sample/29/6d/sample-296dd63a6a5daed44b55a26adf7023e0.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8341097"
+        },
+        {
+          "id": 9084132,
+          "rating": "g",
+          "score": 22,
+          "fav_count": 23,
+          "preview_url": "https://cdn.donmai.us/180x180/70/ae/70aeddf6ab80a599d00411f3c350ea93.jpg",
+          "large_url": "https://cdn.donmai.us/sample/70/ae/sample-70aeddf6ab80a599d00411f3c350ea93.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9084132"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -951,8 +2043,8 @@
       "candidate_id": "candidate-043",
       "source_tag": "artist:g7cdpdto2i6hot6",
       "query": "g7cdpdto2i6hot6",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:43.023Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:25.616Z",
       "artist_id": 376520,
       "canonical_name": "g7cdpdto2i6hot6",
       "aliases": [
@@ -967,8 +2059,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/376520",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8829250,
+          "rating": "g",
+          "score": 47,
+          "fav_count": 45,
+          "preview_url": "https://cdn.donmai.us/180x180/85/d1/85d14205d0ff3dbf9895adff08155b9a.jpg",
+          "large_url": "https://cdn.donmai.us/sample/85/d1/sample-85d14205d0ff3dbf9895adff08155b9a.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8829250"
+        },
+        {
+          "id": 6675341,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 39,
+          "preview_url": "https://cdn.donmai.us/180x180/a3/f3/a3f34510a4e2a92468d06ea5a5815113.jpg",
+          "large_url": "https://cdn.donmai.us/original/a3/f3/a3f34510a4e2a92468d06ea5a5815113.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6675341"
+        },
+        {
+          "id": 8029559,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 38,
+          "preview_url": "https://cdn.donmai.us/180x180/af/2f/af2f53c69176c2409f9ae705fd819600.jpg",
+          "large_url": "https://cdn.donmai.us/sample/af/2f/sample-af2f53c69176c2409f9ae705fd819600.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8029559"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -976,8 +2096,8 @@
       "candidate_id": "candidate-044",
       "source_tag": "artist:feijiu",
       "query": "feijiu",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:45.291Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:28.582Z",
       "artist_id": 338766,
       "canonical_name": "feijiu",
       "aliases": [
@@ -987,8 +2107,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/338766",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 10922281,
+          "rating": "g",
+          "score": 60,
+          "fav_count": 55,
+          "preview_url": "https://cdn.donmai.us/180x180/dd/f2/ddf26eaf2a187033ef712814f3bfa758.jpg",
+          "large_url": "https://cdn.donmai.us/sample/dd/f2/sample-ddf26eaf2a187033ef712814f3bfa758.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10922281"
+        },
+        {
+          "id": 10754369,
+          "rating": "g",
+          "score": 58,
+          "fav_count": 50,
+          "preview_url": "https://cdn.donmai.us/180x180/5b/9f/5b9fc7cb51a1910eb16f7f35aa69b357.jpg",
+          "large_url": "https://cdn.donmai.us/sample/5b/9f/sample-5b9fc7cb51a1910eb16f7f35aa69b357.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10754369"
+        },
+        {
+          "id": 8576951,
+          "rating": "g",
+          "score": 54,
+          "fav_count": 49,
+          "preview_url": "https://cdn.donmai.us/180x180/5d/29/5d298100bd6fd8b85dc5b2d8b3f8db8e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/5d/29/sample-5d298100bd6fd8b85dc5b2d8b3f8db8e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8576951"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -997,7 +2145,7 @@
       "source_tag": "artist:extraspiky",
       "query": "extraspiky",
       "status": "needs_review",
-      "checked_at": "2026-11-16T09:09:47.553Z",
+      "checked_at": "2026-11-16T09:21:31.538Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1048,8 +2196,8 @@
       "candidate_id": "candidate-046",
       "source_tag": "artist:eteru",
       "query": "eteru",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:48.679Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:32.889Z",
       "artist_id": 251412,
       "canonical_name": "eteru",
       "aliases": [
@@ -1061,8 +2209,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/251412",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5652202,
+          "rating": "g",
+          "score": 52,
+          "fav_count": 49,
+          "preview_url": "https://cdn.donmai.us/180x180/cb/ce/cbce97b5ee5bd47b023c95f50c22a919.jpg",
+          "large_url": "https://cdn.donmai.us/sample/cb/ce/sample-cbce97b5ee5bd47b023c95f50c22a919.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5652202"
+        },
+        {
+          "id": 11839917,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 39,
+          "preview_url": "https://cdn.donmai.us/180x180/68/2d/682d9f99b509672f4f4e753c88052e0a.jpg",
+          "large_url": "https://cdn.donmai.us/sample/68/2d/sample-682d9f99b509672f4f4e753c88052e0a.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11839917"
+        },
+        {
+          "id": 11248414,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 38,
+          "preview_url": "https://cdn.donmai.us/180x180/e4/f6/e4f6e110a5bdcb253755a5fb958646ec.jpg",
+          "large_url": "https://cdn.donmai.us/original/e4/f6/e4f6e110a5bdcb253755a5fb958646ec.mp4",
+          "post_url": "https://danbooru.donmai.us/posts/11248414"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1070,8 +2246,8 @@
       "candidate_id": "candidate-047",
       "source_tag": "artist:ender xiaohai",
       "query": "ender xiaohai",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:50.938Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:35.617Z",
       "artist_id": 291808,
       "canonical_name": "ender_xiaohai",
       "aliases": [
@@ -1081,8 +2257,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/291808",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9256684,
+          "rating": "g",
+          "score": 67,
+          "fav_count": 65,
+          "preview_url": "https://cdn.donmai.us/180x180/2b/a8/2ba8f9eb553d71b2a8f1aaf5c3bec1e4.jpg",
+          "large_url": "https://cdn.donmai.us/sample/2b/a8/sample-2ba8f9eb553d71b2a8f1aaf5c3bec1e4.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9256684"
+        },
+        {
+          "id": 9013790,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 44,
+          "preview_url": "https://cdn.donmai.us/180x180/a7/fc/a7fc0feb46692147f96219387712c2df.jpg",
+          "large_url": "https://cdn.donmai.us/original/a7/fc/a7fc0feb46692147f96219387712c2df.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9013790"
+        },
+        {
+          "id": 9013752,
+          "rating": "g",
+          "score": 46,
+          "fav_count": 41,
+          "preview_url": "https://cdn.donmai.us/180x180/c4/05/c405dd9140b39e6af1a3706eda969d3c.jpg",
+          "large_url": "https://cdn.donmai.us/original/c4/05/c405dd9140b39e6af1a3706eda969d3c.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9013752"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1090,8 +2294,8 @@
       "candidate_id": "candidate-048",
       "source_tag": "artist:eliza 804",
       "query": "eliza 804",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:53.202Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:38.330Z",
       "artist_id": 293563,
       "canonical_name": "eliza_804",
       "aliases": [
@@ -1104,8 +2308,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/293563",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6077785,
+          "rating": "g",
+          "score": 70,
+          "fav_count": 65,
+          "preview_url": "https://cdn.donmai.us/180x180/6e/b8/6eb8a238bc037674cde1c6cff2f8efbc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/6e/b8/sample-6eb8a238bc037674cde1c6cff2f8efbc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6077785"
+        },
+        {
+          "id": 7177516,
+          "rating": "g",
+          "score": 56,
+          "fav_count": 48,
+          "preview_url": "https://cdn.donmai.us/180x180/10/b3/10b32f0cf04893911b9ccf00fcccafa8.jpg",
+          "large_url": "https://cdn.donmai.us/sample/10/b3/sample-10b32f0cf04893911b9ccf00fcccafa8.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7177516"
+        },
+        {
+          "id": 6506638,
+          "rating": "g",
+          "score": 49,
+          "fav_count": 46,
+          "preview_url": "https://cdn.donmai.us/180x180/24/5e/245ec5405a438e710db6b1a7ab6d145e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/24/5e/sample-245ec5405a438e710db6b1a7ab6d145e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6506638"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1113,8 +2345,8 @@
       "candidate_id": "candidate-049",
       "source_tag": "artist:duoqing tie ban shao",
       "query": "duoqing tie ban shao",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:55.459Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:41.059Z",
       "artist_id": 246644,
       "canonical_name": "duoqing_tie_ban_shao",
       "aliases": [
@@ -1126,8 +2358,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/246644",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6738092,
+          "rating": "g",
+          "score": 43,
+          "fav_count": 41,
+          "preview_url": "https://cdn.donmai.us/180x180/ac/04/ac04f5183321274c783b1ca02e414ecf.jpg",
+          "large_url": "https://cdn.donmai.us/sample/ac/04/sample-ac04f5183321274c783b1ca02e414ecf.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6738092"
+        },
+        {
+          "id": 6405332,
+          "rating": "g",
+          "score": 36,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/d4/5f/d45fb9f5d70de018ec0a45529a893290.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d4/5f/sample-d45fb9f5d70de018ec0a45529a893290.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6405332"
+        },
+        {
+          "id": 7832049,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 34,
+          "preview_url": "https://cdn.donmai.us/180x180/44/f7/44f7ccacd71885dacd612bbc1da32d37.jpg",
+          "large_url": "https://cdn.donmai.us/sample/44/f7/sample-44f7ccacd71885dacd612bbc1da32d37.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7832049"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1135,8 +2395,8 @@
       "candidate_id": "candidate-050",
       "source_tag": "artist:diurtion",
       "query": "diurtion",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:57.729Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:43.767Z",
       "artist_id": 304727,
       "canonical_name": "diurtion",
       "aliases": [
@@ -1158,8 +2418,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/304727",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8049853,
+          "rating": "g",
+          "score": 24,
+          "fav_count": 19,
+          "preview_url": "https://cdn.donmai.us/180x180/cc/b6/ccb6dccfe3dc5765392b9596d9d39b0f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/cc/b6/sample-ccb6dccfe3dc5765392b9596d9d39b0f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8049853"
+        },
+        {
+          "id": 5864815,
+          "rating": "g",
+          "score": 23,
+          "fav_count": 21,
+          "preview_url": "https://cdn.donmai.us/180x180/09/84/098413a06af74e18fda4bd8d58deae5e.jpg",
+          "large_url": "https://cdn.donmai.us/sample/09/84/sample-098413a06af74e18fda4bd8d58deae5e.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5864815"
+        },
+        {
+          "id": 9623226,
+          "rating": "g",
+          "score": 17,
+          "fav_count": 14,
+          "preview_url": "https://cdn.donmai.us/180x180/15/36/15362a2d4b35c764500ece1aa8ed986f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/15/36/sample-15362a2d4b35c764500ece1aa8ed986f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9623226"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1167,8 +2455,8 @@
       "candidate_id": "candidate-051",
       "source_tag": "artist:cuso4 suiwabutu",
       "query": "cuso4 suiwabutu",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:09:59.989Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:46.470Z",
       "artist_id": 247694,
       "canonical_name": "cuso4_suiwabutu",
       "aliases": [
@@ -1182,8 +2470,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/247694",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7253611,
+          "rating": "g",
+          "score": 63,
+          "fav_count": 60,
+          "preview_url": "https://cdn.donmai.us/180x180/58/ee/58ee1bca9926e51226079e6b28edcd8d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/58/ee/sample-58ee1bca9926e51226079e6b28edcd8d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7253611"
+        },
+        {
+          "id": 8041646,
+          "rating": "g",
+          "score": 39,
+          "fav_count": 38,
+          "preview_url": "https://cdn.donmai.us/180x180/84/95/8495124db3c5c80e8ff24d2d37970c56.jpg",
+          "large_url": "https://cdn.donmai.us/sample/84/95/sample-8495124db3c5c80e8ff24d2d37970c56.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8041646"
+        },
+        {
+          "id": 8041651,
+          "rating": "g",
+          "score": 38,
+          "fav_count": 35,
+          "preview_url": "https://cdn.donmai.us/180x180/aa/b1/aab1be1dd13f54a57d0eee561c59b1bf.jpg",
+          "large_url": "https://cdn.donmai.us/sample/aa/b1/sample-aab1be1dd13f54a57d0eee561c59b1bf.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8041651"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1191,8 +2507,8 @@
       "candidate_id": "candidate-052",
       "source_tag": "artist:chunbuchou",
       "query": "chunbuchou",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:02.289Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:49.174Z",
       "artist_id": 269232,
       "canonical_name": "chunbuchou",
       "aliases": [
@@ -1209,8 +2525,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/269232",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7925424,
+          "rating": "g",
+          "score": 62,
+          "fav_count": 57,
+          "preview_url": "https://cdn.donmai.us/180x180/f9/e3/f9e3b54a0fbb31c8976ea0c623ebd35c.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f9/e3/sample-f9e3b54a0fbb31c8976ea0c623ebd35c.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7925424"
+        },
+        {
+          "id": 7843226,
+          "rating": "g",
+          "score": 47,
+          "fav_count": 45,
+          "preview_url": "https://cdn.donmai.us/180x180/02/ba/02bac96e08a9d125822a590ecb9b108f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/02/ba/sample-02bac96e08a9d125822a590ecb9b108f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7843226"
+        },
+        {
+          "id": 11271668,
+          "rating": "g",
+          "score": 35,
+          "fav_count": 34,
+          "preview_url": "https://cdn.donmai.us/180x180/63/ad/63ad5330fe037e4741a6c6d993da9f46.jpg",
+          "large_url": "https://cdn.donmai.us/sample/63/ad/sample-63ad5330fe037e4741a6c6d993da9f46.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11271668"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1219,7 +2563,7 @@
       "source_tag": "artist:chino (user zdy d2447)",
       "query": "chino (user zdy d2447)",
       "status": "not_found",
-      "checked_at": "2026-11-16T09:10:04.569Z",
+      "checked_at": "2026-11-16T09:21:51.894Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1235,8 +2579,8 @@
       "candidate_id": "candidate-054",
       "source_tag": "artist:caicaicaicai ni caicai",
       "query": "caicaicaicai ni caicai",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:05.698Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:53.254Z",
       "artist_id": 325111,
       "canonical_name": "caicaicaicai_ni_caicai",
       "aliases": [
@@ -1246,8 +2590,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/325111",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6287132,
+          "rating": "g",
+          "score": 56,
+          "fav_count": 49,
+          "preview_url": "https://cdn.donmai.us/180x180/b1/b3/b1b310f1eb8d430d353c3fb79a551408.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b1/b3/sample-b1b310f1eb8d430d353c3fb79a551408.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6287132"
+        },
+        {
+          "id": 9450762,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 40,
+          "preview_url": "https://cdn.donmai.us/180x180/0d/5c/0d5c017c60269ba1166565fd19d169ac.jpg",
+          "large_url": "https://cdn.donmai.us/sample/0d/5c/sample-0d5c017c60269ba1166565fd19d169ac.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9450762"
+        },
+        {
+          "id": 8651472,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/60/23/60238dcfa7f83ebcf30ee506162f7197.jpg",
+          "large_url": "https://cdn.donmai.us/sample/60/23/sample-60238dcfa7f83ebcf30ee506162f7197.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8651472"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1255,8 +2627,8 @@
       "candidate_id": "candidate-055",
       "source_tag": "artist:buqiyong",
       "query": "buqiyong",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:07.953Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:55.973Z",
       "artist_id": 295521,
       "canonical_name": "buqiyong",
       "aliases": [
@@ -1268,8 +2640,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/295521",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9087447,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 40,
+          "preview_url": "https://cdn.donmai.us/180x180/cd/20/cd2061aea4e0baf997c09165552e9d8d.jpg",
+          "large_url": "https://cdn.donmai.us/sample/cd/20/sample-cd2061aea4e0baf997c09165552e9d8d.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9087447"
+        },
+        {
+          "id": 9118819,
+          "rating": "g",
+          "score": 39,
+          "fav_count": 36,
+          "preview_url": "https://cdn.donmai.us/180x180/74/5d/745d639ba3f0d94b57ff2387b412f1db.jpg",
+          "large_url": "https://cdn.donmai.us/sample/74/5d/sample-745d639ba3f0d94b57ff2387b412f1db.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9118819"
+        },
+        {
+          "id": 10381995,
+          "rating": "g",
+          "score": 36,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/ae/4f/ae4f4353b8b29d92e46d9bd27dba39ec.jpg",
+          "large_url": "https://cdn.donmai.us/sample/ae/4f/sample-ae4f4353b8b29d92e46d9bd27dba39ec.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10381995"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1277,8 +2677,8 @@
       "candidate_id": "candidate-056",
       "source_tag": "artist:baicumikuo",
       "query": "baicumikuo",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:10.217Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:21:58.692Z",
       "artist_id": 304483,
       "canonical_name": "baicumikuo",
       "aliases": [
@@ -1291,8 +2691,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/304483",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 11697753,
+          "rating": "g",
+          "score": 38,
+          "fav_count": 33,
+          "preview_url": "https://cdn.donmai.us/180x180/78/78/7878ae68f0eca33ed63515f93daba361.jpg",
+          "large_url": "https://cdn.donmai.us/sample/78/78/sample-7878ae68f0eca33ed63515f93daba361.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11697753"
+        },
+        {
+          "id": 12407148,
+          "rating": "g",
+          "score": 30,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/98/0e/980e36fb9e018dd2e8d65a369f208334.jpg",
+          "large_url": "https://cdn.donmai.us/sample/98/0e/sample-980e36fb9e018dd2e8d65a369f208334.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/12407148"
+        },
+        {
+          "id": 8368818,
+          "rating": "g",
+          "score": 20,
+          "fav_count": 17,
+          "preview_url": "https://cdn.donmai.us/180x180/1f/ff/1fff72555819d812766513e85d72b767.jpg",
+          "large_url": "https://cdn.donmai.us/sample/1f/ff/sample-1fff72555819d812766513e85d72b767.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8368818"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1300,8 +2728,8 @@
       "candidate_id": "candidate-057",
       "source_tag": "artist:aoseagrass",
       "query": "aoseagrass",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:12.483Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:01.403Z",
       "artist_id": 221364,
       "canonical_name": "aoseagrass",
       "aliases": [
@@ -1312,8 +2740,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/221364",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 12384755,
+          "rating": "g",
+          "score": 32,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/68/8d/688dc83300a0ef0c48446e1fffa40399.jpg",
+          "large_url": "https://cdn.donmai.us/sample/68/8d/sample-688dc83300a0ef0c48446e1fffa40399.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/12384755"
+        },
+        {
+          "id": 7828601,
+          "rating": "g",
+          "score": 29,
+          "fav_count": 26,
+          "preview_url": "https://cdn.donmai.us/180x180/f9/b9/f9b9150efa616bc71731d5f31376e3bf.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f9/b9/sample-f9b9150efa616bc71731d5f31376e3bf.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7828601"
+        },
+        {
+          "id": 5817246,
+          "rating": "g",
+          "score": 18,
+          "fav_count": 15,
+          "preview_url": "https://cdn.donmai.us/180x180/b1/ea/b1ea6f97583cd8e2563bcfd46fc6be35.jpg",
+          "large_url": "https://cdn.donmai.us/sample/b1/ea/sample-b1ea6f97583cd8e2563bcfd46fc6be35.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5817246"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1321,8 +2777,8 @@
       "candidate_id": "candidate-058",
       "source_tag": "artist:ainimo5",
       "query": "ainimo5",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:14.744Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:04.109Z",
       "artist_id": 303838,
       "canonical_name": "ainimo5",
       "aliases": [
@@ -1334,8 +2790,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/303838",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5680683,
+          "rating": "g",
+          "score": 53,
+          "fav_count": 49,
+          "preview_url": "https://cdn.donmai.us/180x180/89/5f/895feaf6c47db6584ae6e55a4ee8959f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/89/5f/sample-895feaf6c47db6584ae6e55a4ee8959f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5680683"
+        },
+        {
+          "id": 10654417,
+          "rating": "g",
+          "score": 50,
+          "fav_count": 41,
+          "preview_url": "https://cdn.donmai.us/180x180/fa/4b/fa4bad52c29583a3d9163b5c6786d8a1.jpg",
+          "large_url": "https://cdn.donmai.us/sample/fa/4b/sample-fa4bad52c29583a3d9163b5c6786d8a1.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10654417"
+        },
+        {
+          "id": 5588015,
+          "rating": "g",
+          "score": 19,
+          "fav_count": 17,
+          "preview_url": "https://cdn.donmai.us/180x180/65/09/6509f15b9ed900525ad921d9fedf1dcf.jpg",
+          "large_url": "https://cdn.donmai.us/sample/65/09/sample-6509f15b9ed900525ad921d9fedf1dcf.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5588015"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1343,8 +2827,8 @@
       "candidate_id": "candidate-059",
       "source_tag": "artist:amukeer",
       "query": "amukeer",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:17.015Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:06.819Z",
       "artist_id": 303252,
       "canonical_name": "amukeer",
       "aliases": [
@@ -1354,8 +2838,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/303252",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 6954844,
+          "rating": "g",
+          "score": 49,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/90/60/9060562be330727826c0f0c14f3ce615.jpg",
+          "large_url": "https://cdn.donmai.us/sample/90/60/sample-9060562be330727826c0f0c14f3ce615.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6954844"
+        },
+        {
+          "id": 11217100,
+          "rating": "g",
+          "score": 47,
+          "fav_count": 44,
+          "preview_url": "https://cdn.donmai.us/180x180/f3/6d/f36d8c13b322f7b624455ea19703d144.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f3/6d/sample-f36d8c13b322f7b624455ea19703d144.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11217100"
+        },
+        {
+          "id": 7891129,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/bd/be/bdbe2bd7d8976e616ad4624018ff90bb.jpg",
+          "large_url": "https://cdn.donmai.us/sample/bd/be/sample-bdbe2bd7d8976e616ad4624018ff90bb.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7891129"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1363,8 +2875,8 @@
       "candidate_id": "candidate-060",
       "source_tag": "artist:tanglaoban1225",
       "query": "tanglaoban1225",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:19.269Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:09.521Z",
       "artist_id": 444638,
       "canonical_name": "tanglaoban1225",
       "aliases": [
@@ -1376,8 +2888,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/444638",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9929898,
+          "rating": "g",
+          "score": 22,
+          "fav_count": 19,
+          "preview_url": "https://cdn.donmai.us/180x180/fa/b7/fab74401eb7eb45a8ecea500b28124dc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/fa/b7/sample-fab74401eb7eb45a8ecea500b28124dc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9929898"
+        },
+        {
+          "id": 8482559,
+          "rating": "g",
+          "score": 20,
+          "fav_count": 19,
+          "preview_url": "https://cdn.donmai.us/180x180/22/cd/22cdc0d75ffa025c6d84825f856fa169.jpg",
+          "large_url": "https://cdn.donmai.us/sample/22/cd/sample-22cdc0d75ffa025c6d84825f856fa169.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8482559"
+        },
+        {
+          "id": 8218021,
+          "rating": "g",
+          "score": 20,
+          "fav_count": 19,
+          "preview_url": "https://cdn.donmai.us/180x180/91/ea/91ea75c7e51bb0e645e92ed0c8ec55aa.jpg",
+          "large_url": "https://cdn.donmai.us/sample/91/ea/sample-91ea75c7e51bb0e645e92ed0c8ec55aa.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/8218021"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1385,8 +2925,8 @@
       "candidate_id": "candidate-061",
       "source_tag": "artist:iotaectoplasm",
       "query": "iotaectoplasm",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:21.532Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:12.236Z",
       "artist_id": 219068,
       "canonical_name": "baichuan_baichuan",
       "aliases": [
@@ -1396,8 +2936,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/219068",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 9874452,
+          "rating": "g",
+          "score": 33,
+          "fav_count": 29,
+          "preview_url": "https://cdn.donmai.us/180x180/04/2d/042d030e910dda1f8a3e6a21718569ce.jpg",
+          "large_url": "https://cdn.donmai.us/sample/04/2d/sample-042d030e910dda1f8a3e6a21718569ce.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9874452"
+        },
+        {
+          "id": 5623672,
+          "rating": "g",
+          "score": 28,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/ba/2c/ba2cc04382a8d37b5054b12d8157447a.jpg",
+          "large_url": "https://cdn.donmai.us/sample/ba/2c/sample-ba2cc04382a8d37b5054b12d8157447a.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5623672"
+        },
+        {
+          "id": 9874471,
+          "rating": "g",
+          "score": 27,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/e9/de/e9deec6c5520781ac22e891e1f554057.jpg",
+          "large_url": "https://cdn.donmai.us/sample/e9/de/sample-e9deec6c5520781ac22e891e1f554057.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9874471"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1405,8 +2973,8 @@
       "candidate_id": "candidate-062",
       "source_tag": "artist:liduke",
       "query": "liduke",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:23.789Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:14.957Z",
       "artist_id": 49643,
       "canonical_name": "liduke",
       "aliases": [
@@ -1417,8 +2985,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/49643",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5270268,
+          "rating": "g",
+          "score": 182,
+          "fav_count": 168,
+          "preview_url": "https://cdn.donmai.us/180x180/0e/4f/0e4f2e1312f8654aa72fe8ac67a47cb6.jpg",
+          "large_url": "https://cdn.donmai.us/sample/0e/4f/sample-0e4f2e1312f8654aa72fe8ac67a47cb6.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5270268"
+        },
+        {
+          "id": 5202818,
+          "rating": "g",
+          "score": 126,
+          "fav_count": 116,
+          "preview_url": "https://cdn.donmai.us/180x180/4a/cb/4acb098189894ed6ee7b5db3f1450dec.jpg",
+          "large_url": "https://cdn.donmai.us/sample/4a/cb/sample-4acb098189894ed6ee7b5db3f1450dec.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5202818"
+        },
+        {
+          "id": 4143710,
+          "rating": "g",
+          "score": 126,
+          "fav_count": 143,
+          "preview_url": "https://cdn.donmai.us/180x180/c7/1d/c71d838a18e57ac432f9485a30871604.jpg",
+          "large_url": "https://cdn.donmai.us/sample/c7/1d/sample-c71d838a18e57ac432f9485a30871604.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/4143710"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1427,7 +3023,7 @@
       "source_tag": "artist:ruogan zhao",
       "query": "ruogan zhao",
       "status": "not_found",
-      "checked_at": "2026-11-16T09:10:26.044Z",
+      "checked_at": "2026-11-16T09:22:17.675Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1443,8 +3039,8 @@
       "candidate_id": "candidate-064",
       "source_tag": "artist:zhumojian",
       "query": "zhumojian",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:27.168Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:19.026Z",
       "artist_id": 295529,
       "canonical_name": "zhumojian",
       "aliases": [
@@ -1456,8 +3052,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/295529",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7695633,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 42,
+          "preview_url": "https://cdn.donmai.us/180x180/15/3a/153a6f79ea7d05584b5896adc0f10f74.jpg",
+          "large_url": "https://cdn.donmai.us/sample/15/3a/sample-153a6f79ea7d05584b5896adc0f10f74.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7695633"
+        },
+        {
+          "id": 5591613,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 41,
+          "preview_url": "https://cdn.donmai.us/180x180/aa/2a/aa2ac66b55f1e403f7a1ee5738148bc0.jpg",
+          "large_url": "https://cdn.donmai.us/sample/aa/2a/sample-aa2ac66b55f1e403f7a1ee5738148bc0.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5591613"
+        },
+        {
+          "id": 5482066,
+          "rating": "g",
+          "score": 41,
+          "fav_count": 36,
+          "preview_url": "https://cdn.donmai.us/180x180/79/bb/79bbf0b0823c60bf9bfa76bd2b289f81.jpg",
+          "large_url": "https://cdn.donmai.us/sample/79/bb/sample-79bbf0b0823c60bf9bfa76bd2b289f81.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5482066"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1465,8 +3089,8 @@
       "candidate_id": "candidate-065",
       "source_tag": "artist:tatatsu",
       "query": "tatatsu",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:29.672Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:21.740Z",
       "artist_id": 192944,
       "canonical_name": "tatatsu",
       "aliases": [
@@ -1476,8 +3100,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/192944",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7031193,
+          "rating": "g",
+          "score": 73,
+          "fav_count": 70,
+          "preview_url": "https://cdn.donmai.us/180x180/bd/36/bd369df731a79d53b1415384b2616f32.jpg",
+          "large_url": "https://cdn.donmai.us/sample/bd/36/sample-bd369df731a79d53b1415384b2616f32.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7031193"
+        },
+        {
+          "id": 5609143,
+          "rating": "g",
+          "score": 62,
+          "fav_count": 59,
+          "preview_url": "https://cdn.donmai.us/180x180/d0/54/d054140634686281511523422eb9c7a8.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d0/54/sample-d054140634686281511523422eb9c7a8.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5609143"
+        },
+        {
+          "id": 6823398,
+          "rating": "g",
+          "score": 54,
+          "fav_count": 51,
+          "preview_url": "https://cdn.donmai.us/180x180/d5/a2/d5a2940bb9b5b6f77ab8f0ec0a911d2f.jpg",
+          "large_url": "https://cdn.donmai.us/sample/d5/a2/sample-d5a2940bb9b5b6f77ab8f0ec0a911d2f.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6823398"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1485,8 +3137,8 @@
       "candidate_id": "candidate-066",
       "source_tag": "artist:pkiiiiii",
       "query": "pkiiiiii",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:31.928Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:24.731Z",
       "artist_id": 433364,
       "canonical_name": "pkiiiiii",
       "aliases": [
@@ -1498,8 +3150,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/433364",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 11608083,
+          "rating": "g",
+          "score": 42,
+          "fav_count": 37,
+          "preview_url": "https://cdn.donmai.us/180x180/bd/da/bdda067d769ceb232f0aa78bc92d66ad.jpg",
+          "large_url": "https://cdn.donmai.us/sample/bd/da/sample-bdda067d769ceb232f0aa78bc92d66ad.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/11608083"
+        },
+        {
+          "id": 10830935,
+          "rating": "g",
+          "score": 21,
+          "fav_count": 21,
+          "preview_url": "https://cdn.donmai.us/180x180/f4/ba/f4ba9f25fef49cc272b9d4d1926a8e10.jpg",
+          "large_url": "https://cdn.donmai.us/sample/f4/ba/sample-f4ba9f25fef49cc272b9d4d1926a8e10.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10830935"
+        },
+        {
+          "id": 10886733,
+          "rating": "g",
+          "score": 19,
+          "fav_count": 16,
+          "preview_url": "https://cdn.donmai.us/180x180/18/20/1820712292cae7e05b249fd018503771.jpg",
+          "large_url": "https://cdn.donmai.us/sample/18/20/sample-1820712292cae7e05b249fd018503771.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/10886733"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1507,8 +3187,8 @@
       "candidate_id": "candidate-067",
       "source_tag": "artist:mechiru",
       "query": "mechiru",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:34.188Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:27.443Z",
       "artist_id": 270897,
       "canonical_name": "mechiru",
       "aliases": [
@@ -1519,8 +3199,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/270897",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5462589,
+          "rating": "g",
+          "score": 31,
+          "fav_count": 30,
+          "preview_url": "https://cdn.donmai.us/180x180/3c/64/3c6417a9ce194a6d34e8f0216ec085e5.jpg",
+          "large_url": "https://cdn.donmai.us/sample/3c/64/sample-3c6417a9ce194a6d34e8f0216ec085e5.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5462589"
+        },
+        {
+          "id": 5864630,
+          "rating": "g",
+          "score": 29,
+          "fav_count": 26,
+          "preview_url": "https://cdn.donmai.us/180x180/28/4b/284b223fd4d1dec75105076a83f08409.jpg",
+          "large_url": "https://cdn.donmai.us/sample/28/4b/sample-284b223fd4d1dec75105076a83f08409.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5864630"
+        },
+        {
+          "id": 5700042,
+          "rating": "g",
+          "score": 28,
+          "fav_count": 27,
+          "preview_url": "https://cdn.donmai.us/180x180/da/f8/daf88852a04072d67cafc7e7751c7b7b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/da/f8/sample-daf88852a04072d67cafc7e7751c7b7b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5700042"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1528,8 +3236,8 @@
       "candidate_id": "candidate-068",
       "source_tag": "artist:infukun",
       "query": "infukun",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:36.461Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:30.151Z",
       "artist_id": 88319,
       "canonical_name": "infukun",
       "aliases": [
@@ -1546,8 +3254,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/88319",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7100997,
+          "rating": "g",
+          "score": 100,
+          "fav_count": 87,
+          "preview_url": "https://cdn.donmai.us/180x180/1a/11/1a1146a3fd46f3ee34fbda532ae3c294.jpg",
+          "large_url": "https://cdn.donmai.us/sample/1a/11/sample-1a1146a3fd46f3ee34fbda532ae3c294.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7100997"
+        },
+        {
+          "id": 6412413,
+          "rating": "g",
+          "score": 79,
+          "fav_count": 76,
+          "preview_url": "https://cdn.donmai.us/180x180/44/71/44719f26d3053deceb9c86e0cd5bbcdc.jpg",
+          "large_url": "https://cdn.donmai.us/sample/44/71/sample-44719f26d3053deceb9c86e0cd5bbcdc.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6412413"
+        },
+        {
+          "id": 6218773,
+          "rating": "g",
+          "score": 72,
+          "fav_count": 67,
+          "preview_url": "https://cdn.donmai.us/180x180/50/10/501023fdfc53e805874b73c2bd1e9ac1.jpg",
+          "large_url": "https://cdn.donmai.us/sample/50/10/sample-501023fdfc53e805874b73c2bd1e9ac1.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/6218773"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1555,8 +3291,8 @@
       "candidate_id": "candidate-069",
       "source_tag": "artist:dare no inarikami",
       "query": "dare no inarikami",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:38.716Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:32.862Z",
       "artist_id": 162585,
       "canonical_name": "dare_no_inarikami",
       "aliases": [
@@ -1568,8 +3304,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/162585",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5411612,
+          "rating": "g",
+          "score": 41,
+          "fav_count": 36,
+          "preview_url": "https://cdn.donmai.us/180x180/0c/ae/0cae255f1028fb6e04b65ff7073a112c.jpg",
+          "large_url": "https://cdn.donmai.us/sample/0c/ae/sample-0cae255f1028fb6e04b65ff7073a112c.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5411612"
+        },
+        {
+          "id": 5613595,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 32,
+          "preview_url": "https://cdn.donmai.us/180x180/4d/0c/4d0cfa20bdf1b28b4aebcef2fdaba981.jpg",
+          "large_url": "https://cdn.donmai.us/sample/4d/0c/sample-4d0cfa20bdf1b28b4aebcef2fdaba981.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5613595"
+        },
+        {
+          "id": 5172771,
+          "rating": "g",
+          "score": 34,
+          "fav_count": 29,
+          "preview_url": "https://cdn.donmai.us/180x180/c0/dd/c0dd5fb26b6a1122861a3ece7157b0cf.jpg",
+          "large_url": "https://cdn.donmai.us/sample/c0/dd/sample-c0dd5fb26b6a1122861a3ece7157b0cf.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5172771"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1578,7 +3342,7 @@
       "source_tag": "artist:dabaijiang meda",
       "query": "dabaijiang meda",
       "status": "not_found",
-      "checked_at": "2026-11-16T09:10:40.972Z",
+      "checked_at": "2026-11-16T09:22:35.552Z",
       "artist_id": null,
       "canonical_name": null,
       "aliases": [],
@@ -1594,8 +3358,8 @@
       "candidate_id": "candidate-071",
       "source_tag": "artist:azling",
       "query": "azling",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:42.094Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:36.906Z",
       "artist_id": 85638,
       "canonical_name": "azling",
       "aliases": [
@@ -1607,8 +3371,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/85638",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 8438161,
+          "rating": "g",
+          "score": 128,
+          "fav_count": 116,
+          "preview_url": "https://cdn.donmai.us/180x180/14/61/1461acf6439006945603f59a460f725d.jpg",
+          "large_url": "https://cdn.donmai.us/original/14/61/1461acf6439006945603f59a460f725d.png",
+          "post_url": "https://danbooru.donmai.us/posts/8438161"
+        },
+        {
+          "id": 3131685,
+          "rating": "g",
+          "score": 108,
+          "fav_count": 139,
+          "preview_url": "https://cdn.donmai.us/180x180/dc/e4/dce430cb553269bed757b7f805df38c0.jpg",
+          "large_url": "https://cdn.donmai.us/sample/dc/e4/sample-dce430cb553269bed757b7f805df38c0.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/3131685"
+        },
+        {
+          "id": 3960592,
+          "rating": "g",
+          "score": 43,
+          "fav_count": 54,
+          "preview_url": "https://cdn.donmai.us/180x180/52/24/522414d7de7c44294535cad065a8e2b4.jpg",
+          "large_url": "https://cdn.donmai.us/sample/52/24/sample-522414d7de7c44294535cad065a8e2b4.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/3960592"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1616,8 +3408,8 @@
       "candidate_id": "candidate-072",
       "source_tag": "artist:road 233",
       "query": "road 233",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:44.361Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:39.602Z",
       "artist_id": 99961,
       "canonical_name": "road_233",
       "aliases": [
@@ -1629,8 +3421,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/99961",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 7878821,
+          "rating": "g",
+          "score": 61,
+          "fav_count": 56,
+          "preview_url": "https://cdn.donmai.us/180x180/fa/1c/fa1c619a3569802d127d46853cf2f635.jpg",
+          "large_url": "https://cdn.donmai.us/sample/fa/1c/sample-fa1c619a3569802d127d46853cf2f635.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7878821"
+        },
+        {
+          "id": 7775178,
+          "rating": "g",
+          "score": 45,
+          "fav_count": 44,
+          "preview_url": "https://cdn.donmai.us/180x180/90/d3/90d3052137c49f4f1e08be5899d6abb1.jpg",
+          "large_url": "https://cdn.donmai.us/sample/90/d3/sample-90d3052137c49f4f1e08be5899d6abb1.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7775178"
+        },
+        {
+          "id": 7690281,
+          "rating": "g",
+          "score": 44,
+          "fav_count": 41,
+          "preview_url": "https://cdn.donmai.us/180x180/65/3e/653ead0ccb6a8be1faa4c7d8ac6b6b32.jpg",
+          "large_url": "https://cdn.donmai.us/sample/65/3e/sample-653ead0ccb6a8be1faa4c7d8ac6b6b32.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/7690281"
+        }
+      ],
       "matches": [],
       "error": null
     },
@@ -1638,8 +3458,8 @@
       "candidate_id": "candidate-073",
       "source_tag": "artist:amejaga",
       "query": "amejaga",
-      "status": "verified_no_previews",
-      "checked_at": "2026-11-16T09:10:46.617Z",
+      "status": "verified",
+      "checked_at": "2026-11-16T09:22:42.315Z",
       "artist_id": 147594,
       "canonical_name": "amejaga",
       "aliases": [
@@ -1649,8 +3469,36 @@
       "is_banned": false,
       "is_deleted": false,
       "artist_url": "https://danbooru.donmai.us/artists/147594",
-      "post_count": 0,
-      "previews": [],
+      "post_count": 3,
+      "previews": [
+        {
+          "id": 5877695,
+          "rating": "g",
+          "score": 80,
+          "fav_count": 75,
+          "preview_url": "https://cdn.donmai.us/180x180/36/c1/36c1cf1f4752f092828ecaa026c68eb5.jpg",
+          "large_url": "https://cdn.donmai.us/sample/36/c1/sample-36c1cf1f4752f092828ecaa026c68eb5.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/5877695"
+        },
+        {
+          "id": 9020130,
+          "rating": "g",
+          "score": 70,
+          "fav_count": 67,
+          "preview_url": "https://cdn.donmai.us/180x180/ad/7c/ad7c4b6ccccf3b59f537e284f4edf529.jpg",
+          "large_url": "https://cdn.donmai.us/sample/ad/7c/sample-ad7c4b6ccccf3b59f537e284f4edf529.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/9020130"
+        },
+        {
+          "id": 4511847,
+          "rating": "g",
+          "score": 59,
+          "fav_count": 75,
+          "preview_url": "https://cdn.donmai.us/180x180/97/90/979019f342631c6f81063a9d2a2b7c1b.jpg",
+          "large_url": "https://cdn.donmai.us/sample/97/90/sample-979019f342631c6f81063a9d2a2b7c1b.jpg",
+          "post_url": "https://danbooru.donmai.us/posts/4511847"
+        }
+      ],
       "matches": [],
       "error": null
     }

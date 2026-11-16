@@ -29,9 +29,15 @@ for(const c of source.candidates){
    row.status="verified";
    if(row.status==="verified"){
     await sleep(1100);
-    const tagQuery="artist:"+tag(a.name)+" rating:g order:score";
-    const posts=await get(BASE+"/posts.json?tags="+encodeURIComponent(tagQuery)+"&limit=6");
-    row.previews=posts.filter(p=>!p.is_deleted).map(p=>({id:p.id,rating:p.rating,score:p.score,fav_count:p.fav_count,preview_url:p.preview_file_url||p.media_asset?.variants?.find(v=>v.type==="180x180")?.url||null,large_url:p.large_file_url||p.file_url||null,post_url:BASE+"/posts/"+p.id})).filter(p=>p.preview_url||p.large_url).slice(0,6);
+    const postTags=[...new Set([a.name,c.query].map(tag).filter(Boolean))];
+    let posts=[];
+    for(let i=0;i<postTags.length;i++){
+     if(i>0)await sleep(1100);
+     const tagQuery=postTags[i]+" rating:g order:score";
+     posts=await get(BASE+"/posts.json?tags="+encodeURIComponent(tagQuery)+"&limit=3&only=id,rating,score,fav_count,preview_file_url,large_file_url,file_url,is_deleted");
+     if(posts.length)break;
+    }
+    row.previews=posts.filter(p=>!p.is_deleted&&p.rating==="g").map(p=>({id:p.id,rating:p.rating,score:p.score,fav_count:p.fav_count,preview_url:p.preview_file_url||p.media_asset?.variants?.find(v=>v.type==="180x180")?.url||null,large_url:p.large_file_url||p.file_url||null,post_url:BASE+"/posts/"+p.id})).filter(p=>p.preview_url||p.large_url).slice(0,3);
     row.post_count=row.previews.length;if(!row.previews.length)row.status="verified_no_previews";
    }
   }else if(!activeExact.length&&exact.length===1){

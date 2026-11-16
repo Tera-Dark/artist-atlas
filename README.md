@@ -9,19 +9,22 @@
 Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first 画师图鉴**：
 
 - GitHub 仓库中的 `data/artists.json` 是唯一正式画师索引，所有访问者读取同一份数据；Pages 部署时将其复制到同源静态目录。
-- GitHub Pages 提供中性色画师图鉴、分类筛选、搜索、代表作预览与管理界面。
+- GitHub Pages 提供中性色画师图鉴、分类筛选、搜索、最多 3 张 General 级别作品预览、本地收藏与管理界面。
 - 画师入库前通过 Danbooru Artist API 查询；精确选择条目后保存 Danbooru ID、别名、分类、风格标签、个人评分、备注与安全级别为 General 的作品预览。
 - 管理操作通过 GitHub Contents API 提交 commit；写入时会对比远端最新记录，检测并发修改，避免静默覆盖。
 - Danbooru 仅用于只读核验；不确定的候选不会自动认定为同一画师。
+- 作品预览保留 Danbooru 远程缩略图和原帖链接，不将作品图片重新托管到本仓库。
+- 收藏保存在访问者当前浏览器；NAI5 画师串搭配器支持调整画师顺序、单独设置标签强弱并复制候选串。
 
 ## 使用在线图鉴
 
 1. 打开 [Artist Atlas](https://tera-dark.github.io/artist-atlas/)。
 2. 浏览公开图鉴、按分类筛选，或搜索画师名、别名和风格标签。
-3. 点击「管理图鉴」，创建一个仅针对本仓库的 GitHub Fine-grained Personal Access Token。
-4. Token 权限只需 `Contents: Read and write`；不要授予其他仓库或工作流权限。
-5. 输入 Token 连接仓库，然后搜索 Danbooru 画师、选择准确条目、填写个人分类和备注并保存。
-6. 保存后会直接向仓库提交变更；GitHub Pages 会在部署完成后显示更新。
+3. 在画师卡片收藏喜欢的画师，或加入 NAI5 画师串搭配器组合、排序和调整强弱。
+4. 点击「管理图鉴」，创建一个仅针对本仓库的 GitHub Fine-grained Personal Access Token。
+5. Token 权限只需 `Contents: Read and write`；不要授予其他仓库或工作流权限。
+6. 输入 Token 连接仓库，然后搜索 Danbooru 画师、选择准确条目、填写个人分类和备注并保存。
+7. 保存后会直接向仓库提交变更；GitHub Pages 会在部署完成后显示更新。
 
 创建 Token：<https://github.com/settings/personal-access-tokens/new>
 
@@ -31,7 +34,7 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 
 - 查询入口使用 Danbooru `/artists.json` Artist API。
 - 只有明确选中的 Artist 条目才会作为已核验画师保存。
-- 作品预览只查询 `rating:g`，并保存缩略图 URL 与作品数量索引。
+- 作品预览按热度取最多 3 张 `rating:g` 作品，并保存缩略图 URL 和 Danbooru 原帖 ID，卡片可直接打开来源作品。
 - Danbooru 的 Artist 条目与 artist 类型标签、作品收录情况并非完全等价；没有作品预览不代表画师身份无效。
 - 遵守 Danbooru API 速率限制；不要高频批量请求。
 
@@ -44,7 +47,7 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 - `id`、`name`、`aliases`
 - `danbooru_id`、`danbooru_name`
 - `category`、`tags`、`score`、`note`
-- `post_count`、`preview_urls`
+- `post_count`、`preview_urls`、`preview_post_ids`
 - `added_at`、`updated_at`、`featured`
 
 ## 新手开始
@@ -68,3 +71,7 @@ Artist Atlas 正在从 Windows 本地采集工作台转为 **Repository-first �
 ## 版权与隐私
 
 画师作品版权归原作者及相应权利人所有。本项目只整理创作者索引和指向 Danbooru 的公开预览，不声称拥有作品版权。请尊重平台规则，不要未经授权转载、商用或重新分发作品。
+
+## NAI5 画师串
+
+在卡片上将画师加入组合后，可在搭配器中调整顺序，并为单个标签选择普通、加强或减弱，最后复制逗号分隔的 `artist:` 标签候选串。NovelAI 对不同画师标签的识别程度会有差异，建议在 NAI 输入框中结合标签建议核对。收藏和组合状态保存在本地浏览器，不会写入公开仓库。
