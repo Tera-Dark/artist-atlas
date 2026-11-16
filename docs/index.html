@@ -159,7 +159,7 @@ a:hover{text-decoration-color:currentColor}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const OWNER="Tera-Dark",REPO="artist-atlas",BRANCH="main",DATA_PATH="data/artists.json";
-const RAW="https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/main/"+DATA_PATH;
+const RAW="data/artists.json";
 const API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/"+DATA_PATH;
 let artists=[],fileSha="",token="",chosen=null,activeCategory="全部",pendingEditId=null;
 const $=id=>document.getElementById(id);
