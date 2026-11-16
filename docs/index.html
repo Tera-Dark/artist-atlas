@@ -142,8 +142,8 @@ a:hover{color:#e0d8ff;text-decoration:underline}
  </div><div class="previewgrid" id="previews"></div><div class="row" style="justify-content:flex-end;margin-top:14px"><button id="saveArtist" class="primary">保存到 GitHub 仓库</button></div></div>
  <p class="footnote">核验规则：精确命中 D 站 artist 名称或 other_names 才标记为已核验；模糊搜索结果必须由你选择。找不到条目时不会自动建立 D 站身份。</p>
  <hr style="border-color:var(--line);margin:18px 0"><h3>③ 已收录画师</h3><div id="managedList"></div></div>
- </div></div>
-<div class="toast" id="toast"></div>
+ </section></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const OWNER="Tera-Dark",REPO="artist-atlas",BRANCH="main",DATA_PATH="data/artists.json";
 const RAW="https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/main/"+DATA_PATH;
