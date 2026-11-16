@@ -64,6 +64,20 @@ a:hover{text-decoration-color:currentColor}
 .spot{display:none!important}
 .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:20px;row-gap:30px;align-items:start}
 .candidate-panel{margin:0 0 28px;padding:18px;border:1px solid var(--ui-border);border-radius:10px;background:var(--ui-surface)}.candidate-head{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:14px}.candidate-head h3{font-size:15px;margin:0 0 3px}.candidate-head p{font-size:12px;color:var(--ui-text-muted);margin:0}.candidate-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px 12px}.candidate-item{min-width:0;display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;background:var(--ui-surface-muted)}.candidate-item .num{font-size:10px;color:var(--ui-text-muted);font-variant-numeric:tabular-nums}.candidate-item .candidate-name{font-size:12px;min-width:0;overflow-wrap:anywhere}.candidate-item .pill{margin-left:auto;flex:none;font-size:10px}
+.candidate-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.verified-card{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:12px;padding:12px;border:1px solid var(--ui-border);border-radius:10px;background:var(--ui-surface);min-width:0}
+.verified-card .hero{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:7px;background:var(--ui-surface-muted)}
+.verified-card .vinfo{min-width:0;display:flex;flex-direction:column;gap:7px}
+.verified-card .vname{font-weight:650;font-size:14px;overflow-wrap:anywhere}
+.verified-card .vmeta{font-size:11px;color:var(--ui-text-muted);overflow-wrap:anywhere}
+.verified-card .vthumbs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.verified-card .vthumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:5px;background:var(--ui-surface-muted)}
+.verified-card .vlinks{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;margin-top:auto}
+.verified-card .vlinks a{text-decoration:underline}
+.verified-card.review{grid-template-columns:1fr}
+.verified-card.review .matches{font-size:11px;color:var(--ui-text-muted);line-height:1.7}
+@media(max-width:1250px){.candidate-results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.candidate-results{grid-template-columns:1fr}.verified-card{grid-template-columns:minmax(0,1fr) 104px}}
 .artist{position:relative;display:flex;flex-direction:column;gap:0;padding:0;border:0;border-radius:0;background:transparent;min-width:0;overflow:visible;transition:none}
 .artist:hover{background:transparent;transform:none}
 .cover{position:relative;width:100%;aspect-ratio:4/5;min-height:0;background:var(--ui-surface-muted);border-radius:9px;overflow:hidden}
@@ -183,12 +197,12 @@ a:hover{text-decoration-color:currentColor}
 const OWNER="Tera-Dark",REPO="artist-atlas",BRANCH="main",DATA_PATH="data/artists.json";
 const RAW="data/artists.json";
 const API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/"+DATA_PATH;
-let artists=[],candidates=[],fileSha="",token="",chosen=null,activeCategory="全部",pendingEditId=null;
+let artists=[],candidates=[],verifiedCandidates=[],fileSha="",token="",chosen=null,activeCategory="全部",pendingEditId=null;
 const $=id=>document.getElementById(id);
 function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),3200)}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function tagsOf(a){return [...(a.tags||[]),a.category].filter(Boolean)}
-async function loadData(){ $("repoState").textContent="同步中";try{const [r,cr]=await Promise.all([fetch(RAW+"?t="+Date.now()),fetch("data/candidates.json?t="+Date.now())]);if(!r.ok)throw Error("HTTP "+r.status);if(!cr.ok)throw Error("候选池 HTTP "+cr.status);const d=await r.json(),cd=await cr.json();artists=Array.isArray(d.artists)?d.artists:[];candidates=Array.isArray(cd.candidates)?cd.candidates:[];$("repoState").textContent="已同步 main";$("repoState").className="pill";render()}catch(e){$("repoState").textContent="读取失败";$("repoState").className="pill bad";toast("读取仓库失败："+e.message)}}
+async function loadData(){ $("repoState").textContent="同步中";try{const [r,cr,vr]=await Promise.all([fetch(RAW+"?t="+Date.now()),fetch("data/candidates.json?t="+Date.now()),fetch("data/verified-artists.json?t="+Date.now()).catch(()=>null)]);if(!r.ok)throw Error("HTTP "+r.status);if(!cr.ok)throw Error("候选池 HTTP "+cr.status);const d=await r.json(),cd=await cr.json(),vd=vr&&vr.ok?await vr.json():null;artists=Array.isArray(d.artists)?d.artists:[];candidates=Array.isArray(cd.candidates)?cd.candidates:[];verifiedCandidates=Array.isArray(vd?.results)?vd.results:[];$("repoState").textContent="已同步 main";$("repoState").className="pill";render()}catch(e){$("repoState").textContent="读取失败";$("repoState").className="pill bad";toast("读取仓库失败："+e.message)}}
 function render(){const cats=["全部",...new Set(artists.map(a=>a.category).filter(Boolean))];$("filters").innerHTML=cats.map(c=>'<button class="chip '+(c===activeCategory?"active":"")+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join("");$("filters").querySelectorAll("button").forEach(b=>b.onclick=()=>{activeCategory=b.dataset.cat;render()});
 let q=$("search").value.trim().toLowerCase(),list=artists.filter(a=>(activeCategory==="全部"||a.category===activeCategory)&&[a.name,...(a.aliases||[]),...(a.tags||[]),a.note||""].join(" ").toLowerCase().includes(q));
 const sort=$("sort").value;list.sort((a,b)=>sort==="name"?a.name.localeCompare(b.name):sort==="works"?(b.post_count||0)-(a.post_count||0):(b.added_at||"").localeCompare(a.added_at||""));
@@ -197,7 +211,23 @@ $("empty").style.display=list.length?"none":"block";$("cards").innerHTML=list.ma
 $("cards").querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>window.open("https://danbooru.donmai.us/artists/"+b.dataset.open,"_blank"));
 const featured=list.find(a=>a.featured);if(featured){$("spot").style.display="flex";$("spotName").textContent=featured.name;$("spotMeta").textContent=(featured.post_count||0)+" 张作品 · "+(featured.category||"未分类");$("spotSamples").innerHTML=(featured.preview_urls||[]).slice(0,6).map(u=>'<img src="'+esc(u)+'" loading="lazy">').join("")}else $("spot").style.display="none";
 }
-function renderCandidates(q=""){const list=candidates.filter(c=>(c.query||"").toLowerCase().includes(q));$("candidateCount").textContent=candidates.length+" 位候选";$("candidateList").innerHTML=list.map(c=>'<div class="candidate-item"><span class="num">'+esc(c.id.replace("candidate-",""))+'</span><span class="candidate-name">'+esc(c.source_tag)+'</span><span class="pill pending">待核验</span></div>').join("")||'<p class="muted">没有匹配的候选画师。</p>';}
+function renderCandidates(q=""){
+ const byId=new Map(verifiedCandidates.map(v=>[v.candidate_id,v]));
+ const list=candidates.filter(c=>(c.query||"").toLowerCase().includes(q));
+ $("candidateCount").textContent=candidates.length+" 位 · 已核验 "+verifiedCandidates.length+" 位";
+ const labels={verified:"身份已核验",verified_no_previews:"身份已核验 · 暂无预览",needs_review:"需要人工确认",not_found:"未找到",blocked:"已封禁/删除",error:"查询失败"};
+ const cards=list.map(c=>{
+  const v=byId.get(c.id);
+  if(!v)return '<div class="candidate-item"><span class="num">'+esc(c.id.replace("candidate-",""))+'</span><span class="candidate-name">'+esc(c.source_tag)+'</span><span class="pill pending">待核验</span></div>';
+  const hero=v.previews?.[0]?.preview_url||v.previews?.[0]?.large_url||"";
+  const thumbs=(v.previews||[]).slice(1,5).map(p=>p.preview_url||p.large_url).filter(Boolean);
+  const meta=v.artist_id?'Artist ID '+v.artist_id+' · '+(v.post_count||0)+' 张预览':'原始标签：'+c.source_tag;
+  const links=(v.artist_url?'<a href="'+esc(v.artist_url)+'" target="_blank" rel="noopener">Artist 主页 ↗</a>':'')+(v.canonical_name?'<a href="https://danbooru.donmai.us/posts?tags='+encodeURIComponent('artist:'+String(v.canonical_name).replace(/\s+/g,"_"))+'" target="_blank" rel="noopener">查看作品 ↗</a>':"");
+  const matches=(v.matches||[]).map(m=>'<div>'+esc(m.name)+' · ID '+esc(m.id)+(m.is_banned?' · 封禁':m.is_deleted?' · 已删除':'')+'</div>').join("");
+  return '<article class="verified-card '+(["needs_review","not_found","error"].includes(v.status)?"review":"")+'">'+(hero?'<img class="hero" src="'+esc(hero)+'" alt="'+esc(v.canonical_name||c.query)+' 代表作" loading="lazy" referrerpolicy="no-referrer">':'<div class="hero" style="display:grid;place-items:center;color:var(--ui-text-muted)">◇</div>')+'<div class="vinfo"><div class="vname">'+esc(v.canonical_name||c.query)+'</div><span class="pill '+(v.status==="verified"||v.status==="verified_no_previews"?"":"pending")+'">'+esc(labels[v.status]||v.status)+'</span><div class="vmeta">'+esc(meta)+'</div>'+(thumbs.length?'<div class="vthumbs">'+thumbs.map((u,i)=>'<img src="'+esc(u)+'" alt="作品预览 '+(i+2)+'" loading="lazy" referrerpolicy="no-referrer">').join("")+'</div>':"")+(matches?'<div class="matches">候选匹配：'+matches+'</div>':"")+(v.error?'<div class="vmeta">'+esc(v.error)+'</div>':"")+'<div class="vlinks">'+links+'</div></div></article>';
+ }).join("");
+ $("candidateList").innerHTML='<div class="candidate-results">'+cards+'</div>';
+}
 function card(a){const imgs=(a.preview_urls||[]).slice(0,3);const verified=a.danbooru_id?"D站已核验":"待核验";return '<article class="artist"><div class="cover">'+(imgs[0]?'<img src="'+esc(imgs[0])+'" alt="'+esc(a.name)+' 的代表作品" loading="lazy" referrerpolicy="no-referrer">':'<div class="empty" aria-hidden="true">◇</div>')+'<span class="count">'+(a.post_count||0)+' 件作品</span></div><div class="details"><div class="row"><div class="avatar sm" aria-hidden="true">'+esc((a.name||"?").slice(0,1).toUpperCase())+'</div><div style="min-width:0"><div class="name">'+esc(a.name)+'</div><div class="muted">'+esc(a.category||"未分类")+' · '+verified+'</div></div></div>'+(imgs.length>1?'<div class="thumbs">'+imgs.slice(1).map((u,i)=>'<img src="'+esc(u)+'" alt="'+esc(a.name)+' 作品预览 '+(i+2)+'" loading="lazy" referrerpolicy="no-referrer">').join("")+'</div>':'')+(a.tags?.length?'<div class="tags">'+a.tags.slice(0,4).map(t=>'<span class="tag">'+esc(t)+'</span>').join("")+'</div>':'')+(a.note?'<div class="muted">'+esc(a.note)+'</div>':'')+'<div class="actions">'+(a.danbooru_id?'<button data-open="'+esc(a.danbooru_id)+'">打开 D 站 ↗</button>':'')+'<button data-edit="'+esc(a.id)+'">编辑</button></div></div></article>'}
 async function lookupDanbooru(){const q=$("artistQuery").value.trim();if(!q)return toast("先输入画师名");$("lookup").disabled=true;$("lookup").textContent="查询中…";$("candidates").innerHTML="";chosen=null;$("selected").style.display="none";try{const url="https://danbooru.donmai.us/artists.json?search[any_name_matches]="+encodeURIComponent(q)+"&limit=12";const r=await fetch(url,{headers:{"Accept":"application/json"}});if(!r.ok)throw Error("D站返回 "+r.status);const rows=await r.json();if(!rows.length){$("candidates").innerHTML='<p class="muted">没有找到对应条目。可以检查拼写，或暂时不收录，避免错误匹配。</p>';return}
 $("candidates").innerHTML=rows.map(x=>{const blocked=!!(x.is_banned||x.is_deleted);const exact=String(x.name||"").toLowerCase()===q.toLowerCase()||(x.other_names||[]).some(n=>String(n).toLowerCase()===q.toLowerCase());return '<div class="candidate"><div class="grow"><b>'+esc(x.name)+'</b><small>ID '+x.id+(exact?" · 名称精确匹配":" · 名称/别名候选，请人工核对") +' · 别名：'+esc((x.other_names||[]).join(", ")||"无")+(x.is_banned?" · 已封禁":"")+(x.is_deleted?" · 已删除":"")+(blocked?" · 不允许正常收录":"") +'</small></div><button data-pick="'+x.id+'" '+(blocked?"disabled":"")+'>'+(blocked?"不可收录":"选择并取样")+'</button></div>'}).join("");$("candidates").querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>selectArtist(rows.find(x=>String(x.id)===b.dataset.pick)))}catch(e){$("candidates").innerHTML='<p class="muted">查询失败：'+esc(e.message)+'。可能是网络或浏览器跨域限制；可以稍后重试。</p>'}finally{$("lookup").disabled=false;$("lookup").textContent="搜索 D 站"}}
