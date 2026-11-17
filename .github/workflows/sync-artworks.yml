@@ -1,0 +1,78 @@
+name: Sync Authorized Artist Artwork
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/artists.json"
+      - "scripts/sync-artworks.mjs"
+      - "scripts/validate-artworks.mjs"
+      - ".github/workflows/sync-artworks.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: \${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Discover and archive the latest authorized works
+        run: node scripts/sync-artworks.mjs
+
+      - name: Validate catalogue and archived image files
+        run: |
+          node scripts/validate-data.mjs
+          node scripts/validate-artworks.mjs
+
+      - name: Commit artwork files and provenance manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/artworks.json docs/assets/artists/
+          if git diff --cached --quiet; then
+            echo "Artwork archive is already up to date."
+          else
+            git commit -m "Archive latest authorized artist artworks"
+            git push origin HEAD:main
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/data
+          cp -R docs/. _site/
+          cp data/artists.json _site/data/artists.json
+          cp data/artworks.json _site/data/artworks.json
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy updated Artist Atlas
+        id: deployment
+        uses: actions/deploy-pages@v4
