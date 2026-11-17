@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ready",
-  "updated_at": "2026-11-17T09:19:07.331Z",
+  "updated_at": "2026-11-17T10:15:24.736Z",
   "selection_policy": "Top 3 eligible General raster image posts per artist ordered by Danbooru score, excluding near-duplicate variants detected through parent/child post relations and perceptual-hash similarity.",
   "storage_policy": "Only the 1600 px WebP display derivative is archived. Source files are downloaded to a temporary staging directory for conversion and are never committed.",
   "artists": [
@@ -21,7 +21,7 @@
         "云间蓝",
         "沾沾★蓝"
       ],
-      "facts_updated_at": "2026-11-17T09:16:46.934Z",
+      "facts_updated_at": "2026-11-17T10:12:40.041Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -144,7 +144,7 @@
         "xxxc1014",
         "zhi_xu_liming"
       ],
-      "facts_updated_at": "2026-11-17T09:16:48.665Z",
+      "facts_updated_at": "2026-11-17T10:12:42.385Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -267,7 +267,7 @@
         "Z3zz4",
         "Z3zz_"
       ],
-      "facts_updated_at": "2026-11-17T09:16:50.447Z",
+      "facts_updated_at": "2026-11-17T10:12:44.933Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -389,7 +389,7 @@
         "yunou_ou",
         "Yunouou10"
       ],
-      "facts_updated_at": "2026-11-17T09:16:52.416Z",
+      "facts_updated_at": "2026-11-17T10:12:47.369Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -511,7 +511,7 @@
         "小黄鲨鱼",
         "鲨咩洗衣机"
       ],
-      "facts_updated_at": "2026-11-17T09:16:54.644Z",
+      "facts_updated_at": "2026-11-17T10:12:49.822Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -633,7 +633,7 @@
         "夜型草莓-",
         "左佐拉zora"
       ],
-      "facts_updated_at": "2026-11-17T09:16:56.678Z",
+      "facts_updated_at": "2026-11-17T10:12:52.181Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -757,7 +757,7 @@
         "淅洵",
         "溯野洵"
       ],
-      "facts_updated_at": "2026-11-17T09:16:58.722Z",
+      "facts_updated_at": "2026-11-17T10:12:54.547Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -881,7 +881,7 @@
       "danbooru_name": "xiayu93",
       "danbooru_post_count": 27,
       "danbooru_aliases": [],
-      "facts_updated_at": "2026-11-17T09:17:00.728Z",
+      "facts_updated_at": "2026-11-17T10:12:56.863Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1012,7 +1012,7 @@
         "含泪吃下小饼干",
         "野生kana酱"
       ],
-      "facts_updated_at": "2026-11-17T09:17:02.768Z",
+      "facts_updated_at": "2026-11-17T10:12:59.238Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1140,7 +1140,7 @@
         "sumoOo",
         "盖古斯"
       ],
-      "facts_updated_at": "2026-11-17T09:17:04.837Z",
+      "facts_updated_at": "2026-11-17T10:13:01.620Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1263,7 +1263,7 @@
         "vvsimyeol",
         "斯木斯木耶"
       ],
-      "facts_updated_at": "2026-11-17T09:17:06.685Z",
+      "facts_updated_at": "2026-11-17T10:13:03.965Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1386,7 +1386,7 @@
         "水也木三",
         "注意点我不走寻常路"
       ],
-      "facts_updated_at": "2026-11-17T09:17:08.728Z",
+      "facts_updated_at": "2026-11-17T10:13:06.402Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1511,7 +1511,7 @@
         "熟了的鱼",
         "熟鱼"
       ],
-      "facts_updated_at": "2026-11-17T09:17:10.778Z",
+      "facts_updated_at": "2026-11-17T10:13:08.668Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1640,7 +1640,7 @@
         "骰子【色子鸡or凉水石】",
         "骰子鸟"
       ],
-      "facts_updated_at": "2026-11-17T09:17:12.788Z",
+      "facts_updated_at": "2026-11-17T10:13:11.017Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1764,7 +1764,7 @@
         "liuchengyisan",
         "zutto"
       ],
-      "facts_updated_at": "2026-11-17T09:17:14.856Z",
+      "facts_updated_at": "2026-11-17T10:13:13.401Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1884,7 +1884,7 @@
       "danbooru_aliases": [
         "三伏QWQ"
       ],
-      "facts_updated_at": "2026-11-17T09:17:16.897Z",
+      "facts_updated_at": "2026-11-17T10:13:15.762Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2013,7 +2013,7 @@
         "sm1467726",
         "好锅煮好饭_"
       ],
-      "facts_updated_at": "2026-11-17T09:17:19.019Z",
+      "facts_updated_at": "2026-11-17T10:13:18.246Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2135,7 +2135,7 @@
         "qmthtdy",
         "清明跳河图"
       ],
-      "facts_updated_at": "2026-11-17T09:17:20.957Z",
+      "facts_updated_at": "2026-11-17T10:13:20.607Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2259,7 +2259,7 @@
         "rimutuyuan415",
         "senbonfan"
       ],
-      "facts_updated_at": "2026-11-17T09:17:23.007Z",
+      "facts_updated_at": "2026-11-17T10:13:22.960Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2383,7 +2383,7 @@
         "叛逆星",
         "叛逆的星"
       ],
-      "facts_updated_at": "2026-11-17T09:17:25.019Z",
+      "facts_updated_at": "2026-11-17T10:13:24.848Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2504,7 +2504,7 @@
         "墨鱼nokoya",
         "nokoyayaya"
       ],
-      "facts_updated_at": "2026-11-17T09:17:27.066Z",
+      "facts_updated_at": "2026-11-17T10:13:27.075Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2628,7 +2628,7 @@
         "纽扣啵啵奶茶",
         "纽扣扣子"
       ],
-      "facts_updated_at": "2026-11-17T09:17:29.185Z",
+      "facts_updated_at": "2026-11-17T10:13:29.519Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2749,7 +2749,7 @@
         "naux830",
         "nauxxx"
       ],
-      "facts_updated_at": "2026-11-17T09:17:31.096Z",
+      "facts_updated_at": "2026-11-17T10:13:31.702Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2871,7 +2871,7 @@
         "nerocomm",
         "奈骡咕咕子"
       ],
-      "facts_updated_at": "2026-11-17T09:17:33.518Z",
+      "facts_updated_at": "2026-11-17T10:13:34.483Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3006,7 +3006,7 @@
         "木果阿木果_",
         "画画的果几"
       ],
-      "facts_updated_at": "2026-11-17T09:17:35.578Z",
+      "facts_updated_at": "2026-11-17T10:13:36.847Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3132,7 +3132,7 @@
         "早睡惑特不落十",
         "早睡的蛙"
       ],
-      "facts_updated_at": "2026-11-17T09:17:37.576Z",
+      "facts_updated_at": "2026-11-17T10:13:39.171Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3254,7 +3254,7 @@
         "みとこ",
         "みひろ"
       ],
-      "facts_updated_at": "2026-11-17T09:17:39.606Z",
+      "facts_updated_at": "2026-11-17T10:13:41.497Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3377,7 +3377,7 @@
         "maosen_l18",
         "maosen毛森"
       ],
-      "facts_updated_at": "2026-11-17T09:17:41.650Z",
+      "facts_updated_at": "2026-11-17T10:13:43.839Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3501,7 +3501,7 @@
         "虎鲸躺尸中",
         "虎鲸躺尸中_Luckyia"
       ],
-      "facts_updated_at": "2026-11-17T09:17:43.704Z",
+      "facts_updated_at": "2026-11-17T10:13:46.022Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3623,7 +3623,7 @@
         "dogetwo",
         "llmia咻"
       ],
-      "facts_updated_at": "2026-11-17T09:17:45.738Z",
+      "facts_updated_at": "2026-11-17T10:13:48.393Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3743,7 +3743,7 @@
       "danbooru_aliases": [
         "_lkppp"
       ],
-      "facts_updated_at": "2026-11-17T09:17:47.674Z",
+      "facts_updated_at": "2026-11-17T10:13:50.582Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3865,7 +3865,7 @@
         "躺在路边的炸鱼薯条",
         "xiaba628"
       ],
-      "facts_updated_at": "2026-11-17T09:17:49.657Z",
+      "facts_updated_at": "2026-11-17T10:13:53.280Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3994,7 +3994,7 @@
         "霖晴Phosphorus",
         "霖晴🍎"
       ],
-      "facts_updated_at": "2026-11-17T09:17:51.733Z",
+      "facts_updated_at": "2026-11-17T10:13:55.756Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4126,7 +4126,7 @@
         "栗樺茶",
         "栗樺茶茶"
       ],
-      "facts_updated_at": "2026-11-17T09:17:53.789Z",
+      "facts_updated_at": "2026-11-17T10:13:58.138Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4254,7 +4254,7 @@
         "可楽子ddd",
         "可楽子捏"
       ],
-      "facts_updated_at": "2026-11-17T09:17:55.838Z",
+      "facts_updated_at": "2026-11-17T10:14:00.482Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4374,7 +4374,7 @@
       "danbooru_aliases": [
         "IRple2"
       ],
-      "facts_updated_at": "2026-11-17T09:17:57.781Z",
+      "facts_updated_at": "2026-11-17T10:14:03.019Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4501,7 +4501,7 @@
         "篱屿",
         "鯉魚"
       ],
-      "facts_updated_at": "2026-11-17T09:17:59.868Z",
+      "facts_updated_at": "2026-11-17T10:14:05.461Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4625,7 +4625,7 @@
         "桂桂冗冗",
         "脂脂水腥-v-"
       ],
-      "facts_updated_at": "2026-11-17T09:18:01.903Z",
+      "facts_updated_at": "2026-11-17T10:14:07.796Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4751,7 +4751,7 @@
         "淵火",
         "淵火_"
       ],
-      "facts_updated_at": "2026-11-17T09:18:03.932Z",
+      "facts_updated_at": "2026-11-17T10:14:10.141Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4879,7 +4879,7 @@
         "格间之人",
         "格间灯火"
       ],
-      "facts_updated_at": "2026-11-17T09:18:06.010Z",
+      "facts_updated_at": "2026-11-17T10:14:12.500Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5000,7 +5000,7 @@
         "feng_jian_yu_zhi",
         "风见隅之"
       ],
-      "facts_updated_at": "2026-11-17T09:18:08.046Z",
+      "facts_updated_at": "2026-11-17T10:14:14.847Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5126,7 +5126,7 @@
         "LPeppermin93893",
         "tansuanqingna298"
       ],
-      "facts_updated_at": "2026-11-17T09:18:09.821Z",
+      "facts_updated_at": "2026-11-17T10:14:17.299Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5247,7 +5247,7 @@
         "FeijiU",
         "是feijiu君"
       ],
-      "facts_updated_at": "2026-11-17T09:18:11.847Z",
+      "facts_updated_at": "2026-11-17T10:14:19.492Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5368,7 +5368,7 @@
         "パチ",
         "p_la_s_ma"
       ],
-      "facts_updated_at": "2026-11-17T09:18:13.889Z",
+      "facts_updated_at": "2026-11-17T10:14:21.859Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5491,7 +5491,7 @@
         "以太",
         "在暖灯下旋转的便利店香肠"
       ],
-      "facts_updated_at": "2026-11-17T09:18:15.856Z",
+      "facts_updated_at": "2026-11-17T10:14:24.143Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5612,7 +5612,7 @@
         "redlunaazrael",
         "安德小骸"
       ],
-      "facts_updated_at": "2026-11-17T09:18:17.876Z",
+      "facts_updated_at": "2026-11-17T10:14:26.484Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5736,7 +5736,7 @@
         "三枝章鱼-",
         "晚烟收³³"
       ],
-      "facts_updated_at": "2026-11-17T09:18:19.916Z",
+      "facts_updated_at": "2026-11-17T10:14:28.853Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5859,7 +5859,7 @@
         "多情铁板烧",
         "🍓"
       ],
-      "facts_updated_at": "2026-11-17T09:18:21.982Z",
+      "facts_updated_at": "2026-11-17T10:14:31.174Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5992,7 +5992,7 @@
         "肉包大胄王对决",
         "키리우"
       ],
-      "facts_updated_at": "2026-11-17T09:18:23.930Z",
+      "facts_updated_at": "2026-11-17T10:14:33.551Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6117,7 +6117,7 @@
         "fhjUtQbYJgGVvRo",
         "okoge_gorigori"
       ],
-      "facts_updated_at": "2026-11-17T09:18:25.984Z",
+      "facts_updated_at": "2026-11-17T10:14:35.604Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6245,7 +6245,7 @@
         "xun",
         "xundaixun"
       ],
-      "facts_updated_at": "2026-11-17T09:18:28.058Z",
+      "facts_updated_at": "2026-11-17T10:14:37.973Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6368,7 +6368,7 @@
         "祁諾Chino",
         "Chino"
       ],
-      "facts_updated_at": "2026-11-17T09:18:30.040Z",
+      "facts_updated_at": "2026-11-17T10:14:40.325Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6489,7 +6489,7 @@
         "caicai56180401",
         "猜猜猜猜你猜猜"
       ],
-      "facts_updated_at": "2026-11-17T09:18:31.901Z",
+      "facts_updated_at": "2026-11-17T10:14:42.683Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6612,7 +6612,7 @@
         "森海夏夏",
         "雨谷丛生"
       ],
-      "facts_updated_at": "2026-11-17T09:18:33.856Z",
+      "facts_updated_at": "2026-11-17T10:14:44.994Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6736,7 +6736,7 @@
         "百川青源",
         "百川青源seigen"
       ],
-      "facts_updated_at": "2026-11-17T09:18:35.802Z",
+      "facts_updated_at": "2026-11-17T10:14:47.203Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6858,7 +6858,7 @@
         "敖敖敖是头海草",
         "爻"
       ],
-      "facts_updated_at": "2026-11-17T09:18:37.854Z",
+      "facts_updated_at": "2026-11-17T10:14:49.444Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6981,7 +6981,7 @@
         "乙苏凫眠",
         "乙苏凫眠ensominia"
       ],
-      "facts_updated_at": "2026-11-17T09:18:39.921Z",
+      "facts_updated_at": "2026-11-17T10:14:51.647Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7102,7 +7102,7 @@
         "lAmukeerl",
         "x穆可x"
       ],
-      "facts_updated_at": "2026-11-17T09:18:41.870Z",
+      "facts_updated_at": "2026-11-17T10:14:53.999Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7225,7 +7225,7 @@
         "棠老板",
         "棠老板睡眠中"
       ],
-      "facts_updated_at": "2026-11-17T09:18:44.162Z",
+      "facts_updated_at": "2026-11-17T10:14:56.388Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7347,7 +7347,7 @@
         "日子",
         "麻痹的小日子"
       ],
-      "facts_updated_at": "2026-11-17T09:18:46.288Z",
+      "facts_updated_at": "2026-11-17T10:14:58.849Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7472,7 +7472,7 @@
         "ruoganzhao",
         "user_rjtd7274"
       ],
-      "facts_updated_at": "2026-11-17T09:18:48.369Z",
+      "facts_updated_at": "2026-11-17T10:15:01.218Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7595,7 +7595,7 @@
         "竹墨笺",
         "竹墨笺努力搬砖"
       ],
-      "facts_updated_at": "2026-11-17T09:18:50.471Z",
+      "facts_updated_at": "2026-11-17T10:15:03.668Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7716,7 +7716,7 @@
         "Hotaruzzzz",
         "回修所海马"
       ],
-      "facts_updated_at": "2026-11-17T09:18:52.408Z",
+      "facts_updated_at": "2026-11-17T10:15:06.333Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7839,7 +7839,7 @@
         "ZvEprJ3Gj2GdbPl",
         "🍰Kiiii"
       ],
-      "facts_updated_at": "2026-11-17T09:18:54.159Z",
+      "facts_updated_at": "2026-11-17T10:15:08.501Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7967,7 +7967,7 @@
         "mechillow",
         "mechirudesu"
       ],
-      "facts_updated_at": "2026-11-17T09:18:56.427Z",
+      "facts_updated_at": "2026-11-17T10:15:10.865Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8095,7 +8095,7 @@
         "周然",
         "音符"
       ],
-      "facts_updated_at": "2026-11-17T09:18:58.491Z",
+      "facts_updated_at": "2026-11-17T10:15:13.326Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8218,7 +8218,7 @@
         "教主某狐仙",
         "誰の稲荷神"
       ],
-      "facts_updated_at": "2026-11-17T09:19:00.228Z",
+      "facts_updated_at": "2026-11-17T10:15:15.760Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8342,7 +8342,7 @@
         "大白酱么么哒",
         "雪鸮咕咕"
       ],
-      "facts_updated_at": "2026-11-17T09:19:01.955Z",
+      "facts_updated_at": "2026-11-17T10:15:18.122Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8465,7 +8465,7 @@
         "美见",
         "鸡饲料美见"
       ],
-      "facts_updated_at": "2026-11-17T09:19:03.709Z",
+      "facts_updated_at": "2026-11-17T10:15:20.000Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8588,7 +8588,7 @@
         "sangenliu",
         "華小路"
       ],
-      "facts_updated_at": "2026-11-17T09:19:05.489Z",
+      "facts_updated_at": "2026-11-17T10:15:22.338Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8715,7 +8715,7 @@
         "감자",
         "gj"
       ],
-      "facts_updated_at": "2026-11-17T09:19:07.240Z",
+      "facts_updated_at": "2026-11-17T10:15:24.666Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8827,5 +8827,5 @@
     }
   ],
   "display_policy": "The grid loads a 1600 px WebP display derivative (quality 85) generated from the Danbooru source file. Source files are converted in a temporary staging directory and are not committed to this repository.",
-  "display_updated_at": "2026-11-17T09:19:07Z"
+  "display_updated_at": "2026-11-17T10:15:24Z"
 }
