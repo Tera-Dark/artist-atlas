@@ -1,38 +1,36 @@
-# Artist Atlas · 前端与数据结构
+# Artist Atlas · 前端与作品归档架构
 
-> 当前状态：三位画师的统一卡片验收版
+> 当前状态：三位画师的本地作品归档与统一卡片验收版
 
 ## 产品边界
 
-Artist Atlas 是个人画师与视觉参考档案。它只维护一份正式画师索引，不在公开浏览页展示候选列表、核验批次或第二套作品目录。
+Artist Atlas 是个人画师与视觉参考档案。公开页面只维护一份正式画师索引，不展示候选列表、核验批次或第二套目录。
 
-当前验收数据仅保留三位画师：zhanzhan_lan、zhi_xu_li_ming、z3zz4。验收完成前，不恢复旧名单，也不执行批量导入。
+当前测试数据仅保留 zhanzhan_lan、zhi_xu_li_ming、z3zz4。当前归档范围是这三位画师；后续新增画师会走相同流程。
 
 ## 单一数据流
 
 data/artists.json
        |
        v
-页面读取唯一正式索引
-       |
-       +---- Danbooru Posts API
-       |       最新 3 张 rating:g 作品
-       |       large_file_url 优先，其次 file_url
+GitHub Actions 查询 Danbooru Artist 的最新 General 图片作品
        |
        v
-统一画师卡片与作品轮播
+下载原图（受大小限制时使用较大 sample）
        |
-       +---- 本地收藏 / 主题 / NAI5 组合
+       v
+校验文件格式 / 尺寸 / SHA-256
        |
-       +---- 管理弹窗
-                 |
-                 v
-       GitHub Contents API 写回
-                 |
-                 v
-       data/artists.json
-                 |
-          CI 校验 / Pages 部署
+       v
+docs/assets/artists/<artist_id>/<post_id>.<ext>
+       |
+       +---- data/artworks.json（来源、署名、授权确认、文件清单）
+       |
+       v
+GitHub commit
+       |
+       v
+GitHub Pages 读取仓库本地图片
 
 ## 页面信息架构
 
@@ -49,27 +47,45 @@ data/artists.json
 ## 画师卡片约束
 
 - 所有画师使用同一套卡片模板和信息顺序，不允许按单个 ID 编写特例卡片。
-- 每位画师最多展示 3 张最新 General 作品。
-- 作品展示优先使用 Danbooru 的 large sample，缺少 sample 时使用原图；不将 180×180 preview 用作主展示。
+- 每位画师最多展示 3 张最新 General 图片作品。
+- 主页面只读取仓库内的本地资产，不依赖访客浏览器实时访问 Danbooru CDN。
+- 原图优先；超过单文件大小上限或原图下载失败时，才尝试使用 Danbooru large sample。
 - 图片保持原始长宽比完整显示，不使用强制裁切。
 - 左右按钮和圆点控制同一卡片内部的作品索引。
 - 点击作品打开对应 Danbooru Post；资料入口打开 Artist 页面。
 - 图片请求失败时展示明确的错误提示与 Artist 主页链接。
 
-## 状态与持久化
+## 归档与来源记录
 
-浏览器本地状态：
-- 收藏列表：localStorage。
-- 主题偏好：localStorage。
-- NAI5 组合与强弱：当前页面会话内存。
+data/artworks.json 为本地图片档案清单，每张作品记录：
 
-仓库正式资料：
-- 画师名称、别名、Danbooru Artist ID。
-- 分类、风格标签、个人评分与备注。
-- 作品 Post ID 和来源 URL。
-- 添加与更新时间。
+- Danbooru Post ID 与原帖 URL。
+- 原始媒体 URL、下载后的本地路径。
+- 文件类型、尺寸、字节数与 SHA-256。
+- 下载时间、署名与对应 Artist ID。
+- 仓库所有者确认的作者再保存和公开展示许可。
 
-不将远程作品文件下载或重新托管到仓库。
+仓库所有者于 2026-11-17 确认当前归档范围的作者已允许将作品保存、上传并公开展示。授权确认以仓库所有者的声明作为记录；如果许可范围变化，必须停止同步并移除不再获准保留的资产。
+
+## 自动同步
+
+scripts/sync-artworks.mjs：
+- 每位画师查询最新 40 条候选，筛选非删除、General、静态图片格式作品。
+- 按 Post ID 从新到旧选择 3 张可下载图片。
+- 原图优先，单文件最大 32 MiB；总归档上限 180 MiB。
+- Danbooru 请求之间保持间隔，失败时不提交部分归档。
+- 只保留当前三张选中作品，清理对应画师目录中的旧文件。
+
+scripts/validate-artworks.mjs：
+- 校验所有正式画师都有 3 张图片。
+- 校验授权确认、作者署名、Post ID 和来源链接。
+- 读取本地文件并校验图片签名、尺寸、字节数及 SHA-256。
+
+.github/workflows/sync-artworks.yml：
+- 正式画师索引或归档脚本变化时自动运行。
+- 支持手动运行。
+- 每周一自动检查最新作品。
+- 同步完成后提交图片及清单，并在同一工作流中部署 Pages，避免图片尚未提交就先发布页面。
 
 ## 管理流程
 
@@ -77,12 +93,6 @@ data/artists.json
 
 提交前重新读取远端文件并比对 blob SHA；若远端已有其他修改，则停止写入并要求刷新，避免覆盖并发更新。
 
-## 质量检查
-
-使用 node scripts/validate-data.mjs 检查正式数据、重复身份、DOM ID、页面脚本语法。
-
-GitHub Actions 在 main 分支推送和 Pull Request 时执行校验。GitHub Pages 发布工作流应在部署前执行同一校验。
-
 ## 后续扩容原则
 
-只有在三张卡片的作品清晰度、信息层级、桌面与移动端布局、轮播与管理流程完成验收后，才恢复完整名单。扩容时只增加正式索引数据，不为单个画师写专属卡片结构。
+只有在三张卡片的作品清晰度、信息层级、桌面与移动端布局、轮播与管理流程完成验收后，才恢复完整名单。新增画师只需要增加正式索引；归档工作流会自动创建对应目录，不需要为单个画师写专属卡片结构。
