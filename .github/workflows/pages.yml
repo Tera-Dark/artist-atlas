@@ -25,7 +25,9 @@ jobs:
         with:
           node-version: 22
       - name: Validate catalogue before publishing
-        run: node scripts/validate-data.mjs
+        run: |
+          node scripts/validate-data.mjs
+          node scripts/validate-artworks.mjs
 
   deploy:
     needs: validate
@@ -43,6 +45,7 @@ jobs:
           mkdir -p _site/data
           cp -R docs/. _site/
           cp data/artists.json _site/data/artists.json
+          cp data/artworks.json _site/data/artworks.json
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
