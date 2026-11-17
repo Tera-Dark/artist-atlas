@@ -189,7 +189,7 @@ async function main() {
     fail("The canonical artist catalogue is empty.");
   }
 
-  const confirmedAt = "2026-11-17T00:00:00.000Z";
+  const confirmedAt = "2026-11-17T02:44:26.000Z";
   const archivedArtists = [];
   const filesToWrite = [];
   let totalBytes = 0;
