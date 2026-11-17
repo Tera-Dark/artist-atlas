@@ -1,42 +1,49 @@
-# Artist Atlas · 使用说明
+# Artist Atlas · 快速使用说明
 
-在线入口：<https://tera-dark.github.io/artist-atlas/>
+在线图鉴：https://tera-dark.github.io/artist-atlas/
+
+完整项目说明、数据结构、作品归档流程、GitHub Actions、手动命令、授权要求和 AI 接手规范，请优先阅读仓库根目录 README.md：
+
+https://github.com/Tera-Dark/artist-atlas#readme
 
 ## 当前测试范围
 
-目前只保留三位测试画师：zhanzhan_lan、zhi_xu_li_ming、z3zz4。这不是候选池，也不是正式扩容完成后的全量图鉴；当前目标是先验收作品显示、卡片统一性与浏览交互。
+目前正式图鉴只保留三位画师：
+
+- zhanzhan_lan · Danbooru Artist ID 63362
+- zhi_xu_li_ming · Danbooru Artist ID 408507
+- z3zz4 · Danbooru Artist ID 261471
+
+每位画师当前归档 3 张最新、未删除的 General 作品。图片已经保存到仓库 docs/assets/artists/<Artist ID>/，前端通过 data/artworks.json 加载本地图片。
 
 ## 浏览图鉴
 
-- 主页面只有一份正式画师列表。
-- 搜索支持名称、别名、风格标签与备注。
-- 「我的收藏」仅筛选当前浏览器保存的收藏。
-- 卡片上的左右箭头和圆点用于切换最多三张最新作品。
-- 点击作品打开 Danbooru 原帖；点击 DANBOORU PROFILE 打开画师主页。
-
-作品来自 Danbooru rating:g 的最新帖子，主展示优先采用较大尺寸的作品文件。页面不使用 180×180 缩略图作为主视觉。若 Danbooru 请求失败，卡片会显示提示，不会静默用模糊小图替代高清作品。
+- 搜索支持画师名称、别名、风格标签和备注。
+- 可以按收藏筛选和排序。
+- 卡片左右箭头和圆点切换三张本地作品。
+- 点击作品打开对应 Danbooru 原帖；点击 DANBOORU PROFILE 打开 Artist 主页。
+- 收藏与主题保存在当前浏览器；NAI5 组合只保存在当前页面会话。
 
 ## NAI5 画师串
 
-在画师卡片点「加入组合」，再点页眉的「NAI5 画师串」即可调整组合顺序和标签强弱，并复制候选串。实际识别效果仍以 NovelAI 输入框的标签建议为准。
+在画师卡片点「加入组合」，再点页眉的「NAI5 画师串」，可调整组合顺序和标签强弱并复制候选串。实际识别效果以 NovelAI 输入框的标签建议为准。
 
 ## 管理图鉴
 
-仅在新增、编辑或删除画师时需要 GitHub Token：
+只有新增、编辑或删除正式画师时才需要 GitHub Token。创建 Fine-grained Token 时，仅选择 artist-atlas 仓库，并只授予 Contents: Read and write。
 
-1. 打开 <https://github.com/settings/personal-access-tokens/new> 创建 Fine-grained Token。
-2. Repository access 选择 Only select repositories，并只勾选 artist-atlas。
-3. 将 Contents 权限设为 Read and write，其余权限保持 No access。
-4. 回到图鉴，点击「管理图鉴」，连接 Token。
-5. 搜索 Danbooru Artist 名称或别名，仔细核对 Artist ID。
-6. 选择准确条目，填写自己的显示名称、分类、标签、评分与备注，再保存。
+新增画师前必须核对 Danbooru Artist ID，并确认作者允许作品重新保存、上传到公开 GitHub 仓库及通过 GitHub Pages 展示。保存正式画师记录后，main 分支的自动化工作流会发现、下载、校验三张图片并部署网页。
 
-Token 仅保存在当前浏览器会话，不要分享、截图或写入源码。仓库数据更新后，GitHub Actions 会校验并触发 Pages 部署。
+Token 仅保存在当前浏览器会话，不能分享或提交到仓库。
 
-## 常见情况
+## 作品更新
 
-**作品没有显示？** 检查浏览器网络请求是否能访问 danbooru.donmai.us。无作品或 API 请求失败时，卡片会显示说明和画师主页入口。
+打开 GitHub Actions → Sync Authorized Artist Artwork → Run workflow，可以手动重新同步所有正式画师的最新三张 General 作品。自动流程也会在正式画师数据或归档脚本变化时运行，并每周一 UTC 03:17 检查更新。
 
-**保存后页面没有立即更新？** 查看 GitHub Actions 中的校验与 Pages 部署状态；部署完成后刷新页面。
+## 常见问题
 
-**什么时候恢复完整画师列表？** 等三位测试卡片的视觉与交互验收通过，再决定下一轮导入。当前阶段不会自动恢复之前移除的名单。
+**作品没有显示？** 检查 data/artworks.json 的 local_url 是否对应 docs/assets 中真实存在的图片，再检查最新 Pages 部署是否成功。不要把 180×180 preview 当作高清主图。
+
+**保存后页面没有立即更新？** 查看 GitHub Actions 中的校验与 Pages 部署状态；部署完成后强制刷新页面。
+
+**什么时候恢复完整画师列表？** 当前三位是前端与归档流程的验收基线。只有用户明确要求扩容、并且新增作者的再托管许可已确认后，才增加正式记录。
