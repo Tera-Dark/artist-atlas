@@ -20,4 +20,6 @@ jobs:
         with:
           node-version: 22
       - name: Validate catalogue, schema, and page script
-        run: node scripts/validate-data.mjs
+        run: |
+          node scripts/validate-data.mjs
+          node scripts/validate-artworks.mjs
