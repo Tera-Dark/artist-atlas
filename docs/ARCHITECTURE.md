@@ -16,18 +16,18 @@ data/artists.json
 GitHub Actions 按 score 查询 Danbooru Artist 的 General 图片作品
        |
        v
-下载原图（受大小限制时使用较大 sample）
+把源文件下载到临时暂存目录（受大小限制时使用较大 sample）
        |
        v
 校验文件格式 / 尺寸 / SHA-256
        |
        v
-docs/assets/artists/<artist_id>/<post_id>.<ext>       逐字节原图归档
+docs/assets/artists/<artist_id>/<post_id>.display.webp   唯一归档文件
        |
        v
 生成 <post_id>.display.webp（最长边 1600 px，WebP 85）
        |
-       +---- data/artworks.json（来源、署名、授权、原图与显示副本清单）
+       +---- data/artworks.json（来源、署名、授权与显示副本清单）
        |
        v
 GitHub commit
@@ -51,10 +51,10 @@ GitHub Pages 只加载 display 副本
 
 - 所有画师使用同一套卡片模板和信息顺序，不允许按单个 ID 编写特例卡片。
 - 每位画师最多展示 3 张热度最高且互不重复（排除差分）的 General 图片作品。
-- 主页面只读取仓库内的本地资产，且只加载 display 副本；原图保留归档，不进入网页加载路径。
+- 主页面只读取仓库内的本地资产，且只加载 display 副本；仓库不保留源文件。
 - 卡片需要保持懒加载：首屏只请求可见卡片，预取在 idle 阶段执行，切换作品时旧图保留到新图解码完成。
 - 骨架屏与「读取中」动画只在卡片进入视口时播放（`data-inview`），离屏卡片保持暂停，避免长期占用合成线程。
-- 原图优先；超过单文件大小上限或原图下载失败时，才尝试使用 Danbooru large sample。
+- 源文件优先；超过单文件大小上限或下载失败时，才尝试使用 Danbooru large sample；源文件只用于转换。
 - 图片保持原始长宽比完整显示，不使用强制裁切。
 - 左右按钮、圆点、键盘方向键和手机左右滑动控制同一卡片内部的作品索引。
 - 点击作品打开对应 Danbooru Post；资料入口打开 Artist 页面。
@@ -71,7 +71,7 @@ GitHub Pages 只加载 display 副本
 - 图片加载分层：首屏一张 eager + high，其余 lazy；IntersectionObserver 在接近视口时通过 requestIdleCallback 预取下一张；悬停/聚焦时预取整张卡片的 display 副本。
 - 切换作品时先 `img.decode()` 再替换显示，旧图保持到新帧就绪；预加载缓存上限 8 条。
 - 环境模糊背景只在主图加载完成后设置，离屏卡片不得提前请求图片。
-- 工作区主图是数千万像素的原图，禁止对主图使用 `filter: drop-shadow()` 等会触发大尺寸离屏栅格化的效果。
+- 主图是 1600 px 显示副本，禁止对主图使用 `filter: drop-shadow()` 等会触发大尺寸离屏栅格化的效果。
 - 弹窗需要焦点圈定、`Escape` 关闭、关闭后还原焦点，并在打开时锁住页面滚动。
 - 动效遵循 `prefers-reduced-motion`；主题默认跟随 `prefers-color-scheme`，用户手动切换后以 `localStorage` 为准。
 
@@ -96,20 +96,19 @@ scripts/sync-artworks.mjs：
 - 差分判定：Danbooru 父帖关系（含向上三层）与 180px preview 的 8×8 dHash（汉明距离 ≤ 12）。
 - 跳过的候选写入 `selection_detail.skipped_variants`，便于复核。
 - preview 只用于比较，不写入仓库。
-- 原图优先，单文件最大 32 MiB；总归档上限 180 MiB（含显示副本预留）。
+- 源文件下载上限 32 MiB；仓库只归档显示副本，总量上限 120 MiB。
 - Danbooru 请求之间保持间隔，失败时不提交部分归档。
 - 只保留当前三张选中作品，清理对应画师目录中的旧文件。
 
 scripts/make-display-assets.py：
-- 从归档原图生成最长边 1600 px、WebP quality 85 的 display 副本。
-- 原图字节不变；动图或无法解码时回退原图。
-- 幂等：源图 SHA-256 未变就跳过；清理 manifest 未引用的旧 display 文件。
+- 从暂存源文件生成最长边 1600 px、WebP quality 85 的 display 副本，随后删除源文件。
+- 幂等：display 复制件校验通过就跳过；清理 manifest 未引用的旧文件和遗留源文件。
 
 scripts/validate-artworks.mjs：
 - 校验所有正式画师都有 3 张图片。
 - 校验授权确认、作者署名、Post ID 和来源链接。
 - 读取本地文件并校验图片签名、尺寸、字节数及 SHA-256。
-- 校验每张作品的 WebP display 副本与原图 + 副本总体积。
+- 校验每张作品的 WebP display 副本、源文件追溯字段与 120 MiB 总量。
 
 .github/workflows/sync-artworks.yml：
 - 正式画师索引或归档脚本变化时自动运行。

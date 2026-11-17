@@ -9,27 +9,50 @@ const ROOT = process.cwd();
 const ARTISTS_FILE = path.join(ROOT, "data", "artists.json");
 const MANIFEST_FILE = path.join(ROOT, "data", "artworks.json");
 const ASSET_ROOT = path.join(ROOT, "docs", "assets", "artists");
+const DOCS_ROOT = path.join(ROOT, "docs");
 const USER_AGENT = "ArtistAtlasArtworkSync/1.0 (+https://github.com/Tera-Dark/artist-atlas)";
 const MAX_IMAGE_BYTES = 32 * 1024 * 1024;
-const MAX_TOTAL_BYTES = 180 * 1024 * 1024;
-// Each archived master also gets a WebP display derivative. Reserve headroom so
-// the combined budget checked by validate-artworks.mjs cannot be exceeded.
-const DISPLAY_BUDGET_ALLOWANCE = 1 * 1024 * 1024;
 const POST_LIMIT = 120;
-const PER_ARTIST_DELAY_MS = 1200;
-const PER_POST_DELAY_MS = 300;
+const PER_ARTIST_DELAY_MS = 700;
+const PER_POST_DELAY_MS = 200;
 // Two works whose 8x8 difference hash is within this Hamming distance are
 // treated as variants (差分) of the same picture and never share a card.
 const VARIANT_HASH_DISTANCE = 12;
 const PREVIEW_CACHE_DIR = path.join(os.tmpdir(), "artist-atlas-preview-cache");
+// Downloaded source files live here only until make-display-assets.py converts
+// them; the directory is removed before every run and never committed.
+const STAGING_ROOT = process.env.ATLAS_STAGING
+  ? path.resolve(process.env.ATLAS_STAGING)
+  : path.join(os.tmpdir(), "artist-atlas-staging");
 const PYTHON_BIN = process.platform === "win32" ? "python" : "python3";
-const ALLOWED_EXTENSIONS = new Set(["jpg", "jpeg", "png", "webp", "avif"]);
+const ALLOWED_EXTENSIONS = new Set(["jpg", "jpeg", "png", "webp"]);
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const isoNow = () => new Date().toISOString();
 
 function fail(message) {
   throw new Error(message);
+}
+
+/* Danbooru occasionally drops connections; every request is retried with
+   backoff so one transient reset cannot abort a long archive run. */
+async function fetchWithRetry(url, options, tries = 4) {
+  let lastError;
+  for (let attempt = 0; attempt < tries; attempt += 1) {
+    try {
+      const response = await fetch(url, options);
+      if (response.status === 429 || response.status >= 500) {
+        lastError = new Error("HTTP " + response.status);
+        await sleep(1200 * (attempt + 1) + Math.round(Math.random() * 400));
+        continue;
+      }
+      return response;
+    } catch (error) {
+      lastError = error;
+      if (attempt < tries - 1) await sleep(600 * (attempt + 1));
+    }
+  }
+  throw lastError || new Error("Request failed: " + url);
 }
 
 async function readJson(file) {
@@ -61,13 +84,13 @@ async function fetchPopularPosts(artist) {
     tags: tag + " rating:g order:score",
     limit: String(POST_LIMIT),
     only: [
-      "id", "rating", "score", "fav_count", "parent_id", "has_children",
+      "id", "rating", "score", "fav_count", "parent_id", "has_children", "md5",
       "file_url", "large_file_url", "preview_file_url",
       "file_ext", "file_size", "image_width", "image_height",
       "created_at", "is_deleted"
     ].join(",")
   });
-  const response = await fetch("https://danbooru.donmai.us/posts.json?" + query.toString(), {
+  const response = await fetchWithRetry("https://danbooru.donmai.us/posts.json?" + query.toString(), {
     headers: {
       "Accept": "application/json",
       "User-Agent": USER_AGENT
@@ -140,7 +163,7 @@ async function previewSignature(artist, post) {
   const file = path.join(dir, String(post.id) + ".img");
   try {
     await fs.mkdir(dir, { recursive: true });
-    const downloaded = await downloadUrl(post.preview_file_url, "preview");
+    const downloaded = await downloadUrl(post.preview_file_url, "preview", 2);
     await fs.writeFile(file, downloaded.bytes);
     const output = JSON.parse(await runPython(["scripts/image-signature.py", file]));
     const record = Array.isArray(output) ? output[0] : null;
@@ -157,7 +180,7 @@ async function fetchArtistFacts(artist) {
   const tag = safeDanbooruTag(artist);
   const facts = { name: null, aliases: null, post_count: null };
   try {
-    const response = await fetch("https://danbooru.donmai.us/artists/" + artist.danbooru_id + ".json", {
+    const response = await fetchWithRetry("https://danbooru.donmai.us/artists/" + artist.danbooru_id + ".json", {
       headers: { "Accept": "application/json", "User-Agent": USER_AGENT },
       redirect: "follow"
     });
@@ -176,7 +199,7 @@ async function fetchArtistFacts(artist) {
   await sleep(PER_POST_DELAY_MS);
   try {
     const query = new URLSearchParams({ "search[name]": tag, limit: "1" });
-    const response = await fetch("https://danbooru.donmai.us/tags.json?" + query.toString(), {
+    const response = await fetchWithRetry("https://danbooru.donmai.us/tags.json?" + query.toString(), {
       headers: { "Accept": "application/json", "User-Agent": USER_AGENT },
       redirect: "follow"
     });
@@ -256,17 +279,17 @@ function isDanbooruHost(rawUrl) {
   }
 }
 
-async function downloadUrl(rawUrl, variant) {
+async function downloadUrl(rawUrl, variant, tries = 4) {
   if (!rawUrl || !isDanbooruHost(rawUrl)) {
     fail("Rejected non-Danbooru media URL.");
   }
-  const response = await fetch(rawUrl, {
+  const response = await fetchWithRetry(rawUrl, {
     headers: {
       "User-Agent": USER_AGENT,
       "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
     },
     redirect: "follow"
-  });
+  }, tries);
   if (!response.ok) {
     fail("Media download returned HTTP " + response.status);
   }
@@ -313,40 +336,87 @@ function sha256(bytes) {
   return crypto.createHash("sha256").update(bytes).digest("hex");
 }
 
-async function removeStaleAssets(expectedByArtist) {
+async function pruneArtistDirectories(activeArtistIds) {
   await fs.mkdir(ASSET_ROOT, { recursive: true });
-  const activeArtistIds = new Set(expectedByArtist.keys());
   for (const entry of await fs.readdir(ASSET_ROOT, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
-    const dir = path.join(ASSET_ROOT, entry.name);
-    const expected = expectedByArtist.get(entry.name) || new Set();
     if (!activeArtistIds.has(entry.name)) {
-      await fs.rm(dir, { recursive: true, force: true });
-      continue;
-    }
-    for (const file of await fs.readdir(dir)) {
-      // Display derivatives are maintained by scripts/make-display-assets.py so
-      // an unchanged master does not get re-encoded on every sync.
-      if (file.endsWith(".display.webp")) continue;
-      if (!expected.has(file)) await fs.rm(path.join(dir, file), { force: true });
+      await fs.rm(path.join(ASSET_ROOT, entry.name), { recursive: true, force: true });
     }
   }
 }
 
-function carryDisplayFields(previous, digest) {
-  if (!previous || previous.sha256 !== digest || previous.display_source_sha256 !== digest) return {};
-  if (!previous.display_url || !previous.display_file_size || !previous.display_sha256) return {};
-  return {
-    display_url: previous.display_url,
-    display_variant: previous.display_variant,
-    display_mime_type: previous.display_mime_type,
-    display_width: previous.display_width,
-    display_height: previous.display_height,
-    display_file_size: previous.display_file_size,
-    display_sha256: previous.display_sha256,
-    display_source_sha256: previous.display_source_sha256,
-    display_generated_at: previous.display_generated_at
+async function stageSource(artistId, postId, ext, bytes) {
+  const target = path.join(STAGING_ROOT, String(artistId), String(postId) + "." + ext);
+  await fs.mkdir(path.dirname(target), { recursive: true });
+  await fs.writeFile(target, bytes);
+  return target;
+}
+
+function manifestPayload(artists, previous) {
+  const payload = {
+    version: 1,
+    status: "ready",
+    updated_at: isoNow(),
+    selection_policy: "Top 3 eligible General raster image posts per artist ordered by Danbooru score, excluding near-duplicate variants detected through parent/child post relations and perceptual-hash similarity.",
+    storage_policy: "Only the 1600 px WebP display derivative is archived. Source files are downloaded to a temporary staging directory for conversion and are never committed.",
+    artists
   };
+  if (previous && typeof previous.display_policy === "string") payload.display_policy = previous.display_policy;
+  if (previous && typeof previous.display_updated_at === "string") payload.display_updated_at = previous.display_updated_at;
+  return payload;
+}
+
+async function writeManifest(artists) {
+  let previous = null;
+  try {
+    previous = JSON.parse(await fs.readFile(MANIFEST_FILE, "utf8"));
+  } catch (error) {
+    previous = null;
+  }
+  const payload = manifestPayload(artists, previous);
+  await fs.writeFile(MANIFEST_FILE, JSON.stringify(payload, null, 2) + String.fromCharCode(10), "utf8");
+}
+
+function convertArtist(artistId) {
+  return new Promise(function (resolve, reject) {
+    execFile(
+      PYTHON_BIN,
+      ["scripts/make-display-assets.py", "--only", String(artistId)],
+      { cwd: ROOT, timeout: 300000, env: process.env },
+      function (error, stdout, stderr) {
+        if (error) {
+          reject(new Error(String(stderr || stdout || error.message).trim()));
+          return;
+        }
+        resolve();
+      }
+    );
+  });
+}
+
+async function readManifestArtist(artistId) {
+  const manifest = JSON.parse(await fs.readFile(MANIFEST_FILE, "utf8"));
+  return (manifest.artists || []).find(function (record) {
+    return String(record.artist_id) === String(artistId);
+  });
+}
+
+async function isArchiveComplete(record, artist) {
+  if (!record || !Array.isArray(record.artworks) || record.artworks.length !== 3) return false;
+  if (record.artist_record_id !== artist.id) return false;
+  if (record.artist_name !== artist.name) return false;
+  for (const work of record.artworks) {
+    if (!work || !work.display_url) return false;
+    const file = path.join(DOCS_ROOT, work.display_url);
+    try {
+      const stat = await fs.stat(file);
+      if (!stat.isFile() || stat.size !== work.display_file_size) return false;
+    } catch (error) {
+      return false;
+    }
+  }
+  return true;
 }
 
 async function main() {
@@ -357,22 +427,29 @@ async function main() {
 
   const confirmedAt = "2026-11-17T02:44:26.000Z";
   const archivedArtists = [];
-  const filesToWrite = [];
-  let totalBytes = 0;
-  let masterBytes = 0;
+  const activeArtistIds = new Set(catalogue.artists.map(function (artist) {
+    return String(artist.danbooru_id);
+  }));
+  let downloadedBytes = 0;
+  let reusedWorks = 0;
 
-  // Keep existing display derivatives when the archived master is unchanged.
-  const previousDisplay = new Map();
+  // Works whose Danbooru md5 is unchanged keep their existing display file and
+  // are not downloaded again.
+  const previousByPost = new Map();
+  const previousByArtist = new Map();
   try {
     const previous = JSON.parse(await fs.readFile(MANIFEST_FILE, "utf8"));
     for (const record of previous.artists || []) {
       for (const work of record.artworks || []) {
-        if (work && work.post_id && work.display_url) previousDisplay.set(String(work.post_id), work);
+        if (work && work.post_id) previousByPost.set(String(work.post_id), work);
       }
+      if (record && record.artist_id) previousByArtist.set(String(record.artist_id), record);
     }
   } catch {
-    // No previous manifest yet: the display generator will create everything.
+    // No previous manifest yet.
   }
+
+  await fs.rm(STAGING_ROOT, { recursive: true, force: true });
 
   for (let artistIndex = 0; artistIndex < catalogue.artists.length; artistIndex += 1) {
     const artist = catalogue.artists[artistIndex];
@@ -381,7 +458,20 @@ async function main() {
     }
     if (artistIndex > 0) await sleep(PER_ARTIST_DELAY_MS);
 
-    console.log("Discovering top-scoring General image posts for " + artist.name + " (#" + artist.danbooru_id + ")...");
+    // ATLAS_RESUME=1 reuses artists that are already archived so an interrupted
+    // local run can continue without re-downloading. CI never sets it, so the
+    // scheduled run always re-selects the current top-scoring works.
+    if (process.env.ATLAS_RESUME === "1") {
+      const previousRecord = previousByArtist.get(String(artist.danbooru_id));
+      if (await isArchiveComplete(previousRecord, artist)) {
+        archivedArtists.push(previousRecord);
+        console.log("  reused " + previousRecord.artworks.length + " works for " + artist.name + ".");
+        continue;
+      }
+    }
+
+    console.log("[" + (artistIndex + 1) + "/" + catalogue.artists.length + "] " +
+      "Discovering top-scoring General image posts for " + artist.name + " (#" + artist.danbooru_id + ")...");
     const posts = await fetchPopularPosts(artist);
     const facts = await fetchArtistFacts(artist);
     if (posts.length < 3) {
@@ -401,8 +491,25 @@ async function main() {
 
     const artworks = [];
     for (const post of picked) {
-      if (artworks.length > 0) await sleep(PER_POST_DELAY_MS);
+      const prior = previousByPost.get(String(post.id));
+      const md5 = typeof post.md5 === "string" ? post.md5.toLowerCase() : null;
+      if (prior && md5 && String(prior.source_md5 || "").toLowerCase() === md5 &&
+          prior.display_url && prior.display_sha256) {
+        artworks.push(Object.assign({}, prior, {
+          selection_rank: artworks.length + 1,
+          score: Number.isFinite(Number(post.score)) ? Number(post.score) : null,
+          fav_count: Number.isFinite(Number(post.fav_count)) ? Number(post.fav_count) : null,
+          attribution: {
+            artist: artist.danbooru_name || artist.name,
+            artist_id: String(artist.danbooru_id),
+            source_platform: "Danbooru"
+          }
+        }));
+        reusedWorks += 1;
+        continue;
+      }
 
+      if (artworks.length > 0) await sleep(PER_POST_DELAY_MS);
       let downloaded;
       try {
         downloaded = await downloadPost(post);
@@ -411,32 +518,21 @@ async function main() {
         continue;
       }
 
-      masterBytes += downloaded.bytes.length;
-      totalBytes += downloaded.bytes.length + DISPLAY_BUDGET_ALLOWANCE;
-      if (totalBytes > MAX_TOTAL_BYTES) {
-        fail("The archive plus display derivatives would exceed the total repository image budget of " +
-          Math.round(MAX_TOTAL_BYTES / 1024 / 1024) + " MiB.");
-      }
-
-      const filename = String(post.id) + "." + downloaded.ext;
-      const assetPath = "assets/artists/" + artist.danbooru_id + "/" + filename;
-      const outputPath = path.join(ROOT, "docs", ...assetPath.split("/"));
-      filesToWrite.push({ outputPath, assetPath, filename, bytes: downloaded.bytes });
+      downloadedBytes += downloaded.bytes.length;
       const digest = sha256(downloaded.bytes);
+      await stageSource(artist.danbooru_id, post.id, downloaded.ext, downloaded.bytes);
 
       artworks.push({
         post_id: Number(post.id),
         source_url: "https://danbooru.donmai.us/posts/" + Number(post.id),
         source_file_url: post.file_url || post.large_file_url,
-        local_url: assetPath,
-        file_name: filename,
-        file_ext: downloaded.ext,
-        mime_type: downloaded.mime,
+        source_file_ext: downloaded.ext,
+        source_mime_type: downloaded.mime,
+        source_file_size: downloaded.bytes.length,
+        source_sha256: digest,
+        source_md5: md5,
         image_width: Number(post.image_width),
         image_height: Number(post.image_height),
-        file_size: downloaded.bytes.length,
-        sha256: digest,
-        downloaded_variant: downloaded.variant,
         created_at: post.created_at || null,
         archived_at: isoNow(),
         score: Number.isFinite(Number(post.score)) ? Number(post.score) : null,
@@ -446,13 +542,13 @@ async function main() {
           artist: artist.danbooru_name || artist.name,
           artist_id: String(artist.danbooru_id),
           source_platform: "Danbooru"
-        },
-        ...carryDisplayFields(previousDisplay.get(String(post.id)), digest)
+        }
       });
     }
 
     if (artworks.length !== 3) {
-      fail("Only " + artworks.length + " images could be downloaded for " + artist.name + "; no partial archive will be committed.");
+      fail("Only " + artworks.length + " images could be prepared for " + artist.name +
+        "; no partial archive will be committed.");
     }
 
     archivedArtists.push({
@@ -474,44 +570,29 @@ async function main() {
       permission: {
         status: "granted",
         confirmed_by: "repository_owner",
-        confirmation: "Repository owner confirmed that the authors have permitted these works to be saved, rehosted, and publicly displayed in this repository.",
+        confirmation: "Repository owner confirmed that the authors have permitted these works to be saved, converted and publicly displayed in this repository.",
         confirmed_at: confirmedAt
       },
       artworks
     });
 
-    console.log("Prepared 3 images for " + artist.name + ".");
+    await writeManifest(archivedArtists);
+    await convertArtist(artist.danbooru_id);
+    const converted = await readManifestArtist(artist.danbooru_id);
+    if (converted) archivedArtists[archivedArtists.length - 1] = converted;
+    console.log("  prepared " + artworks.length + " works for " + artist.name + ".");
   }
 
-  const expectedByArtist = new Map();
-  for (const item of filesToWrite) {
-    const dir = path.dirname(item.outputPath);
-    await fs.mkdir(dir, { recursive: true });
-    const tempPath = item.outputPath + ".tmp";
-    await fs.writeFile(tempPath, item.bytes);
-    await fs.rename(tempPath, item.outputPath);
-    const id = item.assetPath.split("/")[2];
-    if (!expectedByArtist.has(id)) expectedByArtist.set(id, new Set());
-    expectedByArtist.get(id).add(item.filename);
-  }
+  await pruneArtistDirectories(activeArtistIds);
 
-  await removeStaleAssets(expectedByArtist);
-
-  const manifest = {
-    version: 1,
-    status: "ready",
-    updated_at: isoNow(),
-    selection_policy: "Top 3 eligible General raster image posts per artist ordered by Danbooru score, excluding near-duplicate variants detected through parent/child post relations and perceptual-hash similarity.",
-    storage_policy: "Original files are preferred; the large sample is used only if the original exceeds the configured file size limit or cannot be downloaded.",
-    artists: archivedArtists
-  };
-  await fs.writeFile(MANIFEST_FILE, JSON.stringify(manifest, null, 2) + "\n", "utf8");
+  await writeManifest(archivedArtists);
 
   await fs.rm(PREVIEW_CACHE_DIR, { recursive: true, force: true }).catch(function () {});
 
-  console.log("Artwork archive ready: " + archivedArtists.length + " artists, " +
-    filesToWrite.length + " images, " + (masterBytes / 1024 / 1024).toFixed(2) + " MiB masters " +
-    "(display derivatives are generated by scripts/make-display-assets.py).");
+  console.log("Artwork archive staged: " + archivedArtists.length + " artists, " +
+    archivedArtists.reduce(function (sum, item) { return sum + item.artworks.length; }, 0) + " works, " +
+    (downloadedBytes / 1024 / 1024).toFixed(2) + " MiB downloaded, " + reusedWorks +
+    " reused. Run scripts/make-display-assets.py to build the display derivatives.");
 }
 
 main().catch((error) => {

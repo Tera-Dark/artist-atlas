@@ -58,10 +58,14 @@ jobs:
 
       - name: Discover and archive the top distinct authorized works
         if: steps.archive.outputs.sync == 'true'
+        env:
+          ATLAS_STAGING: ${{ runner.temp }}/atlas-staging
         run: node scripts/sync-artworks.mjs
 
       - name: Generate fast WebP display derivatives
         if: steps.archive.outputs.sync == 'true'
+        env:
+          ATLAS_STAGING: ${{ runner.temp }}/atlas-staging
         run: python scripts/make-display-assets.py
 
       - name: Validate catalogue and archived image files

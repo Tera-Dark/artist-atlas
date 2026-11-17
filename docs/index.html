@@ -438,6 +438,46 @@ h1,h2,h3,p{margin:0}
 @keyframes popIn{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
 .dialog-header{display:flex;align-items:center;gap:12px;padding:17px 20px;border-bottom:1px solid var(--line);background:var(--surface);flex:none}
 .dialog-header h2{flex:1;font:400 22px/1.25 var(--serif);letter-spacing:-.02em}
+.viewer-dialog{width:min(1180px,100%);height:min(92vh,980px);height:min(92svh,980px);max-height:none}
+.viewer-dialog .dialog-header{padding:12px 14px 12px 18px}
+.viewer-heading{display:flex;align-items:baseline;gap:10px;min-width:0;flex:1}
+.viewer-heading h2{font-size:17px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.viewer-sub{color:var(--faint);font-size:11.5px;white-space:nowrap}
+.viewer-tools{display:flex;align-items:center;gap:8px;flex:none}
+.viewer-tools .segmented{padding:3px}
+.viewer-tools .segment{min-height:30px;padding:0 10px;font-size:11.5px}
+.viewer-tools .button{min-height:36px;padding:0 12px;font-size:12px}
+.viewer-stage{
+  position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+  overflow:auto;overscroll-behavior:contain;background:var(--paper-deep);
+  cursor:zoom-in;touch-action:pan-x pan-y;
+}
+.viewer-stage.is-zoomed{cursor:grab}
+.viewer-stage.is-panning{cursor:grabbing}
+.viewer-stage img{
+  display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+  object-fit:contain;user-select:none;-webkit-user-drag:none;
+}
+.viewer-stage img.is-zoomed{max-width:none;max-height:none}
+.viewer-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:42px;height:42px;display:grid;place-items:center;border-radius:999px;
+  border:1px solid rgba(255,255,255,.28);background:rgba(20,26,22,.55);color:#fff;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:background .18s,opacity .18s;
+}
+.viewer-nav:hover{background:rgba(20,26,22,.78)}
+.viewer-nav.prev{left:14px}
+.viewer-nav.next{right:14px}
+.viewer-nav[hidden]{display:none}
+@media(max-width:720px){
+  .viewer-dialog{width:100%;height:100%;height:100svh;border-radius:0;border:0}
+  .viewer-nav{width:38px;height:38px}
+  .viewer-nav.prev{left:8px}
+  .viewer-nav.next{right:8px}
+  .viewer-tools .segmented{display:none}
+  .viewer-tools .button span{display:none}
+}
 .dialog-content{padding:20px;overflow:auto;overscroll-behavior:contain}
 .dialog-intro{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.8}
 .dialog-intro:last-child{margin-bottom:0}
@@ -789,6 +829,31 @@ h1,h2,h3,p{margin:0}
  </section>
 </div>
 
+<div class="modal" id="viewerModal" aria-hidden="true">
+ <section class="dialog viewer-dialog" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" tabindex="-1">
+  <div class="dialog-header">
+   <div class="viewer-heading"><h2 id="viewerTitle">作品预览</h2><span class="viewer-sub" id="viewerSub"></span></div>
+   <div class="viewer-tools">
+    <div class="segmented" role="group" aria-label="缩放比例">
+     <button class="segment active" type="button" data-zoom="fit" aria-pressed="true">适应</button>
+     <button class="segment" type="button" data-zoom="1" aria-pressed="false">100%</button>
+     <button class="segment" type="button" data-zoom="2" aria-pressed="false">200%</button>
+    </div>
+    <a class="button ghost" id="viewerPost" href="#" target="_blank" rel="noopener noreferrer">
+     <svg class="icon icon-sm" aria-hidden="true"><use href="#i-external"></use></svg><span>原帖</span>
+    </a>
+    <button class="button icon" id="viewerClose" type="button" aria-label="关闭大图" title="关闭大图">
+     <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+   </div>
+  </div>
+  <div class="viewer-stage" id="viewerStage">
+   <img id="viewerImage" alt="" decoding="async" referrerpolicy="no-referrer" draggable="false">
+   <button class="viewer-nav prev" type="button" data-viewer-step="-1" aria-label="上一张作品"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg></button>
+   <button class="viewer-nav next" type="button" data-viewer-step="1" aria-label="下一张作品"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
+  </div>
+ </section>
+</div>
 <div class="modal" id="guideModal" aria-hidden="true">
  <section class="dialog narrow" role="dialog" aria-modal="true" aria-labelledby="guideTitle" tabindex="-1">
   <div class="dialog-header"><h2 id="guideTitle">使用说明</h2><button class="button icon" id="guideClose" type="button" aria-label="关闭使用说明"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button></div>
@@ -796,7 +861,7 @@ h1,h2,h3,p{margin:0}
    <div class="section-label">浏览</div>
    <p class="dialog-intro">主页面只有一个正式画师图鉴。搜索支持名称、别名、风格标签与备注，支持空格与下划线混用；卡片上会显示 Danbooru 作品总数与常用别名，方便判断风格强度。「我的收藏」只筛选当前浏览器保存的收藏。</p>
    <div class="section-label">作品</div>
-   <p class="dialog-intro">作品区加载仓库中已归档的 1600 px WebP 显示副本，原图仍保留在仓库归档中。左右按钮、圆点、键盘方向键或手机左右滑动都可以切换，下一张会提前预取；切换时旧图会滑出、新图滑入，不会空白闪动。右上角「列数」可以切换每行 2 / 3 / 4 张，默认 3 张，窗口太窄时会自动减少。点击作品打开对应的 Danbooru 原帖。</p>
+   <p class="dialog-intro">作品区加载仓库中已归档的 1600 px WebP 显示副本，原图仍保留在仓库归档中。左右按钮、圆点、键盘方向键或手机左右滑动都可以切换，下一张会提前预取；切换时旧图会滑出、新图滑入，不会空白闪动。右上角「列数」可以切换每行 2 / 3 / 4 张，默认 3 张，窗口太窄时会自动减少。点击作品会弹出大图，可切换「适应 / 100% / 200%」并拖动查看细节，方向键可换图，大图里仍保留 Danbooru 原帖入口。</p>
    <div class="section-label">管理</div>
    <p class="dialog-intro">连接 GitHub 后可添加、编辑或删除正式画师。每条记录包含 Danbooru Artist ID、个人分类、风格标签、评分和备注。公开页面不展示待核验候选池。</p>
    <div class="section-label">隐私</div>
@@ -892,10 +957,7 @@ function artistTag(artist){
  return String(artist.danbooru_name||artist.name||"").trim().replace(/\s+/g,"_");
 }
 function workSource(post){
- return post.display_url||post.local_url||post.large_file_url||post.file_url||"";
-}
-function masterSource(post){
- return post.local_url||post.large_file_url||post.file_url||"";
+ return (post&&post.display_url)||"";
 }
 function postPage(post){
  return post.source_url||("https://danbooru.donmai.us/posts/"+Number(post.id));
@@ -935,6 +997,11 @@ function visibleArtists(){
 }
 
 /* ---------------- card markup ---------------- */
+function categoryChip(artist){
+ const category=(artist.category||"").trim();
+ if(!category||category==="未分类")return "";
+ return '<span class="stage-chip category">'+esc(category)+'</span>';
+}
 function stageMarkup(artist,index,works,active){
  const post=works[active]||null;
  const image=post?workSource(post):"";
@@ -948,12 +1015,12 @@ function stageMarkup(artist,index,works,active){
   :"";
  return '<div class="art-stage" data-stage data-loading="true" data-inview="false">'
   +'<div class="art-ambient" data-ambient aria-hidden="true"></div>'
-  +'<a class="art-link" data-art-link href="'+esc(postPage(post))+'" target="_blank" rel="noopener noreferrer" aria-label="在 Danbooru 查看 '+esc(artist.name)+' 的第 '+(active+1)+' 张作品">'
+  +'<a class="art-link" data-art-link data-viewer-artist="'+esc(artist.id)+'" data-viewer-index="'+active+'" href="'+esc(postPage(post))+'" target="_blank" rel="noopener noreferrer" aria-label="查看 '+esc(artist.name)+' 的第 '+(active+1)+' 张作品大图">'
   +'<img class="art-image art-ghost" data-art-ghost aria-hidden="true" alt="" decoding="async" referrerpolicy="no-referrer" draggable="false">'
   +'<img class="art-image" data-art-image src="'+esc(image)+'" alt="'+esc(artist.name)+' 的作品 '+(active+1)+'" loading="'+(index<1?"eager":"lazy")+'" fetchpriority="'+(index<1?"high":"low")+'" decoding="async" referrerpolicy="no-referrer" draggable="false">'
   +'</a>'
   +'<div class="art-loading" aria-hidden="true">读取中</div>'
-  +'<div class="stage-top"><span class="stage-chip">作品 / '+pad2(index+1)+'</span><span class="stage-chip category">'+esc(artist.category||"未分类")+'</span></div>'
+  +'<div class="stage-top"><span class="stage-chip">作品 / '+pad2(index+1)+'</span>'+categoryChip(artist)+'</div>'
   +'<div class="stage-bottom"><span class="slide-count" data-slide-count>'+pad2(active+1)+' / '+pad2(works.length)+'</span><div class="slide-dots">'+dots+'</div></div>'
   +nav
   +'</div>';
@@ -961,7 +1028,7 @@ function stageMarkup(artist,index,works,active){
 function emptyStageMarkup(artist,index){
  const message=artist.workError||"尚未找到已归档的本地作品。";
  return '<div class="art-stage is-empty" data-stage>'
-  +'<div class="stage-top"><span class="stage-chip">作品 / '+pad2(index+1)+'</span><span class="stage-chip category">'+esc(artist.category||"未分类")+'</span></div>'
+  +'<div class="stage-top"><span class="stage-chip">作品 / '+pad2(index+1)+'</span>'+categoryChip(artist)+'</div>'
   +'<div class="art-state">'
   +'<span class="art-state-icon">'+ICON("image")+'</span>'
   +'<b>作品暂不可用</b>'
@@ -1128,10 +1195,11 @@ function applySlide(id,index){
  const artist=artists.find(function(a){return a.id===id});
  const name=artist?artist.name:"";
  const src=workSource(post);
- const fallback=masterSource(post);
  if(refs.link){
   refs.link.href=postPage(post);
-  refs.link.setAttribute("aria-label","在 Danbooru 查看 "+name+" 的第 "+(next+1)+" 张作品");
+  refs.link.dataset.viewerArtist=id;
+  refs.link.dataset.viewerIndex=String(next);
+  refs.link.setAttribute("aria-label","查看 "+name+" 的第 "+(next+1)+" 张作品大图");
  }
  if(refs.counter)refs.counter.textContent=pad2(next+1)+" / "+pad2(works.length);
  refs.dots.forEach(function(dot,i){
@@ -1164,12 +1232,7 @@ function applySlide(id,index){
  }else if(typeof image.decode==="function"){
   image.decode().then(reveal).catch(function(){
    if(refs.token!==token||!refs.img)return;
-   if(fallback&&fallback!==src){
-    refs.img.src=fallback;
-    refs.img.decode().then(reveal).catch(function(){showArtError(id)});
-   }else{
-    showArtError(id);
-   }
+   showArtError(id);
   });
  }else{
   image.addEventListener("load",reveal,{once:true});
@@ -1179,6 +1242,69 @@ function applySlide(id,index){
 }
 function stepSlide(id,step){
  applySlide(id,(slideByArtist[id]||0)+step);
+}
+/* ---------------- artwork viewer ---------------- */
+let viewerState=null;
+let viewerZoom=0;
+let viewerPan=null;
+function viewerWorks(id){return worksByArtist[id]||[]}
+function openViewer(artistId,index){
+ const works=viewerWorks(artistId);
+ if(!works.length)return;
+ viewerState={artistId:artistId,index:((index%works.length)+works.length)%works.length};
+ paintViewer();
+ openModal("viewerModal");
+}
+function paintViewer(){
+ if(!viewerState)return;
+ const works=viewerWorks(viewerState.artistId);
+ const post=works[viewerState.index];
+ if(!post)return;
+ const artist=artists.find(function(item){return item.id===viewerState.artistId});
+ const name=artist?artist.name:"";
+ const image=$("viewerImage");
+ if(image){
+  image.src=workSource(post);
+  image.alt=name+" 的作品 "+(viewerState.index+1);
+ }
+ $("viewerTitle").textContent=name;
+ $("viewerSub").textContent="作品 "+(viewerState.index+1)+" / "+works.length;
+ $("viewerPost").href=postPage(post);
+ const multi=works.length>1;
+ document.querySelectorAll("[data-viewer-step]").forEach(function(button){button.hidden=!multi});
+ setViewerZoom(0);
+}
+function setViewerZoom(value){
+ viewerZoom=value;
+ const image=$("viewerImage");
+ const stage=$("viewerStage");
+ if(!image||!stage)return;
+ if(value===0){
+  image.classList.remove("is-zoomed");
+  image.style.width="";
+  stage.classList.remove("is-zoomed","is-panning");
+ }else{
+  const base=image.naturalWidth||image.width||1200;
+  image.classList.add("is-zoomed");
+  image.style.width=Math.round(base*value)+"px";
+  stage.classList.add("is-zoomed");
+ }
+ stage.scrollTop=0;
+ stage.scrollLeft=0;
+ document.querySelectorAll("[data-zoom]").forEach(function(button){
+  const wanted=button.dataset.zoom==="fit"?0:Number(button.dataset.zoom);
+  const active=wanted===value;
+  button.classList.toggle("active",active);
+  button.setAttribute("aria-pressed",String(active));
+ });
+}
+function stepViewer(step){
+ if(!viewerState)return;
+ const works=viewerWorks(viewerState.artistId);
+ if(works.length<2)return;
+ viewerState.index=((viewerState.index+step)%works.length+works.length)%works.length;
+ applySlide(viewerState.artistId,viewerState.index);
+ paintViewer();
 }
 /* Direction-aware crossfade between the previous frame (ghost layer) and the
    newly decoded one. Only opacity/transform animate, so it stays on the
@@ -1312,7 +1438,7 @@ function mapArchive(archive){
    artist.aliases=Array.from(new Set(record.danbooru_aliases.concat(artist.aliases||[])));
   }
   map[artist.id]=artworks.map(function(work){
-   return {id:work.post_id,source_url:work.source_url,local_url:work.local_url,display_url:work.display_url||work.local_url,display_width:work.display_width||work.image_width,display_height:work.display_height||work.image_height,file_ext:work.file_ext,image_width:work.image_width,image_height:work.image_height};
+   return {id:work.post_id,source_url:work.source_url,display_url:work.display_url,display_width:work.display_width,display_height:work.display_height,image_width:work.image_width,image_height:work.image_height,score:work.score};
   });
   artist.workError=map[artist.id].length?"":((archive&&archive.status==="pending")?"本地作品归档正在初始化，请稍后刷新。":"尚未找到已归档的本地作品。");
  });
@@ -1378,6 +1504,13 @@ $("artistGrid").addEventListener("click",function(event){
  if(nav){stepSlide(card.dataset.artistCard,Number(nav.dataset.slide));return}
  const dot=event.target.closest("[data-slide-to]");
  if(dot){applySlide(card.dataset.artistCard,Number(dot.dataset.slideTo));return}
+ const artLink=event.target.closest("[data-art-link]");
+ if(artLink){
+  if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  event.preventDefault();
+  openViewer(artLink.dataset.viewerArtist||card.dataset.artistCard,Number(artLink.dataset.viewerIndex||0));
+  return;
+ }
 },true);
 
 /* touch swipe */
@@ -1436,6 +1569,41 @@ $("searchClear").addEventListener("click",function(){
  render();
 });
 $("sortSelect").addEventListener("change",render);
+$("viewerClose").addEventListener("click",function(){closeModal("viewerModal")});
+$("viewerModal").addEventListener("click",function(event){if(event.target.id==="viewerModal")closeModal("viewerModal")});
+document.querySelectorAll("[data-viewer-step]").forEach(function(button){
+ button.addEventListener("click",function(){stepViewer(Number(button.dataset.viewerStep))});
+});
+document.querySelectorAll("[data-zoom]").forEach(function(button){
+ button.addEventListener("click",function(){setViewerZoom(button.dataset.zoom==="fit"?0:Number(button.dataset.zoom))});
+});
+$("viewerStage").addEventListener("click",function(event){
+ if(event.target!==event.currentTarget&&event.target.id!=="viewerImage")return;
+ setViewerZoom(viewerZoom===0?1:0);
+});
+$("viewerStage").addEventListener("pointerdown",function(event){
+ if(viewerZoom===0||event.pointerType==="touch")return;
+ viewerPan={x:event.clientX,y:event.clientY,left:event.currentTarget.scrollLeft,top:event.currentTarget.scrollTop};
+ event.currentTarget.classList.add("is-panning");
+ event.currentTarget.setPointerCapture(event.pointerId);
+});
+$("viewerStage").addEventListener("pointermove",function(event){
+ if(!viewerPan)return;
+ const stage=event.currentTarget;
+ stage.scrollLeft=viewerPan.left-(event.clientX-viewerPan.x);
+ stage.scrollTop=viewerPan.top-(event.clientY-viewerPan.y);
+});
+$("viewerStage").addEventListener("pointerup",function(event){
+ viewerPan=null;
+ event.currentTarget.classList.remove("is-panning");
+});
+$("viewerStage").addEventListener("pointercancel",function(event){
+ viewerPan=null;
+ event.currentTarget.classList.remove("is-panning");
+});
+$("viewerImage").addEventListener("load",function(){
+ if(viewerZoom>0)setViewerZoom(viewerZoom);
+});
 $("columnControl").addEventListener("click",function(event){
  const button=event.target.closest("[data-columns]");
  if(!button)return;
@@ -1504,6 +1672,11 @@ function closeModal(id,skipRestore){
  lastFocused=null;
 }
 document.addEventListener("keydown",function(event){
+ if(openModalId==="viewerModal"&&(event.key==="ArrowLeft"||event.key==="ArrowRight")){
+  event.preventDefault();
+  stepViewer(event.key==="ArrowRight"?1:-1);
+  return;
+ }
  if(event.key==="Escape"&&openModalId){
   event.preventDefault();
   closeModal(openModalId);
@@ -1756,8 +1929,8 @@ async function saveArtist(){
   category:$("fieldCategory").value.trim()||"未分类",
   tags:$("fieldTags").value.split(",").map(function(x){return x.trim()}).filter(Boolean),
   score:score,note:$("fieldNote").value.trim(),post_count:posts.length,
-  preview_urls:posts.map(workSource).filter(Boolean),
-  preview_post_ids:posts.map(function(p){return p.id}),
+  preview_urls:[],
+  preview_post_ids:[],
   danbooru_url:"https://danbooru.donmai.us/artists/"+row.id,
   danbooru_verified_at:now,preview_updated_at:now,
   added_at:old?.added_at||now,updated_at:now,featured:false

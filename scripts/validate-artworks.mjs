@@ -5,6 +5,7 @@ import crypto from "node:crypto";
 const root = process.cwd();
 const cataloguePath = path.join(root, "data", "artists.json");
 const manifestPath = path.join(root, "data", "artworks.json");
+const totalBudget = 120 * 1024 * 1024;
 const errors = [];
 const fail = (message) => errors.push(message);
 
@@ -95,6 +96,7 @@ async function main() {
       continue;
     }
 
+    const referenced = new Set();
     for (const [workIndex, work] of record.artworks.entries()) {
       const where = at + ".artworks[" + workIndex + "]";
       if (!work || typeof work !== "object") {
@@ -112,68 +114,65 @@ async function main() {
       }
       if (!validDate(work.archived_at)) fail(where + ": archived_at must be an ISO date-time.");
 
-      const assetPath = String(work.local_url || "");
-      const expectedPrefix = "assets/artists/" + artistId + "/";
-      const normalized = path.posix.normalize(assetPath);
-      if (assetPath !== normalized || assetPath.startsWith("/") || assetPath.includes("\\") || !assetPath.startsWith(expectedPrefix)) {
-        fail(where + ": unsafe or unexpected local_url.");
-        continue;
+      // Provenance of the source file: it is not stored, only described.
+      if (typeof work.source_sha256 !== "string" || !/^[0-9a-f]{64}$/.test(work.source_sha256)) {
+        fail(where + ": source_sha256 must be a 64 character hex digest.");
       }
-      const assetFile = path.join(root, "docs", ...assetPath.split("/"));
-      let bytes;
-      try {
-        bytes = await fs.readFile(assetFile);
-      } catch {
-        fail(where + ": missing local image " + assetPath + ".");
-        continue;
-      }
-      totalBytes += bytes.length;
-      if (!bytes.length || bytes.length !== work.file_size) fail(where + ": file_size does not match the stored file.");
-      if (bytes.length > 32 * 1024 * 1024) fail(where + ": image exceeds the 32 MiB per-file limit.");
-      if (imageType(bytes) !== work.mime_type) fail(where + ": file signature does not match mime_type.");
-      if (sha256(bytes) !== work.sha256) fail(where + ": SHA-256 checksum mismatch.");
-      if (path.basename(assetPath) !== work.file_name) fail(where + ": file_name does not match local_url.");
+      if (!Number.isInteger(work.source_file_size) || work.source_file_size <= 0) fail(where + ": invalid source_file_size.");
+      if (!["jpg", "jpeg", "png", "webp"].includes(String(work.source_file_ext))) fail(where + ": unsupported source_file_ext.");
+      if (!/^image\//.test(String(work.source_mime_type || ""))) fail(where + ": invalid source_mime_type.");
 
-      // Fast web display derivative: the grid must never decode the master file.
+      const expectedPrefix = "assets/artists/" + artistId + "/";
       const displayPath = String(work.display_url || "");
-      const displayVariant = String(work.display_variant || "");
-      if (!displayPath) fail(where + ": missing display_url.");
-      if (!["derived_1600_webp", "original_fallback"].includes(displayVariant)) fail(where + ": unsupported display_variant.");
-      if (work.display_source_sha256 !== work.sha256) fail(where + ": display derivative is stale for the archived master.");
+      if (!displayPath) {
+        fail(where + ": missing display_url.");
+        continue;
+      }
+      if (!["derived_1600_webp"].includes(String(work.display_variant || ""))) fail(where + ": unsupported display_variant.");
+      if (work.display_source_sha256 !== work.source_sha256) fail(where + ": display derivative is stale for the archived source.");
       if (!Number.isInteger(work.display_width) || work.display_width <= 0 || !Number.isInteger(work.display_height) || work.display_height <= 0) {
         fail(where + ": invalid display dimensions.");
       }
       if (!validDate(work.display_generated_at)) fail(where + ": display_generated_at must be an ISO date-time.");
-      if (displayVariant === "original_fallback") {
-        if (displayPath !== assetPath) fail(where + ": original_fallback display_url must be the archived master.");
-        if (work.display_sha256 !== work.sha256 || work.display_file_size !== work.file_size) fail(where + ": original_fallback display metadata must match the master.");
-      } else {
-        const normalizedDisplay = path.posix.normalize(displayPath);
-        if (displayPath !== normalizedDisplay || displayPath.startsWith("/") || displayPath.includes("\\") || !displayPath.startsWith(expectedPrefix)) {
-          fail(where + ": unsafe or unexpected display_url.");
-          continue;
-        }
-        if (displayPath === assetPath) fail(where + ": display_url must differ from the archived master.");
-        if (path.posix.basename(displayPath) !== postId + ".display.webp") fail(where + ": display file name must be <post_id>.display.webp.");
-        const displayFile = path.join(root, "docs", ...displayPath.split("/"));
-        let displayBytes;
-        try {
-          displayBytes = await fs.readFile(displayFile);
-        } catch {
-          fail(where + ": missing display image " + displayPath + ".");
-          continue;
-        }
-        totalBytes += displayBytes.length;
-        if (displayBytes.length !== work.display_file_size) fail(where + ": display_file_size does not match the stored file.");
-        if (displayBytes.length > 4 * 1024 * 1024) fail(where + ": display image exceeds the 4 MiB limit.");
-        if (imageType(displayBytes) !== "image/webp" || work.display_mime_type !== "image/webp") fail(where + ": display image must be WebP.");
-        if (sha256(displayBytes) !== work.display_sha256) fail(where + ": display SHA-256 checksum mismatch.");
+      const normalizedDisplay = path.posix.normalize(displayPath);
+      if (displayPath !== normalizedDisplay || displayPath.startsWith("/") || displayPath.includes("\\") || !displayPath.startsWith(expectedPrefix)) {
+        fail(where + ": unsafe or unexpected display_url.");
+        continue;
       }
+      if (path.posix.basename(displayPath) !== postId + ".display.webp") fail(where + ": display file name must be <post_id>.display.webp.");
+      const displayFile = path.join(root, "docs", ...displayPath.split("/"));
+      let displayBytes;
+      try {
+        displayBytes = await fs.readFile(displayFile);
+      } catch {
+        fail(where + ": missing display image " + displayPath + ".");
+        continue;
+      }
+      referenced.add(path.posix.basename(displayPath));
+      totalBytes += displayBytes.length;
+      if (displayBytes.length !== work.display_file_size) fail(where + ": display_file_size does not match the stored file.");
+      if (displayBytes.length > 4 * 1024 * 1024) fail(where + ": display image exceeds the 4 MiB limit.");
+      if (imageType(displayBytes) !== "image/webp" || work.display_mime_type !== "image/webp") fail(where + ": display image must be WebP.");
+      if (sha256(displayBytes) !== work.display_sha256) fail(where + ": display SHA-256 checksum mismatch.");
+    }
+
+    // Only display derivatives may live next to each other; no source masters.
+    const artistDir = path.join(root, "docs", "assets", "artists", artistId);
+    let files = [];
+    try {
+      files = await fs.readdir(artistDir);
+    } catch {
+      fail(at + ": missing asset directory " + path.relative(root, artistDir) + ".");
+    }
+    for (const file of files) {
+      if (!referenced.has(file)) fail(at + ": unexpected file in asset directory: " + file);
     }
   }
 
   if (seenArtists.size !== catalogue.artists.length) fail("Not all canonical artists have an artwork archive record.");
-  if (totalBytes > 180 * 1024 * 1024) fail("Artwork archive exceeds the 180 MiB total size budget.");
+  if (totalBytes > totalBudget) {
+    fail("Artwork archive exceeds the " + Math.round(totalBudget / 1024 / 1024) + " MiB display budget.");
+  }
 
   if (errors.length) {
     for (const error of errors) console.error("FAIL " + error);
@@ -182,7 +181,7 @@ async function main() {
   } else {
     console.log("Artwork archive validation passed: " + manifest.artists.length + " artists, " +
       manifest.artists.reduce((sum, item) => sum + item.artworks.length, 0) + " images, " +
-      (totalBytes / 1024 / 1024).toFixed(2) + " MiB total (masters + display derivatives).");
+      (totalBytes / 1024 / 1024).toFixed(2) + " MiB of display derivatives.");
   }
 }
 
