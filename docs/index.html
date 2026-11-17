@@ -291,6 +291,7 @@ const REPO="artist-atlas";
 const BRANCH="main";
 const DATA_PATH="data/artists.json";
 const RAW_DATA="data/artists.json";
+const RAW_ARTWORKS="data/artworks.json";
 const API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/"+DATA_PATH;
 const FAVORITES_KEY="artistAtlasFavoritesV2";
 const THEME_KEY="artistAtlasThemeV2";
@@ -324,10 +325,10 @@ function artistTag(artist){
  return String(artist.danbooru_name||artist.name||"").trim().replace(/\s+/g,"_");
 }
 function workSource(post){
- return post.large_file_url||post.file_url||"";
+ return post.local_url||post.large_file_url||post.file_url||"";
 }
 function postPage(post){
- return "https://danbooru.donmai.us/posts/"+Number(post.id);
+ return post.source_url||("https://danbooru.donmai.us/posts/"+Number(post.id));
 }
 function visibleArtists(){
  const query=$("searchInput").value.trim().toLocaleLowerCase();
@@ -362,7 +363,7 @@ function cardMarkup(artist,index){
    '<div class="stage-bottom"><span class="slide-count">'+String(active+1).padStart(2,"0")+' / '+String(works.length).padStart(2,"0")+'</span><div class="slide-dots">'+dots+'</div></div>'+
    (works.length>1?'<button class="slide-nav prev" type="button" data-slide="-1" aria-label="上一张作品">‹</button><button class="slide-nav next" type="button" data-slide="1" aria-label="下一张作品">›</button>':"");
  }else{
-  stage='<div class="stage-top"><span class="work-index">STUDY / '+number+'</span><span class="category-stamp">'+esc(artist.category||"未分类")+'</span></div><div class="art-state">'+(hasError?'<div><b>作品暂不可用</b>'+esc(hasError)+'<br><a class="source-link" href="'+esc(artist.danbooru_url||("https://danbooru.donmai.us/artists/"+artist.danbooru_id))+'" target="_blank" rel="noopener">打开画师主页 ↗</a></div>':'<div><b>正在读取作品</b>正在从 Danbooru 获取最新的 General 级别作品…</div>')+'</div>';
+  stage='<div class="stage-top"><span class="work-index">STUDY / '+number+'</span><span class="category-stamp">'+esc(artist.category||"未分类")+'</span></div><div class="art-state">'+(hasError?'<div><b>作品暂不可用</b>'+esc(hasError)+'<br><a class="source-link" href="'+esc(artist.danbooru_url||("https://danbooru.donmai.us/artists/"+artist.danbooru_id))+'" target="_blank" rel="noopener">打开画师主页 ↗</a></div>':'<div><b>正在读取作品</b>正在读取已归档的本地高清作品…</div>')+'</div>';
  }
  const tags=(artist.tags||[]).slice(0,5).map(function(tag){return '<span class="artist-tag">'+esc(tag)+'</span>'}).join("");
  const note=artist.note?esc(artist.note):"";
@@ -400,30 +401,37 @@ async function fetchLatestWorks(artist){
   return post.rating==="g"&&!post.is_deleted&&!!workSource(post);
  }).sort(function(a,b){return Number(b.id)-Number(a.id)}).slice(0,3);
 }
-async function loadLatestWorks(){
- const results=await Promise.all(artists.map(async function(artist){
-  try{return {id:artist.id,posts:await fetchLatestWorks(artist),error:""}}
-  catch(error){return {id:artist.id,posts:[],error:"请求失败："+error.message}}
- }));
+async function loadArchivedWorks(){
+ const response=await fetch(RAW_ARTWORKS+"?t="+Date.now(),{cache:"no-store"});
+ if(!response.ok)throw new Error("本地作品归档 HTTP "+response.status);
+ const archive=await response.json();
+ if(archive.version!==1||!Array.isArray(archive.artists))throw new Error("本地作品归档格式不正确");
+ const records=new Map(archive.artists.map(function(record){return [String(record.artist_id),record]}));
  worksByArtist={};
- results.forEach(function(result){
-  worksByArtist[result.id]=result.posts;
-  const artist=artists.find(function(a){return a.id===result.id});
-  if(artist)artist.workError=result.posts.length?"":(result.error||"没有找到可展示的 General 作品");
+ artists.forEach(function(artist){
+  const record=records.get(String(artist.danbooru_id));
+  const artworks=record?.artworks||[];
+  worksByArtist[artist.id]=artworks.map(function(work){
+   return {id:work.post_id,source_url:work.source_url,local_url:work.local_url,file_ext:work.file_ext,image_width:work.image_width,image_height:work.image_height};
+  });
+  artist.workError=artworks.length?"":(archive.status==="pending"?"本地作品归档正在初始化，请稍后刷新。":"尚未找到已归档的本地作品。");
  });
  render();
 }
 async function loadData(){
  $("collectionCount").textContent="正在读取图鉴…";
- $("artistGrid").innerHTML='<div class="empty-state">正在读取正式收录的画师资料…</div>';
+ $("artistGrid").innerHTML='<div class="empty-state">正在读取画师资料与本地作品归档…</div>';
  try{
-  const response=await fetch(RAW_DATA+"?t="+Date.now(),{cache:"no-store"});
-  if(!response.ok)throw new Error("HTTP "+response.status);
-  const payload=await response.json();
+  const results=await Promise.all([
+   fetch(RAW_DATA+"?t="+Date.now(),{cache:"no-store"}),
+   fetch(RAW_ARTWORKS+"?t="+Date.now(),{cache:"no-store"})
+  ]);
+  if(!results[0].ok)throw new Error("画师索引 HTTP "+results[0].status);
+  if(!results[1].ok)throw new Error("本地作品归档 HTTP "+results[1].status);
+  const payload=await results[0].json();
   if(!Array.isArray(payload.artists))throw new Error("artists 数据格式不正确");
   artists=payload.artists;
-  render();
-  await loadLatestWorks();
+  await loadArchivedWorks();
  }catch(error){
   $("collectionCount").textContent="读取失败";
   $("artistGrid").innerHTML='<div class="empty-state"><strong>暂时无法读取图鉴</strong>'+esc(error.message)+'<br>请检查网络后刷新页面。</div>';
@@ -688,8 +696,8 @@ async function commitCatalogue(next,message){
   });
   if(!response.ok){const error=await response.json();throw new Error(error.message||"提交失败（"+response.status+"）")}
   const result=await response.json();fileSha=result.content?.sha||"";
-  artists=next;worksByArtist={};slideByArtist={};
-  await loadLatestWorks();
+  artists=next;slideByArtist={};
+  await loadData();
   renderManagedList();
   $("artistEditor").hidden=true;selectedArtist=null;editingId=null;
   setManageStatus("提交成功，GitHub Pages 将在部署完成后更新。");
