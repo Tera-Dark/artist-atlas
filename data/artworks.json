@@ -1,6 +1,243 @@
 {
   "version": 1,
-  "status": "pending",
-  "updated_at": "2026-11-17T00:00:00.000Z",
-  "artists": []
+  "status": "ready",
+  "updated_at": "2026-11-17T02:48:50.654Z",
+  "selection_policy": "Newest 3 non-deleted General raster image posts per artist, ordered by Danbooru post ID descending.",
+  "storage_policy": "Original files are preferred; the large sample is used only if the original exceeds the configured file size limit or cannot be downloaded.",
+  "artists": [
+    {
+      "artist_id": "63362",
+      "artist_record_id": "artist-63362",
+      "artist_name": "zhanzhan_lan",
+      "artist_tag": "zhanzhan_lan",
+      "selection": "latest_general_posts",
+      "permission": {
+        "status": "granted",
+        "confirmed_by": "repository_owner",
+        "confirmation": "Repository owner confirmed that the authors have permitted these works to be saved, rehosted, and publicly displayed in this repository.",
+        "confirmed_at": "2026-11-17T02:44:26.000Z"
+      },
+      "artworks": [
+        {
+          "post_id": 12268629,
+          "source_url": "https://danbooru.donmai.us/posts/12268629",
+          "source_file_url": "https://cdn.donmai.us/original/2e/80/2e80c3325dbea02f8faae4c9bcf48fbb.jpg",
+          "local_url": "assets/artists/63362/12268629.jpg",
+          "file_name": "12268629.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 2490,
+          "image_height": 3448,
+          "file_size": 1803279,
+          "sha256": "a96c3e27ddb56ac78a8bf26240b4c2c1b6bed6fe1275cb4733b8a778bd6a6b01",
+          "downloaded_variant": "original",
+          "created_at": "2026-09-27T06:57:30.020-04:00",
+          "archived_at": "2026-11-17T02:48:43.311Z",
+          "attribution": {
+            "artist": "zhanzhan_lan",
+            "artist_id": "63362",
+            "source_platform": "Danbooru"
+          }
+        },
+        {
+          "post_id": 12266809,
+          "source_url": "https://danbooru.donmai.us/posts/12266809",
+          "source_file_url": "https://cdn.donmai.us/original/2e/c5/2ec5e5d03f31d1264cffb30c5376ddb8.webp",
+          "local_url": "assets/artists/63362/12266809.webp",
+          "file_name": "12266809.webp",
+          "file_ext": "webp",
+          "mime_type": "image/webp",
+          "image_width": 1500,
+          "image_height": 2117,
+          "file_size": 588354,
+          "sha256": "97723f481e80ec7c128328de5255b83ccbac4d4f09611c27515c9e656e92fe8f",
+          "downloaded_variant": "original",
+          "created_at": "2026-09-27T00:02:29.986-04:00",
+          "archived_at": "2026-11-17T02:48:43.788Z",
+          "attribution": {
+            "artist": "zhanzhan_lan",
+            "artist_id": "63362",
+            "source_platform": "Danbooru"
+          }
+        },
+        {
+          "post_id": 12182797,
+          "source_url": "https://danbooru.donmai.us/posts/12182797",
+          "source_file_url": "https://cdn.donmai.us/original/89/e1/89e1620c7b7cb3e98e87a94d236854f4.jpg",
+          "local_url": "assets/artists/63362/12182797.jpg",
+          "file_name": "12182797.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 1400,
+          "image_height": 1867,
+          "file_size": 830066,
+          "sha256": "c5a8dfcfbfd53fd1107c2d9b7afed66fb5d4f74abf296e16d65127536bd13124",
+          "downloaded_variant": "original",
+          "created_at": "2026-09-13T01:25:32.136-04:00",
+          "archived_at": "2026-11-17T02:48:44.285Z",
+          "attribution": {
+            "artist": "zhanzhan_lan",
+            "artist_id": "63362",
+            "source_platform": "Danbooru"
+          }
+        }
+      ]
+    },
+    {
+      "artist_id": "408507",
+      "artist_record_id": "artist-408507",
+      "artist_name": "zhi_xu_li_ming",
+      "artist_tag": "zhi_xu_li_ming",
+      "selection": "latest_general_posts",
+      "permission": {
+        "status": "granted",
+        "confirmed_by": "repository_owner",
+        "confirmation": "Repository owner confirmed that the authors have permitted these works to be saved, rehosted, and publicly displayed in this repository.",
+        "confirmed_at": "2026-11-17T02:44:26.000Z"
+      },
+      "artworks": [
+        {
+          "post_id": 12060285,
+          "source_url": "https://danbooru.donmai.us/posts/12060285",
+          "source_file_url": "https://cdn.donmai.us/original/b5/56/b556de5606f0d8682dc329ab5bec357b.jpg",
+          "local_url": "assets/artists/408507/12060285.jpg",
+          "file_name": "12060285.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 4659,
+          "image_height": 7500,
+          "file_size": 3220072,
+          "sha256": "f99ecf8bcd4e86e2b04d513b4e61362f93572bc406d794a6e8a9c530bfd09342",
+          "downloaded_variant": "original",
+          "created_at": "2026-08-24T11:30:50.370-04:00",
+          "archived_at": "2026-11-17T02:48:45.793Z",
+          "attribution": {
+            "artist": "zhi_xu_li_ming",
+            "artist_id": "408507",
+            "source_platform": "Danbooru"
+          }
+        },
+        {
+          "post_id": 12060284,
+          "source_url": "https://danbooru.donmai.us/posts/12060284",
+          "source_file_url": "https://cdn.donmai.us/original/75/62/7562c1a4249290ce943fb215f5c920f8.jpg",
+          "local_url": "assets/artists/408507/12060284.jpg",
+          "file_name": "12060284.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 4659,
+          "image_height": 7500,
+          "file_size": 3019279,
+          "sha256": "58314620a5955c49309ce21fd25f7a38c7e25f0b2dc24b10cfa28d137acf1bf8",
+          "downloaded_variant": "original",
+          "created_at": "2026-08-24T11:30:49.175-04:00",
+          "archived_at": "2026-11-17T02:48:47.106Z",
+          "attribution": {
+            "artist": "zhi_xu_li_ming",
+            "artist_id": "408507",
+            "source_platform": "Danbooru"
+          }
+        },
+        {
+          "post_id": 12060253,
+          "source_url": "https://danbooru.donmai.us/posts/12060253",
+          "source_file_url": "https://cdn.donmai.us/original/d8/55/d85545c04fd6387f6eab74a298ad6c4d.jpg",
+          "local_url": "assets/artists/408507/12060253.jpg",
+          "file_name": "12060253.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 4584,
+          "image_height": 7500,
+          "file_size": 3019785,
+          "sha256": "cf147b8910ad45107293a7cc3494cee1def85daf43fb6a83aeea5f26e99248d5",
+          "downloaded_variant": "original",
+          "created_at": "2026-08-24T11:27:01.586-04:00",
+          "archived_at": "2026-11-17T02:48:47.627Z",
+          "attribution": {
+            "artist": "zhi_xu_li_ming",
+            "artist_id": "408507",
+            "source_platform": "Danbooru"
+          }
+        }
+      ]
+    },
+    {
+      "artist_id": "261471",
+      "artist_record_id": "artist-261471",
+      "artist_name": "z3zz4",
+      "artist_tag": "z3zz4",
+      "selection": "latest_general_posts",
+      "permission": {
+        "status": "granted",
+        "confirmed_by": "repository_owner",
+        "confirmation": "Repository owner confirmed that the authors have permitted these works to be saved, rehosted, and publicly displayed in this repository.",
+        "confirmed_at": "2026-11-17T02:44:26.000Z"
+      },
+      "artworks": [
+        {
+          "post_id": 12399617,
+          "source_url": "https://danbooru.donmai.us/posts/12399617",
+          "source_file_url": "https://cdn.donmai.us/original/4e/49/4e49028faf2883ea518da740c3c7f94d.jpg",
+          "local_url": "assets/artists/261471/12399617.jpg",
+          "file_name": "12399617.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 8310,
+          "image_height": 4351,
+          "file_size": 13916233,
+          "sha256": "a80d78bcf8dcc31b5663d25b4d757442b71b84edf98e8a1949d6b20cbf643239",
+          "downloaded_variant": "original",
+          "created_at": "2026-10-17T14:33:35.858-04:00",
+          "archived_at": "2026-11-17T02:48:49.523Z",
+          "attribution": {
+            "artist": "z3zz4",
+            "artist_id": "261471",
+            "source_platform": "Danbooru"
+          }
+        },
+        {
+          "post_id": 12392661,
+          "source_url": "https://danbooru.donmai.us/posts/12392661",
+          "source_file_url": "https://cdn.donmai.us/original/bb/75/bb75b80afd3c94e2acc82c0d910a3ddd.jpg",
+          "local_url": "assets/artists/261471/12392661.jpg",
+          "file_name": "12392661.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 4096,
+          "image_height": 2145,
+          "file_size": 1180546,
+          "sha256": "8dda5f22072662eb1abd6eb39f3ff87f95acae92a8e70a844607034a389773c6",
+          "downloaded_variant": "original",
+          "created_at": "2026-10-16T12:56:24.288-04:00",
+          "archived_at": "2026-11-17T02:48:50.017Z",
+          "attribution": {
+            "artist": "z3zz4",
+            "artist_id": "261471",
+            "source_platform": "Danbooru"
+          }
+        },
+        {
+          "post_id": 12349498,
+          "source_url": "https://danbooru.donmai.us/posts/12349498",
+          "source_file_url": "https://cdn.donmai.us/original/26/a3/26a3229d955b12ff04e23ae6a2e6cba0.jpg",
+          "local_url": "assets/artists/261471/12349498.jpg",
+          "file_name": "12349498.jpg",
+          "file_ext": "jpg",
+          "mime_type": "image/jpeg",
+          "image_width": 4000,
+          "image_height": 4000,
+          "file_size": 5620553,
+          "sha256": "f1df2e6394d1b4fbb62764ec812693298d5a73330fc9774e2a915c610b46d6e2",
+          "downloaded_variant": "original",
+          "created_at": "2026-10-09T17:58:41.386-04:00",
+          "archived_at": "2026-11-17T02:48:50.639Z",
+          "attribution": {
+            "artist": "z3zz4",
+            "artist_id": "261471",
+            "source_platform": "Danbooru"
+          }
+        }
+      ]
+    }
+  ]
 }
