@@ -47,6 +47,8 @@ async function main() {
   }
 
   if (!validDate(manifest.updated_at)) fail("data/artworks.json: updated_at must be an ISO date-time.");
+  if (typeof manifest.display_policy !== "string" || !manifest.display_policy.trim()) fail("data/artworks.json: display_policy must describe the web display derivative rule.");
+  if (!validDate(manifest.display_updated_at)) fail("data/artworks.json: display_updated_at must be an ISO date-time.");
   if (manifest.status === "pending") {
     if (manifest.artists.length !== 0) fail("A pending archive must not contain partial artist records.");
     if (errors.length) {
@@ -131,6 +133,42 @@ async function main() {
       if (imageType(bytes) !== work.mime_type) fail(where + ": file signature does not match mime_type.");
       if (sha256(bytes) !== work.sha256) fail(where + ": SHA-256 checksum mismatch.");
       if (path.basename(assetPath) !== work.file_name) fail(where + ": file_name does not match local_url.");
+
+      // Fast web display derivative: the grid must never decode the master file.
+      const displayPath = String(work.display_url || "");
+      const displayVariant = String(work.display_variant || "");
+      if (!displayPath) fail(where + ": missing display_url.");
+      if (!["derived_1600_webp", "original_fallback"].includes(displayVariant)) fail(where + ": unsupported display_variant.");
+      if (work.display_source_sha256 !== work.sha256) fail(where + ": display derivative is stale for the archived master.");
+      if (!Number.isInteger(work.display_width) || work.display_width <= 0 || !Number.isInteger(work.display_height) || work.display_height <= 0) {
+        fail(where + ": invalid display dimensions.");
+      }
+      if (!validDate(work.display_generated_at)) fail(where + ": display_generated_at must be an ISO date-time.");
+      if (displayVariant === "original_fallback") {
+        if (displayPath !== assetPath) fail(where + ": original_fallback display_url must be the archived master.");
+        if (work.display_sha256 !== work.sha256 || work.display_file_size !== work.file_size) fail(where + ": original_fallback display metadata must match the master.");
+      } else {
+        const normalizedDisplay = path.posix.normalize(displayPath);
+        if (displayPath !== normalizedDisplay || displayPath.startsWith("/") || displayPath.includes("\\") || !displayPath.startsWith(expectedPrefix)) {
+          fail(where + ": unsafe or unexpected display_url.");
+          continue;
+        }
+        if (displayPath === assetPath) fail(where + ": display_url must differ from the archived master.");
+        if (path.posix.basename(displayPath) !== postId + ".display.webp") fail(where + ": display file name must be <post_id>.display.webp.");
+        const displayFile = path.join(root, "docs", ...displayPath.split("/"));
+        let displayBytes;
+        try {
+          displayBytes = await fs.readFile(displayFile);
+        } catch {
+          fail(where + ": missing display image " + displayPath + ".");
+          continue;
+        }
+        totalBytes += displayBytes.length;
+        if (displayBytes.length !== work.display_file_size) fail(where + ": display_file_size does not match the stored file.");
+        if (displayBytes.length > 4 * 1024 * 1024) fail(where + ": display image exceeds the 4 MiB limit.");
+        if (imageType(displayBytes) !== "image/webp" || work.display_mime_type !== "image/webp") fail(where + ": display image must be WebP.");
+        if (sha256(displayBytes) !== work.display_sha256) fail(where + ": display SHA-256 checksum mismatch.");
+      }
     }
   }
 
@@ -144,7 +182,7 @@ async function main() {
   } else {
     console.log("Artwork archive validation passed: " + manifest.artists.length + " artists, " +
       manifest.artists.reduce((sum, item) => sum + item.artworks.length, 0) + " images, " +
-      (totalBytes / 1024 / 1024).toFixed(2) + " MiB.");
+      (totalBytes / 1024 / 1024).toFixed(2) + " MiB total (masters + display derivatives).");
   }
 }
 

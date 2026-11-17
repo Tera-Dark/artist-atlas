@@ -10,19 +10,29 @@ https://github.com/Tera-Dark/artist-atlas#readme
 
 目前正式图鉴只保留三位画师：
 
-- zhanzhan_lan · Danbooru Artist ID 63362
-- zhi_xu_li_ming · Danbooru Artist ID 408507
-- z3zz4 · Danbooru Artist ID 261471
+- zhanzhan_lan · 63362
+- zhi_xu_li_ming · 408507
+- z3zz4 · 261471
+- dare_no_inarikami · 162585
+- dabaijiang_memeda · 232766
+- azling · 85638
+- road_233 · 99961
+- amejaga · 147594
 
-每位画师当前归档 3 张最新、未删除的 General 作品。图片已经保存到仓库 docs/assets/artists/<Artist ID>/，前端通过 data/artworks.json 加载本地图片。
+每位画师当前归档 3 张按 Danbooru score 排名最高、未删除的 General 作品，并排除差分与近似重复。原图保存在 `docs/assets/artists/<Artist ID>/`，同时生成最长边 1600 px 的 WebP 显示副本；前端通过 `data/artworks.json` 的 `display_url` 加载显示副本，所以页面不需要解码大尺寸原图。
 
 ## 浏览图鉴
 
-- 搜索支持画师名称、别名、风格标签和备注。
+- 搜索支持画师名称、别名、风格标签和备注，空格与下划线可以混用。
 - 可以按收藏筛选和排序。
-- 卡片左右箭头和圆点切换三张本地作品。
-- 点击作品打开对应 Danbooru 原帖；点击 DANBOORU PROFILE 打开 Artist 主页。
-- 收藏与主题保存在当前浏览器；NAI5 组合只保存在当前页面会话。
+- 卡片左右箭头、圆点、键盘方向键或手机左右滑动切换三张本地作品。
+- 工具栏「列数」可切换每行 2 / 3 / 4 张，默认 3 张；窗口变窄会自动减少列数，手机端固定单列。
+- 卡片上会显示 Danbooru 作品总数和常用别名，数字越大通常说明该画师的风格在模型里越稳定。
+- 作品图使用 1600 px 显示副本，首屏只加载可见卡片，切换时无空白闪动。
+- 点击作品打开对应 Danbooru 原帖；点击 Danbooru 主页打开 Artist 页面。
+- 收藏与主题保存在当前浏览器；NAI5 组合只保存在当前页面会话，刷新后不保证保留。
+- 主题默认跟随系统深浅色，也可以手动切换。
+- 布局在桌面、平板和手机上使用同一套卡片，不提供第二份画师列表。
 
 ## NAI5 画师串
 
@@ -38,7 +48,7 @@ Token 仅保存在当前浏览器会话，不能分享或提交到仓库。
 
 ## 作品更新
 
-打开 GitHub Actions → Sync Authorized Artist Artwork → Run workflow，可以手动重新同步所有正式画师的最新三张 General 作品。自动流程也会在正式画师数据或归档脚本变化时运行，并每周一 UTC 03:17 检查更新。
+打开 GitHub Actions → Sync Authorized Artist Artwork → Run workflow，可以手动重新同步所有正式画师按 score 选出且互不重复的三张 General 作品。自动流程也会在正式画师数据或归档脚本变化时运行，并每周一 UTC 03:17 检查更新。
 
 ## 常见问题
 

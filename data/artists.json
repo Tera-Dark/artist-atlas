@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-16T15:26:50.339Z",
+  "updated_at": "2026-11-17T05:57:08Z",
   "artists": [
     {
       "id": "artist-63362",
@@ -104,6 +104,170 @@
       "preview_updated_at": "2026-11-16T09:19:36.550Z",
       "added_at": "2026-11-16T09:04:15.939Z",
       "updated_at": "2026-11-16T09:22:45.027Z",
+      "featured": false
+    },
+    {
+      "id": "artist-162585",
+      "name": "dare_no_inarikami",
+      "danbooru_id": "162585",
+      "danbooru_name": "dare_no_inarikami",
+      "aliases": [
+        "kitune1132",
+        "ある稲荷神。",
+        "教主某狐仙",
+        "誰の稲荷神"
+      ],
+      "category": "未分类",
+      "tags": [],
+      "score": null,
+      "note": "",
+      "post_count": 3,
+      "preview_urls": [
+        "https://cdn.donmai.us/180x180/0c/ae/0cae255f1028fb6e04b65ff7073a112c.jpg",
+        "https://cdn.donmai.us/180x180/4d/0c/4d0cfa20bdf1b28b4aebcef2fdaba981.jpg",
+        "https://cdn.donmai.us/180x180/c0/dd/c0dd5fb26b6a1122861a3ece7157b0cf.jpg"
+      ],
+      "preview_post_ids": [
+        5411612,
+        5613595,
+        5172771
+      ],
+      "danbooru_url": "https://danbooru.donmai.us/artists/162585",
+      "danbooru_verified_at": "2026-11-17T05:57:08Z",
+      "preview_updated_at": "2026-11-17T05:57:08Z",
+      "added_at": "2026-11-17T05:57:08Z",
+      "updated_at": "2026-11-17T05:57:08Z",
+      "featured": false
+    },
+    {
+      "id": "artist-232766",
+      "name": "dabaijiang_memeda",
+      "danbooru_id": "232766",
+      "danbooru_name": "dabaijiang_memeda",
+      "aliases": [
+        "xiangjiaomonan",
+        "xuexiao_gugu",
+        "大大大大白",
+        "大白酱么么哒",
+        "雪鸮咕咕"
+      ],
+      "category": "未分类",
+      "tags": [],
+      "score": null,
+      "note": "",
+      "post_count": 3,
+      "preview_urls": [
+        "https://cdn.donmai.us/180x180/81/c0/81c058c312b70c8ff4fcae3b4e6124aa.jpg",
+        "https://cdn.donmai.us/180x180/8c/45/8c45f479f4f88ec54df19655c4d6d00e.jpg",
+        "https://cdn.donmai.us/180x180/7a/11/7a1112b9e67d580fe73bbc4845d76e98.jpg"
+      ],
+      "preview_post_ids": [
+        5222946,
+        5783656,
+        10725966
+      ],
+      "danbooru_url": "https://danbooru.donmai.us/artists/232766",
+      "danbooru_verified_at": "2026-11-17T05:57:08Z",
+      "preview_updated_at": "2026-11-17T05:57:08Z",
+      "added_at": "2026-11-17T05:57:08Z",
+      "updated_at": "2026-11-17T05:57:08Z",
+      "featured": false
+    },
+    {
+      "id": "artist-85638",
+      "name": "azling",
+      "danbooru_id": "85638",
+      "danbooru_name": "azling",
+      "aliases": [
+        "aZLing",
+        "aZLing4",
+        "美见",
+        "鸡饲料美见"
+      ],
+      "category": "未分类",
+      "tags": [],
+      "score": null,
+      "note": "",
+      "post_count": 3,
+      "preview_urls": [
+        "https://cdn.donmai.us/180x180/14/61/1461acf6439006945603f59a460f725d.jpg",
+        "https://cdn.donmai.us/180x180/dc/e4/dce430cb553269bed757b7f805df38c0.jpg",
+        "https://cdn.donmai.us/180x180/52/24/522414d7de7c44294535cad065a8e2b4.jpg"
+      ],
+      "preview_post_ids": [
+        8438161,
+        3131685,
+        3960592
+      ],
+      "danbooru_url": "https://danbooru.donmai.us/artists/85638",
+      "danbooru_verified_at": "2026-11-17T05:57:08Z",
+      "preview_updated_at": "2026-11-17T05:57:08Z",
+      "added_at": "2026-11-17T05:57:08Z",
+      "updated_at": "2026-11-17T05:57:08Z",
+      "featured": false
+    },
+    {
+      "id": "artist-99961",
+      "name": "road_233",
+      "danbooru_id": "99961",
+      "danbooru_name": "road_233",
+      "aliases": [
+        "-華小路-",
+        "hanarue",
+        "sangenliu",
+        "華小路"
+      ],
+      "category": "未分类",
+      "tags": [],
+      "score": null,
+      "note": "",
+      "post_count": 3,
+      "preview_urls": [
+        "https://cdn.donmai.us/180x180/fa/1c/fa1c619a3569802d127d46853cf2f635.jpg",
+        "https://cdn.donmai.us/180x180/90/d3/90d3052137c49f4f1e08be5899d6abb1.jpg",
+        "https://cdn.donmai.us/180x180/65/3e/653ead0ccb6a8be1faa4c7d8ac6b6b32.jpg"
+      ],
+      "preview_post_ids": [
+        7878821,
+        7775178,
+        7690281
+      ],
+      "danbooru_url": "https://danbooru.donmai.us/artists/99961",
+      "danbooru_verified_at": "2026-11-17T05:57:08Z",
+      "preview_updated_at": "2026-11-17T05:57:08Z",
+      "added_at": "2026-11-17T05:57:08Z",
+      "updated_at": "2026-11-17T05:57:08Z",
+      "featured": false
+    },
+    {
+      "id": "artist-147594",
+      "name": "amejaga",
+      "danbooru_id": "147594",
+      "danbooru_name": "amejaga",
+      "aliases": [
+        "감자",
+        "gj"
+      ],
+      "category": "未分类",
+      "tags": [],
+      "score": null,
+      "note": "",
+      "post_count": 3,
+      "preview_urls": [
+        "https://cdn.donmai.us/180x180/36/c1/36c1cf1f4752f092828ecaa026c68eb5.jpg",
+        "https://cdn.donmai.us/180x180/ad/7c/ad7c4b6ccccf3b59f537e284f4edf529.jpg",
+        "https://cdn.donmai.us/180x180/97/90/979019f342631c6f81063a9d2a2b7c1b.jpg"
+      ],
+      "preview_post_ids": [
+        5877695,
+        9020130,
+        4511847
+      ],
+      "danbooru_url": "https://danbooru.donmai.us/artists/147594",
+      "danbooru_verified_at": "2026-11-17T05:57:08Z",
+      "preview_updated_at": "2026-11-17T05:57:08Z",
+      "added_at": "2026-11-17T05:57:08Z",
+      "updated_at": "2026-11-17T05:57:08Z",
       "featured": false
     }
   ]
