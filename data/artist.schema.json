@@ -38,11 +38,8 @@
         "tags",
         "score",
         "note",
-        "post_count",
-        "preview_urls",
         "added_at",
-        "updated_at",
-        "featured"
+        "updated_at"
       ],
       "properties": {
         "id": {
@@ -56,10 +53,7 @@
           "maxLength": 160
         },
         "danbooru_id": {
-          "type": [
-            "string",
-            "integer"
-          ],
+          "type": "string",
           "pattern": "^[0-9]+$"
         },
         "danbooru_name": {
@@ -102,49 +96,11 @@
           "type": "string",
           "maxLength": 2000
         },
-        "post_count": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "preview_urls": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          },
-          "maxItems": 12
-        },
         "added_at": {
           "type": "string",
           "format": "date-time"
         },
         "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "featured": {
-          "type": "boolean"
-        },
-        "danbooru_url": {
-          "type": "string",
-          "format": "uri"
-        },
-        "danbooru_verified_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "preview_post_ids": {
-          "type": "array",
-          "items": {
-            "type": [
-              "string",
-              "integer"
-            ]
-          },
-          "maxItems": 12,
-          "uniqueItems": true
-        },
-        "preview_updated_at": {
           "type": "string",
           "format": "date-time"
         }

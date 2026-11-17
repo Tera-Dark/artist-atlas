@@ -1,626 +1,252 @@
 # Artist Atlas · 画师图鉴
 
-**以作品为中心的个人画师索引、视觉参考档案与自动化作品归档工具。**
+以作品为中心的个人画师索引：每位画师对应一个 Danbooru Artist，每张作品对应一个 Danbooru Post，网页只加载仓库里 1600 px 的 WebP 显示副本。
 
-- 在线图鉴：https://tera-dark.github.io/artist-atlas/
-- GitHub 仓库：https://github.com/Tera-Dark/artist-atlas
-- 当前默认分支：main
-- 当前阶段：三位画师测试与验收基线
+- 在线图鉴：<https://tera-dark.github.io/artist-atlas/>
+- 仓库：<https://github.com/Tera-Dark/artist-atlas>
+- 分支：`main`
 
-> 本 README 同时是项目的 AI 交接手册。接手项目的 AI 应先完整阅读本文件，再检查仓库当前 main 分支中的脚本、数据和工作流；不要只依赖历史聊天摘要或旧版本说明。
+当前规模：**71 位画师 / 213 张作品 / 约 37 MiB 图片**。名单以 `data/artists.json` 为准，作品以 `data/artworks.json` 为准。
 
----
-
-## 1. 项目目标与当前状态
-
-Artist Atlas 用来整理值得研究的画师及其作品。每位画师有唯一的 Danbooru Artist ID；作品通过 Danbooru Post ID 追溯来源；获得作者允许重新保存和公开展示的图片会归档到本仓库，公开网页只读取仓库内的本地图片。
-
-当前正式图鉴共 **71 位画师**，名单以 `data/artists.json` 为准；每位画师收录 3 张按 Danbooru score 排名最高且互不为差分的 General 作品。
-
-当前归档策略为**只保存 1600 px WebP 显示副本**：Danbooru 源文件只下载到临时暂存目录用于转换，转换完成后立即删除，不进入仓库。因此 71 位画师、213 张作品的仓库体积只有约 40 MiB 量级，同时网页仍然完全从本地加载图片。
-
-**不要擅自恢复旧的 63 位名单或批量添加画师。** 新增画师必须由仓库所有者明确要求，并确认作者允许重新保存、转换及公开展示；不要把模糊匹配到的 Artist 直接写入正式索引。
-
-### 产品边界
-
-- 公开页面只有一份正式画师图鉴，不展示候选池、核验批次或第二份画师列表。
-- 所有画师共用同一种卡片结构；不得按某个 Artist ID 写特殊卡片。
-- 每位画师默认归档 3 张热度最高、未删除、General 级别的图片作品，并排除差分与近似重复；同一张卡片的三个位不应是同一张画的微调版本。
-- 公开图鉴的作品来自 GitHub 仓库内的 1600 px WebP 显示副本，不依赖访客浏览器实时访问 Danbooru CDN；仓库不保留源文件。
-- Danbooru 仍用于管理流程中的 Artist 身份查询、作品候选发现和原帖来源追溯。
-- 项目不是下载站、排行榜或作品版权归属声明工具。不得把公开可见错误认为可自由再发布；再托管必须有作者允许。
+> 这份 README 也是接手者的交接文档。改动前请先读完，再看当前 `main` 上的脚本与工作流；历史聊天摘要可能已经过期。
 
 ---
 
-## 2. 仓库目录与职责
+## 1. 它是什么
 
-当前重要目录如下：
+- 一片**正式**画师图鉴，只有一份网格、一套卡片模板；没有候选池、没有第二份列表。
+- 每位画师固定收录 **3 张** Danbooru `rating:g` 作品：按 score 从高到低取，并排除差分（同一张画的微调版本）与近似重复。
+- 作品图片归档在仓库里（`docs/assets/artists/<Artist ID>/<Post ID>.display.webp`），**只保存 1600 px WebP 显示副本**，不保存源文件。
+- 公开页面不实时访问 Danbooru 图片 CDN；Danbooru 只用于管理流程中的身份查询、候选发现和原帖追溯。
+- 不按单个 Artist ID 写特例卡片；新增画师只增加数据与图片目录。
 
-    data/
-      artists.json              正式画师索引，唯一的画师数据源
-      artworks.json             本地作品归档清单与来源记录
-      artist.schema.json        正式画师索引的数据结构
-      candidates.json           旧候选数据兼容文件，目前为空
-      verified-artists.json     旧核验结果兼容文件，目前为空
-
-    docs/
-      index.html                GitHub Pages 前端
-      GETTING-STARTED.md        简短使用说明
-      ARCHITECTURE.md           前端与归档架构说明
-      assets/
-        artists/
-          <Artist ID>/         只存放 <Post ID>.display.webp
-          63362/                按 Danbooru Artist ID 分目录
-          408507/
-          261471/
-
-    scripts/
-      sync-artworks.mjs         Danbooru 作品发现、差分排除、下载到暂存区
-      image-signature.py       计算 preview 的 dHash，供差分/近重复判定使用
-      make-display-assets.py   把暂存源文件转成 1600px WebP 并清理源文件
-      validate-artworks.mjs    作品清单与显示副本完整性校验
-      validate-data.mjs        画师索引、DOM ID 和前端脚本校验
-
-    .github/
-      workflows/
-        sync-artworks.yml      自动归档、提交图片并部署 Pages
-        validate.yml            Push / Pull Request 数据与脚本检查
-        pages.yml               手动 Pages 部署备用工作流
-
-### 各文件的权威性
-
-**data/artists.json 是正式画师索引的唯一数据源。** 画师名称、别名、Danbooru Artist ID、分类、标签、评分和备注都以这里为准。
-
-**data/artworks.json 是正式作品归档清单。** 前端根据 Artist ID 找到该画师的 artworks 数组，再使用每条记录的 display_url 加载本地显示副本。
-
-**docs/assets/artists/ 是显示副本的实际存储位置。** 每位画师使用 Artist ID 作为目录名，每个文件固定命名为 `<Post ID>.display.webp`；源文件不会提交到仓库。
-
-candidates.json 和 verified-artists.json 是旧流程留下的兼容数据文件，目前数组为空，也不由 Pages 发布工作流复制到线上。validate-data.mjs 目前仍会检查这两个文件的基本结构；不要在没有调整验证器和产品设计的前提下重新启用旧候选池。
+边界：本项目不是下载站、排行榜，也不代表作品授权状态。**再托管必须有作者允许**，公开可见 ≠ 可以转载。
 
 ---
 
-## 3. 数据模型
+## 2. 目录结构
 
-### 3.1 正式画师索引：data/artists.json
+```
+data/
+  artists.json            正式画师索引（唯一画师数据源）
+  artworks.json           作品归档清单（由同步脚本生成）
+  artist.schema.json      artists.json 的结构定义
 
-顶层结构：
+docs/
+  index.html              站点：样式、脚本、数据渲染全部在这一个文件里
+  GETTING-STARTED.md      面向使用者的说明
+  ARCHITECTURE.md         实现细节（渲染、加载、差分、校验）
+  assets/artists/
+    <Artist ID>/          只放 <Post ID>.display.webp
 
-- version：当前为 1。
-- updated_at：索引最近更新时间。
-- artists：正式画师数组。
+scripts/
+  sync-artworks.mjs       发现作品 → 差分排除 → 下载到暂存目录 → 逐位画师转换
+  make-display-assets.py  暂存源文件 → 1600px WebP，删源文件，清理残留
+  image-signature.py      180px 预览的 8×8 dHash，供差分判定
+  validate-data.mjs       画师索引 + DOM id + 内联脚本语法
+  validate-artworks.mjs   归档清单 + 显示副本完整性 + 总量预算
 
-每位画师使用以下字段：
+tools/workbench/          早期本地采集工具（不参与构建，见其中 README）
 
-| 字段 | 含义 |
+.github/workflows/
+  sync-artworks.yml       归档 + 提交 + 部署 Pages（定时/手动/触发路径变化）
+  validate.yml            每次 push 与 PR 的数据校验
+  pages.yml               手动发布 Pages 的备用入口
+```
+
+权威性：`artists.json` 是画师身份的唯一来源；`artworks.json` 是作品与图片的唯一来源；`docs/assets/artists/` 只允许出现 `.display.webp`。
+
+---
+
+## 3. 本地开始
+
+```bash
+node --version                 # 需要 Node 22+
+python -m pip install -r requirements.txt   # Pillow，用于差分哈希与 WebP 转换
+
+node scripts/validate-data.mjs
+node scripts/validate-artworks.mjs
+```
+
+本地看页面（模拟 Pages 的目录结构：站点根 = `docs/`，外加 `/data/`）：
+
+```bash
+node -e "
+const http=require('http'),fs=require('fs'),path=require('path');
+http.createServer((q,s)=>{
+  let u=decodeURIComponent(q.url.split('?')[0]);
+  if(u==='/')u='/index.html';
+  const f=u.startsWith('/data/')?path.join('data',u.slice(6)):path.join('docs',u);
+  if(!fs.existsSync(f)||!fs.statSync(f).isFile()){s.writeHead(404);return s.end();}
+  s.writeHead(200,{'Content-Type':{'html':'text/html; charset=utf-8','json':'application/json','webp':'image/webp','svg':'image/svg+xml','md':'text/markdown; charset=utf-8'}[path.extname(f).slice(1)]||'application/octet-stream'});
+  fs.createReadStream(f).pipe(s);
+}).listen(8080,'127.0.0.1',()=>console.log('http://127.0.0.1:8080/'));
+"
+```
+
+全量重跑归档（会按当前 score 重新选片，约 700 MiB 源文件流量，仓库只增加显示副本）：
+
+```bash
+node scripts/sync-artworks.mjs
+python scripts/make-display-assets.py
+node scripts/validate-data.mjs && node scripts/validate-artworks.mjs
+```
+
+源文件默认落在系统临时目录的 `artist-atlas-staging`，可用 `ATLAS_STAGING=<dir>` 指定。网络中断时加 `ATLAS_RESUME=1` 重跑：已归档且副本完整的画师直接复用，不再下载。CI 不设置该变量，所以定时任务始终重新选片。
+
+---
+
+## 4. 数据模型
+
+### 4.1 `data/artists.json`
+
+顶层：`version`（固定 1）、`updated_at`、`artists`。
+
+| 字段 | 说明 |
 |---|---|
-| id | 仓库内部稳定 ID，格式通常为 artist-<Danbooru Artist ID> |
-| name | 图鉴里显示的名称 |
-| danbooru_id | Danbooru Artist ID，必须是正整数的字符串 |
-| danbooru_name | Danbooru 规范名称 / artist tag 名称 |
-| aliases | 作者别名数组 |
-| category | 用户自定义分类 |
-| tags | 用户自定义风格标签 |
-| score | 个人评分，1–10 或 null |
-| note | 个人备注 |
-| post_count | 已收录到本仓库的作品数量（不是 Danbooru 总数；总数见 manifest 的 danbooru_post_count） |
-| preview_urls / preview_post_ids | 保留为空数组；卡片图片只来自 manifest 的 display_url |
-| preview_post_ids | 历史预览对应的 Post ID |
-| danbooru_url | 对应 Artist 主页 |
-| added_at / updated_at | 添加与修改时间 |
-| danbooru_verified_at | 身份核验时间 |
-| preview_updated_at | 历史预览信息更新时间 |
-| featured | 兼容字段；当前公开页面不使用第二套精选区 |
+| `id` | 内部稳定 ID，`artist-<Artist ID>` |
+| `name` | 图鉴显示名 |
+| `danbooru_id` | Danbooru Artist ID，正整数字符串 |
+| `danbooru_name` | Danbooru 规范名 / artist tag |
+| `aliases` | 别名数组，参与搜索 |
+| `category` | 个人分类；空或「未分类」时卡片不显示角标 |
+| `tags` | 个人风格标签 |
+| `score` | 个人评分 1–10 或 `null` |
+| `note` | 个人备注 |
+| `added_at` / `updated_at` | ISO 时间 |
 
-编辑画师时必须保留稳定的 id 和 Danbooru 身份对应关系。不要把两个不同的 Artist ID 合并，也不要仅凭名称相似就覆盖已有记录。
+只允许以上字段，多一个都会被 `validate-data.mjs` 拒绝。图片、作品数、Danbooru 总数都不写在这里。
 
-### 3.2 作品归档清单：data/artworks.json
+### 4.2 `data/artworks.json`
 
-顶层字段：
+顶层：`version`、`status`、`updated_at`、`selection_policy`、`storage_policy`、`display_policy`、`display_updated_at`、`artists`。
 
-- version：当前为 1。
-- status：pending 或 ready。
-- updated_at：归档清单更新时间。
-- selection_policy：作品选择规则说明。
-- storage_policy：只归档显示副本的规则说明。
-- display_policy：网页显示副本（1600px WebP）的生成规则说明。
-- display_updated_at：显示副本最近生成时间。
-- artists：每位正式画师的归档记录。
+每位画师记录：`artist_id`、`artist_record_id`、`artist_name`、`artist_tag`、`danbooru_name`、`danbooru_post_count`、`danbooru_aliases`、`facts_updated_at`、`selection`、`selection_detail`（候选池大小、阈值、被跳过的差分）、`permission`、`artworks`。
 
-每位画师归档记录包括：
+每张作品：
 
-- artist_id：Danbooru Artist ID。
-- artist_record_id：对应 artists.json 中的内部 id。
-- artist_name、artist_tag：显示名称与 Danbooru tag。
-- danbooru_name、danbooru_post_count：Danbooru 规范名与作品总数（tag post_count，含各分级），用于卡片展示和风格强度判断。
-- danbooru_aliases：Danbooru 返回的别名列表；前端会与 artists.json 的 aliases 合并后用于展示和搜索。
-- facts_updated_at：上述资料最近刷新时间。
-- selection：当前为 top_scored_general_posts_without_variants。
-- selection_detail：候选池大小、差分判定阈值与被跳过候选清单（含原因）。
-- permission：仓库所有者确认的再保存和公开展示许可记录。
-- artworks：最多三张、当前要求恰好三张的图片记录。
-
-每张作品记录包括：
-
-| 字段 | 含义 |
+| 字段 | 说明 |
 |---|---|
-| post_id | Danbooru Post ID |
-| source_url | 对应 Danbooru 原帖地址 |
-| source_file_url | Danbooru 图片 CDN 来源地址 |
-| source_file_ext | 源文件扩展名（jpg / png / webp） |
-| source_mime_type | 源文件的 MIME 类型 |
-| source_file_size | 下载时的源文件字节数（不保留文件） |
-| source_sha256 | 源文件 SHA-256，用于追溯与派生副本校验 |
-| source_md5 | Danbooru 返回的源文件 md5，用于判断是否需要重新下载 |
-| image_width / image_height | Danbooru API 返回的源图尺寸元数据 |
-| created_at | Danbooru 帖子创建时间 |
-| archived_at | 本次入库时间 |
-| score / fav_count | 选片时的 Danbooru 评分与收藏数 |
-| selection_rank | 该作品在画师卡片内的排序（1–3） |
-| attribution | 作者名称、Artist ID 和来源平台 |
-| display_url | 网页卡片使用的 1600px WebP 显示副本路径 |
-| display_variant | 当前固定为 derived_1600_webp |
-| display_mime_type | 显示副本的 MIME 类型，派生副本固定为 image/webp |
-| display_width / display_height | 显示副本的实际像素尺寸 |
-| display_file_size / display_sha256 | 显示副本的字节数与校验和 |
-| display_source_sha256 | 生成显示副本时对应的源文件 SHA-256 |
-| display_generated_at | 显示副本生成时间 |
+| `id` / `post_id` | Danbooru Post ID |
+| `source_url` | 原帖地址 |
+| `source_file_url` / `source_file_ext` | 源文件 CDN 地址与扩展名 |
+| `source_mime_type` / `source_file_size` | 源文件类型与字节数（文件不保留） |
+| `source_sha256` / `source_md5` | 追溯与「是否需要重新下载」判断 |
+| `image_width` / `image_height` / `created_at` | 源图元数据 |
+| `score` / `fav_count` / `selection_rank` | 选片依据 |
+| `attribution` | 作者名、Artist ID、来源平台 |
+| `display_url` | **网页唯一加载路径**，`assets/artists/<Artist ID>/<Post ID>.display.webp` |
+| `display_variant` | 固定 `derived_1600_webp` |
+| `display_mime_type` / `display_width` / `display_height` | 副本元数据 |
+| `display_file_size` / `display_sha256` | 副本大小与校验和 |
+| `display_source_sha256` | 生成副本时对应的源文件 SHA-256 |
+| `display_generated_at` | 副本生成时间 |
 
-不要把 display_url 改成 Danbooru CDN 地址。display_url 是仓库内唯一的图片文件，例如 assets/artists/63362/7393663.display.webp，由源文件转换而来；卡片只加载它，访客浏览器不会访问 Danbooru 图片 CDN。
-
-仓库不再保存源文件。`source_file_size`、`source_sha256` 和 `source_md5` 只用于追溯与校验；需要原始分辨率时通过卡片上的 Danbooru 原帖链接访问。
-
-### 3.3 授权记录的意义
-
-当前 71 位画师的作者再保存、转换、上传及公开展示许可已经由仓库所有者确认。data/artworks.json 中的 permission 字段记录这一确认及时间。
-
-这条记录是仓库所有者提供的确认信息，不是脚本自动向 Danbooru 或画师验证出来的法律授权证明。AI 不得自行推断新画师也拥有相同授权。
-
-**新增任何画师前，必须先确认该画师对应作品允许被下载、复制、上传到公开 GitHub 仓库并由 GitHub Pages 展示。** 仅有 Danbooru 公开页面、General 标记、作者别名或可下载 URL 都不等于获得再托管许可。
-
-当前同步脚本会为正式索引中的画师写入仓库所有者确认的许可记录。因此，不能把未经确认的画师先加入 artists.json 再指望系统自动阻止。没有明确授权时，不要把该画师加入会触发归档的正式索引。
+`display_url` 不得换成 Danbooru CDN 地址；需要原始分辨率请走原帖链接。
 
 ---
 
-## 4. Danbooru 作品发现与下载规则
+## 5. 作品归档流水线
 
-核心实现位于 scripts/sync-artworks.mjs。
+核心：`scripts/sync-artworks.mjs` → `scripts/make-display-assets.py` → 两个校验脚本。
 
-### 4.1 发现条件
+1. **发现**：按 `danbooru_name` 生成 artist tag，请求 `<tag> rating:g order:score`，最多 120 条；要求未删除、有宽高、有 `file_url`/`large_file_url`、扩展名是 jpg/jpeg/png/webp。按 score、fav_count、Post ID 排序。
+2. **差分排除**（两层）：
+   - Danbooru 父子关系：父帖相同、互为父子，或向上三层能连到同一祖先；
+   - 8×8 dHash：下载 180 px 预览（仅用于比较）算哈希，与已选作品汉明距离 ≤ 12 视为近似重复。
+   跳过项写入 `selection_detail.skipped_variants`（原因 `variant_of_*` / `similar_to_*`）。
+3. **下载到暂存目录**：优先 `file_url`，失败或超限时用 `large_file_url`；校验状态码、大小、MIME、二进制签名，算 `sha256`/`md5`。源文件从不进入仓库。
+4. **逐位画师转换**：每选完一位画师就调用一次 `make-display-assets.py --only <Artist ID>`，把源文件转成最长边 1600 px、quality 85 的 WebP（单张 ≤ 4 MiB），写入 `docs/assets/artists/<Artist ID>/<Post ID>.display.webp`，更新 manifest，删除该画师的暂存源文件。这样中断后可以续跑。
+5. **清理**：manifest 未引用的 `.display.webp`、已移除画师的目录、旧流程遗留的源文件都会被删除。
+6. **校验**：`validate-data.mjs` + `validate-artworks.mjs` 全部通过才允许提交。
 
-脚本按画师的 danbooru_name（没有时使用 name）生成 artist tag，并请求 Danbooru Posts JSON API。核心查询逻辑相当于：
+限制常量（改任何一项都要同步 manifest 文案与文档）：
 
-    <artist_tag> rating:g order:score
-
-每位画师请求最多 120 条候选帖子，按 score 从高到低排序。筛选条件包括：
-
-- rating 必须是 g，也就是 General。
-- 帖子不能已删除。
-- 必须有正数的图片宽度和高度。
-- 必须提供 file_url 或 large_file_url。
-- 文件扩展名必须是 jpg、jpeg、png 或 webp（排除 gif 与 ugoira 动图，避免无法生成静态显示副本）。
-
-**当前策略是热度优先 + 去重，不是按时间取最新。** 脚本以 `order:score` 拉取最多 120 条 General 候选，按 score、fav_count、Post ID 依次排序；从高到低检查候选，跳过与已选作品构成差分的帖子，直到选满三张。
-
-差分与近重复通过两层判断：
-
-1. Danbooru 父子关系：父帖相同、互为父子，或向上三层内能连到同一祖先，视为同一组差分。
-2. 感知哈希：下载 180×180 preview（仅用于比较，不提交），计算 8×8 dHash；与已选作品的汉明距离 ≤ 12 视为近似重复。
-
-被跳过的候选会写入 manifest 的 `selection_detail.skipped_variants`，包含 post_id、score 和原因（`variant_of_*` 或 `similar_to_*`）。修改阈值时必须同时调整脚本常量、`selection_policy` 文案和本节说明。
-
-### 4.2 图片来源与转换
-
-每条候选帖子按以下顺序下载：
-
-1. 原始文件 file_url。
-2. 原文件无法下载、超过单文件限制或文件检查失败时，尝试 large_file_url。
-3. 不使用 180×180 preview_file_url 作为展示图。
-
-源文件只写入临时暂存目录（默认系统临时目录下的 `artist-atlas-staging`，可用 `ATLAS_STAGING` 覆盖），用于计算 SHA-256 和生成显示副本。**源文件不会提交到仓库，转换完成后立即删除。**
-
-本地长批量同步如果被网络中断，可以加 `ATLAS_RESUME=1` 重新运行：已归档且显示副本完整的画师会直接复用，不再重新选择或下载。CI 不设置该变量，因此定时任务始终按 score 重新选择当前最高分作品。
-
-### 4.2.1 网页显示副本
-
-源文件动辄 1–13 MiB、数千万像素，直接解码会让页面卡顿，也没有必要长期保存。同步完成后必须运行 `python scripts/make-display-assets.py`：
-
-- 从暂存源文件生成最长边 1600 px、WebP quality 85 的显示副本，命名 `<post_id>.display.webp`，写入 `docs/assets/artists/<Artist ID>/`。
-- 转换完成后删除暂存源文件；仓库里只留下显示副本。
-- 单张显示副本上限 4 MiB、单张源文件下载上限 32 MiB。
-- 动图不在支持范围内（发现阶段已排除 gif 与 ugoira），避免无法生成静态展示图。
-
-### 4.3 请求与容量限制
-
-当前脚本的限制：
-
-| 项目 | 当前值 |
+| 项目 | 值 |
 |---|---:|
-| 每位画师查询候选帖子 | 最多 120 条 |
-| 每位画师最终归档 | 恰好 3 张，且互不为差分 |
-| 差分判定：dHash 汉明距离 | ≤ 12（64 位） |
+| 每位画师候选上限 | 120 |
+| 每位画师归档 | 恰好 3 张，互不为差分 |
+| dHash 汉明距离阈值 | 12 |
 | 单张源文件下载上限 | 32 MiB |
-| 整批归档总量（仅显示副本） | 120 MiB |
-| 单张显示副本最大文件 | 4 MiB |
 | 显示副本最长边 / 质量 | 1600 px / WebP 85 |
-| 不同画师请求间隔 | 约 1.2 秒 |
-| 连续作品下载之间隔 | 约 0.3 秒 |
+| 单张显示副本上限 | 4 MiB |
+| 整库显示副本预算 | 120 MiB（项目自定，非 GitHub 限制） |
+| 画师间隔 / 作品间隔 | 0.7 s / 0.2 s |
 
-脚本设置了可识别的 User-Agent，并仅接受 HTTPS Danbooru 域名及其子域名作为图片下载来源。
+预算说明：120 MiB 只是项目自己的预算，不是 GitHub 硬限制（GitHub 为单文件 100 MB、仓库建议 ≤1 GB、Pages 站点 ≤1 GB）。调整前先看仓库体积。
 
-下载后会检查：
+失败语义：某张候选下载失败会跳过并继续；某位画师凑不满 3 张不重复的作品，整次同步失败，工作流不会提交图片。
 
-- HTTP 响应是否成功。
-- 响应体是否为空、是否超过大小上限。
-- Content-Type 是否合理。
-- 文件二进制签名是否确实是支持的图片格式。
-- 图片文件的实际字节数。
-- API 返回的宽高元数据是否有效。
-
-如果某张候选作品下载失败，脚本会记录 warning 并跳过该候选，继续检查下一条；如果某位画师最终凑不满三张不重复的作品，整个同步任务失败，不会进入 GitHub 提交步骤。
-
-当前总归档上限为 120 MiB，只统计显示副本。这个数字是项目自定的预算（`sync-artworks.mjs` 与 `validate-artworks.mjs` 中的 `MAX_TOTAL_BYTES` / `totalBudget`），不是 GitHub 的硬限制；GitHub 的真实约束是单文件 100 MB、仓库建议 ≤1 GB、Pages 站点 ≤1 GB。调整前应先检查仓库体积与 Pages 发布大小。
-
-### 4.4 清理规则
-
-每次成功同步都会重新生成完整 artworks manifest，并按当前正式画师目录清理旧图片：
-
-- 每位仍在 artists.json 中的画师目录，只保留本次选中的三个 `.display.webp`。
-- 不再属于正式索引的 Artist ID 目录会被删除。
-- 已存在但不再入选的旧 Post 显示副本会被删除。
-- `make-display-assets.py` 会清除 manifest 未引用的 `.display.webp`，以及旧流程遗留的源文件（jpg / png / webp 等）。
-- 如果同步未成功，GitHub Actions 不会执行归档提交步骤。
-
-**注意：从 artists.json 删除画师后，下一次成功归档会清除其图片目录。** 删除前先确认这是预期行为；如需保留历史图片，应先修改清理策略和校验器。
+授权：`permission` 字段记录仓库所有者确认「作者允许再保存、转换与公开显示」。它不是脚本验证出的法律许可；新增画师前必须由人确认，AI 不得自行推断。
 
 ---
 
-## 5. 前端如何读取本地图片
+## 6. 前端
 
-前端位于 docs/index.html。
+`docs/index.html` 是唯一页面文件，启动时读取 `data/artists.json` 与 `data/artworks.json`，按 `artist_id` 合并。
 
-公开页面启动时会读取：
+- **加载**：首张 `loading="eager"` + `fetchpriority="high"`，其余 `lazy`；IntersectionObserver（260 px 预取距离）在 `requestIdleCallback` 里预取下一位作品；悬停/聚焦预取整卡三张。
+- **切换**：`img.decode()` 后替换，旧帧保留到新帧解码完成；底部 ghost 图层做方向相关的滑动淡出（约 450 ms，只动 opacity/transform），`prefers-reduced-motion` 下瞬时切换；预加载缓存上限 8。
+- **离屏卡片**：骨架微光和「读取中」脉冲只在 `data-inview="true"` 时播放，避免几十张卡片一起跑无限动画。
+- **列数**：工具栏可切 2 / 3 / 4 列，默认 3；卡片最小宽度 320 px，窗口变窄自动减列，≤720 px 隐藏控件。
+- **大图**：点击卡片打开弹窗，适应 / 100% / 200% 缩放，可拖动；左右按钮与方向键换图并同步卡片轮播；弹窗内保留「原帖」入口。Ctrl/Cmd/中键仍然直接开 Danbooru。
+- **卡片信息**：Danbooru 作品总数（`danbooru_post_count`）、已收录数、最多 3 个别名（完整列表在 `title`）、个人评分或「已核验」标记。
 
-1. data/artists.json：画师名称、身份、分类、标签、备注等信息。
-2. data/artworks.json：该画师的三张本地作品路径和来源 Post ID。
+本地状态：收藏 `artistAtlasFavoritesV2`、主题 `artistAtlasThemeV2`、列数 `artistAtlasColumnsV2`（均为 localStorage）；NAI5 组合只存在内存；GitHub Token 存在 sessionStorage。
 
-前端根据 artist_id 匹配归档记录，读取 artwork.display_url（最长边 1600 px 的 WebP 显示副本）；仓库没有源文件可回退。点击作品打开大图弹窗，弹窗内保留 Danbooru 原帖入口；「Danbooru 主页」链接打开 Artist 主页。
-
-公开卡片不会为每位画师实时调用 Danbooru Posts API 获取主图。管理弹窗在搜索新 Artist、预览候选作品时仍会向 Danbooru API 发出请求；这属于管理流程，不是公开图鉴的图片加载来源。
-
-### 图片加载策略
-
-- 第一张卡片使用 `loading="eager"` 和 `fetchpriority="high"`；其余卡片 `loading="lazy"`，不进入视口不下载。
-- IntersectionObserver 在卡片接近视口时预取下一张作品，并在 `requestIdleCallback` 中执行，避免和首屏渲染争抢主线程。
-- 悬停或键盘聚焦卡片时预取该卡片全部三张显示副本，点击箭头或圆点时基本无需等待。
-- 切换作品时通过 `img.decode()` 等待新图解码，旧图保持显示直到解码完成，不会出现空白闪动；显示副本解码失败时直接展示错误状态（不再回退源文件，因为仓库不保存源文件）。
-- 切换成功后播放一次方向相关的交叉动画：旧帧由底层 ghost 图层滑出淡出，新帧滑入淡入（约 450 ms，只动 opacity/transform）。旧帧在动画结束前始终兜底显示，即使标签页被节流也不会出现空白；`prefers-reduced-motion` 下直接瞬时切换。
-- 预加载缓存只有 8 个条目，避免解码后的位图无限占用内存。
-- 环境模糊背景只在主图加载完成后设置，离屏卡片不会提前发起图片请求。
-- 仓库只有显示副本，网格与卡片预览始终加载 `display_url`；需要原始分辨率时使用大图弹窗中的 Danbooru 原帖链接。
-
-卡片布局可以在工具栏切换每行 2 / 3 / 4 列，默认 3 列，选择保存在 localStorage（artistAtlasColumnsV2）。每张卡片有最小宽度（320 px），窗口变窄时会自动减少实际列数，保证可读性；窄屏会隐藏该控件。卡片正文展示 Danbooru 作品总数（danbooru_post_count）与常用别名，别名最多显示 3 个，完整列表放在 title 中。
-
-图片无法读取时，卡片会展示错误状态和画师主页链接。不要通过回退到 180×180 小缩略图来掩盖仓库路径或部署问题。
-
-### 大图查看
-
-点击卡片任意位置会打开大图弹窗（仍可用 Ctrl / Cmd / 中键打开 Danbooru 原帖）：
-
-- 顶部可切换「适应 / 100% / 200%」，点击图片本身也会在适应与 100% 之间切换。
-- 放大后可在弹窗内拖动画面；触屏用双指或单指滚动查看。
-- 弹窗内的左右按钮与方向键会切换同一位画师的三张作品，并同步卡片轮播状态。
-- 弹窗保留「原帖」入口，方便回到 Danbooru 查看原始分辨率。
-
-所有画师共用统一卡片结构。新增画师只增加数据记录和图片目录，不为某位画师另写专属 HTML/CSS/JS。
-
-### 浏览器本地状态
-
-- 收藏：localStorage。
-- 主题：localStorage。
-- 每行列数：localStorage（artistAtlasColumnsV2）。
-- NAI5 组合与强弱：当前页面会话内存，刷新后不保证保留。
-- GitHub Token：管理窗口连接后存入 sessionStorage；不要读取、打印、截图、提交或向其他 AI 泄露 Token。
+不要在网格里引入 `filter: drop-shadow()` 之类的大尺寸滤镜，也不要回退到 180 px 预览图。
 
 ---
 
-## 6. 自动化工作流
+## 7. 自动化
 
-### 6.1 主流程：sync-artworks.yml
+| 工作流 | 触发 | 作用 |
+|---|---|---|
+| `sync-artworks.yml` | push main、手动、每周一 UTC 03:17 | 判断是否需要刷新归档 → 同步 → 转换 → 校验 → 提交 `data/artworks.json` + 图片 → 部署 Pages |
+| `validate.yml` | push main、PR | 只跑 `validate-data.mjs` 与 `validate-artworks.mjs` |
+| `pages.yml` | 手动 | 不重新下载，直接发布当前文件 |
 
-文件：.github/workflows/sync-artworks.yml
+push 触发时，只有改动命中 `data/artists.json`、`scripts/sync-artworks.mjs`、`scripts/image-signature.py`、`scripts/make-display-assets.py`、`scripts/validate-artworks.mjs` 或工作流自身才会重新下载作品；改 README/CSS/文档只校验并部署。
 
-这个工作流同时负责作品归档和 GitHub Pages 发布。
-
-触发方式：
-
-- main 分支任何 push 都会启动此工作流。
-- Actions 页面手动运行（workflow_dispatch）会强制重新同步作品。
-- 每周一 UTC 03:17 定时运行。
-
-Push 触发后会检查本次提交修改的路径：
-
-| 本次变化 | 是否重新下载作品 |
-|---|---|
-| data/artists.json | 是 |
-| scripts/sync-artworks.mjs | 是 |
-| scripts/image-signature.py | 是 |
-| scripts/make-display-assets.py | 是 |
-| scripts/validate-artworks.mjs | 是 |
-| .github/workflows/sync-artworks.yml | 是 |
-| 只有 README、前端样式或其他普通文件变化 | 否，仍会校验并部署 |
-
-正常执行顺序：
-
-1. Checkout main 完整历史。
-2. 判断是否需要刷新作品归档。
-3. 如需刷新，安装 Python 与 Pillow（差分判定和显示副本生成都要用）。
-4. 运行 scripts/sync-artworks.mjs：按 score 拉取候选、排除差分，把三张源文件下载到 `${{ runner.temp }}/atlas-staging`。
-5. 运行 python scripts/make-display-assets.py：转成 WebP 显示副本，删除暂存源文件。
-6. 运行 scripts/validate-data.mjs。
-7. 运行 scripts/validate-artworks.mjs。
-8. 只有两个校验成功，才将 data/artworks.json 和 docs/assets/artists/ 提交到 main。
-9. 组装 Pages 静态站点：复制 docs/、data/artists.json 和 data/artworks.json。
-10. 上传 Pages artifact。
-11. 部署 GitHub Pages。
-
-同步工作流拥有 contents: write、pages: write 和 id-token: write 权限，用来提交归档文件和部署站点。工作流使用 pages concurrency group 且 cancel-in-progress 为 false，避免并发发布互相取消。
-
-由同步脚本自动提交的图片和 manifest 不会改变 artists.json；后续普通发布应跳过作品下载，只运行校验和部署。不要移除同步判断，否则每次普通 README 或 CSS 修改都会重新抓取所有图片。
-
-### 6.2 质量检查：validate.yml
-
-文件：.github/workflows/validate.yml
-
-在 main 分支 push 和 Pull Request 时执行：
-
-    node scripts/validate-data.mjs
-    node scripts/validate-artworks.mjs
-
-第一项检查 artists.json、旧兼容 JSON 的基本结构、重复 ID / 别名、URL、页面 DOM ID 和内联 JavaScript 语法。
-
-第二项检查 artworks manifest、每位画师的三张作品、授权确认字段、来源 Post URL 与源文件校验信息，并校验每张作品的 WebP 显示副本存在、尺寸、字节数、文件签名和 SHA-256；同时确认画师目录里没有残留源文件，显示副本总量不超过 120 MiB。
-
-任何一项失败都应先修复，不能通过删掉校验步骤来“让 CI 变绿”。
-
-### 6.3 手动发布备用流程：pages.yml
-
-文件：.github/workflows/pages.yml
-
-此工作流目前只有 workflow_dispatch 入口，是手动 Pages 部署备用方案。它会先执行两个验证脚本，再复制 docs、artists.json 和 artworks.json 并部署 Pages。
-
-它**不会下载或更新图片**。只有归档已经处于 ready 且校验通过时，才使用此备用工作流发布网页。
-
-日常首选 sync-artworks.yml。不要把 pages.yml 当成图片同步工作流。
+工作流用 `contents: write` + `pages: write` + `id-token: write`，`concurrency: pages` 且不取消进行中的发布。归档提交只 `git add data/artworks.json docs/assets/artists/`。
 
 ---
 
-## 7. 常见操作手册
+## 8. 运维手册
 
-### 7.1 新增一位画师
+**新增一位画师**：核验 Artist ID 与别名 → 确认授权 → 用「管理图鉴」搜索并保存，或直接改 `data/artists.json` → `node scripts/validate-data.mjs` → 提交。工作流会自动补齐 3 张作品、图片和部署。
 
-这是最重要的扩容流程：
+**删除一位画师**：从 `artists.json` 移除 → 提交 → 下次同步会删掉该 Artist 目录与 manifest 记录。删除前确认这是预期行为。
 
-1. 先在 Danbooru 核验准确 Artist 身份，确认 Artist ID、规范名称和别名。名称相似不代表同一画师。
-2. 在添加前确认这位作者允许将其作品下载、重新保存、上传到公开 GitHub 仓库，并通过 GitHub Pages 展示。不要把“公开可看”当成授权。
-3. 使用网页「管理图鉴」中的搜索功能，选中正确的 Danbooru Artist，填写图鉴显示名称、分类、别名、风格标签、个人评分和备注。
-4. 保存后检查 data/artists.json 是否只新增了正确记录，内部 id 是否稳定，danbooru_id 是否唯一。
-5. 提交到 main。artists.json 的变化会自动触发 sync-artworks.yml。
-6. 在 Actions 中检查同步任务是否完成发现、下载、两个校验、图片提交和 Pages 部署。
-7. 检查 docs/assets/artists/<Artist ID>/ 是否恰好有三个 `.display.webp`（没有源文件），检查 data/artworks.json 是否有对应 manifest 记录、source_* 追溯字段与 display 字段。
-8. 打开在线页面强制刷新，确认图片是本地 display 路径、轮播三张作品正常、点击可打开大图、原帖链接正确，浏览器 Network 中不出现任何源文件。
+**重新同步作品**：Actions → Sync Authorized Artist Artwork → Run workflow。它会按当前 score 对全部画师重新选片，不是单画师刷新。
 
-其他 AI 直接编辑仓库时，也必须遵守以上顺序。不要先写假图片 URL，也不要把图片地址写进 artists.json 的 preview_urls。
+**只想改样式**：只动 `docs/index.html`，`validate-data.mjs` 会检查 DOM id 重复、`$("id")` 引用和脚本语法。
 
-### 7.2 手动重新同步作品
+**手动发布**：Actions → Deploy Artist Atlas Pages。
 
-优先通过 GitHub 网页操作：
+排查：
 
-1. 打开仓库 Actions。
-2. 选择 Sync Authorized Artist Artwork。
-3. 点击 Run workflow，目标分支选择 main。
-4. 等待工作流完成。
-5. 检查三个关键阶段：Discover and archive、Validate catalogue and archived image files、Deploy updated Artist Atlas。
-6. 检查 data/artworks.json 的 updated_at、每位画师的三个 Post ID 以及图片目录。
-
-手动运行会对当前所有正式画师重新按 score 选取作品并排除差分。它不是只刷新某一位画师的按钮。
-
-### 7.3 本地运行同步
-
-需要 Node.js 22 或兼容当前脚本所使用的原生 fetch、ES Module 能力，以及 Python 3.10+ 与 Pillow 10+（差分哈希与 WebP 显示副本）。需要运行机器能访问 Danbooru API 和 CDN，并预留约 1 GiB 临时空间存放待转换的源文件。
-
-    node --version
-    python -m pip install "Pillow>=10"
-    node scripts/sync-artworks.mjs
-    python scripts/make-display-assets.py
-    node scripts/validate-data.mjs
-    node scripts/validate-artworks.mjs
-    git status --short
-    git diff --stat
-
-本地运行只会在工作区生成或更新图片和 manifest，不会自动帮你执行 git commit / push。确认检查通过、变更范围正确后，再提交：
-
-    git add data/artworks.json docs/assets/artists/
-    git commit -m "Archive latest authorized artist artworks"
-    git push origin main
-
-如果只是本地修改页面、README 或其他不需要重新下载图片的文件，正常提交 push 即可；主同步工作流会跳过作品下载步骤，继续校验和发布。
-
-### 7.4 删除一位画师
-
-1. 在管理界面删除，或从 data/artists.json 移除对应记录。
-2. 检查这是否也意味着删除其作品归档。
-3. 提交到 main。
-4. 同步脚本会重新构建 manifest，并清除不再属于正式画师的资产目录。
-5. 检查 CI 和部署结果。
-
-如果只想暂时隐藏画师但保留其图片，不要直接删除正式记录；应先设计明确的隐藏字段和清理策略。
-
-### 7.5 修改卡片或页面样式
-
-只修改 docs/index.html 及必要的说明文档。确保：
-
-- 页面仍只有一个正式画师卡片网格。
-- 所有画师使用同一模板。
-- 不把候选池重新加回公开主页面。
-- 作品图片仍通过 data/artworks.json 的 display_url 加载；仓库不保存源文件，不要重新引入 local_url。
-- 保留懒加载与解码调度：首屏只加载可见卡片的显示副本，切换作品时旧图保持到新图解码完成。
-- 离屏卡片的骨架微光与加载指示不应持续播放动画；只在卡片进入视口时启用，避免无意义的重绘开销。
-- 不重新引入以 Danbooru preview_file_url 作为主图的逻辑。
-- 不为单个 Artist ID 添加专属样式分支。
-- 保持每行 2 / 3 / 4 列的切换能力与 320 px 最小卡片宽度；不要用固定的 auto-fill 列宽覆盖用户选择。
-- 保留页首 SVG 图标精灵与 keyed 局部渲染：只更换图库集合时才重建网格，不要退回“每次交互整页重绘”。
-- 不要对大图主图使用 `filter: drop-shadow()`；大尺寸滤镜会明显拖慢移动端渲染。
-
-修改后运行两个校验脚本，再提交。普通页面变化会触发检查和 Pages 部署，但不会重新抓取作品。
-
-### 7.6 手动发布 Pages（备用）
-
-只有归档 manifest 已经 ready、且两个校验脚本通过时才使用：
-
-1. 打开 Actions → Deploy GitHub Pages。
-2. 点击 Run workflow。
-3. 选择 main 分支。
-4. 等 validate 和 deploy 两个 job 成功。
-
-这个工作流只发布已有文件，不会运行图片下载。
+- *找不到三张作品*：tag 是否准确、Artist 是否被删、120 条候选里是否有足够合格图片；脚本不会用 180 px 预览凑数。
+- *三张仍太像*：看 `skipped_variants`；确实漏检可调 `VARIANT_HASH_DISTANCE`，但别调到大范围误杀。
+- *副本缺失*：确认同步把源文件下载到了暂存目录、随后跑了转换脚本；不要手工伪造 `display_sha256`。
+- *页面图片不显示*：检查 `display_url` 对应文件是否存在、Pages artifact 是否包含它、部署是否最新、是否缓存。
+- *首屏卡顿*：Network 里确认只有 `.display.webp`；确认副本 ≤1600 px；确认没用大尺寸滤镜。
+- *校验失败*：按报错修数据或重跑同步，不要删检查规则来“过”。
 
 ---
 
-## 8. 本地校验与验收清单
+## 9. 安全与协作
 
-每次涉及正式数据、图片或前端的改动至少检查：
-
-    node scripts/validate-data.mjs
-    node scripts/validate-artworks.mjs
-
-归档校验通过的预期条件：
-
-- manifest status 是 ready。
-- 每个正式画师都有且只有一条归档记录。
-- 每位画师恰好 3 张作品。
-- Post ID 不重复。
-- source_url 指向精确的 Danbooru Post。
-- attribution 中的 Artist ID 与正式索引一致。
-- permission.status 为 granted，confirmed_by 为 repository_owner。
-- 每张作品都有 source_sha256 / source_file_size / source_md5 追溯信息。
-- 每张作品都有 WebP 显示副本，display_source_sha256 与 source_sha256 一致。
-- 显示副本路径位于对应 Artist ID 目录、文件名是 `<Post ID>.display.webp`、签名与 MIME 匹配、字节数与 SHA-256 一致。
-- 画师目录中除了这批 `.display.webp` 没有其他文件（尤其是没有源文件）。
-- 显示副本总大小不超过 120 MiB。
-
-前端验收还应检查：
-
-- 每位有归档数据的画师卡片都显示本地图片。
-- 每张卡片可以在三张作品之间切换（箭头、圆点、键盘方向键、触摸滑动）。
-- 图片按原始比例完整呈现，长图不被上下裁切。
-- 360–430px 窄屏下头部操作、筛选控件和卡片底部按钮不溢出、不重叠，触控目标不小于 44px。
-- 深色与浅色主题下的文字、边框、浮层和图片背景均可读。
-- 点击作品打开大图弹窗，缩放、拖动与方向键换图正常，弹窗内「原帖」指向正确的 Danbooru Post。
-- 画师主页链接打开正确 Artist ID。
-- 收藏、搜索、排序、主题和 NAI5 组合正常。
-- 首次打开时只请求 `.display.webp`，不请求任何源文件；卡片切换时旧图保留直到新图解码完成，没有空白闪动。
-- 桌面和手机端没有第二个画师列表、布局错位或图片空白。
+- 管理窗口用 Fine-grained PAT：仅 `Tera-Dark/artist-atlas`，仅 `Contents: Read and write`。Token 存在 sessionStorage，刷新页面即失效。
+- 任何凭证、Cookie、账号数据、采集结果都不得出现在仓库、日志、截图、提交信息或对话里。
+- 授权只针对已确认的画师；旧确认不会自动推导到新画师。
+- 改下载规则、格式、容量、选片策略或清理行为时，必须同时更新脚本常量、manifest 文案、`README.md` 与本目录下的文档。
+- 交接时如实报告 commit、Actions 状态与部署结果；工作流没跑完不要说已经上线。
 
 ---
 
-## 9. 故障排查
+## 10. 记录
 
-### 找不到三张作品
-
-检查 Danbooru tag 是否准确、Artist ID 是否对应、是否有足够的 rating:g 图片帖子，以及最多 120 条按 score 排序的候选中是否存在合格文件。脚本不允许用 180×180 preview 凑数。
-
-### 三张作品仍然太像（差分漏检）
-
-先看 manifest 中 `selection_detail.skipped_variants` 是否记录了跳过项。若确实漏检，可能是差分之间没有父子关系、dHash 距离又刚好高于 12。可以适度提高 `VARIANT_HASH_DISTANCE`，但不要为了“看起来不同”而把阈值拉到会误杀不同作品的程度；调整后同时更新 README 与 selection_policy。
-
-### 源文件过大或下载失败
-
-单文件上限 32 MiB。脚本会尝试 large_file_url；如果两者都无法下载，会继续检查其他高分候选。不要把 URL 改成 preview_file_url 来绕过限制。
-
-### 显示副本缺失
-
-先确认 sync 已把源文件下载到暂存目录、随后运行了 `python scripts/make-display-assets.py`。转换器会报告缺少暂存的源文件；此时重新运行同步（会重新下载）再转换。不要手工伪造 display_sha256 或 display_file_size，也不要提交源文件来“补图”。
-
-### 首屏或切换作品仍然卡顿
-
-1. 在浏览器 Network 面板确认卡片栏截的是 `.display.webp`，且没有任何源文件请求。
-2. 确认 make-display-assets.py 生成的副本尺寸不超过 1600 px；如果改过 MAX_EDGE，需要重新生成全部副本。
-3. 不要对主图添加 `filter: drop-shadow()` 等大尺寸滤镜，它会再次触发离屏栅格化。
-4. 确认懒加载与预取逻辑未被绕过（离屏卡片不应提前请求环境背景）。
-
-### 图片文件存在但页面不显示
-
-依次检查：
-
-1. data/artworks.json 中 display_url 是否正确。
-2. 对应 docs/assets/artists/<Artist ID>/<Post ID>.display.webp 是否真实存在。
-3. Pages artifact 是否包含 docs/assets 和 data/artworks.json。
-4. 图片相对路径是否以 docs/ 为基准正确。
-5. GitHub Pages 是否已部署最新 commit。
-6. 浏览器是否仍缓存旧页面；强制刷新后再检查 Network / Console。
-
-### 校验器失败
-
-根据错误类别排查。缺少图片、大小不匹配、文件签名不匹配或 SHA-256 不匹配时，重新下载或恢复正确文件；来源 URL、Artist ID 或本地路径错误时，修复 manifest。不要移除校验规则以掩盖问题。
-
-### 页面发布成功但图片没更新
-
-确认最新同步工作流中图片提交步骤成功，且 Deploy updated Artist Atlas 使用的是包含新 manifest 和本地图片的工作区。仅有一个较早的 Pages 成功记录，不代表最新图片已经发布。
-
----
-
-## 10. GitHub Token 与安全要求
-
-管理界面使用 GitHub Contents API 写入 data/artists.json。维护者使用 Fine-grained Personal Access Token 时建议：
-
-- Repository access：Only select repositories。
-- 只选择 artist-atlas。
-- Contents：Read and write。
-- 其他权限：No access。
-
-Token 只允许保存在当前浏览器会话中。不得写入 README、脚本、Git 历史、Issue、日志、截图或提交内容。不要要求用户把 Token 直接发给 AI。
-
-GitHub Actions 的同步工作流使用仓库级 workflow permissions；不要把写权限扩大到不必要的 scope。
-
----
-
-## 11. AI 接手项目的工作规则
-
-任何接手本仓库的 AI，都应遵循：
-
-1. 先阅读 README，再读取 main 分支当前版本的目标文件；如果 README、ARCHITECTURE 和代码不一致，以实际代码和工作流为准，并修正文档。
-2. 修改前确认当前分支、最新 commit 和工作流是否有正在运行的任务。不要在归档或 Pages 发布尚未完成时并发覆盖同一文件。
-3. 将 data/artists.json 视为正式画师身份数据源，将 data/artworks.json 视为归档 manifest；卡片图片只认 manifest 的 display_url。
-4. 新增画师前核对 Artist ID，并确认作者允许重新保存、公开上传及展示。当前三位授权不能自动推导到其他作者。
-5. 不要伪造 Post ID、原帖、图片 URL、授权字段、分辨率、文件大小或 SHA-256。
-6. 不要把外部图片 URL 直接写成 display_url；display_url 必须对应真实存在于 docs/assets 的 `.display.webp`。
-7. 不要未经用户要求恢复之前移除的 63 位画师，也不要重新引入候选池到公开主页面。
-8. 修改下载规则、图片格式、大小上限、选图策略或清理行为时，必须同步检查校验器、manifest、工作流和本文档。
-9. 提交前运行两个校验脚本，检查 git diff，确保没有 Token、无关图片、临时文件或意外的大批量删除。
-10. 完成后给出实际 commit、Actions 运行状态和部署结果。工作流尚未结束时，不得声称已经成功部署。
-
-### 推荐的交付回报格式
-
-- 修改了哪些文件。
-- 当前正式画师数量和归档图片数量。
-- 两个校验脚本是否通过。
-- 图片归档工作流是否成功。
-- Pages 部署是否成功。
-- 对应 GitHub commit 和 Actions 链接。
-- 任何未完成项或限制。
-
----
-
-## 12. 当前归档的核对记录
-
-当前归档按「score 最高 + 排除差分」选出，画师与作品以 `data/artworks.json` 为准：共 71 位画师、213 张显示副本，总计约 37 MiB，仓库只保存 1600 px WebP 副本。
-
-核对方式：
-
-1. `node scripts/validate-artworks.mjs` 输出画师数、图片数与显示副本总量。
-2. 每位画师的 Post ID、score、跳过列表见 manifest 的 `artworks` 与 `selection_detail`。
-3. 线上页面：https://tera-dark.github.io/artist-atlas/
-
-历史记录：首次归档 commit 74edfd1828a90af6ddcf78e14717c9d668656613（工作流 44005634050）使用「最新三张 + 保留原图」的旧策略，已被当前策略取代，仅作参考。
-
-每次推送后应重新检查最新 Actions 与 commit；远端是否更新以 Pages 部署记录为准。
+- 首次归档：`74edfd1828a90af6ddcf78e14717c9d668656613`（旧策略：最新三张 + 保留源文件），仅作历史参考。
+- 71 位画师扩容与 WebP-only 归档：`e0a3766`，随后由 CI 生成 `8aaea07`。
+- 核对方式：`validate-artworks.mjs` 输出画师数、图片数与副本总量；线上以 Pages 部署记录为准。

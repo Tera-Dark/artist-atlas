@@ -861,7 +861,7 @@ h1,h2,h3,p{margin:0}
    <div class="section-label">浏览</div>
    <p class="dialog-intro">主页面只有一个正式画师图鉴。搜索支持名称、别名、风格标签与备注，支持空格与下划线混用；卡片上会显示 Danbooru 作品总数与常用别名，方便判断风格强度。「我的收藏」只筛选当前浏览器保存的收藏。</p>
    <div class="section-label">作品</div>
-   <p class="dialog-intro">作品区加载仓库中已归档的 1600 px WebP 显示副本，原图仍保留在仓库归档中。左右按钮、圆点、键盘方向键或手机左右滑动都可以切换，下一张会提前预取；切换时旧图会滑出、新图滑入，不会空白闪动。右上角「列数」可以切换每行 2 / 3 / 4 张，默认 3 张，窗口太窄时会自动减少。点击作品会弹出大图，可切换「适应 / 100% / 200%」并拖动查看细节，方向键可换图，大图里仍保留 Danbooru 原帖入口。</p>
+   <p class="dialog-intro">作品区加载仓库中已归档的 1600 px WebP 显示副本，仓库不保存 Danbooru 源文件。左右按钮、圆点、键盘方向键或手机左右滑动都可以切换，下一张会提前预取；切换时旧图会滑出、新图滑入，不会空白闪动。右上角「列数」可以切换每行 2 / 3 / 4 张，默认 3 张，窗口太窄时会自动减少。点击作品会弹出大图，可切换「适应 / 100% / 200%」并拖动查看细节，方向键可换图，大图里仍保留 Danbooru 原帖入口。</p>
    <div class="section-label">管理</div>
    <p class="dialog-intro">连接 GitHub 后可添加、编辑或删除正式画师。每条记录包含 Danbooru Artist ID、个人分类、风格标签、评分和备注。公开页面不展示待核验候选池。</p>
    <div class="section-label">隐私</div>
@@ -963,7 +963,7 @@ function postPage(post){
  return post.source_url||("https://danbooru.donmai.us/posts/"+Number(post.id));
 }
 function profileUrl(artist){
- return artist.danbooru_url||("https://danbooru.donmai.us/artists/"+artist.danbooru_id);
+ return "https://danbooru.donmai.us/artists/"+artist.danbooru_id;
 }
 function buildSearchIndex(){
  searchIndex=new Map();
@@ -1920,7 +1920,6 @@ async function saveArtist(){
  if(score!==null&&(!Number.isFinite(score)||score<1||score>10))return setManageStatus("个人评分须在 1–10 之间。");
  const row=selectedArtist.row;
  const old=artists.find(function(item){return String(item.danbooru_id)===String(row.id)});
- const posts=selectedArtist.posts||[];
  const now=new Date().toISOString();
  const entry={
   id:old?.id||"artist-"+row.id,name:name,danbooru_id:String(row.id),
@@ -1928,12 +1927,8 @@ async function saveArtist(){
   aliases:$("fieldAliases").value.split(",").map(function(x){return x.trim()}).filter(Boolean),
   category:$("fieldCategory").value.trim()||"未分类",
   tags:$("fieldTags").value.split(",").map(function(x){return x.trim()}).filter(Boolean),
-  score:score,note:$("fieldNote").value.trim(),post_count:posts.length,
-  preview_urls:[],
-  preview_post_ids:[],
-  danbooru_url:"https://danbooru.donmai.us/artists/"+row.id,
-  danbooru_verified_at:now,preview_updated_at:now,
-  added_at:old?.added_at||now,updated_at:now,featured:false
+  score:score,note:$("fieldNote").value.trim(),
+  added_at:old?.added_at||now,updated_at:now
  };
  const normalize=function(value){return String(value).normalize("NFKC").trim().toLowerCase().replace(/[\s._-]+/g,"_")};
  const keys=[entry.name].concat(entry.aliases).map(normalize).filter(Boolean);
