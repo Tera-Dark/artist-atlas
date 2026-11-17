@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ready",
-  "updated_at": "2026-11-17T10:15:24.736Z",
+  "updated_at": "2026-11-17T10:22:53.277Z",
   "selection_policy": "Top 3 eligible General raster image posts per artist ordered by Danbooru score, excluding near-duplicate variants detected through parent/child post relations and perceptual-hash similarity.",
   "storage_policy": "Only the 1600 px WebP display derivative is archived. Source files are downloaded to a temporary staging directory for conversion and are never committed.",
   "artists": [
@@ -8824,8 +8824,135 @@
           "display_generated_at": "2026-11-17T09:08:14Z"
         }
       ]
+    },
+    {
+      "artist_id": "219068",
+      "artist_record_id": "artist-219068",
+      "artist_name": "baichuan_baichuan",
+      "artist_tag": "baichuan_baichuan",
+      "danbooru_name": "baichuan_baichuan",
+      "danbooru_post_count": 182,
+      "danbooru_aliases": [
+        "iotaectoplasm",
+        "白川柏川"
+      ],
+      "facts_updated_at": "2026-11-17T10:22:50.951Z",
+      "selection": "top_scored_general_posts_without_variants",
+      "selection_detail": {
+        "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
+        "pool_size": 120,
+        "variant_threshold": 12,
+        "skipped_variants": [
+          {
+            "post_id": 9874471,
+            "score": 27,
+            "reason": "variant_of_9874452"
+          }
+        ]
+      },
+      "permission": {
+        "status": "granted",
+        "confirmed_by": "repository_owner",
+        "confirmation": "Repository owner confirmed that the authors have permitted these works to be saved, converted and publicly displayed in this repository.",
+        "confirmed_at": "2026-11-17T02:44:26.000Z"
+      },
+      "artworks": [
+        {
+          "post_id": 9874452,
+          "source_url": "https://danbooru.donmai.us/posts/9874452",
+          "source_file_url": "https://cdn.donmai.us/original/04/2d/042d030e910dda1f8a3e6a21718569ce.jpg",
+          "source_file_ext": "jpg",
+          "source_mime_type": "image/jpeg",
+          "source_file_size": 17927584,
+          "source_sha256": "6d4cdebe6013619287f70c4ff514219224f2e32c4006511d77966d96ebd990e0",
+          "source_md5": "042d030e910dda1f8a3e6a21718569ce",
+          "image_width": 5315,
+          "image_height": 4961,
+          "created_at": "2025-08-29T10:29:13.310-04:00",
+          "archived_at": "2026-11-17T10:22:47.759Z",
+          "score": 33,
+          "fav_count": 29,
+          "selection_rank": 1,
+          "attribution": {
+            "artist": "baichuan_baichuan",
+            "artist_id": "219068",
+            "source_platform": "Danbooru"
+          },
+          "display_url": "assets/artists/219068/9874452.display.webp",
+          "display_variant": "derived_1600_webp",
+          "display_mime_type": "image/webp",
+          "display_width": 1600,
+          "display_height": 1493,
+          "display_file_size": 230152,
+          "display_sha256": "3e28a9fbb124059a0a677142aa34e831ff378996635a7db1eaa15b87e7609b22",
+          "display_source_sha256": "6d4cdebe6013619287f70c4ff514219224f2e32c4006511d77966d96ebd990e0",
+          "display_generated_at": "2026-11-17T10:22:52Z"
+        },
+        {
+          "post_id": 5623672,
+          "source_url": "https://danbooru.donmai.us/posts/5623672",
+          "source_file_url": "https://cdn.donmai.us/original/ba/2c/ba2cc04382a8d37b5054b12d8157447a.jpg",
+          "source_file_ext": "jpg",
+          "source_mime_type": "image/jpeg",
+          "source_file_size": 1337158,
+          "source_sha256": "c5ae37c34908a19f5c55aaf9e69d03e8430548f9de248fbe292444bccaaa19af",
+          "source_md5": "ba2cc04382a8d37b5054b12d8157447a",
+          "image_width": 2896,
+          "image_height": 4096,
+          "created_at": "2022-08-26T19:30:47.539-04:00",
+          "archived_at": "2026-11-17T10:22:49.102Z",
+          "score": 28,
+          "fav_count": 27,
+          "selection_rank": 2,
+          "attribution": {
+            "artist": "baichuan_baichuan",
+            "artist_id": "219068",
+            "source_platform": "Danbooru"
+          },
+          "display_url": "assets/artists/219068/5623672.display.webp",
+          "display_variant": "derived_1600_webp",
+          "display_mime_type": "image/webp",
+          "display_width": 1131,
+          "display_height": 1600,
+          "display_file_size": 185888,
+          "display_sha256": "83558e9c9ac637dd5d489db4d667b60d72b9cd053d17676691e7c529bdf10e3e",
+          "display_source_sha256": "c5ae37c34908a19f5c55aaf9e69d03e8430548f9de248fbe292444bccaaa19af",
+          "display_generated_at": "2026-11-17T10:22:52Z"
+        },
+        {
+          "post_id": 6834707,
+          "source_url": "https://danbooru.donmai.us/posts/6834707",
+          "source_file_url": "https://cdn.donmai.us/original/50/97/5097f463f663fb555b38cf1739ed94ad.jpg",
+          "source_file_ext": "jpg",
+          "source_mime_type": "image/jpeg",
+          "source_file_size": 1241982,
+          "source_sha256": "9be10406a5f619b49e3051de00eb19c9f8d13067b49429b88ac1985e9f478f88",
+          "source_md5": "5097f463f663fb555b38cf1739ed94ad",
+          "image_width": 3690,
+          "image_height": 3929,
+          "created_at": "2023-11-01T08:25:26.226-04:00",
+          "archived_at": "2026-11-17T10:22:50.951Z",
+          "score": 23,
+          "fav_count": 22,
+          "selection_rank": 3,
+          "attribution": {
+            "artist": "baichuan_baichuan",
+            "artist_id": "219068",
+            "source_platform": "Danbooru"
+          },
+          "display_url": "assets/artists/219068/6834707.display.webp",
+          "display_variant": "derived_1600_webp",
+          "display_mime_type": "image/webp",
+          "display_width": 1503,
+          "display_height": 1600,
+          "display_file_size": 127568,
+          "display_sha256": "c06b49c25edfddf0cafc7bd2fc824ee07d856444479293cdbc46743c9b78c467",
+          "display_source_sha256": "9be10406a5f619b49e3051de00eb19c9f8d13067b49429b88ac1985e9f478f88",
+          "display_generated_at": "2026-11-17T10:22:53Z"
+        }
+      ]
     }
   ],
   "display_policy": "The grid loads a 1600 px WebP display derivative (quality 85) generated from the Danbooru source file. Source files are converted in a temporary staging directory and are not committed to this repository.",
-  "display_updated_at": "2026-11-17T10:15:24Z"
+  "display_updated_at": "2026-11-17T10:23:01Z"
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-17T07:31:22Z",
+  "updated_at": "2026-11-17T10:21:44.075Z",
   "artists": [
     {
       "id": "artist-63362",
@@ -1331,6 +1331,22 @@
       "note": "",
       "added_at": "2026-11-17T05:57:08Z",
       "updated_at": "2026-11-17T07:31:22Z"
+    },
+    {
+      "id": "artist-219068",
+      "name": "baichuan_baichuan",
+      "danbooru_id": "219068",
+      "danbooru_name": "baichuan_baichuan",
+      "aliases": [
+        "iotaectoplasm",
+        "白川柏川"
+      ],
+      "category": "未分类",
+      "tags": [],
+      "score": null,
+      "note": "",
+      "added_at": "2026-11-17T10:21:44.075Z",
+      "updated_at": "2026-11-17T10:21:44.075Z"
     }
   ]
 }
