@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ready",
-  "updated_at": "2026-11-17T10:44:22.271Z",
+  "updated_at": "2026-11-23T12:40:29.509Z",
   "selection_policy": "Top 3 eligible General raster image posts per artist ordered by Danbooru score, excluding near-duplicate variants detected through parent/child post relations and perceptual-hash similarity.",
   "storage_policy": "Only the 1600 px WebP display derivative is archived. Source files are downloaded to a temporary staging directory for conversion and are never committed.",
   "artists": [
@@ -21,7 +21,7 @@
         "云间蓝",
         "沾沾★蓝"
       ],
-      "facts_updated_at": "2026-11-17T10:40:57.770Z",
+      "facts_updated_at": "2026-11-23T12:36:54.460Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -144,7 +144,7 @@
         "xxxc1014",
         "zhi_xu_liming"
       ],
-      "facts_updated_at": "2026-11-17T10:40:59.641Z",
+      "facts_updated_at": "2026-11-23T12:36:56.535Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -203,8 +203,8 @@
           "image_height": 804,
           "created_at": "2024-03-02T14:52:03.796-05:00",
           "archived_at": "2026-11-17T08:29:52.046Z",
-          "score": 23,
-          "fav_count": 19,
+          "score": 24,
+          "fav_count": 20,
           "selection_rank": 2,
           "attribution": {
             "artist": "zhi_xu_li_ming",
@@ -267,7 +267,7 @@
         "Z3zz4",
         "Z3zz_"
       ],
-      "facts_updated_at": "2026-11-17T10:41:01.587Z",
+      "facts_updated_at": "2026-11-23T12:36:58.681Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -389,7 +389,7 @@
         "yunou_ou",
         "Yunouou10"
       ],
-      "facts_updated_at": "2026-11-17T10:41:03.526Z",
+      "facts_updated_at": "2026-11-23T12:37:00.879Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -511,7 +511,7 @@
         "小黄鲨鱼",
         "鲨咩洗衣机"
       ],
-      "facts_updated_at": "2026-11-17T10:41:05.457Z",
+      "facts_updated_at": "2026-11-23T12:37:03.035Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -633,7 +633,7 @@
         "夜型草莓-",
         "左佐拉zora"
       ],
-      "facts_updated_at": "2026-11-17T10:41:07.321Z",
+      "facts_updated_at": "2026-11-23T12:37:05.029Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -692,8 +692,8 @@
           "image_height": 1080,
           "created_at": "2024-03-17T20:04:16.559-04:00",
           "archived_at": "2026-11-17T08:34:33.561Z",
-          "score": 75,
-          "fav_count": 70,
+          "score": 76,
+          "fav_count": 71,
           "selection_rank": 2,
           "attribution": {
             "artist": "ye_xing_caomei",
@@ -757,7 +757,7 @@
         "淅洵",
         "溯野洵"
       ],
-      "facts_updated_at": "2026-11-17T10:41:09.206Z",
+      "facts_updated_at": "2026-11-23T12:37:07.152Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -881,7 +881,7 @@
       "danbooru_name": "xiayu93",
       "danbooru_post_count": 27,
       "danbooru_aliases": [],
-      "facts_updated_at": "2026-11-17T10:41:11.048Z",
+      "facts_updated_at": "2026-11-23T12:37:09.083Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1012,7 +1012,7 @@
         "含泪吃下小饼干",
         "野生kana酱"
       ],
-      "facts_updated_at": "2026-11-17T10:41:12.900Z",
+      "facts_updated_at": "2026-11-23T12:37:11.163Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1071,8 +1071,8 @@
           "image_height": 1080,
           "created_at": "2024-07-11T17:50:49.873-04:00",
           "archived_at": "2026-11-17T08:37:01.558Z",
-          "score": 36,
-          "fav_count": 34,
+          "score": 37,
+          "fav_count": 35,
           "selection_rank": 2,
           "attribution": {
             "artist": "tracyton",
@@ -1140,7 +1140,7 @@
         "sumoOo",
         "盖古斯"
       ],
-      "facts_updated_at": "2026-11-17T10:41:14.789Z",
+      "facts_updated_at": "2026-11-23T12:37:13.628Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1263,7 +1263,7 @@
         "vvsimyeol",
         "斯木斯木耶"
       ],
-      "facts_updated_at": "2026-11-17T10:41:16.674Z",
+      "facts_updated_at": "2026-11-23T12:37:16.254Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1386,7 +1386,7 @@
         "水也木三",
         "注意点我不走寻常路"
       ],
-      "facts_updated_at": "2026-11-17T10:41:18.602Z",
+      "facts_updated_at": "2026-11-23T12:37:18.405Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1502,7 +1502,7 @@
       "artist_name": "shule_de_yu",
       "artist_tag": "shule_de_yu",
       "danbooru_name": "shule_de_yu",
-      "danbooru_post_count": 119,
+      "danbooru_post_count": 125,
       "danbooru_aliases": [
         "_熟了的鱼_",
         "feirenshi885",
@@ -1511,11 +1511,11 @@
         "熟了的鱼",
         "熟鱼"
       ],
-      "facts_updated_at": "2026-11-17T10:41:20.502Z",
+      "facts_updated_at": "2026-11-23T12:37:20.477Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 99,
+        "pool_size": 105,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -1640,7 +1640,7 @@
         "骰子【色子鸡or凉水石】",
         "骰子鸟"
       ],
-      "facts_updated_at": "2026-11-17T10:41:22.370Z",
+      "facts_updated_at": "2026-11-23T12:37:22.584Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -1756,7 +1756,7 @@
       "artist_name": "shaokao_lajitong",
       "artist_tag": "shaokao_lajitong",
       "danbooru_name": "shaokao_lajitong",
-      "danbooru_post_count": 105,
+      "danbooru_post_count": 107,
       "danbooru_aliases": [
         "_烧烤垃圾桶_",
         "烧烤垃圾桶",
@@ -1764,11 +1764,11 @@
         "liuchengyisan",
         "zutto"
       ],
-      "facts_updated_at": "2026-11-17T10:41:24.239Z",
+      "facts_updated_at": "2026-11-23T12:37:24.780Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 70,
+        "pool_size": 72,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -1882,9 +1882,10 @@
       "danbooru_name": "sanfu_qwq",
       "danbooru_post_count": 65,
       "danbooru_aliases": [
-        "三伏QWQ"
+        "三伏QWQ",
+        "三伏纯手动刷墙中"
       ],
-      "facts_updated_at": "2026-11-17T10:41:26.113Z",
+      "facts_updated_at": "2026-11-23T12:37:26.983Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2013,7 +2014,7 @@
         "sm1467726",
         "好锅煮好饭_"
       ],
-      "facts_updated_at": "2026-11-17T10:41:28.041Z",
+      "facts_updated_at": "2026-11-23T12:37:29.170Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2129,17 +2130,17 @@
       "artist_name": "qingming_tiaohetu",
       "artist_tag": "qingming_tiaohetu",
       "danbooru_name": "qingming_tiaohetu",
-      "danbooru_post_count": 132,
+      "danbooru_post_count": 136,
       "danbooru_aliases": [
         "qingmingye",
         "qmthtdy",
         "清明跳河图"
       ],
-      "facts_updated_at": "2026-11-17T10:41:29.964Z",
+      "facts_updated_at": "2026-11-23T12:37:31.219Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 89,
+        "pool_size": 93,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -2259,7 +2260,7 @@
         "rimutuyuan415",
         "senbonfan"
       ],
-      "facts_updated_at": "2026-11-17T10:41:31.859Z",
+      "facts_updated_at": "2026-11-23T12:37:33.200Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2383,7 +2384,7 @@
         "叛逆星",
         "叛逆的星"
       ],
-      "facts_updated_at": "2026-11-17T10:41:33.746Z",
+      "facts_updated_at": "2026-11-23T12:37:35.359Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2473,8 +2474,8 @@
           "image_height": 1080,
           "created_at": "2026-05-14T16:05:47.652-04:00",
           "archived_at": "2026-11-17T08:43:34.640Z",
-          "score": 35,
-          "fav_count": 31,
+          "score": 36,
+          "fav_count": 32,
           "selection_rank": 3,
           "attribution": {
             "artist": "panni_xing",
@@ -2504,7 +2505,7 @@
         "墨鱼nokoya",
         "nokoyayaya"
       ],
-      "facts_updated_at": "2026-11-17T10:41:35.649Z",
+      "facts_updated_at": "2026-11-23T12:37:37.481Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2620,7 +2621,7 @@
       "artist_name": "niukou_kouzi",
       "artist_tag": "niukou_kouzi",
       "danbooru_name": "niukou_kouzi",
-      "danbooru_post_count": 156,
+      "danbooru_post_count": 157,
       "danbooru_aliases": [
         "buttonniukoukou",
         "扣扣啵啵奶茶",
@@ -2628,7 +2629,7 @@
         "纽扣啵啵奶茶",
         "纽扣扣子"
       ],
-      "facts_updated_at": "2026-11-17T10:41:37.635Z",
+      "facts_updated_at": "2026-11-23T12:37:39.520Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2744,12 +2745,12 @@
       "artist_name": "naux",
       "artist_tag": "naux",
       "danbooru_name": "naux",
-      "danbooru_post_count": 50,
+      "danbooru_post_count": 51,
       "danbooru_aliases": [
         "naux830",
         "nauxxx"
       ],
-      "facts_updated_at": "2026-11-17T10:41:39.490Z",
+      "facts_updated_at": "2026-11-23T12:37:41.358Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -2808,8 +2809,8 @@
           "image_height": 1000,
           "created_at": "2026-10-30T08:32:12.013-04:00",
           "archived_at": "2026-11-17T08:44:39.045Z",
-          "score": 32,
-          "fav_count": 25,
+          "score": 39,
+          "fav_count": 32,
           "selection_rank": 2,
           "attribution": {
             "artist": "naux",
@@ -2871,7 +2872,7 @@
         "nerocomm",
         "奈骡咕咕子"
       ],
-      "facts_updated_at": "2026-11-17T10:41:41.651Z",
+      "facts_updated_at": "2026-11-23T12:37:43.865Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3006,7 +3007,7 @@
         "木果阿木果_",
         "画画的果几"
       ],
-      "facts_updated_at": "2026-11-17T10:41:43.560Z",
+      "facts_updated_at": "2026-11-23T12:37:45.970Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3132,7 +3133,7 @@
         "早睡惑特不落十",
         "早睡的蛙"
       ],
-      "facts_updated_at": "2026-11-17T10:41:45.409Z",
+      "facts_updated_at": "2026-11-23T12:37:48.064Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3248,17 +3249,17 @@
       "artist_name": "mihiro_00122",
       "artist_tag": "mihiro_00122",
       "danbooru_name": "mihiro_00122",
-      "danbooru_post_count": 47,
+      "danbooru_post_count": 48,
       "danbooru_aliases": [
         "mitoko_gokuto",
         "みとこ",
         "みひろ"
       ],
-      "facts_updated_at": "2026-11-17T10:41:47.272Z",
+      "facts_updated_at": "2026-11-23T12:37:50.209Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 44,
+        "pool_size": 45,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -3377,7 +3378,7 @@
         "maosen_l18",
         "maosen毛森"
       ],
-      "facts_updated_at": "2026-11-17T10:41:49.145Z",
+      "facts_updated_at": "2026-11-23T12:37:52.295Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3501,7 +3502,7 @@
         "虎鲸躺尸中",
         "虎鲸躺尸中_Luckyia"
       ],
-      "facts_updated_at": "2026-11-17T10:41:51.017Z",
+      "facts_updated_at": "2026-11-23T12:37:54.389Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3617,17 +3618,17 @@
       "artist_name": "llmia4",
       "artist_tag": "llmia4",
       "danbooru_name": "llmia4",
-      "danbooru_post_count": 110,
+      "danbooru_post_count": 111,
       "danbooru_aliases": [
         "Abouriou",
         "dogetwo",
         "llmia咻"
       ],
-      "facts_updated_at": "2026-11-17T10:41:52.921Z",
+      "facts_updated_at": "2026-11-23T12:37:56.494Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 68,
+        "pool_size": 69,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -3713,8 +3714,8 @@
           "image_height": 3961,
           "created_at": "2022-11-10T11:12:04.358-05:00",
           "archived_at": "2026-11-17T08:47:54.565Z",
-          "score": 36,
-          "fav_count": 33,
+          "score": 35,
+          "fav_count": 32,
           "selection_rank": 3,
           "attribution": {
             "artist": "llmia4",
@@ -3739,11 +3740,11 @@
       "artist_name": "lkppp",
       "artist_tag": "lkppp",
       "danbooru_name": "lkppp",
-      "danbooru_post_count": 78,
+      "danbooru_post_count": 79,
       "danbooru_aliases": [
         "_lkppp"
       ],
-      "facts_updated_at": "2026-11-17T10:41:54.808Z",
+      "facts_updated_at": "2026-11-23T12:37:58.568Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3865,7 +3866,7 @@
         "躺在路边的炸鱼薯条",
         "xiaba628"
       ],
-      "facts_updated_at": "2026-11-17T10:41:56.776Z",
+      "facts_updated_at": "2026-11-23T12:38:00.706Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -3893,8 +3894,8 @@
           "image_height": 1080,
           "created_at": "2025-04-21T08:01:41.421-04:00",
           "archived_at": "2026-11-17T08:48:28.794Z",
-          "score": 35,
-          "fav_count": 33,
+          "score": 36,
+          "fav_count": 34,
           "selection_rank": 1,
           "attribution": {
             "artist": "liyuliyuzhou",
@@ -3981,7 +3982,7 @@
       "artist_name": "lin_qing_(phosphorus_1104)",
       "artist_tag": "lin_qing_(phosphorus_1104)",
       "danbooru_name": "lin_qing_(phosphorus_1104)",
-      "danbooru_post_count": 222,
+      "danbooru_post_count": 223,
       "danbooru_aliases": [
         "haku9638",
         "jianxingyanghuawu65409",
@@ -3994,7 +3995,7 @@
         "霖晴Phosphorus",
         "霖晴🍎"
       ],
-      "facts_updated_at": "2026-11-17T10:41:58.708Z",
+      "facts_updated_at": "2026-11-23T12:38:02.826Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4116,7 +4117,7 @@
       "artist_name": "kurikabacha",
       "artist_tag": "kurikabacha",
       "danbooru_name": "kurikabacha",
-      "danbooru_post_count": 170,
+      "danbooru_post_count": 171,
       "danbooru_aliases": [
         "_KU__",
         "kurii89800727",
@@ -4126,7 +4127,7 @@
         "栗樺茶",
         "栗樺茶茶"
       ],
-      "facts_updated_at": "2026-11-17T10:42:00.612Z",
+      "facts_updated_at": "2026-11-23T12:38:04.967Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4254,7 +4255,7 @@
         "可楽子ddd",
         "可楽子捏"
       ],
-      "facts_updated_at": "2026-11-17T10:42:02.484Z",
+      "facts_updated_at": "2026-11-23T12:38:07.068Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4282,8 +4283,8 @@
           "image_height": 3312,
           "created_at": "2026-03-02T23:50:11.796-05:00",
           "archived_at": "2026-11-17T08:49:47.675Z",
-          "score": 43,
-          "fav_count": 36,
+          "score": 44,
+          "fav_count": 37,
           "selection_rank": 1,
           "attribution": {
             "artist": "kelezi",
@@ -4370,15 +4371,15 @@
       "artist_name": "irple",
       "artist_tag": "irple",
       "danbooru_name": "irple",
-      "danbooru_post_count": 99,
+      "danbooru_post_count": 100,
       "danbooru_aliases": [
         "IRple2"
       ],
-      "facts_updated_at": "2026-11-17T10:42:04.382Z",
+      "facts_updated_at": "2026-11-23T12:38:09.208Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 89,
+        "pool_size": 90,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -4501,7 +4502,7 @@
         "篱屿",
         "鯉魚"
       ],
-      "facts_updated_at": "2026-11-17T10:42:06.321Z",
+      "facts_updated_at": "2026-11-23T12:38:11.349Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4625,7 +4626,7 @@
         "桂桂冗冗",
         "脂脂水腥-v-"
       ],
-      "facts_updated_at": "2026-11-17T10:42:08.185Z",
+      "facts_updated_at": "2026-11-23T12:38:13.482Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4751,7 +4752,7 @@
         "淵火",
         "淵火_"
       ],
-      "facts_updated_at": "2026-11-17T10:42:10.051Z",
+      "facts_updated_at": "2026-11-23T12:38:15.600Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4810,8 +4811,8 @@
           "image_height": 5749,
           "created_at": "2023-02-21T10:01:08.043-05:00",
           "archived_at": "2026-11-17T08:51:58.893Z",
-          "score": 40,
-          "fav_count": 33,
+          "score": 41,
+          "fav_count": 34,
           "selection_rank": 2,
           "attribution": {
             "artist": "gu_yue_yuan",
@@ -4879,7 +4880,7 @@
         "格间之人",
         "格间灯火"
       ],
-      "facts_updated_at": "2026-11-17T10:42:11.922Z",
+      "facts_updated_at": "2026-11-23T12:38:17.684Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -4907,8 +4908,8 @@
           "image_height": 1125,
           "created_at": "2024-01-11T07:41:23.363-05:00",
           "archived_at": "2026-11-17T08:52:19.185Z",
-          "score": 76,
-          "fav_count": 64,
+          "score": 75,
+          "fav_count": 63,
           "selection_rank": 1,
           "attribution": {
             "artist": "gejiandenghuo",
@@ -5000,7 +5001,7 @@
         "feng_jian_yu_zhi",
         "风见隅之"
       ],
-      "facts_updated_at": "2026-11-17T10:42:13.794Z",
+      "facts_updated_at": "2026-11-23T12:38:19.780Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5116,7 +5117,7 @@
       "artist_name": "g7cdpdto2i6hot6",
       "artist_tag": "g7cdpdto2i6hot6",
       "danbooru_name": "g7cdpdto2i6hot6",
-      "danbooru_post_count": 135,
+      "danbooru_post_count": 138,
       "danbooru_aliases": [
         "嗯",
         "惊灯梦徊",
@@ -5126,7 +5127,7 @@
         "LPeppermin93893",
         "tansuanqingna298"
       ],
-      "facts_updated_at": "2026-11-17T10:42:15.775Z",
+      "facts_updated_at": "2026-11-23T12:38:21.817Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5216,8 +5217,8 @@
           "image_height": 4096,
           "created_at": "2024-08-20T13:47:06.131-04:00",
           "archived_at": "2026-11-17T08:53:15.153Z",
-          "score": 42,
-          "fav_count": 38,
+          "score": 43,
+          "fav_count": 39,
           "selection_rank": 3,
           "attribution": {
             "artist": "g7cdpdto2i6hot6",
@@ -5247,7 +5248,7 @@
         "FeijiU",
         "是feijiu君"
       ],
-      "facts_updated_at": "2026-11-17T10:42:17.645Z",
+      "facts_updated_at": "2026-11-23T12:38:23.775Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5368,7 +5369,7 @@
         "パチ",
         "p_la_s_ma"
       ],
-      "facts_updated_at": "2026-11-17T10:42:19.524Z",
+      "facts_updated_at": "2026-11-23T12:38:25.872Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5491,7 +5492,7 @@
         "以太",
         "在暖灯下旋转的便利店香肠"
       ],
-      "facts_updated_at": "2026-11-17T10:42:21.474Z",
+      "facts_updated_at": "2026-11-23T12:38:28.029Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5612,7 +5613,7 @@
         "redlunaazrael",
         "安德小骸"
       ],
-      "facts_updated_at": "2026-11-17T10:42:23.369Z",
+      "facts_updated_at": "2026-11-23T12:38:30.157Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5736,7 +5737,7 @@
         "三枝章鱼-",
         "晚烟收³³"
       ],
-      "facts_updated_at": "2026-11-17T10:42:25.253Z",
+      "facts_updated_at": "2026-11-23T12:38:32.255Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5852,14 +5853,14 @@
       "artist_name": "duoqing_tie_ban_shao",
       "artist_tag": "duoqing_tie_ban_shao",
       "danbooru_name": "duoqing_tie_ban_shao",
-      "danbooru_post_count": 67,
+      "danbooru_post_count": 68,
       "danbooru_aliases": [
         "ichigo52634423",
         "ichigo_amo",
         "多情铁板烧",
         "🍓"
       ],
-      "facts_updated_at": "2026-11-17T10:42:27.136Z",
+      "facts_updated_at": "2026-11-23T12:38:34.326Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -5992,7 +5993,7 @@
         "肉包大胄王对决",
         "키리우"
       ],
-      "facts_updated_at": "2026-11-17T10:42:29.015Z",
+      "facts_updated_at": "2026-11-23T12:38:36.338Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6117,7 +6118,7 @@
         "fhjUtQbYJgGVvRo",
         "okoge_gorigori"
       ],
-      "facts_updated_at": "2026-11-17T10:42:30.953Z",
+      "facts_updated_at": "2026-11-23T12:38:38.218Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6145,8 +6146,8 @@
           "image_height": 2048,
           "created_at": "2024-02-23T12:08:21.382-05:00",
           "archived_at": "2026-11-17T08:56:11.846Z",
-          "score": 63,
-          "fav_count": 60,
+          "score": 62,
+          "fav_count": 59,
           "selection_rank": 1,
           "attribution": {
             "artist": "cuso4_suiwabutu",
@@ -6176,8 +6177,8 @@
           "image_height": 4096,
           "created_at": "2024-08-23T09:22:11.256-04:00",
           "archived_at": "2026-11-17T08:56:33.315Z",
-          "score": 39,
-          "fav_count": 38,
+          "score": 40,
+          "fav_count": 39,
           "selection_rank": 2,
           "attribution": {
             "artist": "cuso4_suiwabutu",
@@ -6233,7 +6234,7 @@
       "artist_name": "chunbuchou",
       "artist_tag": "chunbuchou",
       "danbooru_name": "chunbuchou",
-      "danbooru_post_count": 92,
+      "danbooru_post_count": 93,
       "danbooru_aliases": [
         "CC春愁",
         "歹旬",
@@ -6245,11 +6246,11 @@
         "xun",
         "xundaixun"
       ],
-      "facts_updated_at": "2026-11-17T10:42:32.843Z",
+      "facts_updated_at": "2026-11-23T12:38:40.187Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 70,
+        "pool_size": 71,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -6304,8 +6305,8 @@
           "image_height": 4038,
           "created_at": "2024-07-11T21:19:05.606-04:00",
           "archived_at": "2026-11-17T08:57:23.606Z",
-          "score": 47,
-          "fav_count": 45,
+          "score": 48,
+          "fav_count": 46,
           "selection_rank": 2,
           "attribution": {
             "artist": "chunbuchou",
@@ -6368,7 +6369,7 @@
         "祁諾Chino",
         "Chino"
       ],
-      "facts_updated_at": "2026-11-17T10:42:34.740Z",
+      "facts_updated_at": "2026-11-23T12:38:42.153Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6489,7 +6490,7 @@
         "caicai56180401",
         "猜猜猜猜你猜猜"
       ],
-      "facts_updated_at": "2026-11-17T10:42:36.607Z",
+      "facts_updated_at": "2026-11-23T12:38:44.258Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6605,14 +6606,14 @@
       "artist_name": "buqiyong",
       "artist_tag": "buqiyong",
       "danbooru_name": "buqiyong",
-      "danbooru_post_count": 148,
+      "danbooru_post_count": 154,
       "danbooru_aliases": [
         "jieranwangsheng",
         "不器用",
         "森海夏夏",
         "雨谷丛生"
       ],
-      "facts_updated_at": "2026-11-17T10:42:38.562Z",
+      "facts_updated_at": "2026-11-23T12:38:46.412Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6728,7 +6729,7 @@
       "artist_name": "baicumikuo",
       "artist_tag": "baicumikuo",
       "danbooru_name": "baicumikuo",
-      "danbooru_post_count": 72,
+      "danbooru_post_count": 73,
       "danbooru_aliases": [
         "SeigenMomokawa",
         "baichuan_qingyuan",
@@ -6736,11 +6737,11 @@
         "百川青源",
         "百川青源seigen"
       ],
-      "facts_updated_at": "2026-11-17T10:42:40.453Z",
+      "facts_updated_at": "2026-11-23T12:38:48.333Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 54,
+        "pool_size": 55,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -6795,8 +6796,8 @@
           "image_height": 3508,
           "created_at": "2026-10-18T18:50:35.974-04:00",
           "archived_at": "2026-11-17T08:59:38.812Z",
-          "score": 32,
-          "fav_count": 29,
+          "score": 33,
+          "fav_count": 30,
           "selection_rank": 2,
           "attribution": {
             "artist": "baicumikuo",
@@ -6858,7 +6859,7 @@
         "敖敖敖是头海草",
         "爻"
       ],
-      "facts_updated_at": "2026-11-17T10:42:42.336Z",
+      "facts_updated_at": "2026-11-23T12:38:50.458Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -6886,8 +6887,8 @@
           "image_height": 1080,
           "created_at": "2026-10-15T08:10:05.828-04:00",
           "archived_at": "2026-11-17T08:59:55.193Z",
-          "score": 32,
-          "fav_count": 27,
+          "score": 34,
+          "fav_count": 28,
           "selection_rank": 1,
           "attribution": {
             "artist": "aoseagrass",
@@ -6981,7 +6982,7 @@
         "乙苏凫眠",
         "乙苏凫眠ensominia"
       ],
-      "facts_updated_at": "2026-11-17T10:42:44.246Z",
+      "facts_updated_at": "2026-11-23T12:38:52.451Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7097,16 +7098,16 @@
       "artist_name": "amukeer",
       "artist_tag": "amukeer",
       "danbooru_name": "amukeer",
-      "danbooru_post_count": 87,
+      "danbooru_post_count": 88,
       "danbooru_aliases": [
         "lAmukeerl",
         "x穆可x"
       ],
-      "facts_updated_at": "2026-11-17T10:42:46.125Z",
+      "facts_updated_at": "2026-11-23T12:38:54.642Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 75,
+        "pool_size": 76,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -7218,18 +7219,18 @@
       "artist_name": "tanglaoban1225",
       "artist_tag": "tanglaoban1225",
       "danbooru_name": "tanglaoban1225",
-      "danbooru_post_count": 107,
+      "danbooru_post_count": 108,
       "danbooru_aliases": [
         "(o･`з･´o)ﾉ🍬!!!",
-        "miya7390",
         "棠老板",
-        "棠老板睡眠中"
+        "棠老板睡眠中",
+        "miya7390"
       ],
-      "facts_updated_at": "2026-11-17T10:42:48.032Z",
+      "facts_updated_at": "2026-11-23T12:38:56.840Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 96,
+        "pool_size": 97,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -7347,7 +7348,7 @@
         "日子",
         "麻痹的小日子"
       ],
-      "facts_updated_at": "2026-11-17T10:42:49.993Z",
+      "facts_updated_at": "2026-11-23T12:38:58.810Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7375,8 +7376,8 @@
           "image_height": 1024,
           "created_at": "2022-04-14T00:44:59.675-04:00",
           "archived_at": "2026-11-17T09:02:25.017Z",
-          "score": 182,
-          "fav_count": 168,
+          "score": 183,
+          "fav_count": 169,
           "selection_rank": 1,
           "attribution": {
             "artist": "liduke",
@@ -7463,7 +7464,7 @@
       "artist_name": "ruoganzhua",
       "artist_tag": "ruoganzhua",
       "danbooru_name": "ruoganzhua",
-      "danbooru_post_count": 161,
+      "danbooru_post_count": 168,
       "danbooru_aliases": [
         "若干爪",
         "claw",
@@ -7472,11 +7473,11 @@
         "ruoganzhao",
         "user_rjtd7274"
       ],
-      "facts_updated_at": "2026-11-17T10:42:51.911Z",
+      "facts_updated_at": "2026-11-23T12:39:00.988Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 85,
+        "pool_size": 92,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -7595,7 +7596,7 @@
         "竹墨笺",
         "竹墨笺努力搬砖"
       ],
-      "facts_updated_at": "2026-11-17T10:42:53.876Z",
+      "facts_updated_at": "2026-11-23T12:39:03.160Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7716,7 +7717,7 @@
         "Hotaruzzzz",
         "回修所海马"
       ],
-      "facts_updated_at": "2026-11-17T10:42:55.765Z",
+      "facts_updated_at": "2026-11-23T12:39:05.138Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7839,7 +7840,7 @@
         "ZvEprJ3Gj2GdbPl",
         "🍰Kiiii"
       ],
-      "facts_updated_at": "2026-11-17T10:42:57.643Z",
+      "facts_updated_at": "2026-11-23T12:39:07.221Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -7967,7 +7968,7 @@
         "mechillow",
         "mechirudesu"
       ],
-      "facts_updated_at": "2026-11-17T10:42:59.582Z",
+      "facts_updated_at": "2026-11-23T12:39:09.312Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8095,7 +8096,7 @@
         "周然",
         "音符"
       ],
-      "facts_updated_at": "2026-11-17T10:43:01.531Z",
+      "facts_updated_at": "2026-11-23T12:39:11.454Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8123,8 +8124,8 @@
           "image_height": 1400,
           "created_at": "2024-01-15T13:43:47.922-05:00",
           "archived_at": "2026-11-17T09:06:04.891Z",
-          "score": 100,
-          "fav_count": 87,
+          "score": 99,
+          "fav_count": 86,
           "selection_rank": 1,
           "attribution": {
             "artist": "infukun",
@@ -8218,7 +8219,7 @@
         "教主某狐仙",
         "誰の稲荷神"
       ],
-      "facts_updated_at": "2026-11-17T10:43:03.428Z",
+      "facts_updated_at": "2026-11-23T12:39:13.567Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8342,7 +8343,7 @@
         "大白酱么么哒",
         "雪鸮咕咕"
       ],
-      "facts_updated_at": "2026-11-17T10:43:05.304Z",
+      "facts_updated_at": "2026-11-23T12:39:15.685Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8465,7 +8466,7 @@
         "美见",
         "鸡饲料美见"
       ],
-      "facts_updated_at": "2026-11-17T10:43:07.189Z",
+      "facts_updated_at": "2026-11-23T12:39:17.801Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8588,7 +8589,7 @@
         "sangenliu",
         "華小路"
       ],
-      "facts_updated_at": "2026-11-17T10:43:09.093Z",
+      "facts_updated_at": "2026-11-23T12:39:19.693Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8715,7 +8716,7 @@
         "감자",
         "gj"
       ],
-      "facts_updated_at": "2026-11-17T10:43:10.979Z",
+      "facts_updated_at": "2026-11-23T12:39:21.565Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8836,7 +8837,7 @@
         "iotaectoplasm",
         "白川柏川"
       ],
-      "facts_updated_at": "2026-11-17T10:43:12.918Z",
+      "facts_updated_at": "2026-11-23T12:39:23.648Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -8963,7 +8964,7 @@
         "aaapair",
         "眉稔"
       ],
-      "facts_updated_at": "2026-11-17T10:43:15.126Z",
+      "facts_updated_at": "2026-11-23T12:39:25.472Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9028,8 +9029,8 @@
           "image_height": 1092,
           "created_at": "2024-03-14T13:17:41.539-04:00",
           "archived_at": "2026-11-17T10:33:53.274Z",
-          "score": 66,
-          "fav_count": 64,
+          "score": 65,
+          "fav_count": 63,
           "selection_rank": 2,
           "attribution": {
             "artist": "mei_ren",
@@ -9094,7 +9095,7 @@
         "sualliy",
         "苏安Lily"
       ],
-      "facts_updated_at": "2026-11-17T10:43:17.437Z",
+      "facts_updated_at": "2026-11-23T12:39:27.505Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9218,7 +9219,7 @@
         "重帧",
         "重帧叔叔"
       ],
-      "facts_updated_at": "2026-11-17T10:43:19.672Z",
+      "facts_updated_at": "2026-11-23T12:39:29.735Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9342,7 +9343,7 @@
         "维徊vihua",
         "维徊徊徊"
       ],
-      "facts_updated_at": "2026-11-17T10:43:22.116Z",
+      "facts_updated_at": "2026-11-23T12:39:31.878Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9458,11 +9459,11 @@
       "artist_name": "chuzenji",
       "artist_tag": "chuzenji",
       "danbooru_name": "chuzenji",
-      "danbooru_post_count": 212,
+      "danbooru_post_count": 213,
       "danbooru_aliases": [
         "Chuzenji"
       ],
-      "facts_updated_at": "2026-11-17T10:43:24.451Z",
+      "facts_updated_at": "2026-11-23T12:39:34.034Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9578,18 +9579,18 @@
       "artist_name": "nyzziz",
       "artist_tag": "nyzziz",
       "danbooru_name": "nyzziz",
-      "danbooru_post_count": 48,
+      "danbooru_post_count": 49,
       "danbooru_aliases": [
         "hamchigi",
         "nyz",
         "냥",
         "냥지마데"
       ],
-      "facts_updated_at": "2026-11-17T10:43:26.620Z",
+      "facts_updated_at": "2026-11-23T12:39:36.479Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 45,
+        "pool_size": 46,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -9632,37 +9633,6 @@
           "display_generated_at": "2026-11-17T10:35:01Z"
         },
         {
-          "post_id": 11162032,
-          "source_url": "https://danbooru.donmai.us/posts/11162032",
-          "source_file_url": "https://cdn.donmai.us/original/75/fa/75faa325f6d72196fe64515c495c7655.jpg",
-          "source_file_ext": "jpg",
-          "source_mime_type": "image/jpeg",
-          "source_file_size": 452460,
-          "source_sha256": "60a2a30247f0f73408a79c945b9e5d5906343f5bee54eb2dc41664c38b14d0c1",
-          "source_md5": "75faa325f6d72196fe64515c495c7655",
-          "image_width": 1472,
-          "image_height": 2048,
-          "created_at": "2026-04-14T13:07:26.409-04:00",
-          "archived_at": "2026-11-17T10:34:59.279Z",
-          "score": 18,
-          "fav_count": 16,
-          "selection_rank": 2,
-          "attribution": {
-            "artist": "nyzziz",
-            "artist_id": "480154",
-            "source_platform": "Danbooru"
-          },
-          "display_url": "assets/artists/480154/11162032.display.webp",
-          "display_variant": "derived_1600_webp",
-          "display_mime_type": "image/webp",
-          "display_width": 1150,
-          "display_height": 1600,
-          "display_file_size": 225232,
-          "display_sha256": "64196b65c64d75e5f0db091974cd2e79aa9271feb5d5ac7e90cfe84ede24bd0d",
-          "display_source_sha256": "60a2a30247f0f73408a79c945b9e5d5906343f5bee54eb2dc41664c38b14d0c1",
-          "display_generated_at": "2026-11-17T10:35:01Z"
-        },
-        {
           "post_id": 10927824,
           "source_url": "https://danbooru.donmai.us/posts/10927824",
           "source_file_url": "https://cdn.donmai.us/original/7b/5a/7b5afd04f324bf7f23d8537e323ef259.jpg",
@@ -9675,9 +9645,9 @@
           "image_height": 2048,
           "created_at": "2026-03-09T20:38:28.220-04:00",
           "archived_at": "2026-11-17T10:35:00.469Z",
-          "score": 18,
-          "fav_count": 15,
-          "selection_rank": 3,
+          "score": 19,
+          "fav_count": 16,
+          "selection_rank": 2,
           "attribution": {
             "artist": "nyzziz",
             "artist_id": "480154",
@@ -9692,6 +9662,37 @@
           "display_sha256": "2bf72480715cffa594166cf9d6c252ec0ad7e70500c17119455ed38f0ab440d0",
           "display_source_sha256": "a45194542736659773ac23596fcaf72187d2fc7c9b81c7801a8361b357a4e10a",
           "display_generated_at": "2026-11-17T10:35:02Z"
+        },
+        {
+          "post_id": 10657900,
+          "source_url": "https://danbooru.donmai.us/posts/10657900",
+          "source_file_url": "https://cdn.donmai.us/original/4e/df/4edf6d2cd1786984d546f19dd41eb379.jpg",
+          "source_file_ext": "jpg",
+          "source_mime_type": "image/jpeg",
+          "source_file_size": 345879,
+          "source_sha256": "d6c6b80340484232e71c213665bbc9e8370e858245f95fb1e954cd35c8d6b74b",
+          "source_md5": "4edf6d2cd1786984d546f19dd41eb379",
+          "image_width": 1400,
+          "image_height": 2048,
+          "created_at": "2026-01-23T09:12:50.939-05:00",
+          "archived_at": "2026-11-23T12:39:36.479Z",
+          "score": 18,
+          "fav_count": 17,
+          "selection_rank": 3,
+          "attribution": {
+            "artist": "nyzziz",
+            "artist_id": "480154",
+            "source_platform": "Danbooru"
+          },
+          "display_url": "assets/artists/480154/10657900.display.webp",
+          "display_variant": "derived_1600_webp",
+          "display_mime_type": "image/webp",
+          "display_width": 1094,
+          "display_height": 1600,
+          "display_file_size": 160116,
+          "display_sha256": "478a38575cc5cf04e9e264e9f7528dd2a3e08903c7798139771c54c227946ed9",
+          "display_source_sha256": "d6c6b80340484232e71c213665bbc9e8370e858245f95fb1e954cd35c8d6b74b",
+          "display_generated_at": "2026-11-23T12:39:37Z"
         }
       ]
     },
@@ -9710,7 +9711,7 @@
         "flammax",
         "immortalemignis"
       ],
-      "facts_updated_at": "2026-11-17T10:43:28.915Z",
+      "facts_updated_at": "2026-11-23T12:39:39.077Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9839,7 +9840,7 @@
         "suzumi",
         "Uraimodesu"
       ],
-      "facts_updated_at": "2026-11-17T10:43:31.243Z",
+      "facts_updated_at": "2026-11-23T12:39:41.188Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -9961,7 +9962,7 @@
         "_齐东野语_",
         "齐东野语"
       ],
-      "facts_updated_at": "2026-11-17T10:43:33.558Z",
+      "facts_updated_at": "2026-11-23T12:39:43.334Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10081,7 +10082,7 @@
       "danbooru_aliases": [
         "鱿的又"
       ],
-      "facts_updated_at": "2026-11-17T10:43:35.866Z",
+      "facts_updated_at": "2026-11-23T12:39:45.441Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10202,7 +10203,7 @@
         "蘆灰",
         "蘆（芦）灰"
       ],
-      "facts_updated_at": "2026-11-17T10:43:38.227Z",
+      "facts_updated_at": "2026-11-23T12:39:47.585Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10322,7 +10323,7 @@
       "danbooru_aliases": [
         "老八椰"
       ],
-      "facts_updated_at": "2026-11-17T10:43:40.547Z",
+      "facts_updated_at": "2026-11-23T12:39:49.906Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10438,20 +10439,20 @@
       "artist_name": "huang_du_du",
       "artist_tag": "huang_du_du",
       "danbooru_name": "huang_du_du",
-      "danbooru_post_count": 89,
+      "danbooru_post_count": 91,
       "danbooru_aliases": [
-        "SeAetbSkiISZEH0",
+        "黄杜杜",
+        "黄杜杜杜",
         "bushangbadabugaiming",
         "duduhuang",
         "hdd_d_d",
-        "黄杜杜",
-        "黄杜杜杜"
+        "SeAetbSkiISZEH0"
       ],
-      "facts_updated_at": "2026-11-17T10:43:42.631Z",
+      "facts_updated_at": "2026-11-23T12:39:52.083Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
-        "pool_size": 77,
+        "pool_size": 79,
         "variant_threshold": 12,
         "skipped_variants": []
       },
@@ -10567,7 +10568,7 @@
       "danbooru_aliases": [
         "芥末海苔碎"
       ],
-      "facts_updated_at": "2026-11-17T10:43:45.249Z",
+      "facts_updated_at": "2026-11-23T12:39:54.202Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10687,7 +10688,7 @@
       "danbooru_aliases": [
         "海苔盒饭"
       ],
-      "facts_updated_at": "2026-11-17T10:43:47.569Z",
+      "facts_updated_at": "2026-11-23T12:39:56.392Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10812,7 +10813,7 @@
         "yuuuas1208",
         "速冻汤圆"
       ],
-      "facts_updated_at": "2026-11-17T10:43:49.891Z",
+      "facts_updated_at": "2026-11-23T12:39:58.534Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -10937,7 +10938,7 @@
         "翔腿颓_",
         "翔腿颓_xin"
       ],
-      "facts_updated_at": "2026-11-17T10:43:52.201Z",
+      "facts_updated_at": "2026-11-23T12:40:00.696Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11059,7 +11060,7 @@
         "yinco555",
         "丨SiO2丨の瞳"
       ],
-      "facts_updated_at": "2026-11-17T10:43:54.548Z",
+      "facts_updated_at": "2026-11-23T12:40:02.909Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11185,7 +11186,7 @@
         "失眠老蟹",
         "蟹老板日常寝不足"
       ],
-      "facts_updated_at": "2026-11-17T10:43:56.936Z",
+      "facts_updated_at": "2026-11-23T12:40:05.075Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11308,7 +11309,7 @@
         "偽颜",
         "芝士油伊甸橡"
       ],
-      "facts_updated_at": "2026-11-17T10:43:59.102Z",
+      "facts_updated_at": "2026-11-23T12:40:07.267Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11424,14 +11425,14 @@
       "artist_name": "mento",
       "artist_tag": "mento",
       "danbooru_name": "mento",
-      "danbooru_post_count": 336,
+      "danbooru_post_count": 339,
       "danbooru_aliases": [
         "ment502",
         "现在僵尸门徒",
         "门徒",
         "门徒僵尸"
       ],
-      "facts_updated_at": "2026-11-17T10:44:01.488Z",
+      "facts_updated_at": "2026-11-23T12:40:09.462Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11459,8 +11460,8 @@
           "image_height": 3488,
           "created_at": "2022-12-27T16:01:54.038-05:00",
           "archived_at": "2026-11-17T10:37:48.782Z",
-          "score": 149,
-          "fav_count": 138,
+          "score": 150,
+          "fav_count": 139,
           "selection_rank": 1,
           "attribution": {
             "artist": "mento",
@@ -11521,8 +11522,8 @@
           "image_height": 3198,
           "created_at": "2023-07-05T06:54:16.471-04:00",
           "archived_at": "2026-11-17T10:37:51.230Z",
-          "score": 106,
-          "fav_count": 97,
+          "score": 107,
+          "fav_count": 98,
           "selection_rank": 3,
           "attribution": {
             "artist": "mento",
@@ -11559,7 +11560,7 @@
         "轻罗小扇扑流吟",
         "～★歌尘浪市★～"
       ],
-      "facts_updated_at": "2026-11-17T10:44:03.795Z",
+      "facts_updated_at": "2026-11-23T12:40:11.554Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11681,7 +11682,7 @@
         "画师虞花",
         "虞花"
       ],
-      "facts_updated_at": "2026-11-17T10:44:05.961Z",
+      "facts_updated_at": "2026-11-23T12:40:13.312Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11801,7 +11802,7 @@
       "danbooru_aliases": [
         "紧张的PIKU"
       ],
-      "facts_updated_at": "2026-11-17T10:44:08.270Z",
+      "facts_updated_at": "2026-11-23T12:40:15.990Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -11848,6 +11849,37 @@
           "display_generated_at": "2026-11-17T10:38:27Z"
         },
         {
+          "post_id": 11344910,
+          "source_url": "https://danbooru.donmai.us/posts/11344910",
+          "source_file_url": "https://cdn.donmai.us/original/db/df/dbdf25dbc837bd51c56374b7bc953cea.png",
+          "source_file_ext": "png",
+          "source_mime_type": "image/png",
+          "source_file_size": 9372545,
+          "source_sha256": "0f420ded8c3eb932710047a33a6fadc1015451bfbd3eb2ed450792f6399bb434",
+          "source_md5": "dbdf25dbc837bd51c56374b7bc953cea",
+          "image_width": 2033,
+          "image_height": 3378,
+          "created_at": "2026-05-10T05:10:04.267-04:00",
+          "archived_at": "2026-11-23T12:40:15.990Z",
+          "score": 3,
+          "fav_count": 3,
+          "selection_rank": 2,
+          "attribution": {
+            "artist": "jinzhangde_piku",
+            "artist_id": "556569",
+            "source_platform": "Danbooru"
+          },
+          "display_url": "assets/artists/556569/11344910.display.webp",
+          "display_variant": "derived_1600_webp",
+          "display_mime_type": "image/webp",
+          "display_width": 963,
+          "display_height": 1600,
+          "display_file_size": 186736,
+          "display_sha256": "38c387f0a7001e26005fa7e0c42b461ced780f38092e39055b0836c1f41ad3ec",
+          "display_source_sha256": "0f420ded8c3eb932710047a33a6fadc1015451bfbd3eb2ed450792f6399bb434",
+          "display_generated_at": "2026-11-23T12:40:16Z"
+        },
+        {
           "post_id": 10882428,
           "source_url": "https://danbooru.donmai.us/posts/10882428",
           "source_file_url": "https://cdn.donmai.us/original/27/0f/270fb56e3a1df586978e664d2dc6ac70.png",
@@ -11862,7 +11894,7 @@
           "archived_at": "2026-11-17T10:38:25.414Z",
           "score": 3,
           "fav_count": 3,
-          "selection_rank": 2,
+          "selection_rank": 3,
           "attribution": {
             "artist": "jinzhangde_piku",
             "artist_id": "556569",
@@ -11877,37 +11909,6 @@
           "display_sha256": "44066a218dcf548fe5d885a57d90bebf71113972935868f5b9854896ba9ec066",
           "display_source_sha256": "e13b09503eab51724d1e73ba95671a0232094c8c7a4949384bd3217d8dacba5c",
           "display_generated_at": "2026-11-17T10:38:28Z"
-        },
-        {
-          "post_id": 10303006,
-          "source_url": "https://danbooru.donmai.us/posts/10303006",
-          "source_file_url": "https://cdn.donmai.us/original/fa/d1/fad129dda570e14ffbfa6295df11733a.png",
-          "source_file_ext": "png",
-          "source_mime_type": "image/png",
-          "source_file_size": 6039441,
-          "source_sha256": "a1d74236eadadda6b38afd2a90a2feecf1cb5ee2dbdcd2391a695df0d95709cc",
-          "source_md5": "fad129dda570e14ffbfa6295df11733a",
-          "image_width": 2007,
-          "image_height": 3508,
-          "created_at": "2025-11-19T10:55:36.471-05:00",
-          "archived_at": "2026-11-17T10:38:26.836Z",
-          "score": 3,
-          "fav_count": 2,
-          "selection_rank": 3,
-          "attribution": {
-            "artist": "jinzhangde_piku",
-            "artist_id": "556569",
-            "source_platform": "Danbooru"
-          },
-          "display_url": "assets/artists/556569/10303006.display.webp",
-          "display_variant": "derived_1600_webp",
-          "display_mime_type": "image/webp",
-          "display_width": 915,
-          "display_height": 1600,
-          "display_file_size": 170038,
-          "display_sha256": "f6f8a068df069dded1304c6d6fdb917a0e139312d10deaf7ed3bd419062f1456",
-          "display_source_sha256": "a1d74236eadadda6b38afd2a90a2feecf1cb5ee2dbdcd2391a695df0d95709cc",
-          "display_generated_at": "2026-11-17T10:38:28Z"
         }
       ]
     },
@@ -11921,7 +11922,7 @@
       "danbooru_aliases": [
         "什阿纺"
       ],
-      "facts_updated_at": "2026-11-17T10:44:10.583Z",
+      "facts_updated_at": "2026-11-23T12:40:18.836Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -12044,7 +12045,7 @@
         "崛尺-放归大自然版-",
         "鳃鳃"
       ],
-      "facts_updated_at": "2026-11-17T10:44:12.926Z",
+      "facts_updated_at": "2026-11-23T12:40:21.055Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -12164,7 +12165,7 @@
       "danbooru_aliases": [
         "藤原可可"
       ],
-      "facts_updated_at": "2026-11-17T10:44:15.111Z",
+      "facts_updated_at": "2026-11-23T12:40:23.157Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -12280,11 +12281,11 @@
       "artist_name": "xingchunxiang",
       "artist_tag": "xingchunxiang",
       "danbooru_name": "xingchunxiang",
-      "danbooru_post_count": 38,
+      "danbooru_post_count": 39,
       "danbooru_aliases": [
         "幸村響"
       ],
-      "facts_updated_at": "2026-11-17T10:44:17.414Z",
+      "facts_updated_at": "2026-11-23T12:40:25.258Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -12409,7 +12410,7 @@
         "XiaxxxXiaxxxof",
         "yunnaiyingzi671"
       ],
-      "facts_updated_at": "2026-11-17T10:44:19.741Z",
+      "facts_updated_at": "2026-11-23T12:40:27.403Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -12533,7 +12534,7 @@
         "石羚_",
         "石羚yooo"
       ],
-      "facts_updated_at": "2026-11-17T10:44:22.168Z",
+      "facts_updated_at": "2026-11-23T12:40:29.411Z",
       "selection": "top_scored_general_posts_without_variants",
       "selection_detail": {
         "method": "Posts are ordered by Danbooru score; near-duplicate variants are skipped using parent/child post relations and an 8x8 difference hash of the 180px preview.",
@@ -12645,5 +12646,5 @@
     }
   ],
   "display_policy": "The grid loads a 1600 px WebP display derivative (quality 85) generated from the Danbooru source file. Source files are converted in a temporary staging directory and are not committed to this repository.",
-  "display_updated_at": "2026-11-17T10:44:22Z"
+  "display_updated_at": "2026-11-23T12:40:29Z"
 }
